@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using webAppBillett.Contexts;
 
-namespace WebApp_Del1
+namespace webAppBillett
 {
     public class Startup
     {
