@@ -1,6 +1,4 @@
-﻿(277 sloc) 9.48 KB
-
-
+﻿
 $('#regform2').hide();
 $("#regform3").hide();
 $("#regform4").hide();
