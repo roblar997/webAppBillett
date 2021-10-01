@@ -210,7 +210,7 @@ async function hentLugarInfoServer() {
 
         for (i = 0; i < res.length; i++) {
             let lugarHTML =
-                ' <div class="card col-md-16"> <img class="card-img-top" src="' + res[i].bildeURL + '"></img> ' +
+                ' <div class="card col-md-6"> <img class="card-img-top" src="' + res[i].bildeURL + '"></img> ' +
                 ' <div class="card-body">' +
                 ' <h5 class="card-title">' + res[i].tittel + '</h5>' +
                 '    <p class="card-text"> <strong> Pris:</strong> ' + res[i].pris + ' </p>' +
@@ -237,7 +237,7 @@ async function hentAlleLugarInfoServer() {
 
         for (i = 0; i < res.length; i++) {
             let lugarHTML =
-                ' <div class="card col-md-16"> <img class="card-img-top" src="' + res[i].bildeURL + '"></img> ' +
+                ' <div class="card col-md-6"> <img class="card-img-top" src="' + res[i].bildeURL + '"></img> ' +
                 ' <div class="card-body">' +
                 ' <h5 class="card-title">' + res[i].tittel + '</h5>' +
                 '    <p class="card-text"> <strong> Pris:</strong> ' + res[i].pris + ' </p>' +
