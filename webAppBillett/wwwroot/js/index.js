@@ -98,7 +98,8 @@ async function lagreReiseInfoServer() {
 
     $.post("/billett/lagreReiseInformasjon/", reiseInfo).done((res) => {
         GUIModuleSPA.addReiseInfo(1);
-
+        $("#reg0").hide();
+        $("#endre0").show();
         if (GUIModuleSPA.testReiseInformasjon()) {
             GUIModuleSPA.changeSchemaState(0, 1);
         }
@@ -216,7 +217,7 @@ function setRute(rute) {
     $("#til").append('<option value = "' + rute.til + '">' + rute.til + '  (' + rute.fra + '-' + rute.til + ') </option>');
 }
 async function velgLugar(id, body) {
-    alert(id);
+
     $.get("/billett/velgLugar/" + id).done((res) => {
         GUIModuleSPA.addLugarer(1);
         leggTilLugarOversikt(body);

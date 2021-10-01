@@ -3,6 +3,7 @@ $('#regform2').hide();
 $("#regform3").hide();
 $("#regform4").hide();
 $("#hjemreise").hide();
+$("#endre0").hide();
 
 $("#btnNeste").click(function () {
     $("#regform").hide();
