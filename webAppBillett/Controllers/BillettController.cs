@@ -6,7 +6,7 @@ using WebApp_Del1.Contexts;
 namespace WebApp_Del1.Controllers
 {
     [Route("[Controller]/[action]")]
-    public class BillettController : ControllerBase
+    public class BillettContext : ControllerBase
     {
 
 
@@ -15,7 +15,7 @@ namespace WebApp_Del1.Controllers
 
         static int billettId = -1;
 
-        public BillettController(BillettContext db)
+        public BillettContext(BillettContext db)
         {
             _lugDb = db;
             if (billettId == -1)
