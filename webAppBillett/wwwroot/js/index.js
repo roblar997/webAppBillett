@@ -15,7 +15,9 @@ $(() => {
 
         }
     });
-
+    $("#fulfor").click((e) => {
+        lagreBetaling();
+    })
     $("#slettLugarer").click((e) => {
         slettLugarer();
     });
@@ -105,6 +107,32 @@ async function lagreReiseInfoServer() {
         }
     }).promise();
 }
+
+async function lagreBetaling() {
+    const betalingsInfo = {
+        betalingsId: -1,
+        csv: $('#csv').val(),
+        kortnummer: $('#kortnummer').val(),
+        utloper: $('#utloper').val(),
+
+    };
+
+
+
+
+    $.post("/billett/utforBetaling/", betalingsInfo).done((res) => {
+        $("#lugarOversikt").html("");
+        $("#personer").html("");
+
+        document.getElementById("regform").reset();
+        GUIModuleSPA.fjernAlleLugarer();
+        GUIModuleSPA.fjernAllePersoner();
+        GUIModuleSPA.fjernAlleReiseInformasjon();
+
+
+    }).promise();
+}
+
 
 async function endrePersonServer(id, skjemaNr) {
     const person2 = {

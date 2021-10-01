@@ -168,6 +168,7 @@ namespace webAppBillett.Controllers
             betaling.betalingsId = billettId;
             _lugDb.betaling.Add(betaling);
             _lugDb.SaveChanges();
+            nyBillett();
 
         }
 
