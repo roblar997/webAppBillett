@@ -14,56 +14,41 @@ namespace webAppBillett.Controllers
 
         private readonly BillettContext _lugDb;
 
-        static int billettId = -1;
+
 
         public BillettController(BillettContext db)
         {
             _lugDb = db;
-            if (billettId == -1)
-            {
-                nyBillett();
-            }
-
-
 
 
         }
 
-        public void nyBillett()
+        public int nyBillett()
         {
             Billett billett = new Billett();
             _lugDb.billetter.Add(billett);
 
-            billettId = billett.billettId;
+            return billett.billettId;
 
         }
 
 
 
-        public void slettBillett()
+        public int slettBillett()
         {
             //  Billett billett = _lugDb.billetter.Find(billettId);
             //_lugDb.Remove(billett);
             //  _lugDb.SaveChanges();
-            nyBillett();
+            return nyBillett();
         }
 
-        [Route("{id}")]
-        public void velgLugar(int id)
+        public void velgLugar(BillettLugar billettLugar)
         {
-            Lugar lugar = _lugDb.lugarer.Find(id);
+            Lugar lugar = _lugDb.lugarer.Find(billettLugar.lugarId);
 
 
             if (lugar != null)
             {
-                BillettLugar billettLugar = new BillettLugar();
-                Billett billett = _lugDb.billetter.Find(billettId);
-                billettLugar.billettId = billett.billettId;
-
-
-                billettLugar.lugarId = lugar.lugarId;
-
-
 
                 _lugDb.billettLugar.Add(billettLugar);
 
@@ -73,34 +58,33 @@ namespace webAppBillett.Controllers
 
         }
 
-        [Route("{id}")]
-        public void slettLugar(int id)
+        public void slettLugar(BillettLugar billettLugar)
         {
 
-            Billett billett = _lugDb.billetter.Find(billettId);
-            billett.billettLugar.RemoveAll((x) => { return x.lugarId == id && x.billettId == billett.billettId; });
+            Billett billett = _lugDb.billetter.Find(billettLugar.billettId);
+            billett.billettLugar.RemoveAll((x) => { return x.lugarId == billettLugar.lugarId && x.billettId == billett.billettId; });
 
 
 
 
         }
 
-        public void slettLugarer()
+        public void slettLugarer(int billettId)
         {
 
             Billett billett = _lugDb.billetter.Find(billettId);
-            billett.billettLugar.RemoveAll((x) => { return x.billettId == billett.billettId; });
+            billett.billettLugar.RemoveAll((x) => { return x.billettId == billettId; });
 
 
 
 
         }
 
-        public void slettPersoner()
+        public void slettPersoner(int billettId)
         {
 
             Billett billett = _lugDb.billetter.Find(billettId);
-            billett.billettPerson.RemoveAll((x) => { return x.billettId == billett.billettId; });
+            billett.billettPerson.RemoveAll((x) => { return x.billettId == billettId; });
     
 
 
@@ -115,16 +99,6 @@ namespace webAppBillett.Controllers
             _lugDb.personer.Add(person);
             _lugDb.SaveChanges();
 
-
-            BillettPerson billettPerson = new BillettPerson();
-            Billett billett = _lugDb.billetter.Find(billettId);
-            billettPerson.billettId = billett.billettId;
-
-
-            billettPerson.personId = person.personId;
-
-            _lugDb.billettPerson.Add(billettPerson);
-
             return person.personId;
 
 
@@ -136,14 +110,13 @@ namespace webAppBillett.Controllers
         [HttpPost]
         public void utforBetaling(Betaling betaling)
         {
-            betaling.betalingsId = billettId;
             _lugDb.betaling.Add(betaling);
             _lugDb.SaveChanges();
             nyBillett();
 
         }
 
-        public List<Person> hentPersoner()
+        public List<Person> hentPersoner(int billettId)
         {
             Billett billett = _lugDb.billetter.Find(billettId);
 
@@ -157,7 +130,7 @@ namespace webAppBillett.Controllers
         }
 
 
-        public List<Lugar> hentLugarer()
+        public List<Lugar> hentLugarer(int billettId)
         {
             Billett billett = _lugDb.billetter.Find(billettId);
 
@@ -179,7 +152,7 @@ namespace webAppBillett.Controllers
 
         }
 
-        public ReiseInformasjon hentReiseInformasjon()
+        public ReiseInformasjon hentReiseInformasjon(int billettId)
         {
             Billett billett = _lugDb.billetter.Find(billettId);
             return billett.ReiseInformasjon.ToList().First();
@@ -187,15 +160,15 @@ namespace webAppBillett.Controllers
         }
 
 
-        [Route("{id}")]
-        public void slettPerson(int id)
+
+        public void slettPerson(Person person)
         {
 
 
 
-            Person person = _lugDb.personer.Find(id);
-            Billett billett = _lugDb.billetter.Find(billettId);
-            billett.billettPerson.RemoveAll((x) => { return x.personId == id && x.billettId == billett.billettId; });
+
+            Billett billett = _lugDb.billetter.Find(person.billettId);
+            billett.billettPerson.RemoveAll((x) => { return x.personId == person.personId && x.billettId == billett.billettId; });
 
 
 
@@ -214,19 +187,17 @@ namespace webAppBillett.Controllers
         }
 
         [HttpPost]
-        public int lagreReiseInformasjon(ReiseInformasjon reiseInformasjon)
+        public void lagreReiseInformasjon(ReiseInformasjon reiseInformasjon)
         {
-            reiseInformasjon.reiseId = billettId;
             _lugDb.reiseInformasjon.Add(reiseInformasjon);
 
 
 
-            return reiseInformasjon.reiseId;
 
         }
 
 
-        public void slettReiseInformasjon()
+        public void slettReiseInformasjon(int billettId)
         {
             Billett billett = _lugDb.billetter.Find(billettId);
             List<ReiseInformasjon> reiseInformasjon = billett.ReiseInformasjon;
@@ -242,10 +213,10 @@ namespace webAppBillett.Controllers
         public void endreReiseInformasjon(ReiseInformasjon reiseInformasjon)
         {
 
-            ReiseInformasjon reiseInformasjonGammel = _lugDb.reiseInformasjon.Find(billettId);
+            ReiseInformasjon reiseInformasjonGammel = _lugDb.reiseInformasjon.Find(reiseInformasjon.billettId);
             if (reiseInformasjonGammel.antVoksen != reiseInformasjon.antVoksen || reiseInformasjonGammel.antBarn != reiseInformasjon.antBarn)
             {
-                this.slettPersoner();
+                this.slettPersoner(reiseInformasjon.billettId);
             }
             reiseInformasjonGammel.antVoksen = reiseInformasjon.antVoksen;
             reiseInformasjonGammel.antBarn = reiseInformasjon.antBarn;
