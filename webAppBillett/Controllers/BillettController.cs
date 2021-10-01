@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using webAppBillett.Contexts;
 using webAppBillett.Models;
 
 namespace webAppBillett.Controllers
 {
     [Route("[Controller]/[action]")]
-    public class BillettContext : ControllerBase
+    public class BillettController : ControllerBase
     {
 
 
@@ -15,7 +16,7 @@ namespace webAppBillett.Controllers
 
         static int billettId = -1;
 
-        public BillettContext(BillettContext db)
+        public BillettController(BillettContext db)
         {
             _lugDb = db;
             if (billettId == -1)
