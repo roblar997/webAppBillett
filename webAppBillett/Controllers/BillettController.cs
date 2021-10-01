@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using WebApp_Del1.Contexts;
+using webAppBillett.Contexts;
 
-namespace WebApp_Del1.Controllers
+namespace webAppBillett.Controllers
 {
     [Route("[Controller]/[action]")]
     public class BillettContext : ControllerBase

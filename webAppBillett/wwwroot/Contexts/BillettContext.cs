@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using webAppBillett.Models;
 
-namespace WebApp_Del1.Contexts
+namespace webAppBillett.Contexts
 {
     public class BillettContext : DbContext
     {

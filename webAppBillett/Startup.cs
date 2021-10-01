@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
-using WebApp_Del1.Contexts;
+using webAppBillett.Contexts;
 
 namespace WebApp_Del1
 {
