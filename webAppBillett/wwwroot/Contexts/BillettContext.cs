@@ -20,7 +20,7 @@ namespace webAppBillett.Contexts
         public DbSet<Rute> ruter { get; set; }
         public DbSet<Person> personer { get; set; }
         public DbSet<ReiseInformasjon> reiseInformasjon { get; set; }
-
+        public DbSet<Betaling> betaling { get; set; }
         public DbSet<BillettLugar> billettLugar { get; set; }
         public DbSet<BillettPerson> billettPerson { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

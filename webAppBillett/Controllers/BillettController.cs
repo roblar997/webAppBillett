@@ -162,6 +162,15 @@ namespace webAppBillett.Controllers
         {
             return _lugDb.ruter.ToList();
         }
+        [HttpPost]
+        public void utforBetaling(Betaling betaling)
+        {
+            betaling.betalingsId = billettId;
+            _lugDb.betaling.Add(betaling);
+            _lugDb.SaveChanges();
+
+        }
+
         public List<Person> hentPersoner()
         {
             Billett billett = _lugDb.billetter.Find(billettId);
