@@ -26,17 +26,13 @@ namespace webAppBillett.Controllers
 
         }
 
-        public async void nyBillett()
+
+
+        public async void slettBillett()
         {
+
             int billettId = await _lugDb.nyBillett();
             HttpContext.Session.SetInt32("billettId", billettId);
-        }
-
-
-
-        public async Task slettBillettAsync()
-        {
-            await _lugDb.nyBillett();
         }
 
         [Route("{id}")]
