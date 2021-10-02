@@ -21,6 +21,7 @@ namespace webAppBillett.Models
 
         public String addresse { get; set; }
 
-        public virtual List<BillettPerson> billett { get; set; }
+        public int billettId { get; set; }
+
     }
 }
