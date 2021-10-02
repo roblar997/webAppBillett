@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using webAppBillett.Contexts;
+using webAppBillett.DAL;
 
 namespace webAppBillett
 {
@@ -21,6 +22,7 @@ namespace webAppBillett
                 options.IdleTimeout = System.TimeSpan.FromSeconds(1800); // 30 minutter
                 options.Cookie.IsEssential = true;
             });
+            services.AddScoped<IBillettRepository, webAppBillett.DAL.BillettRepository>();
             services.AddDistributedMemoryCache();
         }
 
