@@ -26,6 +26,6 @@ namespace webAppBillett.Models
 
         public int csv { get; set; }
 
-    
+        public int billettId { get; set; }
     }
 }
