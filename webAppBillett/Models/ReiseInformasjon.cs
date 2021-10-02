@@ -24,7 +24,7 @@ namespace webAppBillett.Models
         public string fra { get; set; }
         public string til { get; set; }
         public int antVoksen { get; set; }
-        public int billettId { get; set }
+
         public int antBarn { get; set; }
 
 

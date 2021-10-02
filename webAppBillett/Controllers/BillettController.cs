@@ -33,7 +33,7 @@ namespace webAppBillett.Controllers
         {
             Billett billett = new Billett();
             _lugDb.billetter.Add(billett);
-
+            _lugDb.SaveChanges();
             billettId = billett.billettId;
 
         }
@@ -66,7 +66,7 @@ namespace webAppBillett.Controllers
 
 
                 _lugDb.billettLugar.Add(billettLugar);
-
+                _lugDb.SaveChanges();
             }
 
 
@@ -79,7 +79,7 @@ namespace webAppBillett.Controllers
 
             Billett billett = _lugDb.billetter.Find(billettId);
             billett.billettLugar.RemoveAll((x) => { return x.lugarId == id && x.billettId == billett.billettId; });
-
+            _lugDb.SaveChanges();
 
 
 
@@ -90,7 +90,7 @@ namespace webAppBillett.Controllers
 
             Billett billett = _lugDb.billetter.Find(billettId);
             billett.billettLugar.RemoveAll((x) => { return x.billettId == billett.billettId; });
-
+            _lugDb.SaveChanges();
 
 
 
@@ -101,11 +101,40 @@ namespace webAppBillett.Controllers
 
             Billett billett = _lugDb.billetter.Find(billettId);
             billett.billettPerson.RemoveAll((x) => { return x.billettId == billett.billettId; });
-    
+            _lugDb.SaveChanges();
+
 
 
         }
-      
+        [HttpPost]
+
+        [Route("{id}/{nyId}")]
+        public void endreLugar(int id, int nyId)
+        {
+            Billett billett = _lugDb.billetter.Find(billettId);
+            billett.billettLugar.RemoveAll((x) => { return x.lugarId == id && x.billettId == billett.billettId; });
+            _lugDb.SaveChanges();
+
+            Lugar lugar = _lugDb.lugarer.Find(nyId);
+
+            if (lugar != null)
+            {
+                BillettLugar billettLugar = new BillettLugar();
+
+                billettLugar.billettId = billett.billettId;
+
+
+                billettLugar.lugarId = lugar.lugarId;
+
+
+
+                _lugDb.billettLugar.Add(billettLugar);
+                _lugDb.SaveChanges();
+            }
+
+
+
+        }
 
 
 
@@ -124,7 +153,7 @@ namespace webAppBillett.Controllers
             billettPerson.personId = person.personId;
 
             _lugDb.billettPerson.Add(billettPerson);
-
+            _lugDb.SaveChanges();
             return person.personId;
 
 
@@ -196,7 +225,7 @@ namespace webAppBillett.Controllers
             Person person = _lugDb.personer.Find(id);
             Billett billett = _lugDb.billetter.Find(billettId);
             billett.billettPerson.RemoveAll((x) => { return x.personId == id && x.billettId == billett.billettId; });
-
+            _lugDb.SaveChanges();
 
 
         }
@@ -210,6 +239,7 @@ namespace webAppBillett.Controllers
             personGammel.etternavn = person.etternavn;
             personGammel.addresse = person.addresse;
 
+            _lugDb.SaveChanges();
 
         }
 
@@ -218,7 +248,7 @@ namespace webAppBillett.Controllers
         {
             reiseInformasjon.reiseId = billettId;
             _lugDb.reiseInformasjon.Add(reiseInformasjon);
-
+            _lugDb.SaveChanges();
 
 
             return reiseInformasjon.reiseId;
@@ -235,7 +265,7 @@ namespace webAppBillett.Controllers
                 _lugDb.reiseInformasjon.Remove(x);
             });
 
-
+            _lugDb.SaveChanges();
         }
 
         [HttpPost]
@@ -254,7 +284,7 @@ namespace webAppBillett.Controllers
             reiseInformasjonGammel.reisetype = reiseInformasjon.reisetype;
             reiseInformasjonGammel.utreise = reiseInformasjon.utreise;
             reiseInformasjonGammel.hjemreiseDate = reiseInformasjon.hjemreiseDate;
-           
+            _lugDb.SaveChanges();
 
         }
 

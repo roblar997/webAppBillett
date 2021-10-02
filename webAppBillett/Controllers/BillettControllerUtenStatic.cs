@@ -7,7 +7,7 @@ using webAppBillett.Models;
 namespace webAppBillett.Controllers
 {
     [Route("[Controller]/[action]")]
-    public class BillettController : ControllerBase
+    public class BillettControllerUtenStatic : ControllerBase
     {
 
 
@@ -16,7 +16,7 @@ namespace webAppBillett.Controllers
 
 
 
-        public BillettController(BillettContext db)
+        public BillettControllerUtenStatic(BillettContext db)
         {
             _lugDb = db;
 
