@@ -15,6 +15,13 @@ namespace webAppBillett
         {
             services.AddControllers();
             services.AddDbContext<BillettContext>(options => options.UseSqlite("Data source =Billett.db")); //Skal endres etterhvert.
+            services.AddSession(options =>
+            {
+
+                options.IdleTimeout = System.TimeSpan.FromSeconds(1800); // 30 minutter
+                options.Cookie.IsEssential = true;
+            });
+            services.AddDistributedMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,7 +35,7 @@ namespace webAppBillett
             app.UseStaticFiles(); // merk denne!
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

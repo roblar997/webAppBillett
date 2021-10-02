@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using webAppBillett.Contexts;
@@ -14,15 +15,10 @@ namespace webAppBillett.Controllers
 
         private readonly BillettContext _lugDb;
 
-        static int billettId = -1;
-
+ 
         public BillettController(BillettContext db)
         {
             _lugDb = db;
-            if (billettId == -1)
-            {
-                nyBillett();
-            }
 
 
 
@@ -34,10 +30,13 @@ namespace webAppBillett.Controllers
             Billett billett = new Billett();
             _lugDb.billetter.Add(billett);
             _lugDb.SaveChanges();
-            billettId = billett.billettId;
-
+            HttpContext.Session.SetInt32("billettId", billett.billettId);
         }
 
+        public int test()
+        {
+            return HttpContext.Session.GetInt32("billettId").Value;
+        }
 
 
         public void slettBillett()
@@ -52,7 +51,7 @@ namespace webAppBillett.Controllers
         public void velgLugar(int id)
         {
             Lugar lugar = _lugDb.lugarer.Find(id);
-
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
 
             if (lugar != null)
             {
@@ -76,7 +75,7 @@ namespace webAppBillett.Controllers
         [Route("{id}")]
         public void slettLugar(int id)
         {
-
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
             Billett billett = _lugDb.billetter.Find(billettId);
             billett.billettLugar.RemoveAll((x) => { return x.lugarId == id && x.billettId == billett.billettId; });
             _lugDb.SaveChanges();
@@ -87,7 +86,7 @@ namespace webAppBillett.Controllers
 
         public void slettLugarer()
         {
-
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
             Billett billett = _lugDb.billetter.Find(billettId);
             billett.billettLugar.RemoveAll((x) => { return x.billettId == billett.billettId; });
             _lugDb.SaveChanges();
@@ -98,7 +97,7 @@ namespace webAppBillett.Controllers
 
         public void slettPersoner()
         {
-
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
             Billett billett = _lugDb.billetter.Find(billettId);
             billett.billettPerson.RemoveAll((x) => { return x.billettId == billett.billettId; });
             _lugDb.SaveChanges();
@@ -111,6 +110,7 @@ namespace webAppBillett.Controllers
         [Route("{id}/{nyId}")]
         public void endreLugar(int id, int nyId)
         {
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
             Billett billett = _lugDb.billetter.Find(billettId);
             billett.billettLugar.RemoveAll((x) => { return x.lugarId == id && x.billettId == billett.billettId; });
             _lugDb.SaveChanges();
@@ -143,7 +143,7 @@ namespace webAppBillett.Controllers
         {
             _lugDb.personer.Add(person);
             _lugDb.SaveChanges();
-
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
 
             BillettPerson billettPerson = new BillettPerson();
             Billett billett = _lugDb.billetter.Find(billettId);
@@ -165,6 +165,7 @@ namespace webAppBillett.Controllers
         [HttpPost]
         public void utforBetaling(Betaling betaling)
         {
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
             betaling.betalingsId = billettId;
             _lugDb.betaling.Add(betaling);
             _lugDb.SaveChanges();
@@ -174,6 +175,17 @@ namespace webAppBillett.Controllers
 
         public List<Person> hentPersoner()
         {
+
+            //For oppstart
+            if (!HttpContext.Session.GetInt32("billettId").HasValue)
+            {
+                Billett billetten = new Billett();
+                _lugDb.billetter.Add(billetten);
+                _lugDb.SaveChanges();
+                HttpContext.Session.SetInt32("billettId", billetten.billettId);
+            }
+            
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
             Billett billett = _lugDb.billetter.Find(billettId);
 
             List<Person> personer = billett.billettPerson.ConvertAll((x) =>
@@ -188,6 +200,7 @@ namespace webAppBillett.Controllers
 
         public List<Lugar> hentLugarer()
         {
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
             Billett billett = _lugDb.billetter.Find(billettId);
 
             List<Lugar> lugarer = billett.billettLugar.ConvertAll((x) =>
@@ -210,6 +223,7 @@ namespace webAppBillett.Controllers
 
         public ReiseInformasjon hentReiseInformasjon()
         {
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
             Billett billett = _lugDb.billetter.Find(billettId);
             return billett.ReiseInformasjon.ToList().First();
 
@@ -221,7 +235,7 @@ namespace webAppBillett.Controllers
         {
 
 
-
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
             Person person = _lugDb.personer.Find(id);
             Billett billett = _lugDb.billetter.Find(billettId);
             billett.billettPerson.RemoveAll((x) => { return x.personId == id && x.billettId == billett.billettId; });
@@ -246,6 +260,7 @@ namespace webAppBillett.Controllers
         [HttpPost]
         public int lagreReiseInformasjon(ReiseInformasjon reiseInformasjon)
         {
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
             reiseInformasjon.reiseId = billettId;
             _lugDb.reiseInformasjon.Add(reiseInformasjon);
             _lugDb.SaveChanges();
@@ -258,6 +273,7 @@ namespace webAppBillett.Controllers
 
         public void slettReiseInformasjon()
         {
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
             Billett billett = _lugDb.billetter.Find(billettId);
             List<ReiseInformasjon> reiseInformasjon = billett.ReiseInformasjon;
             reiseInformasjon.ForEach((x) =>
@@ -271,7 +287,7 @@ namespace webAppBillett.Controllers
         [HttpPost]
         public void endreReiseInformasjon(ReiseInformasjon reiseInformasjon)
         {
-
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
             ReiseInformasjon reiseInformasjonGammel = _lugDb.reiseInformasjon.Find(billettId);
             if (reiseInformasjonGammel.antVoksen != reiseInformasjon.antVoksen || reiseInformasjonGammel.antBarn != reiseInformasjon.antBarn)
             {
