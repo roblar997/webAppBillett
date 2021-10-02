@@ -5,11 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\Contexts\BillettContext.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="wwwroot\Contexts\BillettContext.cs" />
+    <Content Remove="Contexts\BillettContext.cs" />
   </ItemGroup>
 
   <ItemGroup>
