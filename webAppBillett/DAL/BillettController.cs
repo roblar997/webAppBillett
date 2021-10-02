@@ -40,28 +40,30 @@ namespace webAppBillett.Controllers
         }
 
         [Route("{id}")]
-        public async void velgLugar(int id)
+        public  void velgLugar(int id)
         {
-            int billettId = await _lugDb.nyBillett();
-             _lugDb.velgLugar(id,billettId);
+            
+                int billettId = HttpContext.Session.GetInt32("billettId").Value;
+                _lugDb.velgLugar(id,billettId);
 
 
         }
 
 
-        public async void slettLugarer()
+        public  void slettLugarer()
         {
-            int billettId = await _lugDb.nyBillett();
-             _lugDb.slettLugarer(billettId);
+            
+                int billettId = HttpContext.Session.GetInt32("billettId").Value;
+                _lugDb.slettLugarer(billettId);
 
 
 
         }
 
-        public async Task slettPersonerAsync()
+        public  void slettPersoner()
         {
-            int billettId = await _lugDb.nyBillett();
-             _lugDb.slettLugarer(billettId);
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
+            _lugDb.slettPersoner(billettId);
 
 
 
@@ -71,9 +73,9 @@ namespace webAppBillett.Controllers
         [HttpPost]
         public async Task<int> lagrePerson(Person person)
         {
-            
-                int billettId = await _lugDb.nyBillett();
-                return await _lugDb.lagrePerson(person,billettId);
+
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
+            return await _lugDb.lagrePerson(person,billettId);
 
         }
 
@@ -83,10 +85,10 @@ namespace webAppBillett.Controllers
         }
 
         [HttpPost]
-        public async void utforBetaling(Betaling betaling)
+        public  void utforBetaling(Betaling betaling)
         {
             int billettId = HttpContext.Session.GetInt32("billettId").Value;
-             _lugDb.utforBetaling(betaling,billettId);
+              _lugDb.utforBetaling(betaling,billettId);
 
         }
 
