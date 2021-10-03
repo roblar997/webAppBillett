@@ -30,6 +30,7 @@ namespace webAppBillett.Models
         public string ankomstTid { get; set; }
 
 
+        public string forekomstId { get; set; }
 
     }
 }
