@@ -22,6 +22,10 @@ namespace webAppBillett.Models
 
         public string ankomstDato { get; set; }
 
+        public string avgangsTid{ get; set; }
+
+        public string ankomstTid { get; set; }
+
         public int ruteId { get; set; }
     }
 }
