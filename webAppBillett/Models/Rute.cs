@@ -23,8 +23,8 @@ namespace webAppBillett.Models
         public string til { get; set; }
 
         [ForeignKey("ruteId")]
+        
 
-        [System.Text.Json.Serialization.JsonIgnore]
         public virtual List<RuteForekomstDato> ruteForekomstDato { get; set; }
     }
 }

@@ -16,14 +16,14 @@ namespace webAppBillett.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int forekomstId { get; set; }
+        public int forekomstDatoId { get; set; }
 
         public string avgangsDato { get; set; }
         public int ruteId { get; set; }
 
         [System.Text.Json.Serialization.JsonIgnore]
 
-        [ForeignKey("forekomstId")]
+        [ForeignKey("forekomstDatoId")]
         public virtual List<RuteForekomstDatoTid> RuteForekomstDatoTid { get; set; }
     }
 }
