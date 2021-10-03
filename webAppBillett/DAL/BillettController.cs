@@ -102,6 +102,11 @@ namespace webAppBillett.Controllers
         }
 
 
+        public List<RuteForekomst> hentForekomster(Rute rute)
+        {
+            return null;
+
+        }
         public async Task<List<Lugar>> hentLugarer()
         {
             int billettId = HttpContext.Session.GetInt32("billettId").Value;

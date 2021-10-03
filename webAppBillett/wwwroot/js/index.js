@@ -200,20 +200,20 @@ async function hentReiseInfoServer() {
     }).promise();
 }
 
-async function hentDatoer() {
+async function hentForekomster() {
 
-    $.get("/billett/hentDatoer/", rute).done((res) => {
+    let rute = {
+        fra: $("#fra").val(),
+        til: $("#til").val()
 
-    }).promise();
-}
+    }
 
-
-async function hentTidspunkt() {
-
-    $.get("/billett/hentTidspunkt/", rute, dato).done((res) => {
+    $.get("/billett/hentForekomster/", rute).done((res) => {
 
     }).promise();
 }
+
+
 
 async function hentRuter() {
 
