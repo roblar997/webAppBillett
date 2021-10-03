@@ -204,13 +204,17 @@ async function hentReiseInfoServer() {
 async function hentForekomstDato() {
 
     let rute = {
-        ruteId: "",
         fra: $("#fra").val(),
         til: $("#til").val()
     }
 
     $.post("/billett/hentForekomstDato/", rute).done((res) => {
- 
+
+        for (i = 0; i < res.length; i++) {
+            setDato(res[i]);
+        }
+
+        $("#ruteValgt").val(res[0].ruteId);
     } )
     .promise();
 }
@@ -219,11 +223,13 @@ async function hentForekomstDato() {
 async function hentForekomstDatoTid() {
 
     let forekomstDato = {
-        ruteId: "",
-        avgangsDato: " "
+        ruteId: $("#ruteValgt").val(),
+        avgangsDato: $("#avgangsDato").val()
     }
     $.post("/billett/hentForekomstDatoTid/", forekomstDato).done((res) => {
-
+        for (i = 0; i < res.length; i++) {
+            setTid(res[i]);
+        }
     }) .promise();
 }
 
@@ -245,6 +251,14 @@ async function hentRuter() {
 function setRute(rute) {
     $("#fra").append('<option value = "' + rute.fra + '">' + rute.fra + '  (' + rute.fra + '-' + rute.til + ') </option>');
     $("#til").append('<option value = "' + rute.til + '">' + rute.til + '  (' + rute.fra + '-' + rute.til + ') </option>');
+}
+
+function setDato(dato) {
+    $("#avgangsDato").append('<option value = "' + dato + '">' + dato + ' </option>');
+}
+
+function setTid(tid) {
+    $("#avgangsTid").append('<option value = "' + tid + '">' + tid + ' </option>');
 }
 async function velgLugar(id, body) {
 
