@@ -7,21 +7,21 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace webAppBillett.Models
 {
-    public class Rute
+    public class RuteForekomst
     {
-        public Rute()
+        public RuteForekomst()
         {
 
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ruteId { get; set; }
+        public int forekomstId { get; set; }
 
-        public string fra { get; set; }
+        public string avgang { get; set; }
 
-        public string til { get; set; }
+        public string ankomst{ get; set; }
 
-        public virtual List<RuteForekomst> ruteForekomst { get; set; }
+
     }
 }
