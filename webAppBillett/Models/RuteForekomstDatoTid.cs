@@ -20,8 +20,12 @@ namespace webAppBillett.Models
         [Key, Column(Order = 1)]
         public string avgangsDato { get; set; }
 
-        public string ankomstDato { get; set; }
+        [Key, Column(Order = 2)]
         public string avgangsTid { get; set; }
+
+
+        public string ankomstDato { get; set; }
+
 
         public string ankomstTid { get; set; }
 
