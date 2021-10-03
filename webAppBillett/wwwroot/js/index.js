@@ -201,7 +201,7 @@ async function hentReiseInfoServer() {
 }
 
 
-async function hentForekomstDato(rute) {
+async function hentForekomstDato() {
 
     let rute = {
         fra: $("#fra").val(),
@@ -215,7 +215,7 @@ async function hentForekomstDato(rute) {
 }
 
 
-async function hentForekomstDatoTid(rute) {
+async function hentForekomstDatoTid() {
 
     let forekomstDato = {
         ruteId: "",
