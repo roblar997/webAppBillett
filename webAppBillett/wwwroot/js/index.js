@@ -209,7 +209,7 @@ async function hentForekomstDato() {
     }
 
     $.post("/billett/hentForekomstDato/", rute).done((res) => {
-        sessionStorage.setItem("forekomstDato", res);
+ 
     } )
     .promise();
 }
@@ -222,8 +222,7 @@ async function hentForekomstDatoTid() {
         avgangsDato: " "
     }
     $.post("/billett/hentForekomstDatoTid/", forekomstDato).done((res) => {
-        sessionStorage.setItem("forekomstDatoTid", res);
-        sessionStorage.setItem("avgangsDato", forekomstDato.avgangsDato);
+
     }) .promise();
 }
 
