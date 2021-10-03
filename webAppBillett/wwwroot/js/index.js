@@ -201,19 +201,32 @@ async function hentReiseInfoServer() {
 }
 
 
-async function hentForekomster() {
+async function hentForekomstDato(rute) {
 
     let rute = {
         fra: $("#fra").val(),
         til: $("#til").val()
-
     }
 
-    $.get("/billett/hentForekomster/", rute).done((res) => {
-         
+    $.post("/billett/hentForekomstDato/", rute).done((res) => {
+        sessionStorage.setItem("forekomstDato", res);
     } )
     .promise();
 }
+
+
+async function hentForekomstDatoTid(rute) {
+
+    let forekomstDato = {
+        ruteId: "",
+        avgangsDato: " "
+    }
+    $.post("/billett/hentForekomstDatoTid/", forekomstDato).done((res) => {
+        sessionStorage.setItem("forekomstDatoTid", res);
+        sessionStorage.setItem("avgangsDato", forekomstDato.avgangsDato);
+    }) .promise();
+}
+
 
 
 
