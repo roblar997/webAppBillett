@@ -210,7 +210,7 @@ async function hentForekomster() {
     }
 
     $.get("/billett/hentForekomster/", rute).done((res) => {
-      
+         
     } )
     .promise();
 }

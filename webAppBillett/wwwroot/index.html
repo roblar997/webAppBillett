@@ -77,10 +77,14 @@
 
             <form class="form" id="regform" action="">
                 <h1 class="text-center" style="margin-top: 1em">Reiseinformasjon</h1>
+                <p class="text-center">
+                    Trykk søk for å finne ledige datoer
+                </p>
                 <div class=" bg-transparent text-dark form" style="padding: 1em 1em 1em 1em !important">
 
                     <div class="form-group">
                         <label>Reisetype:</label>
+
                         <select class="form-control" id="reisetype">
                             <option value="standard">Standard</option>
                             <option value="luksus">Luksus</option>
@@ -98,12 +102,14 @@
                             <select class="form-control" id="til">
                             </select>
                         </div>
+
                     </div>
+                    <button type="button" class="btn btn-success" id="sokDato"> Søk </button>
                 </div>
                 <div class=" bg-transparent text-dark form" style="padding: 1em 1em 1em 1em !important">
                     <h1>Dato</h1>
-                    <p>
-                        Trykk søk for å finne ledige datoer
+                    <p class="text-center">
+                        Trykk søk for å finne ledige tidspunkt
                     </p>
                     <div class="form-group">
                         <label>Utreise:</label>
@@ -112,6 +118,11 @@
 
 
                     <button type="button" class="btn btn-success" id="sokTid"> Søk </button>
+                    <h1 ">Tidspunkt </h1>
+                    <div class="form-group ">
+                        <label for="avgangsTid">Avgangs tid: </label>
+                        <input type="time" id="avgangsTid" />
+                    </div>
 
 
                 </div>
