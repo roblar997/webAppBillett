@@ -204,6 +204,7 @@ async function hentReiseInfoServer() {
 async function hentForekomstDato() {
 
     let rute = {
+        ruteId: "",
         fra: $("#fra").val(),
         til: $("#til").val()
     }
