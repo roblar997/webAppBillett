@@ -74,30 +74,34 @@
                 </form>
             </div>
             <button class="nav-link bg-danger text-white" style="float: right" href="#" id="slettBillett">Slett billett </button>
+
             <form class="form" id="regform" action="">
-                <h1 class="overskrift">Reiseinformasjon</h1>
-                <div class="form-group">
-                    <label>Reisetype:</label>
-                    <select class="form-control" id="reisetype">
-                        <option value="standard">Standard</option>
-                        <option value="luksus">Luksus</option>
-                    </select>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <label for="fra">Fra:</label>
-                        <select class="form-control" id="fra">
-                        </select>
-                        <div id="fraFeil"></div>
-                    </div>
-                    <div class="col">
-                        <label for="til">Til:</label>
-                        <select class="form-control" id="til">
+                <h1 class="text-center" style="margin-top: 1em">Reiseinformasjon</h1>
+                <div class=" bg-transparent text-dark form" style="padding: 1em 1em 1em 1em !important">
+
+                    <div class="form-group">
+                        <label>Reisetype:</label>
+                        <select class="form-control" id="reisetype">
+                            <option value="standard">Standard</option>
+                            <option value="luksus">Luksus</option>
                         </select>
                     </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="fra">Fra:</label>
+                            <select class="form-control" id="fra">
+                            </select>
+                            <div id="fraFeil"></div>
+                        </div>
+                        <div class="col">
+                            <label for="til">Til:</label>
+                            <select class="form-control" id="til">
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="border bg-transparent text-dark form" style="padding: 1em 1em 1em 1em !important">
-                    <h1 class="overskrift">Dato</h1>
+                <div class=" bg-transparent text-dark form" style="padding: 1em 1em 1em 1em !important">
+                    <h1>Dato</h1>
                     <p>
                         Trykk søk for å finne ledige tidspunkt
                     </p>
@@ -105,10 +109,10 @@
                         <label>Utreise:</label>
                         <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="utreise" />
                     </div>
-    
+
 
                     <button type="button" class="btn btn-success" id="sokTid"> Søk </button>
-                    <h1 class="overskrift">Tidspunkt </h1>
+                    <h1 ">Tidspunkt </h1>
                     <div class="form-group ">
                         <label for="avgangsTid">Avgangs tid: </label>
                         <input type="time" id="avgangsTid" />
