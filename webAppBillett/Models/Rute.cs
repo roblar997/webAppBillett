@@ -22,6 +22,7 @@ namespace webAppBillett.Models
 
         public string til { get; set; }
 
+        [ForeignKey("ruteId")]
         public virtual List<RuteForekomst> ruteForekomst { get; set; }
     }
 }

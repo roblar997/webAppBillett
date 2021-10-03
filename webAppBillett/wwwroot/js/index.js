@@ -200,6 +200,7 @@ async function hentReiseInfoServer() {
     }).promise();
 }
 
+
 async function hentForekomster() {
 
     let rute = {
@@ -209,8 +210,9 @@ async function hentForekomster() {
     }
 
     $.get("/billett/hentForekomster/", rute).done((res) => {
-
-    }).promise();
+      
+    } )
+    .promise();
 }
 
 
