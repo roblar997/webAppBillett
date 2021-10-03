@@ -102,7 +102,13 @@ namespace webAppBillett.Controllers
         }
 
 
-        public List<RuteForekomst> hentForekomster(Rute rute)
+        public List<RuteForekomstDato> hentForekomsterDato(Rute rute)
+        {
+            return null;
+
+        }
+
+        public List<RuteForekomstDato> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato)
         {
             return null;
 
