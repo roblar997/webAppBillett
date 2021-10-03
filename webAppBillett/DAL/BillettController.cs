@@ -102,15 +102,15 @@ namespace webAppBillett.Controllers
         }
 
 
-        public List<RuteForekomstDato> hentForekomsterDato(Rute rute)
+        public async Task<List<RuteForekomstDato>> hentForekomsterDato(Rute rute)
         {
-            return null;
+            return await _lugDb.hentForekomsterDato(rute);
 
         }
 
-        public List<RuteForekomstDato> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato)
+        public async Task<List<RuteForekomstDato>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato)
         {
-            return null;
+            return await _lugDb.hentForekomsterDatoTid(ruteForekomstDato);
 
         }
         public async Task<List<Lugar>> hentLugarer()

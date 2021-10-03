@@ -15,6 +15,14 @@ $(() => {
 
         }
     });
+
+    $("#sokDato").click((e) => {
+        hentForekomstDato();
+    })
+
+    $("#sokTid").click((e) => {
+        hentForekomstDatoTid();
+    })
     $("#fulfor").click((e) => {
         lagreBetaling();
     })

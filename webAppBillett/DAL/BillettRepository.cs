@@ -21,7 +21,17 @@ namespace webAppBillett.DAL {
 
         }
 
+          public async Task<List<RuteForekomstDato>> hentForekomsterDato(Rute rute)
+        {
+            return null;
 
+        }
+
+        public async Task<List<RuteForekomstDato>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato)
+        {
+            return null;
+
+        }
         public async Task<int> nyBillett() {
             Billett billett = new Billett();
             await _lugDb.billetter.AddAsync(billett);
