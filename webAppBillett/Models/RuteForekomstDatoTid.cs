@@ -7,25 +7,24 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace webAppBillett.Models
 {
-    public class RuteForekomst
+    public class RuteForekomstDatoTid
     {
-        public RuteForekomst()
+        public RuteForekomstDatoTid()
         {
 
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int forekomstId { get; set; }
+        [Key, Column(Order = 0)]
+        public int ruteId { get; set; }
 
-        public string avgangsDato { get; set; }
-
+        [Key, Column(Order = 1)]
         public string ankomstDato { get; set; }
 
-        public string avgangsTid{ get; set; }
+        public string avgangsTid { get; set; }
 
         public string ankomstTid { get; set; }
 
-        public int ruteId { get; set; }
+
+
     }
 }
