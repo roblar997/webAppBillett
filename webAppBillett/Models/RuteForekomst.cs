@@ -18,9 +18,13 @@ namespace webAppBillett.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int forekomstId { get; set; }
 
-        public string avgang { get; set; }
+        public string avgangsTid { get; set; }
 
-        public string ankomst{ get; set; }
+        public string ankomstTid{ get; set; }
+
+        public string avgangsDato { get; set; }
+
+        public string ankomstDato { get; set; }
 
 
     }
