@@ -18,9 +18,9 @@ namespace webAppBillett.Models
         public int ruteId { get; set; }
 
         [Key, Column(Order = 1)]
-        public string ankomstDato { get; set; }
-
         public string avgangsDato { get; set; }
+
+        public string ankomstDato { get; set; }
         public string avgangsTid { get; set; }
 
         public string ankomstTid { get; set; }

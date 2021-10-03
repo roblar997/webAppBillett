@@ -19,7 +19,7 @@ namespace webAppBillett.Models
         public int ruteId { get; set; }
 
         [Key, Column(Order = 1)]
-        public string ankomstDato { get; set; }
+        public string avgangsDato { get; set; }
 
         [System.Text.Json.Serialization.JsonIgnore]
         public virtual List<RuteForekomstDatoTid> RuteForekomstDatoTid { get; set; }
