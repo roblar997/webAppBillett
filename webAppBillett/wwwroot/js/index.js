@@ -210,16 +210,17 @@ async function hentReiseInfoServer() {
 
 
 async function hentForekomstDato() {
-
+    $("#avgangsDato").html("");
+    $("#avgangsTid").html("");
     let rute = {
         fra: $("#fra").val(),
         til: $("#til").val()
     }
 
-    $.post("/billett/hentForekomstDato/", rute).done((res) => {
+    $.post("/billett/hentForekomsterDato/", rute).done((res) => {
 
         for (i = 0; i < res.length; i++) {
-            setDato(res[i]);
+            setDato(res[i].avgangsDato);
         }
 
         $("#ruteValgt").val(res[0].ruteId);
@@ -229,14 +230,15 @@ async function hentForekomstDato() {
 
 
 async function hentForekomstDatoTid() {
-
+    $("#avgangsTid").html("");
     let forekomstDato = {
         ruteId: $("#ruteValgt").val(),
         avgangsDato: $("#avgangsDato").val()
     }
-    $.post("/billett/hentForekomstDatoTid/", forekomstDato).done((res) => {
+    $.post("/billett/hentForekomsterDatoTid/", forekomstDato).done((res) => {
+ 
         for (i = 0; i < res.length; i++) {
-            setTid(res[i]);
+            setTid(res[i].avgangsTid);
         }
     }) .promise();
 }

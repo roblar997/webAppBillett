@@ -21,15 +21,18 @@ namespace webAppBillett.DAL {
 
         }
 
-          public async Task<List<RuteForekomstDato>> hentForekomsterDato(Rute rute)
+        public async Task<List<RuteForekomstDato>> hentForekomsterDato(Rute rute)
         {
-            return null;
+           int ruteId = _lugDb.ruter.First((x) => x.fra == rute.fra && x.til == rute.til).ruteId;
+           return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId).ToListAsync();
+           
 
         }
 
-        public async Task<List<RuteForekomstDato>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato)
+        public async Task<List<RuteForekomstDatoTid>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato)
         {
-            return null;
+            int forekomstDatoId = _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteForekomstDato.ruteId && x.avgangsDato == ruteForekomstDato.avgangsDato).ruteId;
+            return await _lugDb.ruteForekomstDatoTid.Where((x) => x.forekomstDatoId == forekomstDatoId).ToListAsync();
 
         }
         public async Task<int> nyBillett() {
