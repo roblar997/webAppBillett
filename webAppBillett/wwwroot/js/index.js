@@ -7,9 +7,7 @@ $(  () => {
         hentReiseInfoServer().then((ok) => {
             hentPersonInfoServer();
             hentLugarInfoServer();
-            //Hindre potensiell concurrent bug
 
-   
            
            
             
