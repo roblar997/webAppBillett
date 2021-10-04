@@ -1,7 +1,7 @@
 ﻿
-$(() => {
+$( async () => {
     //TODO
-     hentRuter();
+     await hentRuter();
     hentReiseInfoServer();
     hentPersonInfoServer();
     hentLugarInfoServer();
@@ -248,7 +248,7 @@ async function hentForekomstDatoTid() {
 
 async function hentRuter() {
 
-    $.get("/billett/hentRuter/").done((res) => {
+    await $.get("/billett/hentRuter/").done((res) => {
 
         for (i = 0; i < res.length; i++) {
             setRute(res[i]);
