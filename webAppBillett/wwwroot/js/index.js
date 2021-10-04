@@ -1,12 +1,18 @@
 ﻿
-$(   () => {
+$(  () => {
     //TODO
-
     hentRuter().then((x) => {
-        hentReiseInfoServer().then((y) => { hentPersonInfoServer();});
-      
-        hentLugarInfoServer();});
 
+
+        hentReiseInfoServer().then((ok) => {
+            hentPersonInfoServer();
+            hentLugarInfoServer();
+        }, (err) => {
+            hentPersonInfoServer();
+            hentLugarInfoServer(); });
+
+    })
+ 
     $("#reg0").click((e) => {
         let info = hentReiseInfo();
         let erGyldig = validerReise(info);
@@ -403,7 +409,7 @@ async function slettBillettServer() {
 async function hentPersonInfoServer() {
 
 
-    $.get("/billett/hentPersoner/").done((res) => {
+   await $.get("/billett/hentPersoner/").done((res) => {
 
 
 
@@ -532,18 +538,19 @@ function leggTilLugarSokOversikt(html) {
 
     $(html).appendTo("#lugarer");
 }
-async function setReiseInfo(reiseInfo) {  hentRuter();
+async function setReiseInfo(reiseInfo) {
+
     $('#reisetype').val(reiseInfo.reisetype);
     $('#antBarn').val(reiseInfo.antBarn);
     $('#antVoksen').val(reiseInfo.antVoksen);
     $('#fra').val(reiseInfo.fra);
 
     $('#ruteValgt').val($("#fra")[0].selectedIndex);
-    await hentForekomstDato();
+     await hentForekomstDato();
    
     $('#avgangsDato').val(reiseInfo.avgangsDato);
     
-    await hentForekomstDatoTid();
+     hentForekomstDatoTid();
     $('#avgangsTid').val(reiseInfo.avgangsTid);
     genererPersonInfoSkjema(reiseInfo);
 }
