@@ -158,11 +158,13 @@ var GUIModuleSPA = (function () {
 
     let kravPersonAntall = 1;
     let kravReiseInfoAntall = 1;
-    let kravLugarerAntall = 1;
     let personerRegistrert = 0;
     let reiseInfoReigstrert = 0;
-    let lugarerRegistrert = 0;
+    let antPlasserRegistrert = 0;
 
+    function leggTilMaksPPlasser(antall) {
+        antPlasserRegistrert += antall;
+    }
     function addPPersoner(antall) {
         personerRegistrert += antall;
     }
@@ -179,16 +181,10 @@ var GUIModuleSPA = (function () {
     function fjernPReiseInfo(antall) {
         reiseInfoReigstrert -= antall;
     }
-    function addPLugarer(antall) {
-        lugarerRegistrert += antall;
-    }
 
-    function fjernPLugarer(antall) {
-        lugarerRegistrert -= antall;
-    }
 
     function testPAntallLugarer() {
-        return lugarerRegistrert >= kravLugarerAntall;
+        return antPlasserRegistrert >= kravPersonAntall;
     }
     function testPAntallPersoner() {
 
@@ -205,7 +201,7 @@ var GUIModuleSPA = (function () {
         reiseInformasjonRegistrert = 0;
     }
     function fjernPAlleLugarer() {
-        lugarerRegistrert = 0;
+        antPlasserRegistrert = 0;
     }
     //CSS klasser assosiert med ulike states
     let warningClasses = ["bg-warning", "text-black-50"];
@@ -353,6 +349,9 @@ var GUIModuleSPA = (function () {
         },
         settKravAntPersoner: function (antall) {
             settPKravAntPersoner(antall);
+        },
+        leggTilMaksPlasser: function (antall) {
+            leggTilMaksPPlasser(antall);
         }
     }
 

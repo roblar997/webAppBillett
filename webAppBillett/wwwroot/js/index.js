@@ -270,10 +270,11 @@ function setDato(dato) {
 function setTid(tid) {
     $("#avgangsTid").append('<option value = "' + tid + '">' + tid + ' </option>');
 }
-async function velgLugar(id, body) {
+async function velgLugar(id, body,ant) {
 
     $.get("/billett/velgLugar/" + id).done((res) => {
-        GUIModuleSPA.addLugarer(1);
+        GUIModuleSPA.leggTilMaksPlasser(parseInt(ant,10));
+
         leggTilLugarOversikt(body);
 
 
@@ -297,12 +298,14 @@ async function hentLugarInfoServer() {
                 ' <div class="card-body">' +
                 ' <h5 class="card-title">' + res[i].tittel + '</h5>' +
                 '    <p class="card-text"> <strong> Pris:</strong> ' + res[i].pris + ' </p>' +
+                '    <p class="card-text"> <strong> Maks antall personer:</strong> ' + res[i].antall + ' </p>' +
                 '    <p class="card-text"> ' + res[i].beskrivelse + '</p> ' +
                 '    <a href="#" class="btn btn-primary" id = "listeValg' + res[i].lugarId + '">Velg lugar</a> </div>' +
                 '    </div> ';
             leggTilLugarOversikt(lugarHTML);
+            GUIModuleSPA.leggTilMaksPlasser(res[i].antall);
         }
-        GUIModuleSPA.addLugarer(res.length);
+
 
         if (GUIModuleSPA.testAntallLugarer()) {
             GUIModuleSPA.changeSchemaState(1, 1);
@@ -324,15 +327,17 @@ async function hentAlleLugarInfoServer() {
                 ' <div class="card-body">' +
                 ' <h5 class="card-title">' + res[i].tittel + '</h5>' +
                 '    <p class="card-text"> <strong> Pris:</strong> ' + res[i].pris + ' </p>' +
+                '    <p class="card-text"> <strong> Maks antall personer:</strong> ' + res[i].antall + ' </p>' +
                 '    <p class="card-text"> ' + res[i].beskrivelse + '</p> ' +
                 '    <a href="#" class="btn btn-primary" id = "listeValg' + res[i].lugarId + '">Velg lugar</a> </div>' +
                 '    </div> ';
             leggTilLugarSokOversikt(lugarHTML);
             let val = res[i].lugarId;
+            let ant = res[i].antall;
             $("#listeValg" + res[i].lugarId).click((e) => {
 
 
-                velgLugar(val, lugarHTML);
+                velgLugar(val, lugarHTML,ant);
             });
 
         }
