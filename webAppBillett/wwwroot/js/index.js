@@ -73,10 +73,10 @@ async function endreReiseInfoServer(reiseInfo) {
         reisetype: $('#reisetype').val(),
         fra: $('#fra').val(),
         til: $('#til').val(),
-        utreise: $("#utreise").val(),
-        hjemreiseDate: $("#hjemreiseDate").val(),
         antBarn: $("#antBarn").val(),
         antVoksen: $("#antVoksen").val(),
+        avgangsDato: $('#avgangsDato').val(),
+        avgangsTid: $('#avgangsTid').val()
     };
 
 
@@ -95,10 +95,10 @@ async function lagreReiseInfoServer() {
         reiseId: -1,
         reisetype: $('#reisetype').val(),
         fra: $('#fra').val(),
-        til: $('#til').val(),
-        utreise: $("#utreise").val(),
         antBarn: $("#antBarn").val(),
         antVoksen: $("#antVoksen").val(),
+        avgangsDato: $('#avgangsDato').val(),
+        avgangsTid: $('#avgangsTid').val()
     };
 
 
@@ -418,12 +418,6 @@ async function hentPersonInfoServer() {
 
 
 
-//------------------------------------
-//Trenger en callback funksjon til hver av ajax funksjonene
-
-
-
-///----------------------------------
 
 function genererPersonInfoSkjema(info) {
 
@@ -513,7 +507,8 @@ function hentReiseInfo() {
         reisetype: $('#reisetype').val(),
         fra: $('#fra').val(),
         til: $('#til').val(),
-        utreise: $("#utreise").val(),
+        avgangsDato: $('#avgangsDato').val(),
+        avgangsTid: $('#avgangsTid').val(),
         antBarn: $("#antBarn").val(),
         antVoksen: $("#antVoksen").val(),
     };
@@ -537,7 +532,8 @@ function setReiseInfo(reiseInfo) {
     $('#til').val(reiseInfo.til);
     $('#utreise').val(reiseInfo.utreise);
     $('#reisetype').val(reiseInfo.reisetype);
-    $('#hjemreiseDate').val(reiseInfo.hjemreiseDate);
+    $('#avgangsDato').val(reiseInfo.avgangsDato);
+    $('#avgangsTid').val(reiseInfo.avgangsTid);
     genererPersonInfoSkjema(reiseInfo);
 }
 

@@ -18,11 +18,12 @@ namespace webAppBillett.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int reiseId { get; set; }
-        public string utreise { get; set; }
         public string reisetype { get; set; }
-        public string hjemreiseDate { get; set; }
         public string fra { get; set; }
         public string til { get; set; }
+
+        public string avgangsDato { get; set; }
+        public string avgangsTid { get; set; }
         public int antVoksen { get; set; }
 
         public int antBarn { get; set; }

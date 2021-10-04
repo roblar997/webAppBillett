@@ -255,8 +255,8 @@ namespace webAppBillett.DAL {
                 reiseInformasjonGammel.fra = reiseInformasjon.fra;
                 reiseInformasjonGammel.til = reiseInformasjon.til;
                 reiseInformasjonGammel.reisetype = reiseInformasjon.reisetype;
-                reiseInformasjonGammel.utreise = reiseInformasjon.utreise;
-                reiseInformasjonGammel.hjemreiseDate = reiseInformasjon.hjemreiseDate;
+                reiseInformasjonGammel.avgangsDato = reiseInformasjon.avgangsDato;
+                reiseInformasjonGammel.avgangsTid = reiseInformasjon.avgangsTid;
                 await _lugDb.SaveChangesAsync();
 
             }
