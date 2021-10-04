@@ -417,7 +417,7 @@ async function hentPersonInfoServer() {
 
     $.get("/billett/hentPersoner/").done((res) => {
 
-
+        if (res.length == 0) return;
        GUIModuleSPA.addPersoner(res.length);
         for (i = 0; i < res.length; i++) {
             setPersonInfo(i + 1, res[i]);
