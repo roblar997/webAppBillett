@@ -1,7 +1,7 @@
 ﻿
 $(() => {
     //TODO
-    hentRuter();
+     hentRuter();
     hentReiseInfoServer();
     hentPersonInfoServer();
     hentLugarInfoServer();
@@ -217,7 +217,7 @@ async function hentForekomstDato() {
         til: $("#til").val()
     }
 
-    $.post("/billett/hentForekomsterDato/", rute).done((res) => {
+    await $.post("/billett/hentForekomsterDato/", rute).done((res) => {
 
         for (i = 0; i < res.length; i++) {
             setDato(res[i].avgangsDato);
@@ -235,7 +235,7 @@ async function hentForekomstDatoTid() {
         ruteId: $("#ruteValgt").val(),
         avgangsDato: $("#avgangsDato").val()
     }
-    $.post("/billett/hentForekomsterDatoTid/", forekomstDato).done((res) => {
+    await $.post("/billett/hentForekomsterDatoTid/", forekomstDato).done((res) => {
  
         for (i = 0; i < res.length; i++) {
             setTid(res[i].avgangsTid);
@@ -529,15 +529,18 @@ function leggTilLugarSokOversikt(html) {
 
     $(html).appendTo("#lugarer");
 }
-function setReiseInfo(reiseInfo) {
-
+async function setReiseInfo(reiseInfo) {
+    $('#reisetype').val(reiseInfo.reisetype);
     $('#antBarn').val(reiseInfo.antBarn);
     $('#antVoksen').val(reiseInfo.antVoksen);
     $('#fra').val(reiseInfo.fra);
-    $('#til').val(reiseInfo.til);
-    $('#utreise').val(reiseInfo.utreise);
-    $('#reisetype').val(reiseInfo.reisetype);
+
+    $('#ruteValgt').val($("#fra")[0].selectedIndex);
+    await hentForekomstDato();
+   
     $('#avgangsDato').val(reiseInfo.avgangsDato);
+    
+    await hentForekomstDatoTid();
     $('#avgangsTid').val(reiseInfo.avgangsTid);
     genererPersonInfoSkjema(reiseInfo);
 }
