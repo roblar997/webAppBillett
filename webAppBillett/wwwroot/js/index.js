@@ -7,6 +7,14 @@ $(  () => {
         hentReiseInfoServer().then((ok) => {
             hentPersonInfoServer();
             hentLugarInfoServer();
+            //Hindre potensiell concurrent bug
+
+   
+           
+           
+            
+         
+          
         }, (err) => {
             hentPersonInfoServer();
             hentLugarInfoServer(); });
@@ -181,11 +189,11 @@ async function lagrePersonServer(skjemaNr) {
 
     $.post("/billett/lagrePerson/", person2).done((res) => {
 
-        $("#leggTilPerson" + skjemaNr).hide();
-        $("#endrePerson" + skjemaNr).show();
+        $("#leggTilPerson" + val).hide();
+        $("#endrePerson" + val).show();
 
         GUIModuleSPA.addPersoner(1);
-        $("#personId" + skjemaNr).val(res);
+        $("#personId" + val).val(res);
         if (GUIModuleSPA.testAntallPersoner()) {
             GUIModuleSPA.changeSchemaState(2, 1);
         }
@@ -409,16 +417,20 @@ async function slettBillettServer() {
 async function hentPersonInfoServer() {
 
 
-   await $.get("/billett/hentPersoner/").done((res) => {
+    $.get("/billett/hentPersoner/").done((res) => {
 
 
-
+       GUIModuleSPA.addPersoner(res.length);
         for (i = 0; i < res.length; i++) {
             setPersonInfo(i + 1, res[i]);
+            
             $("#endrePerson" + (i + 1)).show();
             $("#leggTilPerson" + (i + 1)).hide();
         }
-        GUIModuleSPA.addPersoner(res.length);
+
+        if ($("#fornavn1").val() == undefined) {
+            setTimeout(hentPersonInfoServer(), 1000);
+        }
 
         if (GUIModuleSPA.testAntallPersoner()) {
             GUIModuleSPA.changeSchemaState(2, 1);
@@ -427,6 +439,8 @@ async function hentPersonInfoServer() {
             GUIModuleSPA.changeSchemaState(2, 2);
         }
     }).promise();
+
+
 }
 
 
@@ -569,8 +583,9 @@ function initInfo(reiseInfo, infoPersoner, infoLugarer) {
 }
 */
 function setPersonInfo(nummerPerson, personInfo) {
-
+   
     $('#personId' + nummerPerson).val(personInfo.personId);
+
     $('#fornavn' + nummerPerson).val(personInfo.fornavn);
     $('#etternavn' + nummerPerson).val(personInfo.etternavn);
     $('#addresse' + nummerPerson).val(personInfo.addresse);
