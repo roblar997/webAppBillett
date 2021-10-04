@@ -414,7 +414,7 @@ async function slettBillettServer() {
 
 async function hentPersonInfoServer() {
 
-
+    GUIModuleSPA.fjernAllePersoner();
     $.get("/billett/hentPersoner/").done((res) => {
 
         if (res.length == 0) return;
