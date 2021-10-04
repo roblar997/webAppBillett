@@ -1,10 +1,12 @@
 ﻿
-$( async () => {
+$(   () => {
     //TODO
-     await hentRuter();
-    hentReiseInfoServer();
-    hentPersonInfoServer();
-    hentLugarInfoServer();
+
+    hentRuter().then((x) => {
+        hentReiseInfoServer().then((y) => { hentPersonInfoServer();});
+      
+        hentLugarInfoServer();});
+
     $("#reg0").click((e) => {
         let info = hentReiseInfo();
         let erGyldig = validerReise(info);
@@ -191,7 +193,7 @@ async function lagrePersonServer(skjemaNr) {
 
 async function hentReiseInfoServer() {
 
-    $.get("/billett/hentReiseInformasjon/").done((res) => {
+    await $.get("/billett/hentReiseInformasjon/").done((res) => {
         setReiseInfo(res);
 
         GUIModuleSPA.addReiseInfo(1);
@@ -404,6 +406,7 @@ async function hentPersonInfoServer() {
     $.get("/billett/hentPersoner/").done((res) => {
 
 
+
         for (i = 0; i < res.length; i++) {
             setPersonInfo(i + 1, res[i]);
             $("#endrePerson" + (i + 1)).show();
@@ -529,7 +532,7 @@ function leggTilLugarSokOversikt(html) {
 
     $(html).appendTo("#lugarer");
 }
-async function setReiseInfo(reiseInfo) {
+async function setReiseInfo(reiseInfo) {  hentRuter();
     $('#reisetype').val(reiseInfo.reisetype);
     $('#antBarn').val(reiseInfo.antBarn);
     $('#antVoksen').val(reiseInfo.antVoksen);
@@ -559,8 +562,10 @@ function initInfo(reiseInfo, infoPersoner, infoLugarer) {
 }
 */
 function setPersonInfo(nummerPerson, personInfo) {
+
     $('#personId' + nummerPerson).val(personInfo.personId);
     $('#fornavn' + nummerPerson).val(personInfo.fornavn);
     $('#etternavn' + nummerPerson).val(personInfo.etternavn);
     $('#addresse' + nummerPerson).val(personInfo.addresse);
+
 }
