@@ -47,18 +47,21 @@ namespace webAppBillett.DAL {
         {
             Billett billett = await _lugDb.billetter.FindAsync(billettId);
             ReiseInformasjon reiseInformasjon = await hentReiseInformasjon(billettId);
-            Rute rute = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First();
-            List<BillettLugar> billettLugarer = billett.billettLugar.Where((x)=> x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til && x.avgangsDato == reiseInformasjon.avgangsDato && x.avgangsTid == reiseInformasjon.avgangsTid)
-            return await _lugDb.lugarer.Where((x) =>
-            
+            int ruteId = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First().ruteId;
+            List<BillettLugar> billettLugarer = billett.billettLugar.Where((x) => x.ruteId == ruteId && x.avgangsDato == reiseInformasjon.avgangsDato && x.avgangsTid == reiseInformasjon.avgangsTid).ToList();
+            List<int> lugarReservert = billettLugarer.ConvertAll((x) => x.lugarId).ToList();
+
+            return await _lugDb.lugarer.Where((x)=>
+                //Skal ikke være reservert
+                !lugarReservert.Contains(x.lugarId) &&
                 filterLugar.antall <= x.antall &&
                 (!filterLugar.harDysj || filterLugar.harDysj == x.harDysj) &&
                (!filterLugar.harWifi || filterLugar.harDysj == x.harWifi)  &&
                (!filterLugar.harWc || filterLugar.harDysj == x.harWc) &&
                 x.pris >= filterLugar.prisMin &&
-                x.pris <= filterLugar.prisMaks &&
-                //Skal ikke være reservert
-
+                x.pris <= filterLugar.prisMaks
+            
+                
             ).ToListAsync();
         }
 
