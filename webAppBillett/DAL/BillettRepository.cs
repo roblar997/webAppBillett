@@ -168,10 +168,10 @@ namespace webAppBillett.DAL {
 
             public async void utforBetaling(Betaling betaling, int billettId)
             {
-                 Billett billett = _lugDb.billetter.Find(billettId);
+
                  betaling.betalingsId = billettId;
                  double pris = await beregnPris(billettId);
-                 billett.pris = pris;
+                 betaling.pris = pris;
                  await _lugDb.betaling.AddAsync(betaling);
                  await _lugDb.SaveChangesAsync();
                  await nyBillett();
@@ -239,8 +239,10 @@ namespace webAppBillett.DAL {
 
                List<Lugar> lugarer = await hentLugarer(billettId);
                double totLugarPris = lugarer.Aggregate<Lugar, double>(0, (pris, lug) => pris += lug.pris);
-
-               return totPrisRute + totLugarPris;
+               double totPris = totPrisRute + totLugarPris;
+               billett.pris = totPris;
+            
+               return totPris;
 
         }
             public async Task<ReiseInformasjon> hentReiseInformasjon(int billettId)
