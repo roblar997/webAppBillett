@@ -139,7 +139,7 @@ namespace webAppBillett.DAL {
 
             //Fjern personer som ikke er i BillettPerson.
 
-            List<int> personIdVerdier = billett.billettPerson.ConvertAll((x) => x.personId).ToList();
+            List<int> personIdVerdier = _lugDb.billettPerson.ToList().ConvertAll((x) => x.personId).ToList();
 
             //Å fjerne
             List<Person> personer = _lugDb.personer.Where((x) => !personIdVerdier.Contains(x.personId)).ToList();
