@@ -7,18 +7,22 @@ $("#endre0").hide();
 $("#btnNeste").click(function () {
     $("#regform").hide();
     $("#regform2").show();
+    GUIModuleSPA.changeSchemaState(1, state.active);
 });
 $("#btnTilbake1").click(function () {
     $("#regform2").hide();
     $("#regform").show();
+    GUIModuleSPA.changeSchemaState(0, state.active);
 });
 $("#btnTilbake2").click(function () {
     $("#regform3").hide();
     $("#regform2").show();
+    GUIModuleSPA.changeSchemaState(1, state.active);
 });
 $("#btnNeste2").click(function () {
     $("#regform2").hide();
     $("#regform3").show();
+    GUIModuleSPA.changeSchemaState(2, state.active);
 
 });
 
@@ -62,17 +66,6 @@ $(() => {
     }
     )
 
-    //Første knapp i navigasjon
-    $("#nav0").click((e) => {
-        e.preventDefault();
-        GUIModuleSPA.changeSchemaState(0, state.active);
-
-        $("#regform").show();
-        $("#regform2").hide();
-        $("#regform3").hide();
-
-
-    });
     //Tilhører første knapp i navigasjon
     $("#suksess0").click((e) => {
         e.preventDefault();
@@ -119,25 +112,7 @@ $(() => {
     });
 
 
-    //Tilhører andre knapp i navigasjon
-    $("#nav1").click((e) => {
-        e.preventDefault();
-        GUIModuleSPA.changeSchemaState(1, state.active);
-        $("#regform").hide();
-        $("#regform2").show();
-        $("#regform3").hide();
 
-    });
-
-    //Tilhører tredje knapp i navigasjon
-    $("#nav2").click((e) => {
-        e.preventDefault();
-        GUIModuleSPA.changeSchemaState(2, state.active);
-        $("#regform").hide();
-        $("#regform2").hide();
-        $("#regform3").show();
-
-    });
 
 
 
