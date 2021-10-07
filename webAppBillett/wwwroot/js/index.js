@@ -59,6 +59,7 @@ $(  () => {
         lagreBetaling();
     })
     $("#slettLugarer").click((e) => {
+
         slettLugarer();
     });
     $("#slettBillett").click((e) => {
@@ -552,6 +553,7 @@ async function slettLugarer() {
         else {
             GUIModuleSPA.changeSchemaState(1, 2);
         }
+        $("#lugarerTilValg").html("");
         $("#lugarOversikt").html("");
     }).promise();
 }
