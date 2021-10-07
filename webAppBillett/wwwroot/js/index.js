@@ -57,6 +57,10 @@ $(  () => {
         hentTilHavner($("#fra").val());
     });
 
+    $("#avgangsDato").change((e) => {
+        $("#avgangsTid").html("");
+    });
+
     $("#til").change((e) => {
 
         $("#avgangsDato").html("");
@@ -617,7 +621,7 @@ async function setReiseInfo(reiseInfo) {
     $('#antVoksen').val(reiseInfo.antVoksen);
     $('#fra').val(reiseInfo.fra);
 
-    hentTilHavner(reiseInfo.fra);
+    await hentTilHavner(reiseInfo.fra);
     $("#til").val(reiseInfo.til);
      await hentForekomstDato();
    
