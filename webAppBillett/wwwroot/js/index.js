@@ -52,7 +52,16 @@ $(  () => {
     });
     $("#fra").change((e) => {
         $("#til").html("");
+        $("#avgangsDato").html("");
+        $("#avgangsTid").html("");
         hentTilHavner($("#fra").val());
+    });
+
+    $("#til").change((e) => {
+
+        $("#avgangsDato").html("");
+        $("#avgangsTid").html("");
+
     });
 
   //  $("#til").change((e) => {
@@ -109,6 +118,7 @@ async function lagreReiseInfoServer() {
         reiseId: -1,
         reisetype: $('#reisetype').val(),
         fra: $('#fra').val(),
+        til: $('#til').val(),
         antBarn: $("#antBarn").val(),
         antVoksen: $("#antVoksen").val(),
         avgangsDato: $('#avgangsDato').val(),
@@ -226,6 +236,7 @@ async function hentReiseInfoServer() {
 async function hentForekomstDato() {
     $("#avgangsDato").html("");
     $("#avgangsTid").html("");
+    
     let rute = {
         fra: $("#fra").val(),
         til: $("#til").val()
@@ -295,7 +306,7 @@ function setFraHavn(havn) {
 }
 
 async function hentTilHavner(id) {
-
+    $("#til").html("");
     let val = id;
     await $.get("/billett/hentTilHavner/" + val).done((res) => {
 
@@ -396,6 +407,21 @@ async function hentAlleLugarInfoServer() {
 
     }).promise();
 }
+
+
+async function hentRuteId() {
+
+    let rute = {
+        fra: $("#fra").val(),
+        til: $("#til").val()
+    };
+
+    $.post("/billett/hentRuteId",rute).done((res) => {
+        $('#ruteValgt').val(res.ruteId);
+            
+    }).promise();
+}
+
 
 async function slettLugarer() {
 
@@ -591,7 +617,8 @@ async function setReiseInfo(reiseInfo) {
     $('#antVoksen').val(reiseInfo.antVoksen);
     $('#fra').val(reiseInfo.fra);
 
-    $('#ruteValgt').val($("#fra")[0].selectedIndex);
+    hentTilHavner(reiseInfo.fra);
+    $("#til").val(reiseInfo.til);
      await hentForekomstDato();
    
     $('#avgangsDato').val(reiseInfo.avgangsDato);

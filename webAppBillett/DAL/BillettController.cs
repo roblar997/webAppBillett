@@ -158,6 +158,7 @@ namespace webAppBillett.Controllers
 
         }
 
+
         [HttpPost]
         public async Task<int> lagreReiseInformasjon(ReiseInformasjon reiseInformasjon)
         {
