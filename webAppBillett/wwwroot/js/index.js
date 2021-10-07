@@ -52,7 +52,7 @@ $(  () => {
     });
     $("#fra").click((e) => {
         $("#til").html("");
-        hentTilHavner($("#fra")[0].selectedIndex);
+        hentTilHavner($("#fra").val());
     });
 
   //  $("#til").change((e) => {
@@ -290,7 +290,7 @@ async function hentFraHavner() {
 }
 
 function setFraHavn(havn) {
-    $("#fra").append('<option value = "' + havn.navn + '">' + havn.navn + ' </option>');
+    $("#fra").append('<option value = "' + havn.havnId + '">' + havn.navn + ' </option>');
 
 }
 
@@ -308,7 +308,7 @@ async function hentTilHavner(id) {
 }
 
 function setTilHavn(havn) {
-    $("#til").append('<option value = "' + havn.navn + '">' + havn.navn + ' </option>');
+    $("#til").append('<option value = "' + havn.havnId + '">' + havn.navn + ' </option>');
 
 }
 function setDato(dato) {
