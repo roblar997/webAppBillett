@@ -357,7 +357,7 @@ async function velgLugar(id, body,ant) {
         GUIModuleSPA.leggTilMaksPlasser(parseInt(ant,10));
 
         leggTilLugarOversikt(body);
-
+        $("#lugarerTilValg").html("");
 
         if (GUIModuleSPA.testAntallLugarer()) {
             GUIModuleSPA.changeSchemaState(1, 1);
