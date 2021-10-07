@@ -19,8 +19,8 @@ namespace webAppBillett.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int reiseId { get; set; }
         public string reisetype { get; set; }
-        public string fra { get; set; }
-        public string til { get; set; }
+        public int fra { get; set; }
+        public int til { get; set; }
 
         public string avgangsDato { get; set; }
         public string avgangsTid { get; set; }

@@ -47,8 +47,8 @@ namespace webAppBillett.DAL {
         {
             Billett billett = await _lugDb.billetter.FindAsync(billettId);
             ReiseInformasjon reiseInformasjon = await hentReiseInformasjon(billettId);
-
-            List<BillettLugar> billettLugarer = billett.billettLugar.Where((x)=> x.ruteId == reiseInformasjon. && x.avgangsDato == reiseInformasjon.avgangsDato && x.avgangsTid == reiseInformasjon.avgangsTid)
+            Rute rute = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First();
+            List<BillettLugar> billettLugarer = billett.billettLugar.Where((x)=> x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til && x.avgangsDato == reiseInformasjon.avgangsDato && x.avgangsTid == reiseInformasjon.avgangsTid)
             return await _lugDb.lugarer.Where((x) =>
             
                 filterLugar.antall <= x.antall &&
