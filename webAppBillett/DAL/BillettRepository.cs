@@ -229,12 +229,13 @@ namespace webAppBillett.DAL {
            {
                 Billett billett = await _lugDb.billetter.FindAsync(billettId);
                 ReiseInformasjon reiseInformasjon = billett.ReiseInformasjon.First();
-                Rute rute = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First();
+
+                Rute rute = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til ).First();
 
                double barnPris = rute.prisBarn;
                double voksenPris = rute.prisVoksen;
              
-               double totPrisRute = barnPris * reiseInformasjon.antBarn + voksenPris * rute.prisVoksen;
+               double totPrisRute = barnPris * reiseInformasjon.antBarn + reiseInformasjon.antVoksen* rute.prisVoksen;
 
                List<Lugar> lugarer = await hentLugarer(billettId);
                double totLugarPris = lugarer.Aggregate<Lugar, double>(0, (pris, lug) => pris += lug.pris);
