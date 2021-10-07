@@ -109,7 +109,7 @@ namespace webAppBillett.DAL {
 
 
 
-                   await _lugDb.billettLugar.AddAsync(billettLugar);
+                   await _lugDb.reservasjon.AddAsync(billettLugar);
                    await _lugDb.SaveChangesAsync();
                 }
 
