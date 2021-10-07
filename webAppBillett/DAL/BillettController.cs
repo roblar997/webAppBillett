@@ -162,7 +162,11 @@ namespace webAppBillett.Controllers
            _lugDb.endrePerson(person);
 
         }
-
+        public async Task<double> beregnPris()
+        {
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
+            return await _lugDb.beregnPris(billettId);
+        }
 
         [HttpPost]
         public async Task<int> lagreReiseInformasjon(ReiseInformasjon reiseInformasjon)

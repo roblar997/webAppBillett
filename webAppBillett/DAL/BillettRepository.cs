@@ -223,6 +223,23 @@ namespace webAppBillett.DAL {
 
             }
 
+            public async Task<double> beregnPris(int billettId)
+           {
+                Billett billett = await _lugDb.billetter.FindAsync(billettId);
+                ReiseInformasjon reiseInformasjon = billett.ReiseInformasjon.First();
+                Rute rute = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First();
+
+               double barnPris = rute.prisBarn;
+               double voksenPris = rute.prisVoksen;
+             
+               double totPrisRute = barnPris * reiseInformasjon.antBarn + voksenPris * rute.prisVoksen;
+
+               List<Lugar> lugarer = await hentLugarer(billettId);
+               double totLugarPris = lugarer.Aggregate<Lugar, double>(0, (pris, lug) => pris += lug.pris));
+
+               return totPrisRute + totLugarPris;
+
+        }
             public async Task<ReiseInformasjon> hentReiseInformasjon(int billettId)
             {
 
