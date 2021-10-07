@@ -135,7 +135,8 @@ namespace webAppBillett.Controllers
 
         public async Task<List<Lugar>> hentFiltrerteLugarer(FilterLugar filterLugar)
         {
-            return await _lugDb.hentFiltrerteLugarer(filterLugar);
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
+            return await _lugDb.hentFiltrerteLugarer(filterLugar,billettId);
         }
         public async Task<List<Lugar>> hentAlleLugarer()
         {

@@ -43,10 +43,12 @@ namespace webAppBillett.DAL {
            
 
         }
-        public async Task<List<Lugar>> hentFiltrerteLugarer(FilterLugar filterLugar)
+        public async Task<List<Lugar>> hentFiltrerteLugarer(FilterLugar filterLugar, int billettId)
         {
+            Billett billett = await _lugDb.billetter.FindAsync(billettId);
+            ReiseInformasjon reiseInformasjon = await hentReiseInformasjon(billettId);
 
-
+            List<BillettLugar> billettLugarer = billett.billettLugar.Where((x)=> x.ruteId == reiseInformasjon. && x.avgangsDato == reiseInformasjon.avgangsDato && x.avgangsTid == reiseInformasjon.avgangsTid)
             return await _lugDb.lugarer.Where((x) =>
             
                 filterLugar.antall <= x.antall &&
@@ -54,7 +56,9 @@ namespace webAppBillett.DAL {
                (!filterLugar.harWifi || filterLugar.harDysj == x.harWifi)  &&
                (!filterLugar.harWc || filterLugar.harDysj == x.harWc) &&
                 x.pris >= filterLugar.prisMin &&
-                x.pris <= filterLugar.prisMaks
+                x.pris <= filterLugar.prisMaks &&
+                //Skal ikke være reservert
+
             ).ToListAsync();
         }
 
