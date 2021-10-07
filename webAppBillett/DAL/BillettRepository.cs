@@ -90,16 +90,22 @@ namespace webAppBillett.DAL {
             public async void velgLugar(int id,int billettId)
             {
                 Lugar lugar = await _lugDb.lugarer.FindAsync(id);
+  
 
-
-                if (lugar != null)
+            if (lugar != null)
                 {
                     BillettLugar billettLugar = new BillettLugar();
                     Billett billett = await _lugDb.billetter.FindAsync(billettId);
+                    ReiseInformasjon reiseInformasjon = billett.ReiseInformasjon.First();
+                    int ruteId = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First().ruteId;
+
                     billettLugar.billettId = billett.billettId;
 
 
-                    billettLugar.lugarId = lugar.lugarId;
+                    billettLugar.lugarId      = lugar.lugarId;
+                    billettLugar.ruteId       = ruteId;
+                    billettLugar.avgangsTid   = reiseInformasjon.avgangsTid;
+                    billettLugar.avgangsDato  = reiseInformasjon.avgangsDato;
 
 
 

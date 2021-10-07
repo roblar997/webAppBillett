@@ -5,9 +5,16 @@ $("#regform4").hide();
 $("#endre0").hide();
 
 $("#btnNeste").click(function () {
-    $("#regform").hide();
-    $("#regform2").show();
-    GUIModuleSPA.changeSchemaState(1, state.active);
+
+    if (GUIModuleSPA.testReiseInformasjon()) {
+        $("#regform").hide();
+        $("#regform2").show();
+        GUIModuleSPA.changeSchemaState(1, state.active);
+    }
+    else {
+        alert("Ikke ferdig med skjemaet");
+    }
+ 
 });
 $("#btnTilbake1").click(function () {
     $("#regform2").hide();
@@ -20,9 +27,14 @@ $("#btnTilbake2").click(function () {
     GUIModuleSPA.changeSchemaState(1, state.active);
 });
 $("#btnNeste2").click(function () {
-    $("#regform2").hide();
-    $("#regform3").show();
-    GUIModuleSPA.changeSchemaState(2, state.active);
+    if (GUIModuleSPA.testAntallLugarer()) {
+        $("#regform").hide();
+        $("#regform2").show();
+        GUIModuleSPA.changeSchemaState(2, state.active);
+    }
+    else {
+        alert("Ikke ferdig med skjemaet");
+    }
 
 });
 
