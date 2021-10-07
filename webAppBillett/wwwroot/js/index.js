@@ -197,7 +197,7 @@ async function endrePersonServer(id, skjemaNr) {
         personId: $("#personId" + skjemaNr).val(),
         fornavn: $("#fornavn" + skjemaNr).val(),
         etternavn: $("#etternavn" + skjemaNr).val(),
-        addresse: $("#addresse" + skjemaNr).val()
+        telefon: $("#telefon" + skjemaNr).val()
     };
 
 
@@ -214,7 +214,7 @@ async function lagrePersonServer(skjemaNr) {
     const person2 = {
         fornavn: $("#fornavn" + skjemaNr).val(),
         etternavn: $("#etternavn" + skjemaNr).val(),
-        addresse: $("#addresse" + skjemaNr).val()
+        telefon: $("#telefon" + skjemaNr).val()
     };
 
 
@@ -588,13 +588,13 @@ function genererPersonInfoSkjema(info) {
             '       placeholder="Etternavn"' +
             '       class="form-control"' +
             '       autofocus="" />' +
-            '<label for="addresse ' + i + ' class="col-sm-3 control-label"> ' +
+            '<label for="telefon ' + i + ' class="col-sm-3 control-label"> ' +
             '<b>Telefon ' + ' </b> ' +
             ' </div>' +
             '</label>' +
             '<div class="col-sm-9">' +
             '   <input type="tlf" ' +
-            '      id="addresse' + i + '"' +
+            '      id="telefon' + i + '"' +
             '       placeholder="Telefon"' +
             '       class="form-control"' +
             '       autofocus="" />' +
@@ -695,6 +695,6 @@ function setPersonInfo(nummerPerson, personInfo) {
 
     $('#fornavn' + nummerPerson).val(personInfo.fornavn);
     $('#etternavn' + nummerPerson).val(personInfo.etternavn);
-    $('#addresse' + nummerPerson).val(personInfo.addresse);
+    $('#telefon' + nummerPerson).val(personInfo.telefon);
 
 }

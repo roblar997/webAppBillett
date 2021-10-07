@@ -19,7 +19,7 @@ namespace webAppBillett.Models
         public String fornavn { get; set; }//
         public String etternavn { get; set; }
 
-        public String addresse { get; set; }
+        public String telefon { get; set; }
 
         public virtual List<BillettPerson> billett { get; set; }
     }

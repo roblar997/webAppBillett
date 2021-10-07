@@ -273,7 +273,7 @@ namespace webAppBillett.DAL {
                 Person personGammel = _lugDb.personer.Find(person.personId);
                 personGammel.fornavn = person.fornavn;
                 personGammel.etternavn = person.etternavn;
-                personGammel.addresse = person.addresse;
+                personGammel.telefon = person.telefon;
 
                 _lugDb.SaveChanges();
 
