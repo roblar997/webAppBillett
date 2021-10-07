@@ -29,7 +29,25 @@ $(  () => {
 
         }
     });
+    //Kjøp av billett
+    $("#btnFerdig").click((e) => {
+        if (GUIModuleSPA.erFerdig()) {
+            beregnPris();
+            $("#regform").show();
+            $("#regform2").show();
+            $("#regform4").show();
+            $("#lugarOversikt").show();
+            $("#btnTilbake1").hide();
+            $("#btnTilbake2").hide();
+            $("#btnNeste").hide();
+            $("#btnNeste2").hide();
+            $("#btnFerdig").hide();
 
+        }
+        else {
+            alert("Du har ikke gitt tilstrekkelig riktig informasjon, for å kunne kjøpe en billett")
+        }
+    });
     $("#sokDato").click((e) => {
         hentForekomstDato();
     })
@@ -220,6 +238,16 @@ async function lagrePersonServer(skjemaNr) {
 
 
 
+function setPris(pris) {
+    $("#pris").html('<p>' + pris + '</p>');
+}
+async function beregnPris() {
+
+    await $.get("/billett/beregnPris/").done((res) => {
+        setPris(res);
+    }).promise();
+}
+
 async function hentReiseInfoServer() {
 
     await $.get("/billett/hentReiseInformasjon/").done((res) => {
@@ -239,6 +267,7 @@ async function hentReiseInfoServer() {
 
     }).promise();
 }
+
 
 
 async function hentForekomstDato() {
