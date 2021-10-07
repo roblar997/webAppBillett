@@ -450,12 +450,52 @@ async function hentFiltrerteLugarer() {
                 '    <a href="#" class="btn btn-primary" id = "listeValg' + res[i].lugarId + '">Velg lugar</a> </div>' +
                 '    </div> ';
             leggTilLugarSokOversikt(lugarHTML);
+
+            let lugarHTMLOversikt  =
+                ' <div class="card col-md-6"> <img class="card-img-top" src="' + res[i].bildeURL + '"></img> ' +
+                ' <div class="card-body">' +
+                ' <h5 class="card-title">' + res[i].tittel + '</h5>' +
+                '    <p class="card-text"> <strong> Pris:</strong> ' + res[i].pris + ' </p>' +
+                '    <p class="card-text"> <strong> Maks antall personer:</strong> ' + res[i].antall + ' </p>' +
+
+                '    <p class="card-text"> ' + res[i].beskrivelse + '</p> ' +
+                '        <div class="row"> ';
+
+            if (res[i].harWc) {
+                lugarHTMLOversikt +=
+                    '            <div class="col-sm-4"> ' +
+                    '                    <i class="fas fa-toilet"> Wc</i> ' +
+
+                    '            </div> ';
+
+
+            }
+            if (res[i].harDysj) {
+
+                lugarHTMLOversikt += '            <div class="col-sm-4"> ' +
+                    '                    <i class="fa fa-shower" aria-hidden="true">    Dysj</i> ' +
+
+                    '            </div> ';
+
+            }
+            if (res[i].harWifi) {
+                lugarHTMLOversikt += '            <div class="col-sm-4"> ' +
+
+                    '                    <i class="fa fa-wifi" aria-hidden="true"> Wifi </i> ' +
+                    '            </div> ';
+            }
+
+            lugarHTMLOversikt +=  '    </div> ';
+
+
             let val = res[i].lugarId;
             let ant = res[i].antall;
+
+
             $("#listeValg" + res[i].lugarId).click((e) => {
 
 
-                velgLugar(val, lugarHTML,ant);
+                velgLugar(val, lugarHTMLOversikt,ant);
             });
 
         }
