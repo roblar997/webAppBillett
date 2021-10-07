@@ -276,22 +276,6 @@ async function hentForekomstDatoTid() {
 
 
 
-async function hentRuter() {
-
-    await $.get("/billett/hentRuter/").done((res) => {
-
-        for (i = 0; i < res.length; i++) {
-            setRute(res[i]);
-        }
-
-
-    }).promise();
-}
-
-function setRute(rute) {
-    $("#fra").append('<option value = "' + rute.fra + '">' + rute.fra + '  (' + rute.fra + '-' + rute.til + ') </option>');
-    $("#til").append('<option value = "' + rute.til + '">' + rute.til + '  (' + rute.fra + '-' + rute.til + ') </option>');
-}
 
 async function hentFraHavner() {
 
