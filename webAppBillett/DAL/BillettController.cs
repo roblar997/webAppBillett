@@ -133,6 +133,10 @@ namespace webAppBillett.Controllers
         }
 
 
+        public async Task<List<Lugar>> hentFiltrerteLugarer(FilterLugar filterLugar)
+        {
+            return await _lugDb.hentFiltrerteLugarer(filterLugar);
+        }
         public async Task<List<Lugar>> hentAlleLugarer()
         {
 

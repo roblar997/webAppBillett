@@ -43,7 +43,10 @@ namespace webAppBillett.DAL {
            
 
         }
-
+        public async Task<List<Lugar>> hentFiltrerteLugarer(FilterLugar filterLugar)
+        {
+            return null;
+        }
 
         public async Task<List<RuteForekomstDatoTid>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato)
         {
