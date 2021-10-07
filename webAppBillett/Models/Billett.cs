@@ -21,8 +21,7 @@ namespace webAppBillett.Models
         public int billettId { get; set; }
 
         public double pris { get; set; }
-        public String tidspunkt { get; set; }
-        public int type { get; set; }
+
 
 
         public virtual List<BillettPerson> billettPerson { get; set; }

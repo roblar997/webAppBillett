@@ -168,11 +168,13 @@ namespace webAppBillett.DAL {
 
             public async void utforBetaling(Betaling betaling, int billettId)
             {
-                //int billettId = HttpContext.Session.GetInt32("billettId").Value;
-                betaling.betalingsId = billettId;
-                await _lugDb.betaling.AddAsync(betaling);
-                await _lugDb.SaveChangesAsync();
-               await nyBillett();
+                 Billett billett = _lugDb.billetter.Find(billettId);
+                 betaling.betalingsId = billettId;
+                 double pris = await beregnPris(billettId);
+                 billett.pris = pris;
+                 await _lugDb.betaling.AddAsync(betaling);
+                 await _lugDb.SaveChangesAsync();
+                 await nyBillett();
 
             }
 

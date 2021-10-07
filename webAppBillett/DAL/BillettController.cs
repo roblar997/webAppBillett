@@ -94,7 +94,10 @@ namespace webAppBillett.Controllers
         [HttpPost]
         public  void utforBetaling(Betaling betaling)
         {
+
             int billettId = HttpContext.Session.GetInt32("billettId").Value;
+   
+
               _lugDb.utforBetaling(betaling,billettId);
 
         }

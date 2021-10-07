@@ -23,8 +23,8 @@ namespace webAppBillett.Models
 
         public int til { get; set; }
 
-        public float prisVoksen { get; set; }
-        public float prisBarn { get; set; }
+        public double prisVoksen { get; set; }
+        public double prisBarn { get; set; }
 
         [ForeignKey("ruteId")]
         public virtual List<RuteForekomstDato> ruteForekomstDato { get; set; }
