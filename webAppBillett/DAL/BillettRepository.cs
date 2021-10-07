@@ -235,7 +235,7 @@ namespace webAppBillett.DAL {
                double totPrisRute = barnPris * reiseInformasjon.antBarn + voksenPris * rute.prisVoksen;
 
                List<Lugar> lugarer = await hentLugarer(billettId);
-               double totLugarPris = lugarer.Aggregate<Lugar, double>(0, (pris, lug) => pris += lug.pris));
+               double totLugarPris = lugarer.Aggregate<Lugar, double>(0, (pris, lug) => pris += lug.pris);
 
                return totPrisRute + totLugarPris;
 
