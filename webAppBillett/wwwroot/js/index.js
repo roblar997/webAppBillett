@@ -33,16 +33,11 @@ $(  () => {
     $("#btnFerdig").click((e) => {
         if (GUIModuleSPA.erFerdig()) {
             beregnPris();
-            $("#regform").show();
-            $("#regform2").show();
-            $("#regform4").show();
-            $("#lugarOversikt").show();
-            $("#btnTilbake1").hide();
-            $("#btnTilbake2").hide();
-            $("#btnNeste").hide();
-            $("#btnNeste2").hide();
-            $("#btnFerdig").hide();
 
+            $("#regform3").hide();
+
+            $("#regform4").show();
+         
         }
         else {
             alert("Du har ikke gitt tilstrekkelig riktig informasjon, for å kunne kjøpe en billett")
