@@ -19,6 +19,7 @@ namespace webAppBillett.Contexts
         public DbSet<Betaling> betaling { get; set; }
         public DbSet<Billett> billetter { get; set; }
         public DbSet<Rute> ruter { get; set; }
+        public DbSet<Havn> havn { get; set; }
         public DbSet<RuteForekomstDato> ruteForekomstDato { get; set; }
         public DbSet<RuteForekomstDatoTid> ruteForekomstDatoTid { get; set; }
         public DbSet<Person> personer { get; set; }

@@ -26,8 +26,17 @@ namespace webAppBillett.Controllers
 
         }
 
+        public async Task<List<Havn>> hentHavner()
+        {
+            return await _lugDb.hentHavner();
+        }
+        public async Task<List<Havn>> hentTilHavner(int id)
+        {
+            return await _lugDb.hentTilHavner(id);
 
 
+
+        }
         public async void slettBillett()
         {
 

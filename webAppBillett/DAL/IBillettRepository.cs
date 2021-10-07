@@ -11,8 +11,8 @@ namespace webAppBillett.DAL {
         public Task<int> nyBillett();
         public  void slettBillett();
         public  void velgLugar(int id, int billettId);
-
-
+        public Task<List<Havn>> hentHavner();
+        public  Task<List<Havn>> hentTilHavner(int id);
         public  Task<List<RuteForekomstDato>> hentForekomsterDato(Rute rute);
 
         public  Task<List<RuteForekomstDatoTid>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato);

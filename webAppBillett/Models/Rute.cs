@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
+
 using System.Threading.Tasks;
 namespace webAppBillett.Models
 {
@@ -14,17 +14,18 @@ namespace webAppBillett.Models
 
         }
 
-        [Key]
+     
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ruteId { get; set; }
 
-        public string fra { get; set; }
 
-        public string til { get; set; }
+        public int fra { get; set; }
+
+        public int til { get; set; }
+
+
 
         [ForeignKey("ruteId")]
-        
-
         public virtual List<RuteForekomstDato> ruteForekomstDato { get; set; }
     }
 }
