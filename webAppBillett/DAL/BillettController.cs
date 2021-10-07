@@ -41,9 +41,18 @@ namespace webAppBillett.Controllers
         }
         public  void slettBillett()
         {
-            int billettId = HttpContext.Session.GetInt32("billettId").Value;
-             _lugDb.slettBillett(billettId);
-            HttpContext.Session.Remove("billettId");
+            try
+            {
+                int billettId = HttpContext.Session.GetInt32("billettId").Value;
+
+                _lugDb.slettBillett(billettId);
+                HttpContext.Session.Remove("billettId");
+            }
+            catch
+            {
+                return;
+            }
+
         }
 
         [Route("{id}")]
