@@ -414,18 +414,7 @@ async function hentAlleLugarInfoServer() {
 }
 
 
-async function hentRuteId() {
 
-    let rute = {
-        fra: $("#fra").val(),
-        til: $("#til").val()
-    };
-
-    $.post("/billett/hentRuteId",rute).done((res) => {
-        $('#ruteValgt').val(res.ruteId);
-            
-    }).promise();
-}
 
 
 async function slettLugarer() {
