@@ -48,6 +48,7 @@ $(  () => {
     });
 
     $("#sok").click((e) => {
+        $("#lugarerTilValg").html("");
         hentFiltrerteLugarer();
     });
     $("#fra").change((e) => {
@@ -596,7 +597,7 @@ function leggTilLugarOversikt(html) {
 }
 function leggTilLugarSokOversikt(html) {
 
-    $(html).appendTo("#lugarer");
+    $(html).appendTo("#lugarerTilValg");
 }
 async function setReiseInfo(reiseInfo) {
 
