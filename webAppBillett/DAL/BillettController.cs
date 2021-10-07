@@ -30,6 +30,7 @@ namespace webAppBillett.Controllers
         {
             return await _lugDb.hentHavner();
         }
+        [Route("{id}")]
         public async Task<List<Havn>> hentTilHavner(int id)
         {
             return await _lugDb.hentTilHavner(id);

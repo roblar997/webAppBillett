@@ -1,7 +1,7 @@
 ﻿
 $(  () => {
     //TODO
-    hentRuter().then((x) => {
+    hentFraHavner().then((x) => {
 
 
         hentReiseInfoServer().then((ok) => {
@@ -50,15 +50,15 @@ $(  () => {
     $("#sok").click((e) => {
         hentAlleLugarInfoServer();
     });
-    $("#fra").change((e) => {
-        let index = $("#fra")[0].selectedIndex;
-        $("#til")[0].selectedIndex = index;
+    $("#fra").click((e) => {
+        $("#til").html("");
+        hentTilHavner($("#fra")[0].selectedIndex);
     });
 
-    $("#til").change((e) => {
-        let index = $("#til")[0].selectedIndex;
-        $("#fra")[0].selectedIndex = index;
-    });
+  //  $("#til").change((e) => {
+ //   
+ //       $("#fra")[0].selectedIndex = index;
+  //  });
 
 
     $("#endre0").click((e) => {
@@ -277,6 +277,40 @@ function setRute(rute) {
     $("#til").append('<option value = "' + rute.til + '">' + rute.til + '  (' + rute.fra + '-' + rute.til + ') </option>');
 }
 
+async function hentFraHavner() {
+
+    await $.get("/billett/hentHavner/").done((res) => {
+
+        for (i = 0; i < res.length; i++) {
+            setFraHavn(res[i]);
+        }
+
+
+    }).promise();
+}
+
+function setFraHavn(havn) {
+    $("#fra").append('<option value = "' + havn.navn + '">' + havn.navn + ' </option>');
+
+}
+
+async function hentTilHavner(id) {
+
+    let val = id;
+    await $.get("/billett/hentTilHavner/" + val).done((res) => {
+
+        for (i = 0; i < res.length; i++) {
+            setTilHavn(res[i]);
+        }
+
+
+    }).promise();
+}
+
+function setTilHavn(havn) {
+    $("#til").append('<option value = "' + havn.navn + '">' + havn.navn + ' </option>');
+
+}
 function setDato(dato) {
     $("#avgangsDato").append('<option value = "' + dato + '">' + dato + ' </option>');
 }
