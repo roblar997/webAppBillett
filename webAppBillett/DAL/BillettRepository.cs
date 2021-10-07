@@ -45,7 +45,17 @@ namespace webAppBillett.DAL {
         }
         public async Task<List<Lugar>> hentFiltrerteLugarer(FilterLugar filterLugar)
         {
-            return null;
+
+
+            return await _lugDb.lugarer.Where((x) =>
+            
+                filterLugar.antall >= x.antall &&
+                filterLugar.harDysj == x.harDysj &&
+                filterLugar.harWc == x.harWc &&
+                filterLugar.harWifi == x.harWifi &&
+                x.pris >= filterLugar.prisMin &&
+                x.pris <= filterLugar.prisMaks
+            ).ToListAsync();
         }
 
         public async Task<List<RuteForekomstDatoTid>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato)

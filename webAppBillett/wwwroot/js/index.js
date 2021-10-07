@@ -48,7 +48,7 @@ $(  () => {
     });
 
     $("#sok").click((e) => {
-        hentAlleLugarInfoServer();
+        hentFiltrerteLugarer();
     });
     $("#fra").change((e) => {
         $("#til").html("");
@@ -338,6 +338,8 @@ async function velgLugar(id, body,ant) {
 
 async function hentLugarInfoServer() {
 
+
+
     $.get("/billett/hentLugarer").done((res) => {
 
         for (i = 0; i < res.length; i++) {
@@ -364,9 +366,17 @@ async function hentLugarInfoServer() {
 
     }).promise();
 }
-async function hentAlleLugarInfoServer() {
+async function hentFiltrerteLugarer() {
+    let filterData = {
+        prisMin: $("#prisMin").val(),
+        prisMaks: $("#prisMaks").val(),
+        antall: $("#antall").val(),
+        harWc: $("#wc").prop("checked"),
+        harDysj: $("#dysj").prop("checked"),
+        harWifi: $("#wifi").prop("checked")
 
-    $.get("/billett/hentAlleLugarer").done((res) => {
+    }
+    $.post("/billett/hentFiltrerteLugarer",filterData).done((res) => {
 
 
         for (i = 0; i < res.length; i++) {
