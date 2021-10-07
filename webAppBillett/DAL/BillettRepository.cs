@@ -72,7 +72,7 @@ namespace webAppBillett.DAL {
 
         }
 
-
+        
             public async void slettBillett(int billettId)
             {
                   Billett billett = await _lugDb.billetter.FindAsync(billettId);
@@ -137,6 +137,15 @@ namespace webAppBillett.DAL {
                 await _lugDb.SaveChangesAsync();
 
 
+            //Fjern personer som ikke er i BillettPerson.
+
+            List<int> personIdVerdier = billett.billettPerson.ConvertAll((x) => x.personId).ToList();
+
+            //Å fjerne
+            List<Person> personer = _lugDb.personer.Where((x) => !personIdVerdier.Contains(x.personId)).ToList();
+            _lugDb.personer.RemoveRange(personer);
+            _lugDb.SaveChanges();
+
 
             }
 
@@ -144,8 +153,32 @@ namespace webAppBillett.DAL {
 
             public async Task<int> lagrePerson(Person person,int billettId)
             {
+
+            Person personen = null;
+            try
+            {
+               personen = _lugDb.personer.Where((x) => x.fornavn == person.fornavn && x.etternavn == person.etternavn && x.telefon == person.telefon).First();
+            }
+
+            //finnes ikke
+
+            catch
+            {
+
+            }
+
+        
+
+            if(personen == null)
+            {
                 await _lugDb.personer.AddAsync(person);
                 await _lugDb.SaveChangesAsync();
+            }
+            else
+            {
+                person = personen;
+            }
+           
                 //int billettId = HttpContext.Session.GetInt32("billettId").Value;
 
                 BillettPerson billettPerson = new BillettPerson();

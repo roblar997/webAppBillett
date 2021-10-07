@@ -91,7 +91,7 @@ namespace webAppBillett.Controllers
         {
 
             int billettId = HttpContext.Session.GetInt32("billettId").Value;
-            
+           
             return await _lugDb.lagrePerson(person,billettId);
 
         }
