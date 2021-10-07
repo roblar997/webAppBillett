@@ -50,7 +50,7 @@ $(  () => {
     $("#sok").click((e) => {
         hentAlleLugarInfoServer();
     });
-    $("#fra").click((e) => {
+    $("#fra").change((e) => {
         $("#til").html("");
         hentTilHavner($("#fra").val());
     });
