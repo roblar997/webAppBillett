@@ -22,7 +22,7 @@ namespace webAppBillett.Models
 
         public double pris { get; set; }
 
-        public virtual List<BillettLugar> billettLugar { get; set; }
+        public virtual List<Reservasjon> reservasjon { get; set; }
 
 
          public bool harWc { get; set; }

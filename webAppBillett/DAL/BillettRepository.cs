@@ -48,7 +48,7 @@ namespace webAppBillett.DAL {
             Billett billett = await _lugDb.billetter.FindAsync(billettId);
             ReiseInformasjon reiseInformasjon = await hentReiseInformasjon(billettId);
             int ruteId = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First().ruteId;
-            List<BillettLugar> billettLugarer = billett.billettLugar.Where((x) => x.ruteId == ruteId && x.avgangsDato == reiseInformasjon.avgangsDato && x.avgangsTid == reiseInformasjon.avgangsTid).ToList();
+            List<Reservasjon> billettLugarer = billett.reservasjoner.Where((x) => x.ruteId == ruteId && x.avgangsDato == reiseInformasjon.avgangsDato && x.avgangsTid == reiseInformasjon.avgangsTid).ToList();
             List<int> lugarReservert = billettLugarer.ConvertAll((x) => x.lugarId).ToList();
 
             return await _lugDb.lugarer.Where((x)=>
@@ -94,7 +94,7 @@ namespace webAppBillett.DAL {
 
             if (lugar != null)
                 {
-                    BillettLugar billettLugar = new BillettLugar();
+                    Reservasjon billettLugar = new Reservasjon();
                     Billett billett = await _lugDb.billetter.FindAsync(billettId);
                     ReiseInformasjon reiseInformasjon = billett.ReiseInformasjon.First();
                     int ruteId = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First().ruteId;
@@ -123,7 +123,7 @@ namespace webAppBillett.DAL {
             {
 
                 Billett billett = await _lugDb.billetter.FindAsync(billettId);
-                billett.billettLugar.RemoveAll((x) => { return x.billettId == billett.billettId; });
+                billett.reservasjoner.RemoveAll((x) => { return x.billettId == billett.billettId; });
                 await _lugDb.SaveChangesAsync();
 
 
@@ -205,7 +205,7 @@ namespace webAppBillett.DAL {
 
                 Billett billett = await _lugDb.billetter.FindAsync(billettId);
 
-                List<Lugar> lugarer = billett.billettLugar.ConvertAll((x) =>
+                List<Lugar> lugarer = billett.reservasjoner.ConvertAll((x) =>
                 {
                     return  _lugDb.lugarer.Find(x.lugarId);
                 });

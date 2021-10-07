@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 //
 namespace webAppBillett.Models
 {
-    public class BillettLugar
+    public class Reservasjon
     {
 
         [Key, Column(Order = 0)]
