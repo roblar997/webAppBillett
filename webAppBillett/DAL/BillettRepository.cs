@@ -49,10 +49,10 @@ namespace webAppBillett.DAL {
 
             return await _lugDb.lugarer.Where((x) =>
             
-                filterLugar.antall >= x.antall &&
-                filterLugar.harDysj == x.harDysj &&
-                filterLugar.harWc == x.harWc &&
-                filterLugar.harWifi == x.harWifi &&
+                filterLugar.antall <= x.antall &&
+                (!filterLugar.harDysj || filterLugar.harDysj == x.harDysj) &&
+               (!filterLugar.harWifi || filterLugar.harDysj == x.harWifi)  &&
+               (!filterLugar.harWc || filterLugar.harDysj == x.harWc) &&
                 x.pris >= filterLugar.prisMin &&
                 x.pris <= filterLugar.prisMaks
             ).ToListAsync();
