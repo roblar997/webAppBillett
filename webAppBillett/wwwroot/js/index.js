@@ -176,22 +176,44 @@ async function lagreBetaling() {
 
 
     $.post("/billett/utforBetaling/", betalingsInfo).done((res) => {
-        $("#lugarOversikt").html("");
-        $("#personer").html("");
 
-        document.getElementById("regform").reset();
-        GUIModuleSPA.fjernAlleLugarer();
-        GUIModuleSPA.fjernAllePersoner();
-        GUIModuleSPA.fjernAlleReiseInformasjon();
-        $("#regform4").hide();
-        $("#regform").show();
+    document.getElementById("regform").reset();
+    $("#avgangsDato").html("");
+    $("#avgangsTid").html("");
+    $("#lugarOversikt").html("");
+    GUIModuleSPA.fjernAlleLugarer();
+    GUIModuleSPA.fjernAllePersoner();
+    GUIModuleSPA.fjernAlleReiseInformasjon();
+    GUIModuleSPA.changeSchemaState(0, 4);
+    GUIModuleSPA.changeSchemaState(1, 2);
+    GUIModuleSPA.changeSchemaState(2, 2);
+    $("#regform").show();
+    $("#regform2").hide();
+    $("#regform3").hide();
 
-        GUIModuleSPA.changeSchemaState(0, 4);
-        GUIModuleSPA.changeSchemaState(0, 2);
-        GUIModuleSPA.changeSchemaState(1, 2);
-        GUIModuleSPA.changeSchemaState(2, 2);
-        $("#reg0").show();
-        $("#endre0").hide();
+    $("#regform4").hide();
+
+    $("#reg0").show();
+    $("#endre0").hide();
+
+    hentFraHavner().then((x) => {
+
+        hentTilHavner($("#fra").val());
+        hentReiseInfoServer().then((ok) => {
+            hentPersonInfoServer();
+            hentLugarInfoServer();
+
+
+
+
+
+
+        }, (err) => {
+            hentPersonInfoServer();
+            hentLugarInfoServer();
+        });
+
+    })
 
     }).promise();
 }
@@ -578,6 +600,11 @@ async function slettBillettServer() {
     GUIModuleSPA.changeSchemaState(0, 4);
     GUIModuleSPA.changeSchemaState(1, 2);
     GUIModuleSPA.changeSchemaState(2, 2);
+    $("#regform").show();
+    $("#regform2").hide();
+    $("#regform3").hide();
+
+    $("#regform4").hide();
 
     $("#reg0").show();
     $("#endre0").hide();
