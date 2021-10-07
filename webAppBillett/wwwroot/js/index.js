@@ -112,6 +112,8 @@ async function endreReiseInfoServer(reiseInfo) {
 
     $.post("/billett/endreReiseInformasjon/", reiseInfo2).done((res) => {
         $("#personer").html("");
+        //Ny reiseInfo, så fjern lugarene.
+        slettLugarer();
         genererPersonInfoSkjema(reiseInfo2);
     }).promise();
 }
