@@ -43,6 +43,15 @@ namespace webAppBillett.Contexts
                 table.billettId,
                 table.personId
             });
+
+
+
+            modelBuilder.Entity<RuteForekomstDatoTid>().HasKey(table => new {
+                table.ruteId,
+                table.avgangsDato,
+                table.avgangsTid
+            });
+
             // base.OnModelCreating(modelBuilder);
 
         }

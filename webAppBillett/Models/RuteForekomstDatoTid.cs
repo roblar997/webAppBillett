@@ -14,15 +14,18 @@ namespace webAppBillett.Models
 
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int forekomstDatoTidId { get; set; }
 
+
+        [Key, Column(Order = 0)]
         public int ruteId { get; set; }
 
 
+
+        [Key, Column(Order = 1)]
         public string avgangsDato { get; set; }
 
+
+        [Key, Column(Order = 2)]
         public string avgangsTid { get; set; }
 
 
