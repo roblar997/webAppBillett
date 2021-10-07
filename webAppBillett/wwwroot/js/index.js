@@ -380,7 +380,7 @@ async function hentFiltrerteLugarer() {
 
     }
     $.post("/billett/hentFiltrerteLugarer",filterData).done((res) => {
-
+    
 
         for (i = 0; i < res.length; i++) {
             let lugarHTML =
@@ -389,7 +389,35 @@ async function hentFiltrerteLugarer() {
                 ' <h5 class="card-title">' + res[i].tittel + '</h5>' +
                 '    <p class="card-text"> <strong> Pris:</strong> ' + res[i].pris + ' </p>' +
                 '    <p class="card-text"> <strong> Maks antall personer:</strong> ' + res[i].antall + ' </p>' +
+
                 '    <p class="card-text"> ' + res[i].beskrivelse + '</p> ' +
+                '        <div class="row"> ';
+
+            if (res[i].harWc) {
+                lugarHTML +=
+                    '            <div class="col-sm-4"> ' +
+                    '                    <i class="fas fa-toilet"> Wc</i> ' +
+
+                    '            </div> ';
+ 
+            
+            }
+            if (res[i].harDysj) {
+
+                lugarHTML += '            <div class="col-sm-4"> ' +
+                    '                    <i class="fa fa-shower" aria-hidden="true">    Dysj</i> ' +
+
+                    '            </div> ';
+
+            }
+            if (res[i].harWifi) {
+                lugarHTML += '            <div class="col-sm-4"> ' +
+
+                    '                    <i class="fa fa-wifi" aria-hidden="true"> Wifi </i> ' +
+                    '            </div> ';
+            }
+
+            lugarHTML += '        </div> ' +
                 '    <a href="#" class="btn btn-primary" id = "listeValg' + res[i].lugarId + '">Velg lugar</a> </div>' +
                 '    </div> ';
             leggTilLugarSokOversikt(lugarHTML);
