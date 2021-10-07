@@ -221,7 +221,8 @@ async function hentReiseInfoServer() {
 
     await $.get("/billett/hentReiseInformasjon/").done((res) => {
         setReiseInfo(res);
-
+        $("#reg0").hide();
+        $("#endre0").show();
         GUIModuleSPA.addReiseInfo(1);
 
         if (GUIModuleSPA.testReiseInformasjon()) {
