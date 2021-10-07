@@ -8,8 +8,7 @@ using webAppBillett.Models;
 namespace webAppBillett.DAL {
 
         public interface IBillettRepository {
-        public Task<int> nyBillett();
-        public  void slettBillett();
+        public  void slettBillett(int billettId);
         public  void velgLugar(int id, int billettId);
         public Task<double> beregnPris(int billettId);
         public Task<List<Havn>> hentHavner();

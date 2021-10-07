@@ -39,11 +39,11 @@ namespace webAppBillett.Controllers
 
 
         }
-        public async void slettBillett()
+        public  void slettBillett()
         {
-
-            int billettId = await _lugDb.nyBillett();
-            HttpContext.Session.SetInt32("billettId", billettId);
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
+             _lugDb.slettBillett(billettId);
+            HttpContext.Session.Remove("billettId");
         }
 
         [Route("{id}")]
@@ -82,6 +82,7 @@ namespace webAppBillett.Controllers
         {
 
             int billettId = HttpContext.Session.GetInt32("billettId").Value;
+            
             return await _lugDb.lagrePerson(person,billettId);
 
         }
@@ -99,6 +100,7 @@ namespace webAppBillett.Controllers
    
 
               _lugDb.utforBetaling(betaling,billettId);
+            HttpContext.Session.Remove("billettId");
 
         }
 

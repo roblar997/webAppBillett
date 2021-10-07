@@ -71,19 +71,18 @@ namespace webAppBillett.DAL {
             return await _lugDb.ruteForekomstDatoTid.Where((x) => x.forekomstDatoId == forekomstDatoId).ToListAsync();
 
         }
-        public async Task<int> nyBillett() {
-            Billett billett = new Billett();
-            await _lugDb.billetter.AddAsync(billett);
-            await _lugDb.SaveChangesAsync();
-            return billett.billettId;
-        }
 
-            public async void slettBillett()
+
+            public async void slettBillett(int billettId)
             {
-                //  Billett billett = _lugDb.billetter.Find(billettId);
-                //_lugDb.Remove(billett);
-                //  _lugDb.SaveChanges();
-               await nyBillett();
+                  Billett billett = await _lugDb.billetter.FindAsync(billettId);
+
+                slettLugarer(billettId);
+                slettPersoner(billettId);
+                slettReiseInformasjon(billettId);
+                 _lugDb.billetter.Remove(billett);
+                
+
             }
 
    
@@ -174,7 +173,7 @@ namespace webAppBillett.DAL {
                  betaling.pris = pris;
                  await _lugDb.betaling.AddAsync(betaling);
                  await _lugDb.SaveChangesAsync();
-                 await nyBillett();
+
 
             }
 

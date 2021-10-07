@@ -52,6 +52,9 @@ $(  () => {
     })
     $("#fulfor").click((e) => {
         lagreBetaling();
+        $("#regform4").hide();
+        $("#regform").show();
+        GUIModuleSPA.changeSchemaState(0, 4);
     })
     $("#slettLugarer").click((e) => {
 
@@ -182,7 +185,8 @@ async function lagreBetaling() {
         GUIModuleSPA.fjernAlleLugarer();
         GUIModuleSPA.fjernAllePersoner();
         GUIModuleSPA.fjernAlleReiseInformasjon();
-
+        $("#reg0").show();
+        $("#endre0").hide();
 
     }).promise();
 }
@@ -561,7 +565,8 @@ async function slettBillettServer() {
         GUIModuleSPA.fjernAlleLugarer();
         GUIModuleSPA.fjernAllePersoner();
         GUIModuleSPA.fjernAlleReiseInformasjon();
-
+        $("#reg0").show();
+        $("#endre0").hide();
         if (GUIModuleSPA.testReiseInformasjon()) {
             GUIModuleSPA.changeSchemaState(0, 1);
         }
