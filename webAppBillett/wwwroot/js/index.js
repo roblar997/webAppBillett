@@ -3,7 +3,7 @@ $(  () => {
     //TODO
     hentFraHavner().then((x) => {
 
-
+        hentTilHavner($("#fra").val());
         hentReiseInfoServer().then((ok) => {
             hentPersonInfoServer();
             hentLugarInfoServer();
