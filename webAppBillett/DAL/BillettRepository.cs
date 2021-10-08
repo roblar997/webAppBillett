@@ -49,6 +49,10 @@ namespace webAppBillett.DAL {
             ReiseInformasjon reiseInformasjon = await hentReiseInformasjon(billettId);
             int ruteId = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First().ruteId;
             List<Reservasjon> billettLugarer = billett.reservasjoner.Where((x) => x.ruteId == ruteId && x.avgangsDato == reiseInformasjon.avgangsDato && x.avgangsTid == reiseInformasjon.avgangsTid).ToList();
+
+
+
+            billettLugarer.RemoveAll((x)=> x.maksAntallAvType < )
             List<int> lugarReservert = billettLugarer.ConvertAll((x) => x.lugarId).ToList();
 
             return await _lugDb.lugarer.Where((x)=>
