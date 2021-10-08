@@ -14,16 +14,16 @@ namespace webAppBillett.Models
     {
         public Betaling()
         {
-
+            // this.personer = new HashSet<Person>();
+            // this.lugarer = new HashSet<Lugar>();
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
         public int betalingsId { get; set; }
+   
 
-
-        [RegularExpression(@"[0-9]{10,15}")]
         [Required]
         public int kortnummer { get; set; }
         [Required]
@@ -55,7 +55,7 @@ namespace webAppBillett.Models
        
 
         [Required]
-        [RegularExpression(@"[a-zA-Z0-9æøåÆØÅ. \-]{1,20}\@[a-zA-Z0-9æøåÆØÅ. \-]{1,20}[.]{1,1}[a-zA-Z0-9æøåÆØÅ. \-]{1,20}")]
+
         public string email { get; set; }
 
         [Required]
