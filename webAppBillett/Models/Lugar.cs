@@ -18,6 +18,7 @@ namespace webAppBillett.Models
         public String bildeURL { get; set; }
         public String beskrivelse { get; set; }
         public int antall { get; set; }
+        public int lugarType { get; set; }
         public String tittel { get; set; }
         public String romNr { get; set; }
         public double pris { get; set; }
