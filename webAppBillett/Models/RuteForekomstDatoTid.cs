@@ -31,6 +31,7 @@ namespace webAppBillett.Models
         [Required]
         public string avgangsTid { get; set; }
 
+
         [Required]
         public string ankomstDato { get; set; }
 

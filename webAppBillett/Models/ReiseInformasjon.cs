@@ -19,7 +19,6 @@ namespace webAppBillett.Models
       
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Range(1, INF)]
         public int reiseId { get; set; }
 
 
@@ -34,22 +33,21 @@ namespace webAppBillett.Models
 
 
         [Required]
-        [DataType(DataType.Date)]
+
         public string avgangsDato { get; set; }
 
 
         [Required]
-        [DataType(DataType.Time)]
         public string avgangsTid { get; set; }
 
 
         [Required]
-        [Range(1, 10)]
+        [Range(0, 10)]
         public int antVoksen { get; set; }
 
 
         [Required]
-        [Range(1,10)]
+        [Range(0,10)]
 
         public int antBarn { get; set; }
 

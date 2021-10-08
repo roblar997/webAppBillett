@@ -18,12 +18,13 @@ namespace webAppBillett.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ruteId { get; set; }
 
-
+        [Required]
         public int fra { get; set; }
-
+        [Required]
         public int til { get; set; }
-
+        [Required]
         public double prisVoksen { get; set; }
+        [Required]
         public double prisBarn { get; set; }
 
         [ForeignKey("ruteId")]

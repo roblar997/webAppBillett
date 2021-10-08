@@ -22,11 +22,8 @@ namespace webAppBillett.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
         public int betalingsId { get; set; }
+   
 
-
-
-        [DataType(DataType.CreditCard)]
- 
         [Required]
         public int kortnummer { get; set; }
         [Required]
@@ -36,7 +33,7 @@ namespace webAppBillett.Models
         [Required]
         public string kortholderNavn { get; set; }
 
-        [DataType(DataType.PostalCode)]
+        [RegularExpression(@"[0-9]{4}")]
         [Required]
         public string postnr { get; set; }
 
@@ -46,26 +43,20 @@ namespace webAppBillett.Models
         public string poststed { get; set; }
 
 
-        [DataType(DataType.PhoneNumber)]
+
         [Required]
         public string telefon { get; set; }
-
 
 
         [Required]
         public string adresse { get; set; }
 
-
-        [DataType(DataType.EmailAddress)]
         [Required]
-
         public string email { get; set; }
 
-        [DataType(DataType.Date)]
         [Required]
         public int csv { get; set; }
 
-        [DataType(DataType.Currency)]
         [Required]
         public double pris { get; set; }
     }

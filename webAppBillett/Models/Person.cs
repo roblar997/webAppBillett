@@ -25,7 +25,7 @@ namespace webAppBillett.Models
         public String etternavn { get; set; }
 
 
-        [RegularExpression(@"\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})")]
+
         [Required]
         public String telefon { get; set; }
 
