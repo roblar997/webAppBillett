@@ -113,33 +113,12 @@ namespace webAppBillett.DAL {
                 reservasjon.avgangsDato = reiseInformasjon.avgangsDato;
                 reservasjon.maksAntallAvType = lugar.maksAntallAvType;
                 reservasjon.antallReservert = 1;
-                Reservasjon reservasjonen = null;
-                try
-                {
-                    reservasjonen = _lugDb.reservasjon.Where((x) => x.lugarId == lugar.lugarId && x.ruteId == reservasjon.ruteId && x.avgangsTid == reservasjon.avgangsTid && x.avgangsDato == reservasjon.avgangsDato).First();
-                }
+              
+                await _lugDb.reservasjon.AddAsync(reservasjon);
+                await _lugDb.SaveChangesAsync();
+           
 
 
-
-                catch
-                {
-
-
-                }
-
-                if (reservasjonen == null)
-                {
-                    await _lugDb.reservasjon.AddAsync(reservasjon);
-                    await _lugDb.SaveChangesAsync();
-                }
-
-                else
-                {
-                    reservasjon = reservasjonen;
-                    reservasjon.antallReservert = reservasjon.antallReservert + 1;
-                    await _lugDb.SaveChangesAsync();
-
-                }
 
             }
         }
