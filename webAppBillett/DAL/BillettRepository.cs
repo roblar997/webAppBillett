@@ -53,6 +53,7 @@ namespace webAppBillett.DAL {
 
 
             billettLugarer.RemoveAll((x) => x.maksAntallAvType < x.maksAntallAvType);
+
             List<int> lugarReservert = billettLugarer.ConvertAll((x) => x.lugarId).ToList();
 
             return await _lugDb.lugarer.Where((x)=>
@@ -90,36 +91,57 @@ namespace webAppBillett.DAL {
 
             }
 
-   
-            public async void velgLugar(int id,int billettId)
-            {
-                Lugar lugar = await _lugDb.lugarer.FindAsync(id);
-  
+
+        public async void velgLugar(int id, int billettId)
+        {
+            Lugar lugar = await _lugDb.lugarer.FindAsync(id);
+
 
             if (lugar != null)
+            {
+                Reservasjon reservasjon = new Reservasjon();
+                Billett billett = await _lugDb.billetter.FindAsync(billettId);
+                ReiseInformasjon reiseInformasjon = billett.ReiseInformasjon.First();
+                int ruteId = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First().ruteId;
+
+                reservasjon.billettId = billett.billettId;
+
+
+                reservasjon.lugarId = lugar.lugarId;
+                reservasjon.ruteId = ruteId;
+                reservasjon.avgangsTid = reiseInformasjon.avgangsTid;
+                reservasjon.avgangsDato = reiseInformasjon.avgangsDato;
+                reservasjon.maksAntallAvType = lugar.maksAntallAvType;
+                reservasjon.antallReservert = 1;
+                Reservasjon reservasjonen = null;
+                try
                 {
-                    Reservasjon billettLugar = new Reservasjon();
-                    Billett billett = await _lugDb.billetter.FindAsync(billettId);
-                    ReiseInformasjon reiseInformasjon = billett.ReiseInformasjon.First();
-                    int ruteId = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First().ruteId;
-
-                    billettLugar.billettId = billett.billettId;
-
-
-                    billettLugar.lugarId      = lugar.lugarId;
-                    billettLugar.ruteId       = ruteId;
-                    billettLugar.avgangsTid   = reiseInformasjon.avgangsTid;
-                    billettLugar.avgangsDato  = reiseInformasjon.avgangsDato;
-
-
-
-                   await _lugDb.reservasjon.AddAsync(billettLugar);
-                   await _lugDb.SaveChangesAsync();
+                    reservasjon = _lugDb.reservasjon.Where((x) => x.lugarId == lugar.lugarId && x.ruteId == reservasjon.ruteId && x.avgangsTid == reservasjon.avgangsTid && x.avgangsDato == reservasjon.avgangsDato).First();
                 }
 
 
 
+                catch
+                {
+
+
+                }
+
+                if (reservasjon == null)
+                {
+                    await _lugDb.reservasjon.AddAsync(reservasjon);
+                    await _lugDb.SaveChangesAsync();
+                }
+
+                else
+                {
+                    reservasjon = reservasjonen;
+                    reservasjon.antallReservert = reservasjon.antallReservert + 1;
+
+                }
+
             }
+        }
 
        
 
@@ -164,7 +186,6 @@ namespace webAppBillett.DAL {
                personen = _lugDb.personer.Where((x) => x.fornavn == person.fornavn && x.etternavn == person.etternavn && x.telefon == person.telefon).First();
             }
 
-            //finnes ikke
 
             catch
             {
@@ -182,8 +203,6 @@ namespace webAppBillett.DAL {
             {
                 person = personen;
             }
-           
-                //int billettId = HttpContext.Session.GetInt32("billettId").Value;
 
                 BillettPerson billettPerson = new BillettPerson();
                 Billett billett = _lugDb.billetter.Find(billettId);
