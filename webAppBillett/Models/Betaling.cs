@@ -22,10 +22,12 @@ namespace webAppBillett.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
         public int betalingsId { get; set; }
-   
 
+
+
+        [RegularExpression(@"[0-9]{10,15}")]
         [Required]
-        public int kortnummer { get; set; }
+        public string kortnummer { get; set; }
         [Required]
         public string utloper { get; set; }
 
