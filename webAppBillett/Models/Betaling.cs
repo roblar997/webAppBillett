@@ -14,8 +14,7 @@ namespace webAppBillett.Models
     {
         public Betaling()
         {
-            // this.personer = new HashSet<Person>();
-            // this.lugarer = new HashSet<Lugar>();
+
         }
 
         [Key]
