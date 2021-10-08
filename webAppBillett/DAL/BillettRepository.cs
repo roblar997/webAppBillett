@@ -51,6 +51,7 @@ namespace webAppBillett.DAL {
             List<Reservasjon> billettLugarer = billett.reservasjoner.Where((x) => x.ruteId == ruteId && x.avgangsDato == reiseInformasjon.avgangsDato && x.avgangsTid == reiseInformasjon.avgangsTid).ToList();
             Dictionary<int, int> maksAntall = new Dictionary<int, int>();
             
+            //pga ulike billetter okkuperer ulik antall reservasjoner av en lugarId, må en summere!!
             Dictionary<int, int> antallReservert = billettLugarer.Aggregate<Reservasjon, Dictionary<int, int>>(null, (dic, res) => {
                 if (dic.ContainsKey(res.lugarId))
 
@@ -67,6 +68,7 @@ namespace webAppBillett.DAL {
                    
             });
 
+            //Fjerner det som ikke kan bestilles
             billettLugarer.RemoveAll((x) =>
             {
                 if (antallReservert.ContainsKey(x.lugarId))
