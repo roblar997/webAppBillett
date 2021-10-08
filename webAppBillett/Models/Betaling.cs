@@ -25,7 +25,9 @@ namespace webAppBillett.Models
         public string utloper { get; set; }
         public string kortholderNavn { get; set; }
         public string postnr { get; set; }
-        public string postnr { get; set; }
+        public string poststed { get; set; }
+        public string telefon { get; set; }
+        public string email { get; set; }
         public int csv { get; set; }
 
         public double pris { get; set; }
