@@ -49,9 +49,10 @@ namespace webAppBillett.DAL {
             ReiseInformasjon reiseInformasjon = await hentReiseInformasjon(billettId);
             int ruteId = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First().ruteId;
             List<Reservasjon> billettLugarer = billett.reservasjoner.Where((x) => x.ruteId == ruteId && x.avgangsDato == reiseInformasjon.avgangsDato && x.avgangsTid == reiseInformasjon.avgangsTid).ToList();
-            Dictionary<int, int> maksAntall = new Dictionary<int, int>();
+         
             
-            //pga ulike billetter okkuperer ulik antall reservasjoner av en lugarId, må en summere!!
+            //==========Pga ulike billetter okkuperer ulik antall reservasjoner av en lugarId, må en summere!!
+
             Dictionary<int, int> antallReservert = billettLugarer.Aggregate<Reservasjon, Dictionary<int, int>>(null, (dic, res) => {
                 if (dic.ContainsKey(res.lugarId))
 
@@ -68,19 +69,31 @@ namespace webAppBillett.DAL {
                    
             });
 
-            //Fjerner det som ikke kan bestilles
+            //========Kobling mellom lugarId og maksAntall
+
+            List<Lugar> lugarListe = await _lugDb.lugarer.ToListAsync();
+            Dictionary<int, int> maksAntall = new Dictionary<int, int>();
+            lugarListe.ForEach((x) =>
+            {
+                if (!maksAntall.ContainsKey(x.lugarId))
+                {
+                    maksAntall.Add(x.lugarId, x.maksAntallAvType);
+                }
+            });
+
+            //=============Fjerner det som ikke kan bestilles, dvs er reservert opp
             billettLugarer.RemoveAll((x) =>
             {
                 if (antallReservert.ContainsKey(x.lugarId))
                 {
-                    return antallReservert.GetValueOrDefault(x.lugarId) < x.maksAntallAvType;
+                    return antallReservert.GetValueOrDefault(x.lugarId) < maksAntall.GetValueOrDefault(x.lugarId);
                 }
                 //ikke fjern
                 else return false;
             });
+            //=============Selve filteret
 
             List<int> lugarReservert = billettLugarer.ConvertAll((x) => x.lugarId).ToList();
-
             return await _lugDb.lugarer.Where((x)=>
                 //Skal ikke være reservert
                 !lugarReservert.Contains(x.lugarId) &&
