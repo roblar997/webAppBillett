@@ -56,9 +56,9 @@ namespace webAppBillett.DAL
                 //Skal ikke være reservert
                 !lugarReservert.Contains(x.lugarId) &&
                 filterLugar.antall <= x.antall &&
-                (!filterLugar.harDysj || filterLugar.harDysj == x.harDysj) &&
-               (!filterLugar.harWifi || filterLugar.harDysj == x.harWifi) &&
-               (!filterLugar.harWc || filterLugar.harDysj == x.harWc) &&
+                (!filterLugar.harDysj || (filterLugar.harDysj && x.harDysj)) &&
+               (!filterLugar.harWifi || (filterLugar.harWifi && x.harWifi)) &&
+               (!filterLugar.harWc || (filterLugar.harWc && x.harWc)) &&
                 x.pris >= filterLugar.prisMin &&
                 x.pris <= filterLugar.prisMaks
 

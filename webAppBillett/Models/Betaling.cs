@@ -64,7 +64,7 @@ namespace webAppBillett.Models
         [Required]
         public int csv { get; set; }
 
-        [Required]
+
         public double pris { get; set; }
     }
 }
