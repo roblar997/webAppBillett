@@ -20,7 +20,6 @@ namespace webAppBillett.Models
         public virtual Billett billett { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]
         public virtual Lugar lugar { get; set; }
-        public int antallReservert { get; set; }
 
         //For å hindre at en bestiller lugarer som allerede er tatt
         public int ruteId { get; set; }

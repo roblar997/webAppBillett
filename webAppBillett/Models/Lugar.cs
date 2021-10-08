@@ -19,17 +19,17 @@ namespace webAppBillett.Models
         public String beskrivelse { get; set; }
         public int antall { get; set; }
         public String tittel { get; set; }
-        public int maksAntallAvType { get; set; }
+        public String romNr { get; set; }
         public double pris { get; set; }
 
         public virtual List<Reservasjon> reservasjon { get; set; }
 
 
-         public bool harWc { get; set; }
+        public bool harWc { get; set; }
 
         public bool harDysj { get; set; }
 
-         public bool harWifi { get; set; }
+        public bool harWifi { get; set; }
 
 
 
