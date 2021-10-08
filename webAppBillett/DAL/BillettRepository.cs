@@ -116,7 +116,7 @@ namespace webAppBillett.DAL {
                 Reservasjon reservasjonen = null;
                 try
                 {
-                    reservasjon = _lugDb.reservasjon.Where((x) => x.lugarId == lugar.lugarId && x.ruteId == reservasjon.ruteId && x.avgangsTid == reservasjon.avgangsTid && x.avgangsDato == reservasjon.avgangsDato).First();
+                    reservasjonen = _lugDb.reservasjon.Where((x) => x.lugarId == lugar.lugarId && x.ruteId == reservasjon.ruteId && x.avgangsTid == reservasjon.avgangsTid && x.avgangsDato == reservasjon.avgangsDato).First();
                 }
 
 
@@ -137,6 +137,7 @@ namespace webAppBillett.DAL {
                 {
                     reservasjon = reservasjonen;
                     reservasjon.antallReservert = reservasjon.antallReservert + 1;
+                    await _lugDb.SaveChangesAsync();
 
                 }
 
