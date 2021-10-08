@@ -44,6 +44,7 @@ namespace webAppBillett.Models
 
 
 
+        [RegularExpression(@"[0-9]{8,15}")]
         [Required]
         public string telefon { get; set; }
 
@@ -51,7 +52,10 @@ namespace webAppBillett.Models
         [Required]
         public string adresse { get; set; }
 
+       
+
         [Required]
+
         public string email { get; set; }
 
         [Required]

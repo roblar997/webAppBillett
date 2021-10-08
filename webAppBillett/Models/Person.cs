@@ -26,6 +26,7 @@ namespace webAppBillett.Models
 
 
 
+        [RegularExpression(@"[0-9]{8,15}")]
         [Required]
         public String telefon { get; set; }
 
