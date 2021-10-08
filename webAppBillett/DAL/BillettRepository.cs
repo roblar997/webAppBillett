@@ -49,10 +49,33 @@ namespace webAppBillett.DAL {
             ReiseInformasjon reiseInformasjon = await hentReiseInformasjon(billettId);
             int ruteId = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First().ruteId;
             List<Reservasjon> billettLugarer = billett.reservasjoner.Where((x) => x.ruteId == ruteId && x.avgangsDato == reiseInformasjon.avgangsDato && x.avgangsTid == reiseInformasjon.avgangsTid).ToList();
+            Dictionary<int, int> maksAntall = new Dictionary<int, int>();
+            
+            Dictionary<int, int> antallReservert = billettLugarer.Aggregate<Reservasjon, Dictionary<int, int>>(null, (dic, res) => {
+                if (dic.ContainsKey(res.lugarId))
 
+                {
+                    Dictionary<int, int> dicCopy = dic;
+                    int antall = dic.GetValueOrDefault(res.lugarId) + 1;
+                    dic.Remove(res.lugarId);
+                    dic.Add(res.lugarId, antall);
+                    return dicCopy;
+                }
+                else {
+                    return dic;
+                }
+                   
+            });
 
-
-            billettLugarer.RemoveAll((x) => x.maksAntallAvType < x.maksAntallAvType);
+            billettLugarer.RemoveAll((x) =>
+            {
+                if (antallReservert.ContainsKey(x.lugarId))
+                {
+                    return antallReservert.GetValueOrDefault(x.lugarId) < x.maksAntallAvType;
+                }
+                //ikke fjern
+                else return false;
+            });
 
             List<int> lugarReservert = billettLugarer.ConvertAll((x) => x.lugarId).ToList();
 
