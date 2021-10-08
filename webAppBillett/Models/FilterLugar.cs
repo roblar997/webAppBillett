@@ -14,12 +14,20 @@ namespace webAppBillett.Models
         {
 
         }
+
+
+        [Range(0, 100000)]
         [Required]
         public int prisMin { get; set; }
+
+        [Range(0, 100000)]
         [Required]
         public int prisMaks {get; set; }
+
+        [Range(0, 100000)]
         [Required]
         public int antall { get; set; }
+
         [Required]
         public bool harWc { get; set; }
         [Required]
