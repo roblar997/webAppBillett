@@ -52,7 +52,7 @@ namespace webAppBillett.DAL {
 
 
 
-            billettLugarer.RemoveAll((x)=> x.maksAntallAvType < )
+            billettLugarer.RemoveAll((x) => x.maksAntallAvType < x.maksAntallAvType);
             List<int> lugarReservert = billettLugarer.ConvertAll((x) => x.lugarId).ToList();
 
             return await _lugDb.lugarer.Where((x)=>
