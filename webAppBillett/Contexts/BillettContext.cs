@@ -20,6 +20,7 @@ namespace webAppBillett.Contexts
         public DbSet<Billett> billetter { get; set; }
         public DbSet<Rute> ruter { get; set; }
         public DbSet<Havn> havn { get; set; }
+        public DbSet<Rom> rom { get; set; }
         public DbSet<RuteForekomstDato> ruteForekomstDato { get; set; }
         public DbSet<RuteForekomstDatoTid> ruteForekomstDatoTid { get; set; }
         public DbSet<Person> personer { get; set; }
@@ -52,6 +53,11 @@ namespace webAppBillett.Contexts
                 table.avgangsTid
             });
 
+
+            modelBuilder.Entity<Rom>().HasKey(table => new {
+                table.lugarId,
+                table.romNr
+            });
             // base.OnModelCreating(modelBuilder);
 
         }
