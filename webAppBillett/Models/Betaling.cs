@@ -43,9 +43,10 @@ namespace webAppBillett.Models
         public string poststed { get; set; }
 
 
-
+        
         [RegularExpression(@"[0-9]{8,15}")]
         [Required]
+  
         public string telefon { get; set; }
 
 

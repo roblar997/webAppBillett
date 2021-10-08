@@ -170,7 +170,7 @@ async function lagreBetaling() {
         kortnummer: $('#kortnummer').val(),
         kortholderNavn: $('#kortholderNavn').val(),
         utloper: $('#utloper').val(),
-        postNr: $("#postnr").val(),
+        postnr: $("#postnr").val(),
         postSted: $("#poststed").val(),
         adresse: $("#adresse").val(),
         telefon: $("#telefon").val(),
