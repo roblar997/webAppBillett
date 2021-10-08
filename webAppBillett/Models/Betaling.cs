@@ -26,6 +26,7 @@ namespace webAppBillett.Models
 
 
         [DataType(DataType.CreditCard)]
+ 
         [Required]
         public int kortnummer { get; set; }
         [Required]
