@@ -22,8 +22,9 @@ namespace webAppBillett.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
         public int betalingsId { get; set; }
-   
 
+
+        [RegularExpression(@"[0-9]{10,15}")]
         [Required]
         public int kortnummer { get; set; }
         [Required]
@@ -55,7 +56,7 @@ namespace webAppBillett.Models
        
 
         [Required]
-
+        [RegularExpression(@"[a-zA-Z0-9æøåÆØÅ. \-]{2,20}@[a-zA-Z0-9æøåÆØÅ. \-]{2,20}")]
         public string email { get; set; }
 
         [Required]
