@@ -34,87 +34,89 @@
         </ul>
 
         <div class="container">
-            <button class="nav-link bg-danger text-white" style="float: right" href="#" id="slettBillett">Slett billett </button>
+     
+            <div class=" bg-transparent text-dark form" >
+                <button class="nav-link bg-danger text-white" style="float: right; " href="#" id="slettBillett">Slett billett </button>
 
+                <form class="form" id="regform4" action="">
+                    <div class="container">
+                        <h1 class="overskrift">Betaling</h1>
 
-            <form class="form" id="regform4" action="">
-
-                <h1 class="overskrift">Betaling</h1>
-
-                <label for="pris"> Pris: </label>
-                <span id="pris"></span>
-
-                <div class=" bg-transparent text-dark form" style="padding: 1em 1em 1em 1em !important">
-
-                    <div class="row">
-
-
-
-                        <label>Utløper</label>
-                        <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="utloper" />
+                        <label for="pris"> Pris: </label>
+                        <span id="pris"></span>
 
 
 
                         <div class="row">
-                            <div class="col">
-                                <label>csv</label>
-                                <input type="number" class="form-control" id="csv" />
-                            </div>
-                            <div class="col">
-                                <label>Kortnummer</label>
-                                <input type="text" class="form-control" id="kortnummer" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label>Kortholders navn</label>
-                                <input type="text" class="form-control" id="kortholderNavn" />
-                            </div>
 
 
-                        </div>
-                        <h1 class="text-md-center">Kontakt informasjon </h1>
-                        <div class="row">
-                            <div class="col">
-                                <label>Adresse</label>
-                                <input type="text" class="form-control" id="adresse" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label>Poststed</label>
-                                <input type="text" class="form-control" id="poststed" />
-                            </div>
-                            <div class="col">
-                                <label>Postnr</label>
-                                <input type="text" class="form-control" id="postnr" />
-                            </div>
-                        </div>
-                        <div class="row" style="padding-left: 1em;">
-                            <div class="row" >
+
+                            <label>Utløper</label>
+                            <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="utloper" />
+
+
+
+                            <div class="row">
                                 <div class="col">
-                                    <label>Telefon </label>
-                                    <input type="text" class="form-control" id="telefon" />
+                                    <label>csv</label>
+                                    <input type="number" class="form-control" id="csv" />
+                                </div>
+                                <div class="col">
+                                    <label>Kortnummer</label>
+                                    <input type="text" class="form-control" id="kortnummer" />
                                 </div>
                             </div>
-                            <div class="row" style="padding-left: 0.5em;">
+                            <div class="row">
                                 <div class="col">
-                                    <label>Email</label>
-                                    <input type="text" class="form-control" id="email" />
+                                    <label>Kortholders navn</label>
+                                    <input type="text" class="form-control" id="kortholderNavn" />
+                                </div>
+
+
+                            </div>
+                            <h1 class="text-md-center">Kontakt informasjon </h1>
+                            <div class="row">
+                                <div class="col">
+                                    <label>Adresse</label>
+                                    <input type="text" class="form-control" id="adresse" />
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label>Poststed</label>
+                                    <input type="text" class="form-control" id="poststed" />
+                                </div>
+                                <div class="col">
+                                    <label>Postnr</label>
+                                    <input type="text" class="form-control" id="postnr" />
+                                </div>
+                            </div>
+                            <div class="row" style="padding-left: 1em;">
+                                <div class="row">
+                                    <div class="col">
+                                        <label>Telefon </label>
+                                        <input type="text" class="form-control" id="telefon" />
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-left: 0.5em;">
+                                    <div class="col">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control" id="email" />
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
-
-
-                    </div>
 
                         <div class="btn-box">
                             <button type="button" id="fulfor"> Fulfør kjøp</button>
                         </div>
-                    </div>
-            </form>
-                </div>
-                        
+
+                </form>
+            </div>
+
 
 
 
