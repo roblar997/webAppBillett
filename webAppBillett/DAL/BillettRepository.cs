@@ -52,7 +52,7 @@ namespace webAppBillett.DAL
             List<Reservasjon> billettLugarer = billett.reservasjoner.Where((x) => x.ruteId == ruteId && x.avgangsDato == reiseInformasjon.avgangsDato && x.avgangsTid == reiseInformasjon.avgangsTid).ToList();
             List<int> lugarReservert = billettLugarer.ConvertAll((x) => x.lugarId).ToList();
 
-            return await _lugDb.lugarer.Where((x) =>
+            List<Lugar> lugarer = await _lugDb.lugarer.Where((x) =>
                 //Skal ikke være reservert
                 !lugarReservert.Contains(x.lugarId) &&
                 filterLugar.antall <= x.antall &&
@@ -64,6 +64,20 @@ namespace webAppBillett.DAL
 
 
             ).ToListAsync();
+
+            Dictionary<int, int> harFunnet = new Dictionary<int, int>();
+            List<Lugar> tilReturn = new List<Lugar>();
+            lugarer.ForEach((x) =>
+            {
+                if (!harFunnet.ContainsKey(x.lugarType))
+                {   //verdi ikke så viktig
+                    harFunnet.Add(x.lugarType,0);
+                    tilReturn.Add(x);
+                }
+
+            });
+            return tilReturn;
+
         }
 
         public async Task<List<RuteForekomstDatoTid>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato)
