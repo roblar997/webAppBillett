@@ -168,12 +168,13 @@ async function lagreBetaling() {
         betalingsId: -1,
         csv: $('#csv').val(),
         kortnummer: $('#kortnummer').val(),
+        kortholderNavn: $('#kortholderNavn').val(),
         utloper: $('#utloper').val(),
         postNr: $("#postnr").val(),
         postSted: $("#poststed").val(),
         adresse: $("#adresse").val(),
         telefon: $("#telefon").val(),
-        epost: $("#epost").val()
+        email: $("#email").val()
     };
 
 
