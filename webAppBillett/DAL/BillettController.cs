@@ -149,10 +149,11 @@ namespace webAppBillett.Controllers
         }
 
 
-        public async Task<List<Lugar>> hentFiltrerteLugarer(FilterLugar filterLugar)
+        public async Task<ActionResult> hentFiltrerteLugarer(FilterLugar filterLugar)
         {
+            if (!ModelState.IsValid) return BadRequest("Ugyldig input");
             int billettId = HttpContext.Session.GetInt32("billettId").Value;
-            return await _lugDb.hentFiltrerteLugarer(filterLugar,billettId);
+            return Ok(await _lugDb.hentFiltrerteLugarer(filterLugar,billettId));
         }
         public async Task<List<Lugar>> hentAlleLugarer()
         {
