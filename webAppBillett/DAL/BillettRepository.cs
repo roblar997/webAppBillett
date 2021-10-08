@@ -59,8 +59,8 @@ namespace webAppBillett.DAL {
                 {
                     Dictionary<int, int> dicCopy = dic;
                     int antall = dic.GetValueOrDefault(res.lugarId) + res.antallReservert;
-                    dic.Remove(res.lugarId);
-                    dic.Add(res.lugarId, antall);
+                    dicCopy.Remove(res.lugarId);
+                    dicCopy.Add(res.lugarId, antall);
                     return dicCopy;
                 }
                 else {
