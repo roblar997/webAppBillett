@@ -151,7 +151,6 @@ namespace webAppBillett.DAL {
                 reservasjon.ruteId = ruteId;
                 reservasjon.avgangsTid = reiseInformasjon.avgangsTid;
                 reservasjon.avgangsDato = reiseInformasjon.avgangsDato;
-                reservasjon.maksAntallAvType = lugar.maksAntallAvType;
                 reservasjon.antallReservert = 1;
               
                 await _lugDb.reservasjon.AddAsync(reservasjon);
