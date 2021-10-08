@@ -27,7 +27,6 @@ namespace webAppBillett.Models
 
         public string avgangsTid { get; set; }
 
-        public string romNr { get; set; }
 
     }
 }
