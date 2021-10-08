@@ -14,13 +14,17 @@ namespace webAppBillett.Models
         {
 
         }
-
+        [Required]
         public int prisMin { get; set; }
+        [Required]
         public int prisMaks {get; set; }
+        [Required]
         public int antall { get; set; }
-
+        [Required]
         public bool harWc { get; set; }
+        [Required]
         public bool harDysj { get; set; }
+        [Required]
         public bool harWifi { get; set; }
 
 

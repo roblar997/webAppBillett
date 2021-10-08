@@ -17,8 +17,9 @@ namespace webAppBillett.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int forekomstDatoId { get; set; }
-
+        [Required]
         public string avgangsDato { get; set; }
+        [Required]
         public int ruteId { get; set; }
 
         [System.Text.Json.Serialization.JsonIgnore]

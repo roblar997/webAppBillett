@@ -17,7 +17,7 @@ namespace webAppBillett.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int havnId { get; set; }
-
+        [Required]
         public string navn { get; set; }
 
 

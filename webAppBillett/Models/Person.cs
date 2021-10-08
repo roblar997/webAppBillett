@@ -16,9 +16,15 @@ namespace webAppBillett.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int personId { get; set; }
 
+        [RegularExpression(@"[a-zA-ZæøåÆØÅ. \-]{2,20}")]
+        [Required]
         public String fornavn { get; set; }//
-        public String etternavn { get; set; }
 
+        [RegularExpression(@"[a-zA-ZæøåÆØÅ. \-]{2,20}")]
+        [Required]
+        public String etternavn { get; set; }
+        [RegularExpression(@"\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})")]
+        [Required]
         public String telefon { get; set; }
 
         public virtual List<BillettPerson> billett { get; set; }
