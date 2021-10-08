@@ -53,23 +53,24 @@ namespace webAppBillett.DAL {
             
             //==========Pga ulike billetter okkuperer ulik antall reservasjoner av en lugarId, må en summere!!
 
-            Dictionary<int, int> antallReservert = billettLugarer.Aggregate<Reservasjon, Dictionary<int, int>>(null, (dic, res) => {
+            Dictionary<int, int> antallReservert = billettLugarer.Aggregate<Reservasjon, Dictionary<int, int>>(new Dictionary<int, int>(), (dic, res) => {
                 if (dic.ContainsKey(res.lugarId))
 
                 {
                     Dictionary<int, int> dicCopy = dic;
-                    int antall = dic.GetValueOrDefault(res.lugarId) + 1;
+                    int antall = dic.GetValueOrDefault(res.lugarId) + res.antallReservert;
                     dic.Remove(res.lugarId);
                     dic.Add(res.lugarId, antall);
                     return dicCopy;
                 }
                 else {
-                    return dic;
+                    Dictionary<int, int> dicCopy = dic;
+                    dicCopy.Add(res.lugarId, res.antallReservert);
+                    return dicCopy;
                 }
                    
             });
-
-            //========Kobling mellom lugarId og maksAntall
+                    //========Kobling mellom lugarId og maksAntall
 
             List<Lugar> lugarListe = await _lugDb.lugarer.ToListAsync();
             Dictionary<int, int> maksAntall = new Dictionary<int, int>();
@@ -94,9 +95,10 @@ namespace webAppBillett.DAL {
             //=============Selve filteret
 
             List<int> lugarReservert = billettLugarer.ConvertAll((x) => x.lugarId).ToList();
+    
             return await _lugDb.lugarer.Where((x)=>
                 //Skal ikke være reservert
-                !lugarReservert.Contains(x.lugarId) &&
+               !lugarReservert.Contains(x.lugarId) &&
                 filterLugar.antall <= x.antall &&
                 (!filterLugar.harDysj || filterLugar.harDysj == x.harDysj) &&
                (!filterLugar.harWifi || filterLugar.harDysj == x.harWifi)  &&
