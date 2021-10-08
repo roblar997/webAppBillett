@@ -169,7 +169,7 @@ async function lagreBetaling() {
         csv: $('#csv').val(),
         kortnummer: $('#kortnummer').val(),
         utloper: $('#utloper').val(),
-
+        kortholderNavn: $("#kortholderNavn").val()
     };
 
 

@@ -23,6 +23,7 @@ namespace webAppBillett.Models
         public int kortnummer { get; set; }
 
         public string utloper { get; set; }
+        public string kortholderNavn { get; set; }
 
         public int csv { get; set; }
 
