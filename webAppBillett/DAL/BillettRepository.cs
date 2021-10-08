@@ -127,7 +127,7 @@ namespace webAppBillett.DAL {
 
                 }
 
-                if (reservasjon == null)
+                if (reservasjonen == null)
                 {
                     await _lugDb.reservasjon.AddAsync(reservasjon);
                     await _lugDb.SaveChangesAsync();
