@@ -408,7 +408,7 @@ async function hentLugarInfoServer() {
                 ' <h5 class="card-title">' + res[i].tittel + '</h5>' +
                 '    <p class="card-text"> <strong> Pris:</strong> ' + res[i].pris + ' </p>' +
                 '    <p class="card-text"> <strong> Maks antall personer:</strong> ' + res[i].antall + ' </p>' +
-
+                '    <p class="card-text"> <strong> Rom nr:</strong> ' + res[i].romNr + ' </p>' +
                 '    <p class="card-text"> ' + res[i].beskrivelse + '</p> ' +
                 '        <div class="row"> ';
 
@@ -473,6 +473,7 @@ async function hentFiltrerteLugarer() {
                 ' <h5 class="card-title">' + res[i].tittel + '</h5>' +
                 '    <p class="card-text"> <strong> Pris:</strong> ' + res[i].pris + ' </p>' +
                 '    <p class="card-text"> <strong> Maks antall personer:</strong> ' + res[i].antall + ' </p>' +
+                '    <p class="card-text"> <strong> Rom nr:</strong> ' + res[i].romNr + ' </p>' +
 
                 '    <p class="card-text"> ' + res[i].beskrivelse + '</p> ' +
                 '        <div class="row"> ';
