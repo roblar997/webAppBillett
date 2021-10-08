@@ -56,7 +56,7 @@ namespace webAppBillett.Models
        
 
         [Required]
-        [RegularExpression(@"[a-zA-Z0-9æøåÆØÅ. \-]{2,20}@[a-zA-Z0-9æøåÆØÅ. \-]{2,20}")]
+        [RegularExpression(@"[a-zA-Z0-9æøåÆØÅ. \-]{1,20}\@[a-zA-Z0-9æøåÆØÅ. \-]{1,20}[.]{1,1}[a-zA-Z0-9æøåÆØÅ. \-]{1,20}")]
         public string email { get; set; }
 
         [Required]
