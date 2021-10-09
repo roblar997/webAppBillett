@@ -15,7 +15,11 @@ $(() => {
     }
     //For det å la siden stå oppe
 
-    setTimeout(slettBillettServer(), 10000);
+    setTimeout(() => {
+        slettBillettServer();
+        window.location.reload(true);
+    }, 300000    );
+
     $('#fra').change((x) => {
     });
 
