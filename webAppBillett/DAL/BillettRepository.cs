@@ -46,7 +46,7 @@ namespace webAppBillett.DAL
         }
         public async Task<List<Lugar>> hentFiltrerteLugarer(FilterLugar filterLugar, int billettId)
         {
-            Billett billett = await _lugDb.billetter.FindAsync(billettId);
+
             ReiseInformasjon reiseInformasjon = await hentReiseInformasjon(billettId);
             int ruteId = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First().ruteId;
             List<Reservasjon> billettLugarer = _lugDb.reservasjon.Where((x) => x.ruteId == ruteId && x.avgangsDato == reiseInformasjon.avgangsDato && x.avgangsTid == reiseInformasjon.avgangsTid).ToList();
@@ -64,7 +64,7 @@ namespace webAppBillett.DAL
 
 
             ).ToListAsync();
-
+    
             Dictionary<int, int> harFunnet = new Dictionary<int, int>();
             List<Lugar> tilReturn = new List<Lugar>();
             lugarer.ForEach((x) =>
