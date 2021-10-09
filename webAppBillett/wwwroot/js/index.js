@@ -811,6 +811,19 @@ function genererPersonInfoSkjema(info) {
             lagrePersonServer(i)
         });
         $("#endrePerson" + i).hide();
+
+        $('#personId' + i).change((x) => {
+        });
+
+        $('#fornavn' + i).change((x) => {
+            validerFornavn(this.value, i);
+        });
+        $('#etternavn' + i).change((x) => {
+            validerEtternavn(this.value, i);
+        });
+        $('#telefon' + i).change((x) => {
+            validerTelefonNummer(this.value, i);
+        });
     }
 }
 function sendReiseInformasjon(info) {
@@ -856,17 +869,6 @@ function setPersonInfo(nummerPerson, personInfo) {
     $('#etternavn' + nummerPerson).val(personInfo.etternavn);
     $('#telefon' + nummerPerson).val(personInfo.telefon);
 
-    $('#personId' + nummerPerson).change((x) => {
-    });
 
-    $('#fornavn' + nummerPerson).change((x) => {
-        validerFornavn(this.value, nummerPerson);
-    });
-    $('#etternavn' + nummerPerson).change((x) => {
-        validerEtternavn(this.value, nummerPerson);
-    });
-    $('#telefon' + nummerPerson).change((x) => {
-        validerTelefonNummer(this.value, nummerPerson);
-    });
 
 }
