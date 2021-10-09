@@ -775,6 +775,7 @@ function genererPersonInfoSkjema(info) {
             '       placeholder="Fornavn"' +
             '       class="form-control"' +
             '       autofocus="" />' +
+            ' <span id="fornavnFeil' + i + '"></span>' +
             ' </div>' +
             '<label for="etternavn ' + i + ' class="col-sm-3 control-label"> ' +
             '<b>  Etternavn ' + ' </b> ' +
@@ -785,6 +786,8 @@ function genererPersonInfoSkjema(info) {
             '       placeholder="Etternavn"' +
             '       class="form-control"' +
             '       autofocus="" />' +
+            ' </div>' +
+            ' <span id="etternavnFeil' + i + '"></span>' +
             '<label for="telefon ' + i + ' class="col-sm-3 control-label"> ' +
             '<b>Telefon ' + ' </b> ' +
             ' </div>' +
@@ -796,6 +799,7 @@ function genererPersonInfoSkjema(info) {
             '       class="form-control"' +
             '       autofocus="" />' +
             ' </div>' +
+            ' <span id="telefonFeil' + i + '"></span>' +
             ' <button type="button" class="btn btn-success" id="leggTilPerson' + i + '"' + ' > Legg til </button> ' +
             ' <button type="button" class="btn btn-warning" id="endrePerson' + i + '"' + ' > Endre </button> ' +
             ' </div>' +
