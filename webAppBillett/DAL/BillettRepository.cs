@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,6 @@ namespace webAppBillett.DAL
         public BillettRepository(BillettContext db)
         {
             _lugDb = db;
-
 
 
 
@@ -232,20 +232,27 @@ namespace webAppBillett.DAL
             Billett billetten = new Billett();
             await _lugDb.billetter.AddAsync(billetten);
             await _lugDb.SaveChangesAsync();
+
             return billetten.billettId;
         }
         public async Task<List<Person>> hentPersoner(int billettId)
         {
 
 
-
+  
             Billett billett = await _lugDb.billetter.FindAsync(billettId);
 
             List<Person> personer = billett.billettPerson.ConvertAll((x) =>
             {
                 return _lugDb.personer.Find(x.personId);
             });
+            Task.Delay(1000000).ContinueWith(async (x) =>
+            {
 
+
+                slettBillett(billettId);
+
+            });
             return personer;
 
         }
