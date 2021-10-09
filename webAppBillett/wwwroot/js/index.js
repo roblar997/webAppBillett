@@ -81,8 +81,7 @@ $(() => {
     });
 
 
-    //LAGRING UTEN KLASSE ^^
-    let personer = [];
+
     
     //TODO
     hentFraHavner().then((x) => {
@@ -207,6 +206,10 @@ $(() => {
 
 });
 
+
+// VARIABLER UTEN KLASSE ^^
+let personene = [];
+
 //---------GUI
 async function endreReiseInfoServer(reiseInfo) {
     const reiseInfo2 = {
@@ -277,7 +280,10 @@ async function lagreBetaling() {
     };
 
     if (!validerBetalingSkjema(betalingsInfo)) return;
-
+    let ant = GUIModuleSPA.hentAntallPersoner();
+    for (i = 1; i <= ant; i++) {
+        lagrePersonServer(i);
+    }
 
     $.post("/billett/utforBetaling/", betalingsInfo).done((res) => {
 
@@ -331,10 +337,36 @@ async function endrePersonServer(id, skjemaNr) {
         telefon: $("#telefon" + skjemaNr).val()
     };
     if (!validerPersonSkjema(person2, skjemaNr)) return;
-    personer[skemaNr] = person2;
+    personene[skemaNr] = person2;
     $.post("/billett/endrePerson/", person2).done((res) => {
 
     }).promise();
+}
+
+async function lagrePerson(skjemaNr) {
+
+    const person2 = {
+        fornavn: $("#fornavn" + skjemaNr).val(),
+        etternavn: $("#etternavn" + skjemaNr).val(),
+        telefon: $("#telefon" + skjemaNr).val()
+    };
+
+    let val = skjemaNr;
+    if (!validerPersonSkjema(person2, skjemaNr)) return;
+
+    $("#leggTilPerson" + val).hide();
+    $("#endrePerson" + val).show();
+
+    GUIModuleSPA.addPersoner(1);
+
+    if (GUIModuleSPA.testAntallPersoner()) {
+        GUIModuleSPA.changeSchemaState(2, 1);
+    }
+    else {
+        GUIModuleSPA.changeSchemaState(2, 2);
+    }
+
+
 }
 
 async function lagrePersonServer(skjemaNr) {
@@ -345,9 +377,10 @@ async function lagrePersonServer(skjemaNr) {
         etternavn: $("#etternavn" + skjemaNr).val(),
         telefon: $("#telefon" + skjemaNr).val()
     };
-    personer[skjemaNr] = person2;
+
     if (!validerPersonSkjema(person2, skjemaNr)) return;
-    let val = skjemaNr;
+    
+
 
     $.post("/billett/lagrePerson/", person2).done((res) => {
 
@@ -834,7 +867,7 @@ function genererPersonInfoSkjema(info) {
         });
 
         $("#leggTilPerson" + i).click((e) => {
-            lagrePersonServer(i)
+            lagrePerson(i)
         });
         $("#endrePerson" + i).hide();
 
