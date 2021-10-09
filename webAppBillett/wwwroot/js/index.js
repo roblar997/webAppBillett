@@ -95,8 +95,8 @@ $(() => {
 
         if (!validerReiseInfoSkjema(info)) return;
 
-        lagreReiseInfoServer();
-        sendReiseInformasjon(info);
+        lagreReiseInformasjon();
+        genererPersonInfoSkjema(info);
 
         
     });
@@ -190,6 +190,7 @@ $(() => {
 
 // VARIABLER UTEN KLASSE ^^
 let personene = [];
+let reiseInformasjonen;
 
 //---------GUI
 async function endreReiseInfoServer(reiseInfo) {
@@ -214,9 +215,7 @@ async function endreReiseInfoServer(reiseInfo) {
     }).promise();
 }
 
-
-//---------GUI
-async function lagreReiseInfoServer() {
+function lagreReiseInformasjon() {
     // Reise info
 
     const reiseInfo = {
@@ -230,19 +229,23 @@ async function lagreReiseInfoServer() {
     };
 
     if (!validerReiseInfoSkjema(reiseInfo)) return;
+    GUIModuleSPA.addReiseInfo(1);
+    $("#reg0").hide();
+    $("#endre0").show();
+    if (GUIModuleSPA.testReiseInformasjon()) {
+        GUIModuleSPA.changeSchemaState(0, 1);
+    }
+    else {
+        GUIModuleSPA.changeSchemaState(0, 2);
+    }
+
+}
+//---------GUI
+async function lagreReiseInfoServer() {
 
 
+    $.post("/billett/lagreReiseInformasjon/", reiseInformasjonen).done((res) => {
 
-    $.post("/billett/lagreReiseInformasjon/", reiseInfo).done((res) => {
-        GUIModuleSPA.addReiseInfo(1);
-        $("#reg0").hide();
-        $("#endre0").show();
-        if (GUIModuleSPA.testReiseInformasjon()) {
-            GUIModuleSPA.changeSchemaState(0, 1);
-        }
-        else {
-            GUIModuleSPA.changeSchemaState(0, 2);
-        }
     }).promise();
 }
 
@@ -262,6 +265,8 @@ async function lagreBetaling() {
 
     if (!validerBetalingSkjema(betalingsInfo)) return;
     let ant = GUIModuleSPA.hentAntallPersoner();
+
+    lagreReiseInfoServer();
     for (i = 1; i <= ant; i++) {
         lagrePersonServer(i);
     }
@@ -845,11 +850,7 @@ function genererPersonInfoSkjema(info) {
         });
     }
 }
-function sendReiseInformasjon(info) {
 
-    genererPersonInfoSkjema(info);
-
-}
 
 
 
