@@ -63,6 +63,19 @@ function validerAvgangsTid(input) {
 }
 
 
+function validerPrisMin(input) {
+    return true;
+}
+
+function validerPrisMaks(input) {
+    return true;
+}
+function validerPrisAntall(input) {
+    return true;
+}
+function validerCheckBox(input) {
+    return input === false || input === true;
+}
 
 
 // Skjema validering
@@ -100,3 +113,16 @@ function validerReiseInfoSkjema(data) {
     return fraSjekk && tilSjekk && avgangsDatoSjekk && avgangsTidSjekk && antVoksenSjekkk && antBarnSjekk;
 
 }
+
+function validerFilterLugar(data) {
+    let antallSjekk = validerAntall(data.antall);
+    let minPrisSjekk = validerPrisMin(data.prisMin);
+    let maksPrisSjekk = validerPrisMaks(data.prisMaks);
+    let wcSjekk = validerCheckBox(data.harWc);
+    let dysjSjekk = validerCheckBox(data.harDysj);
+    let wifiSjekk = validerCheckBox(data.harWifi);
+
+    return antallSjekk && minPrisSjekk && maksPrisSjekk && wcSjekk && dysjSjekk && wifiSjekk;
+
+}
+
