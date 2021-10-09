@@ -106,7 +106,7 @@ namespace webAppBillett.Controllers
         {
             if (!ModelState.IsValid) return BadRequest("Ugyldig input");
             int billettId = HttpContext.Session.GetInt32("billettId").Value;
-   
+            
 
               _lugDb.utforBetaling(betaling,billettId);
             HttpContext.Session.Remove("billettId");

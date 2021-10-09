@@ -64,7 +64,7 @@ namespace webAppBillett.DAL
 
 
             ).ToListAsync();
-
+           
             Dictionary<int, int> harFunnet = new Dictionary<int, int>();
             List<Lugar> tilReturn = new List<Lugar>();
             lugarer.ForEach((x) =>

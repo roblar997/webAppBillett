@@ -2,8 +2,7 @@
 $(() => {
 
     // Reise info
-    $('#reisetype').change((x) => {
-       });
+
 
     $('#fra').change((x) => {
     });
@@ -56,7 +55,7 @@ $(() => {
         validerAdresse(this.value);
     });
 
-    $("#telefon".change((x) => {
+    $("#telefon").change((x) => {
         validerTelefonNummer(this.value);
      });
 
@@ -177,7 +176,6 @@ $(() => {
 async function endreReiseInfoServer(reiseInfo) {
     const reiseInfo2 = {
         reiseId: 1,
-        reisetype: $('#reisetype').val(),
         fra: $('#fra').val(),
         til: $('#til').val(),
         antBarn: $("#antBarn").val(),
@@ -202,7 +200,6 @@ async function endreReiseInfoServer(reiseInfo) {
 async function lagreReiseInfoServer() {
     const reiseInfo = {
         reiseId: -1,
-        reisetype: $('#reisetype').val(),
         fra: $('#fra').val(),
         til: $('#til').val(),
         antBarn: $("#antBarn").val(),
@@ -818,7 +815,6 @@ function validerReise(info) {
 
 function hentReiseInfo() {
     const reiseInfo = {
-        reisetype: $('#reisetype').val(),
         fra: $('#fra').val(),
         til: $('#til').val(),
         avgangsDato: $('#avgangsDato').val(),
@@ -840,7 +836,6 @@ function leggTilLugarSokOversikt(html) {
 }
 async function setReiseInfo(reiseInfo) {
 
-    $('#reisetype').val(reiseInfo.reisetype);
     $('#antBarn').val(reiseInfo.antBarn);
     $('#antVoksen').val(reiseInfo.antVoksen);
     $('#fra').val(reiseInfo.fra);
