@@ -83,14 +83,21 @@ $(() => {
     })
  
     $("#reg0").click((e) => {
-        let info = hentReiseInfo();
-        let erGyldig = validerReise(info);
+        let info = {
+            fra: $('#fra').val(),
+            til: $('#til').val(),
+            avgangsDato: $('#avgangsDato').val(),
+            avgangsTid: $('#avgangsTid').val(),
+            antBarn: $("#antBarn").val(),
+            antVoksen: $("#antVoksen").val(),
+        };
 
-        if (erGyldig) {
-            lagreReiseInfoServer();
-            sendReiseInformasjon(info);
+        if (!validerReiseInfoSkjema(info)) reurn;
 
-        }
+        lagreReiseInfoServer();
+        sendReiseInformasjon(info);
+
+        
     });
     //Kjøp av billett
     $("#btnFerdig").click((e) => {
@@ -154,8 +161,16 @@ $(() => {
 
 
     $("#endre0").click((e) => {
-        let info = hentReiseInfo();
-        let erGyldig = validerReise(info);
+        let  reiseInfo = {
+            fra: $('#fra').val(),
+            til: $('#til').val(),
+            avgangsDato: $('#avgangsDato').val(),
+            avgangsTid: $('#avgangsTid').val(),
+            antBarn: $("#antBarn").val(),
+            antVoksen: $("#antVoksen").val(),
+        };
+
+        if (!validerReiseInfoSkjema(!reiseInfo)) return;
 
         if (erGyldig) {
             endreReiseInfoServer(info);
@@ -528,6 +543,9 @@ async function hentFiltrerteLugarer() {
         harWifi: $("#wifi").prop("checked")
 
     }
+
+    if (!validerFilterLugar(filterData)) return;
+
     $.post("/billett/hentFiltrerteLugarer",filterData).done((res) => {
     
 
@@ -801,30 +819,6 @@ function sendReiseInformasjon(info) {
 
 
 
-function validerReise(info) {
-    const fra = info.fra;
-    const til = info.til;
-
-    if (fra == til) {
-        $("#fraFeil").html("Feil! fra og til kan ikke være den samme");
-        return false;
-    } else {
-        return true;
-    }
-}
-
-function hentReiseInfo() {
-    const reiseInfo = {
-        fra: $('#fra').val(),
-        til: $('#til').val(),
-        avgangsDato: $('#avgangsDato').val(),
-        avgangsTid: $('#avgangsTid').val(),
-        antBarn: $("#antBarn").val(),
-        antVoksen: $("#antVoksen").val(),
-    };
-    return reiseInfo;
-
-}
 
 function leggTilLugarOversikt(html) {
 
