@@ -48,11 +48,11 @@ namespace webAppBillett.DAL
         {
             Billett billett = _lugDb.billetter.Local.First((x) => x.billettId == billettId);
             ReiseInformasjon reiseInformasjon = await hentReiseInformasjon(billettId);
-            int ruteId = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First().ruteId;
-            List<Reservasjon> billettLugarer = _lugDb.reservasjon.Where((x) => x.ruteId == ruteId && x.avgangsDato == reiseInformasjon.avgangsDato && x.avgangsTid == reiseInformasjon.avgangsTid).ToList();
+            int ruteId = _lugDb.ruter.Local.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First().ruteId;
+            List<Reservasjon> billettLugarer = _lugDb.reservasjon.Local.Where((x) => x.ruteId == ruteId && x.avgangsDato == reiseInformasjon.avgangsDato && x.avgangsTid == reiseInformasjon.avgangsTid).ToList();
             List<int> lugarReservert = billettLugarer.ConvertAll((x) => x.lugarId).ToList();
 
-            List<Lugar> lugarer = await _lugDb.lugarer.Where((x) =>
+            List<Lugar> lugarer =  _lugDb.lugarer.Local.Where((x) =>
                 //Skal ikke være reservert
                 !lugarReservert.Contains(x.lugarId) &&
                 filterLugar.antall <= x.antall &&
@@ -63,7 +63,7 @@ namespace webAppBillett.DAL
                 x.pris <= filterLugar.prisMaks
 
 
-            ).ToListAsync();
+            ).ToList();
          
             Dictionary<int, int> harFunnet = new Dictionary<int, int>();
             List<Lugar> tilReturn = new List<Lugar>();
@@ -82,8 +82,8 @@ namespace webAppBillett.DAL
 
         public async Task<List<RuteForekomstDatoTid>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato)
         {
-            int forekomstDatoId = _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteForekomstDato.ruteId && x.avgangsDato == ruteForekomstDato.avgangsDato).forekomstDatoId;
-            return await _lugDb.ruteForekomstDatoTid.Where((x) => x.forekomstDatoId == forekomstDatoId).ToListAsync();
+            int forekomstDatoId = _lugDb.ruteForekomstDato.Local.First((x) => x.ruteId == ruteForekomstDato.ruteId && x.avgangsDato == ruteForekomstDato.avgangsDato).forekomstDatoId;
+            return  _lugDb.ruteForekomstDatoTid.Local.Where((x) => x.forekomstDatoId == forekomstDatoId).ToList();
 
         }
 
@@ -113,7 +113,7 @@ namespace webAppBillett.DAL
                 Reservasjon billettLugar = new Reservasjon();
                 Billett billett = _lugDb.billetter.Local.First((x) => x.billettId == billettId);
                 ReiseInformasjon reiseInformasjon = billett.ReiseInformasjon.First();
-                int ruteId = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First().ruteId;
+                int ruteId = _lugDb.ruter.Local.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First().ruteId;
 
                 billettLugar.billettId = billett.billettId;
 
@@ -156,10 +156,10 @@ namespace webAppBillett.DAL
 
             //Fjern personer som ikke er i BillettPerson.
 
-            List<int> personIdVerdier = _lugDb.billettPerson.ToList().ConvertAll((x) => x.personId).ToList();
+            List<int> personIdVerdier = _lugDb.billettPerson.Local.ToList().ConvertAll((x) => x.personId).ToList();
 
             //Å fjerne
-            List<Person> personer = _lugDb.personer.Where((x) => !personIdVerdier.Contains(x.personId)).ToList();
+            List<Person> personer = _lugDb.personer.Local.Where((x) => !personIdVerdier.Contains(x.personId)).ToList();
             personer.ForEach((x) =>
             {
                 _lugDb.personer.Local.Remove(x);
@@ -218,7 +218,7 @@ namespace webAppBillett.DAL
         }
         public async Task<List<Rute>> hentRuter()
         {
-            return await _lugDb.ruter.ToListAsync();
+            return  _lugDb.ruter.Local.ToList();
         }
 
         public async void utforBetaling(Betaling betaling, int billettId)
