@@ -63,25 +63,7 @@ $(() => {
 
 
 
-    
-    //TODO
-    hentFraHavner().then((x) => {
-
-        hentTilHavner($("#fra").val());
-        hentReiseInfoServer().then((ok) => {
-            hentPersonInfoServer();
-            hentLugarInfoServer();
-
-           
-           
-            
-         
-          
-        }, (err) => {
-            hentPersonInfoServer();
-            hentLugarInfoServer(); });
-
-    })
+   
  
     $("#reg0").click((e) => {
         let info = {
@@ -203,16 +185,9 @@ async function endreReiseInfoServer(reiseInfo) {
         avgangsDato: $('#avgangsDato').val(),
         avgangsTid: $('#avgangsTid').val()
     };
+    if (!validerReiseInfoSkjema(reiseInfo2)) return;
+    reiseInformasjonen = reiseInfo2;
 
-
-
-
-    $.post("/billett/endreReiseInformasjon/", reiseInfo2).done((res) => {
-        $("#personer").html("");
-        //Ny reiseInfo, så fjern lugarene.
-        slettLugarer();
-        genererPersonInfoSkjema(reiseInfo2);
-    }).promise();
 }
 
 function lagreReiseInformasjon() {
@@ -229,6 +204,7 @@ function lagreReiseInformasjon() {
     };
 
     if (!validerReiseInfoSkjema(reiseInfo)) return;
+    reiseInformasjonen = reiseInfo;
     GUIModuleSPA.addReiseInfo(1);
     $("#reg0").hide();
     $("#endre0").show();
@@ -562,7 +538,11 @@ async function hentFiltrerteLugarer() {
         antall: $("#antall").val(),
         harWc: $("#wc").prop("checked"),
         harDysj: $("#dysj").prop("checked"),
-        harWifi: $("#wifi").prop("checked")
+        harWifi: $("#wifi").prop("checked"),
+        fra: reiseInformasjonen.fra,
+        til: reiseInformasjonen.til,
+        avgangsDato: reiseInformasjonen.avgangsDato,
+        avgangsTid: reiseInformasjonen.avgangsTid
 
     }
 

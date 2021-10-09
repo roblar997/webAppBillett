@@ -48,9 +48,9 @@ namespace webAppBillett.DAL
         public async Task<List<Lugar>> hentFiltrerteLugarer(FilterLugar filterLugar, int billettId)
         {
             Billett billett = await _lugDb.billetter.FindAsync(billettId);
-            ReiseInformasjon reiseInformasjon = await hentReiseInformasjon(billettId);
-            int ruteId = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First().ruteId;
-            List<Reservasjon> billettLugarer = _lugDb.reservasjon.Where((x) => x.ruteId == ruteId && x.avgangsDato == reiseInformasjon.avgangsDato && x.avgangsTid == reiseInformasjon.avgangsTid).ToList();
+
+            int ruteId = _lugDb.ruter.Where((x) => x.fra == filterLugar.fra && x.til == filterLugar.til).First().ruteId;
+            List<Reservasjon> billettLugarer = _lugDb.reservasjon.Where((x) => x.ruteId == ruteId && x.avgangsDato == filterLugar.avgangsDato && x.avgangsTid == filterLugar.avgangsTid).ToList();
             List<int> lugarReservert = billettLugarer.ConvertAll((x) => x.lugarId).ToList();
 
             List<Lugar> lugarer = await _lugDb.lugarer.Where((x) =>

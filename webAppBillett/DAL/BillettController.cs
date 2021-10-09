@@ -93,7 +93,6 @@ namespace webAppBillett.Controllers
         {
             if (!ModelState.IsValid) return BadRequest("Ugyldig input");
             int billettId = HttpContext.Session.GetInt32("billettId").Value;
-
             return Ok(await _lugDb.lagrePerson(person,billettId));
 
         }
