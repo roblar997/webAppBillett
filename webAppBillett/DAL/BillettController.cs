@@ -5,11 +5,12 @@ using System.Linq;
 using webAppBillett.Models;
 using webAppBillett.DAL;
 using System.Threading.Tasks;
+using System;
 
 namespace webAppBillett.Controllers
 {
     [Route("[Controller]/[action]")]
-    public class BillettController : Controller
+    public class BillettController : ControllerBase
     {
 
 
@@ -20,17 +21,16 @@ namespace webAppBillett.Controllers
         public BillettController(IBillettRepository db)
         {
             _lugDb = db;
+
+            _lugDb = db;
     
 
 
 
         }
 
-
         public async Task<List<Havn>> hentHavner()
         {
-   
-
             return await _lugDb.hentHavner();
         }
         [Route("{id}")]
@@ -93,6 +93,7 @@ namespace webAppBillett.Controllers
         {
             if (!ModelState.IsValid) return BadRequest("Ugyldig input");
             int billettId = HttpContext.Session.GetInt32("billettId").Value;
+            
             return Ok(await _lugDb.lagrePerson(person,billettId));
 
         }
@@ -124,11 +125,10 @@ namespace webAppBillett.Controllers
                 int billettId = await _lugDb.addBillettHelper();
 
                 HttpContext.Session.SetInt32("billettId", billettId);
-
             }
             int billettId2 = HttpContext.Session.GetInt32("billettId").Value;
 
-     
+
             return await _lugDb.hentPersoner(billettId2);
 
         }
