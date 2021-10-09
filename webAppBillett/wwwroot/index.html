@@ -43,8 +43,8 @@
                     <div class="container">
                         <h1 class="text-left">Betaling</h1>
                         <div class="row">
-                            <label for="pris"> Pris: </label>
-                            <span id="pris"></span>
+                            <label for="pris"> Pris:          <span id="pris"></span> </label>
+                  
 
 </div>
 
@@ -55,6 +55,7 @@
                                     <div class="col">
                                         <label>Utløper</label>
                                         <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="utloper" />
+                                        <span id="utloperFeil"></span>
                                     </div>
                                 </div>
 
@@ -63,16 +64,19 @@
                                     <div class="col">
                                         <label>csv</label>
                                         <input type="number" class="form-control" id="csv" />
+                                        <span id="csvFeil"></span>
                                     </div>
                                     <div class="col">
                                         <label>Kortnummer</label>
                                         <input type="text" class="form-control" id="kortnummer" />
+                                        <span id="kortnummerFeil"></span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <label>Kortholders navn</label>
                                         <input type="text" class="form-control" id="kortholderNavn" />
+                                        <span id="kortholdernavnFeil"></span>
                                     </div>
 
 
@@ -83,16 +87,19 @@
                                             <h1 class="text-center">Kontakt informasjon </h1>
                                             <label>Adresse</label>
                                             <input type="text" class="form-control" id="adresse" />
+                                            <span id="adresseFeil"></span>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <label>Poststed</label>
                                             <input type="text" class="form-control" id="poststed" />
+                                            <span id="poststedFeil"></span>
                                         </div>
                                         <div class="col">
                                             <label>Postnr</label>
                                             <input type="text" class="form-control" id="postnr" />
+                                            <span id="postnrFeil"></span>
                                         </div>
                                     </div>
                                     <div class="row" style="padding-left: 1em;">
@@ -100,11 +107,13 @@
                                             <div class="col">
                                                 <label>Telefon </label>
                                                 <input type="text" class="form-control" id="telefon" />
+                                                <span id="telefonFeil"></span>
                                             </div>
 
                                             <div class="col">
                                                 <label>Email</label>
                                                 <input type="text" class="form-control" id="email" />
+                                                <span id="emailFeil"></span>
                                             </div>
                                         </div>
                                     </div>
