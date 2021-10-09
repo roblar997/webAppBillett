@@ -204,14 +204,14 @@ namespace webAppBillett.DAL
             //int billettId = HttpContext.Session.GetInt32("billettId").Value;
 
             BillettPerson billettPerson = new BillettPerson();
-            Billett billett = _lugDb.billetter.Find(billettId);
+            Billett billett = _lugDb.billetter.Local.First((x) => x.billettId == billettId); 
             billettPerson.billettId = billett.billettId;
 
 
             billettPerson.personId = person.personId;
 
-            await _lugDb.billettPerson.AddAsync(billettPerson);
-            await _lugDb.SaveChangesAsync();
+             _lugDb.billettPerson.Local.Add(billettPerson);
+           // await _lugDb.SaveChangesAsync();
             return person.personId;
 
 
