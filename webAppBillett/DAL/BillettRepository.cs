@@ -16,8 +16,7 @@ namespace webAppBillett.DAL
         public BillettRepository(BillettContext db)
         {
             _lugDb = db;
-
-
+  
 
 
         }
@@ -236,6 +235,10 @@ namespace webAppBillett.DAL
         public async Task<int> addBillettHelper()
         {
             Billett billetten = new Billett();
+            _lugDb.lugarer.Load();
+            _lugDb.billetter.Load();
+            _lugDb.ruter.Load();
+            _lugDb.reservasjon.Load();
              _lugDb.billetter.Local.Add(billetten);
          //   await _lugDb.SaveChangesAsync();
             return billetten.billettId;
