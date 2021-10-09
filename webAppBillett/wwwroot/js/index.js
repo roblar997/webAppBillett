@@ -170,7 +170,7 @@ $(() => {
             antVoksen: $("#antVoksen").val(),
         };
 
-        if (!validerReiseInfoSkjema(!reiseInfo)) return;
+        if (!validerReiseInfoSkjema(reiseInfo)) return;
 
         if (erGyldig) {
             endreReiseInfoServer(info);
