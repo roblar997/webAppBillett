@@ -1,12 +1,12 @@
-﻿function validerFornavn(input) {
+﻿function validerFornavn(input,nummerPerson) {
     return true;
 }
 
-function validerEtternavn(input) {
+function validerEtternavn(input,nummerPerson) {
     return true;
 }
 
-function validerTelefonNummer(input) {
+function validerTelefonNummer(input,nummerPerson) {
     return true;
 }
 
@@ -45,4 +45,15 @@ function validerAntVoksen(input) {
 }
 function validerAntBarn(input) {
     return true;
+}
+
+
+// Skjema validering
+
+function validerPersonSkjema(data) {
+    let fornavnSjekk    = validerFornavn(data.fornavn);
+    let etternavnSjekk = validerEtternavn(data.etternavn);
+    let telefonSjekk = validerTelefonNummer(data.telefon);
+
+    return fornavnSjekk && etternavnSjekk && telefonSjekk;
 }
