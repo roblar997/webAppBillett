@@ -22,7 +22,9 @@ namespace webAppBillett.Controllers
         {
             _lugDb = db;
 
-            
+            _lugDb = db;
+    
+
 
 
         }

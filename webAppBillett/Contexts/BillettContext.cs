@@ -13,6 +13,7 @@ namespace webAppBillett.Contexts
         public BillettContext(DbContextOptions<BillettContext> options) : base(options)
         {
             Database.EnsureCreated();
+
         }
 
         public DbSet<Lugar> lugarer { get; set; }
