@@ -13,7 +13,7 @@ $(() => {
             sessionStorage.removeItem("tid");
         }
     }
-    //For det å la siden stå oppe33
+    //For det å la siden stå oppe33..
     //
     setTimeout(() => {
         slettBillettServer();
