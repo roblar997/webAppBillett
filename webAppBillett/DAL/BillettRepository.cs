@@ -90,6 +90,7 @@ namespace webAppBillett.DAL
 
         public async void slettBillett(int billettId)
         {
+
             Billett billett = await _lugDb.billetter.FindAsync(billettId);
 
             slettLugarer(billettId);
@@ -246,13 +247,7 @@ namespace webAppBillett.DAL
             {
                 return _lugDb.personer.Find(x.personId);
             });
-            Task.Delay(1000000).ContinueWith(async (x) =>
-            {
-
-
-                slettBillett(billettId);
-
-            });
+     
             return personer;
 
         }

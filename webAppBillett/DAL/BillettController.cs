@@ -128,7 +128,7 @@ namespace webAppBillett.Controllers
             }
             int billettId2 = HttpContext.Session.GetInt32("billettId").Value;
 
-         
+
             return await _lugDb.hentPersoner(billettId2);
 
         }
