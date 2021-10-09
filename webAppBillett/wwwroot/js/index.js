@@ -318,7 +318,7 @@ async function endrePersonServer(id, skjemaNr) {
         telefon: $("#telefon" + skjemaNr).val()
     };
     if (!validerPersonSkjema(person2, skjemaNr)) return;
-    personene[skemaNr] = person2;
+    personene[skjemaNr] = person2;
 
 }
 
