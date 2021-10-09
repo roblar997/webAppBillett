@@ -1,9 +1,21 @@
 ﻿
 $(() => {
 
-    if (sessionStorage.getItem("ticket") == null)
-        slettBillettServer();
-   
+    let dateTime = Date.now();
+
+    //For refresh
+
+    if (sessionStorage.getItem("tid") == null)
+        sessionStorage.setItem("tid", dateTime);
+    else {
+        if ((dateTime - Number(sessionStorage.getItem("tid"))) > 300000) {
+            slettBillettServer();
+            sessionStorage.removeItem("tid");
+        }
+    }
+    //For det å la siden stå oppe
+
+    setTimeout(slettBillettServer(), 10000);
     $('#fra').change((x) => {
     });
 
@@ -213,7 +225,7 @@ async function endreReiseInfoServer(reiseInfo) {
 //---------GUI
 async function lagreReiseInfoServer() {
     // Reise info
-    sessionStorage.setItem("ticket", 1);
+
     const reiseInfo = {
         reiseId: -1,
         fra: $('#fra').val(),
