@@ -863,7 +863,6 @@ async function setReiseInfo(reiseInfo) {
 
 function setPersonInfo(nummerPerson, personInfo) {
 
-    if (!validerPersonSkjema(personInfo, nummerPerson)) return;
 
     $('#personId' + nummerPerson).val(personInfo.personId);
 
