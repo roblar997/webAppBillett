@@ -264,7 +264,7 @@ namespace webAppBillett.DAL
 
             List<Lugar> lugarer = billett.reservasjoner.ConvertAll((x) =>
             {
-                return _lugDb.lugarer.Find(x.lugarId);
+                return _lugDb.lugarer.Local.First((y) => y.lugarId == x.lugarId);
             });
 
             return lugarer;
@@ -276,16 +276,16 @@ namespace webAppBillett.DAL
         {
 
 
-            return await _lugDb.lugarer.ToListAsync();
+            return  _lugDb.lugarer.Local.ToList();
 
         }
 
         public async Task<double> beregnPris(int billettId)
         {
-            Billett billett = await _lugDb.billetter.FindAsync(billettId);
+            Billett billett = _lugDb.billetter.Local.First((x) => x.billettId == billettId);
             ReiseInformasjon reiseInformasjon = billett.ReiseInformasjon.First();
 
-            Rute rute = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First();
+            Rute rute = _lugDb.ruter.Local.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First();
 
             double barnPris = rute.prisBarn;
             double voksenPris = rute.prisVoksen;
@@ -303,7 +303,7 @@ namespace webAppBillett.DAL
         public async Task<ReiseInformasjon> hentReiseInformasjon(int billettId)
         {
 
-            Billett billett = await _lugDb.billetter.FindAsync(billettId);
+            Billett billett = _lugDb.billetter.Local.First((x) => x.billettId == billettId);
             return billett.ReiseInformasjon.ToList().First();
 
         }
@@ -312,12 +312,10 @@ namespace webAppBillett.DAL
         public async Task slettPersonAsync(int id, int billettId)
         {
 
-
-
-            Person person = await _lugDb.personer.FindAsync(id);
-            Billett billett = _lugDb.billetter.Find(billettId);
+            Person person =  _lugDb.personer.Local.First((x) => x.personId == id);
+            Billett billett = _lugDb.billetter.Local.First((x) => x.billettId == billettId);
             billett.billettPerson.RemoveAll((x) => { return x.personId == id && x.billettId == billett.billettId; });
-            await _lugDb.SaveChangesAsync();
+          //  await _lugDb.SaveChangesAsync();
 
         }
 
@@ -325,12 +323,12 @@ namespace webAppBillett.DAL
         public void endrePerson(Person person)
         {
 
-            Person personGammel = _lugDb.personer.Find(person.personId);
+            Person personGammel = _lugDb.personer.Local.First((x) => x.personId == person.personId);
             personGammel.fornavn = person.fornavn;
             personGammel.etternavn = person.etternavn;
             personGammel.telefon = person.telefon;
 
-            _lugDb.SaveChanges();
+           // _lugDb.SaveChanges();
 
         }
 
@@ -338,8 +336,8 @@ namespace webAppBillett.DAL
         {
 
             reiseInformasjon.reiseId = billettId;
-            _lugDb.reiseInformasjon.Add(reiseInformasjon);
-            await _lugDb.SaveChangesAsync();
+            _lugDb.reiseInformasjon.Local.Add(reiseInformasjon);
+         //   await _lugDb.SaveChangesAsync();
 
 
             return reiseInformasjon.reiseId;
@@ -350,21 +348,21 @@ namespace webAppBillett.DAL
         public async void slettReiseInformasjon(int billettId)
         {
 
-            Billett billett = await _lugDb.billetter.FindAsync(billettId);
+            Billett billett = _lugDb.billetter.Local.First((x) => x.billettId == billettId);
             List<ReiseInformasjon> reiseInformasjon = billett.ReiseInformasjon;
             reiseInformasjon.ForEach((x) =>
             {
-                _lugDb.reiseInformasjon.Remove(x);
+                _lugDb.reiseInformasjon.Local.Remove(x);
             });
 
-            await _lugDb.SaveChangesAsync();
+         //   await _lugDb.SaveChangesAsync();
         }
 
 
         public async void endreReiseInformasjon(ReiseInformasjon reiseInformasjon, int billettId)
         {
 
-            ReiseInformasjon reiseInformasjonGammel = await _lugDb.reiseInformasjon.FindAsync(billettId);
+            ReiseInformasjon reiseInformasjonGammel =  _lugDb.reiseInformasjon.Local.First((x) => x.reiseId == billettId);
             if (reiseInformasjonGammel.antVoksen != reiseInformasjon.antVoksen || reiseInformasjonGammel.antBarn != reiseInformasjon.antBarn)
             {
                 slettPersoner(billettId);
