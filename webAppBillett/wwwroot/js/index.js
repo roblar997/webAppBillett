@@ -172,7 +172,7 @@ $(() => {
 
         if (!validerReiseInfoSkjema(reiseInfo)) return;
 
-            endreReiseInfoServer(info);
+        endreReiseInfoServer(reiseInfo);
 
        
     });
