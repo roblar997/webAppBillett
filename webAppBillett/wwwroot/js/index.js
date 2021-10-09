@@ -80,6 +80,10 @@ $(() => {
         validerEmail(this.value);
     });
 
+
+    //LAGRING UTEN KLASSE ^^
+    let personer = [];
+    
     //TODO
     hentFraHavner().then((x) => {
 
@@ -327,7 +331,7 @@ async function endrePersonServer(id, skjemaNr) {
         telefon: $("#telefon" + skjemaNr).val()
     };
     if (!validerPersonSkjema(person2, skjemaNr)) return;
-
+    personer[skemaNr] = person2;
     $.post("/billett/endrePerson/", person2).done((res) => {
 
     }).promise();
@@ -341,7 +345,7 @@ async function lagrePersonServer(skjemaNr) {
         etternavn: $("#etternavn" + skjemaNr).val(),
         telefon: $("#telefon" + skjemaNr).val()
     };
-
+    personer[skjemaNr] = person2;
     if (!validerPersonSkjema(person2, skjemaNr)) return;
     let val = skjemaNr;
 
