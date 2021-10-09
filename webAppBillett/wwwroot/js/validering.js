@@ -48,6 +48,23 @@ function validerAntBarn(input) {
 }
 
 
+function validerFra(input) {
+    return true;
+}
+function validerTil(input) {
+    return true;
+}
+
+function validerAvgangsDato(input) {
+    return true;
+}
+function validerAvgangsTid(input) {
+    return true;
+}
+
+
+
+
 // Skjema validering
 
 function validerPersonSkjema(data) {
@@ -70,4 +87,16 @@ function validerBetalingSkjema(data) {
     let kortnummerSjekk = validerKortnummer(data.kortnummer);
 
     return postNrSjekk && postStedSjekk && emailSjekk && adresseSjekk && csvSjekk && kortholderNavnSjekk && utlopsTidSjekk && kortnummerSjekk;
+}
+
+function validerReiseInfoSkjema(data) {
+    let fraSjekk = validerFra(data.fra);
+    let tilSjekk = validerTil(data.til);
+    let avgangsDatoSjekk = validerAvgangsDato(data.avgangsDato);
+    let avgangsTidSjekk = validerAvgangsTid(data.avgangsTid);
+    let antVoksenSjekkk = validerAntVoksen(data.antVoksen);
+    let antBarnSjekk = validerAntBarn(dat.antBarn);
+
+    return fraSjekk && tilSjekk && avgangsDatoSjekk && avgangsTidSjekk && antVoksenSjekkk && antBarnSjekk;
+
 }
