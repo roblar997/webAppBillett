@@ -14,7 +14,7 @@ $(() => {
         }
     }
     //For det å la siden stå oppe33
-
+    //
     setTimeout(() => {
         slettBillettServer();
         window.location.reload(true);
