@@ -64,7 +64,7 @@ namespace webAppBillett.DAL
 
 
             ).ToListAsync();
-           
+         
             Dictionary<int, int> harFunnet = new Dictionary<int, int>();
             List<Lugar> tilReturn = new List<Lugar>();
             lugarer.ForEach((x) =>
@@ -95,8 +95,9 @@ namespace webAppBillett.DAL
             slettLugarer(billettId);
             slettPersoner(billettId);
             slettReiseInformasjon(billettId);
-            _lugDb.billetter.Remove(billett);
-            _lugDb.SaveChanges();
+            _lugDb.billetter.Local.Remove(billett);
+
+         //   _lugDb.SaveChanges();
 
 
         }
@@ -124,8 +125,8 @@ namespace webAppBillett.DAL
 
 
 
-                await _lugDb.reservasjon.AddAsync(billettLugar);
-                await _lugDb.SaveChangesAsync();
+                 _lugDb.reservasjon.Local.Add(billettLugar);
+               // await _lugDb.SaveChangesAsync();
             }
 
 
@@ -139,7 +140,7 @@ namespace webAppBillett.DAL
 
             Billett billett = await _lugDb.billetter.FindAsync(billettId);
             billett.reservasjoner.RemoveAll((x) => { return x.billettId == billett.billettId; });
-            await _lugDb.SaveChangesAsync();
+           // await _lugDb.SaveChangesAsync();
 
 
 
@@ -150,7 +151,7 @@ namespace webAppBillett.DAL
 
             Billett billett = await _lugDb.billetter.FindAsync(billettId);
             billett.billettPerson.RemoveAll((x) => { return x.billettId == billett.billettId; });
-            await _lugDb.SaveChangesAsync();
+          //  await _lugDb.SaveChangesAsync();
 
 
             //Fjern personer som ikke er i BillettPerson.
@@ -159,8 +160,13 @@ namespace webAppBillett.DAL
 
             //Å fjerne
             List<Person> personer = _lugDb.personer.Where((x) => !personIdVerdier.Contains(x.personId)).ToList();
-            _lugDb.personer.RemoveRange(personer);
-            _lugDb.SaveChanges();
+            personer.ForEach((x) =>
+            {
+                _lugDb.personer.Local.Remove(x);
+            });
+
+          
+        //    _lugDb.SaveChanges();
 
 
         }
@@ -173,7 +179,7 @@ namespace webAppBillett.DAL
             Person personen = null;
             try
             {
-                personen = _lugDb.personer.Where((x) => x.fornavn == person.fornavn && x.etternavn == person.etternavn && x.telefon == person.telefon).First();
+                personen = _lugDb.personer.Local.Where((x) => x.fornavn == person.fornavn && x.etternavn == person.etternavn && x.telefon == person.telefon).First();
             }
 
             //finnes ikke
@@ -187,8 +193,8 @@ namespace webAppBillett.DAL
 
             if (personen == null)
             {
-                await _lugDb.personer.AddAsync(person);
-                await _lugDb.SaveChangesAsync();
+                _lugDb.personer.Local.Add(person);
+             //   await _lugDb.SaveChangesAsync();
             }
             else
             {
