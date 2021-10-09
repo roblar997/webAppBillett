@@ -29,7 +29,7 @@ namespace webAppBillett.DAL
         public async Task<List<Havn>> hentTilHavner(int id)
         {
             List<Rute> ruter =  _lugDb.ruter.Where((x) => x.fra == id).ToList();
-            List<Havn> havner = ruter.ConvertAll((x) => _lugDb.havn.Local.First((y) => x.til == y.havnId)).ToList();
+            List<Havn> havner = ruter.ConvertAll((x) => _lugDb.havn.First((y) => x.til == y.havnId)).ToList();
             return havner;
 
 
@@ -80,8 +80,8 @@ namespace webAppBillett.DAL
 
         public async Task<List<RuteForekomstDatoTid>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato)
         {
-            int forekomstDatoId = _lugDb.ruteForekomstDato.Local.First((x) => x.ruteId == ruteForekomstDato.ruteId && x.avgangsDato == ruteForekomstDato.avgangsDato).forekomstDatoId;
-            return  _lugDb.ruteForekomstDatoTid.Local.Where((x) => x.forekomstDatoId == forekomstDatoId).ToList();
+            int forekomstDatoId = _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteForekomstDato.ruteId && x.avgangsDato == ruteForekomstDato.avgangsDato).forekomstDatoId;
+            return  _lugDb.ruteForekomstDatoTid.Where((x) => x.forekomstDatoId == forekomstDatoId).ToList();
 
         }
 
