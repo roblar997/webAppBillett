@@ -80,7 +80,7 @@ function validerCheckBox(input) {
 
 // Skjema validering
 
-function validerPersonSkjema(data) {
+function validerPersonSkjema(data, nummerPerson) {
     let fornavnSjekk    = validerFornavn(data.fornavn);
     let etternavnSjekk = validerEtternavn(data.etternavn);
     let telefonSjekk = validerTelefonNummer(data.telefon);
