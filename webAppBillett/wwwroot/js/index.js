@@ -92,7 +92,7 @@ $(() => {
             antVoksen: $("#antVoksen").val(),
         };
 
-        if (!validerReiseInfoSkjema(info)) reurn;
+        if (!validerReiseInfoSkjema(info)) return;
 
         lagreReiseInfoServer();
         sendReiseInformasjon(info);
