@@ -319,9 +319,7 @@ async function endrePersonServer(id, skjemaNr) {
     };
     if (!validerPersonSkjema(person2, skjemaNr)) return;
     personene[skemaNr] = person2;
-    $.post("/billett/endrePerson/", person2).done((res) => {
 
-    }).promise();
 }
 
 async function lagrePerson(skjemaNr) {
@@ -334,7 +332,7 @@ async function lagrePerson(skjemaNr) {
 
     let val = skjemaNr;
     if (!validerPersonSkjema(person2, skjemaNr)) return;
-
+    personene[skjemaNr] = person2;
     $("#leggTilPerson" + val).hide();
     $("#endrePerson" + val).show();
 
@@ -353,29 +351,10 @@ async function lagrePerson(skjemaNr) {
 async function lagrePersonServer(skjemaNr) {
 
 
-    const person2 = {
-        fornavn: $("#fornavn" + skjemaNr).val(),
-        etternavn: $("#etternavn" + skjemaNr).val(),
-        telefon: $("#telefon" + skjemaNr).val()
-    };
 
-    if (!validerPersonSkjema(person2, skjemaNr)) return;
-    
+    $.post("/billett/lagrePerson/", personene[skjemaNr]).done((res) => {
 
 
-    $.post("/billett/lagrePerson/", person2).done((res) => {
-
-        $("#leggTilPerson" + val).hide();
-        $("#endrePerson" + val).show();
-
-        GUIModuleSPA.addPersoner(1);
-        $("#personId" + val).val(res);
-        if (GUIModuleSPA.testAntallPersoner()) {
-            GUIModuleSPA.changeSchemaState(2, 1);
-        }
-        else {
-            GUIModuleSPA.changeSchemaState(2, 2);
-        }
     }).promise();
 }
 
