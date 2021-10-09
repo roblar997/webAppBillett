@@ -1,5 +1,69 @@
 ﻿
-$(  () => {
+$(() => {
+
+    // Reise info
+    $('#reisetype').change((x) => {
+       });
+
+    $('#fra').change((x) => {
+    });
+
+    $('#til').change((x) => {
+    });
+
+    $("#antBarn").change((x) => {
+
+    });
+
+    $("#antVoksen").change((x) => {
+
+    });
+
+    $('#avgangsDato').change((x) => {
+    });
+
+    $('#avgangsTid').change((x) => {
+
+    });
+
+    //Betaling
+
+    $('#csv').change((x) => {
+        validerCsv(this.value);
+    });
+
+    $('#kortnummer').change((x) => {
+        validerKortnummer(this.value);
+    });
+
+    $('#kortholderNavn').change((x) => {
+        validerKortholderNavn(this.value);
+     });
+
+    $('#utloper').change((x) => {
+        validerUltopsDato(this.value);
+    });
+
+    $("#postnr").change((x) => {
+        validerPostNr(this.value);
+    });
+
+    $("#poststed").change((x) => {
+        validerPoststed(this.value);
+     });
+
+    $("#adresse").change((x) => {
+        validerAdresse(this.value);
+    });
+
+    $("#telefon".change((x) => {
+        validerTelefonNummer(this.value);
+     });
+
+    $("#email").change((x) => {
+        validerEmail(this.value);
+    });
+
     //TODO
     hentFraHavner().then((x) => {
 
@@ -792,19 +856,7 @@ async function setReiseInfo(reiseInfo) {
     genererPersonInfoSkjema(reiseInfo);
 }
 
-/**
- * 
-function initInfo(reiseInfo, infoPersoner, infoLugarer) {
-    setReiseInfo(reiseInfo);
-    for ((personInfo, idx) in infoPersoner) {
-        setPersonInfo(idx + 1, personInfo);
-    }
-    for (lugar in infoLugarer) {
-        let html = ' ';
-        leggTilLugarOversikt(html);
-    }
-}
-*/
+
 function setPersonInfo(nummerPerson, personInfo) {
    
     $('#personId' + nummerPerson).val(personInfo.personId);
@@ -812,5 +864,18 @@ function setPersonInfo(nummerPerson, personInfo) {
     $('#fornavn' + nummerPerson).val(personInfo.fornavn);
     $('#etternavn' + nummerPerson).val(personInfo.etternavn);
     $('#telefon' + nummerPerson).val(personInfo.telefon);
+
+    $('#personId' + nummerPerson).change((x) => {
+    });
+
+    $('#fornavn' + nummerPerson).change((x) => {
+        validerFornavn(this.value, nummerPerson);
+    });
+    $('#etternavn' + nummerPerson).change((x) => {
+        validerEtternavn(this.value, nummerPerson);
+    });
+    $('#telefon' + nummerPerson).change((x) => {
+        validerTelefonNummer(this.person, nummerPerson);
+    });
 
 }

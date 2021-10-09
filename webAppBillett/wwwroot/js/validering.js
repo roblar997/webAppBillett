@@ -1,49 +1,48 @@
-﻿function validerFornavn(input, htmlElement) {
+﻿function validerFornavn(input) {
     return true;
 }
 
-function validerEtternavn(input, htmlElement) {
+function validerEtternavn(input) {
     return true;
 }
 
-function validerTelefonNummer(input, htmlElement) {
-    return true;
-}
-
-
-
-function validerPoststed(input, htmlElement) {
-    return true;
-}
-function validerPostNr(input, htmlElement) {
-    return true;
-}
-function validerAdresse(input, htmlElement) {
-    return true;
-}
-function validerEmail(input, htmlElement) {
+function validerTelefonNummer(input) {
     return true;
 }
 
 
-function validerKortholderNavn(input, htmlElement) {
+function validerPoststed(input) {
     return true;
 }
-function validerKortnummer(input, htmlElement) {
+function validerPostNr(input) {
     return true;
 }
-function validerCsv(input, htmlElement) {
+function validerAdresse(input) {
     return true;
 }
-function validerUltopsDato(input, htmlElement) {
+function validerEmail(input) {
+    return true;
+}
+
+
+function validerKortholderNavn(input) {
+    return true;
+}
+function validerKortnummer(input) {
+    return true;
+}
+function validerCsv(input) {
+    return true;
+}
+function validerUltopsDato(input) {
     return true;
 }
 
 
 
-function validerAntVoksen(input, htmlElement) {
+function validerAntVoksen(input) {
     return true;
 }
-function validerAntBarn(input, htmlElement) {
+function validerAntBarn(input) {
     return true;
 }
