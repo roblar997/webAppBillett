@@ -63,7 +63,14 @@ $(() => {
 
 
 
-   
+    
+    //TODO
+    hentFraHavner().then((x) => {
+
+        hentTilHavner($("#fra").val());
+  
+
+    })
  
     $("#reg0").click((e) => {
         let info = {
