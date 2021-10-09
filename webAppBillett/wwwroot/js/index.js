@@ -866,7 +866,7 @@ function setPersonInfo(nummerPerson, personInfo) {
         validerEtternavn(this.value, nummerPerson);
     });
     $('#telefon' + nummerPerson).change((x) => {
-        validerTelefonNummer(this.person, nummerPerson);
+        validerTelefonNummer(this.value, nummerPerson);
     });
 
 }

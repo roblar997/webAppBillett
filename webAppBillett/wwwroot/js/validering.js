@@ -76,6 +76,9 @@ function validerPrisAntall(input) {
 function validerCheckBox(input) {
     return input === false || input === true;
 }
+function validerAntall(input) {
+    return true;
+}
 
 function validerRuteId(input) {
     return true;
@@ -111,7 +114,7 @@ function validerReiseInfoSkjema(data) {
     let avgangsDatoSjekk = validerAvgangsDato(data.avgangsDato);
     let avgangsTidSjekk = validerAvgangsTid(data.avgangsTid);
     let antVoksenSjekkk = validerAntVoksen(data.antVoksen);
-    let antBarnSjekk = validerAntBarn(dat.antBarn);
+    let antBarnSjekk = validerAntBarn(data.antBarn);
 
     return fraSjekk && tilSjekk && avgangsDatoSjekk && avgangsTidSjekk && antVoksenSjekkk && antBarnSjekk;
 
