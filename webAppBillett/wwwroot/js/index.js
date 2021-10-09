@@ -223,6 +223,7 @@ async function lagreReiseInfoServer() {
         avgangsTid: $('#avgangsTid').val()
     };
 
+    if (!validerReiseInfoSkjema(reiseInfo)) return;
 
 
 
@@ -253,7 +254,7 @@ async function lagreBetaling() {
         email: $("#email").val()
     };
 
-
+    if (!validerBetalingSkjema(betalingsInfo)) return;
 
 
     $.post("/billett/utforBetaling/", betalingsInfo).done((res) => {
@@ -307,9 +308,7 @@ async function endrePersonServer(id, skjemaNr) {
         etternavn: $("#etternavn" + skjemaNr).val(),
         telefon: $("#telefon" + skjemaNr).val()
     };
-
-
-    let idVal = id;
+    if (!validerPersonSkjema(person2, skjemaNr)) return;
 
     $.post("/billett/endrePerson/", person2).done((res) => {
 
@@ -325,7 +324,7 @@ async function lagrePersonServer(skjemaNr) {
         telefon: $("#telefon" + skjemaNr).val()
     };
 
-
+    if (!validerPersonSkjema(person2, skjemaNr)) return;
     let val = skjemaNr;
 
     $.post("/billett/lagrePerson/", person2).done((res) => {
