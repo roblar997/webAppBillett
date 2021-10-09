@@ -1,9 +1,9 @@
 ﻿
 $(() => {
 
-    // Reise info
-
-
+    if (sessionStorage.getItem("ticket") == null)
+        slettBillettServer();
+   
     $('#fra').change((x) => {
     });
 
@@ -212,6 +212,8 @@ async function endreReiseInfoServer(reiseInfo) {
 
 //---------GUI
 async function lagreReiseInfoServer() {
+    // Reise info
+    sessionStorage.setItem("ticket", 1);
     const reiseInfo = {
         reiseId: -1,
         fra: $('#fra').val(),
