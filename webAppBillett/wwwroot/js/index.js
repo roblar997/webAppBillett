@@ -17,6 +17,7 @@ $(() => {
 
     setTimeout(() => {
         slettBillettServer();
+        sessionStorage.removeItem("tid");
         window.location.reload(true);
     }, 300000    );
 
