@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using webAppBillett.Contexts;
 using webAppBillett.Models;
 
+
 namespace webAppBillett.DAL
 {
 
@@ -17,8 +18,7 @@ namespace webAppBillett.DAL
         public BillettRepository(BillettContext db)
         {
             _lugDb = db;
-
-
+            
 
         }
 
@@ -28,7 +28,8 @@ namespace webAppBillett.DAL
 
 
         }
-
+        
+        
         public async Task<List<Havn>> hentTilHavner(int id)
         {
             List<Rute> ruter = await _lugDb.ruter.Where((x) => x.fra == id).ToListAsync();
@@ -90,7 +91,6 @@ namespace webAppBillett.DAL
 
         public async void slettBillett(int billettId)
         {
-
             Billett billett = await _lugDb.billetter.FindAsync(billettId);
 
             slettLugarer(billettId);
@@ -247,7 +247,8 @@ namespace webAppBillett.DAL
             {
                 return _lugDb.personer.Find(x.personId);
             });
-     
+            
+
             return personer;
 
         }
