@@ -1,25 +1,6 @@
 ﻿
 $(() => {
 
-    let dateTime = Date.now();
-
-    //For refresh
-
-    if (sessionStorage.getItem("tid") == null)
-        sessionStorage.setItem("tid", dateTime);
-    else {
-        if ((dateTime - Number(sessionStorage.getItem("tid"))) > 300000) {
-            slettBillettServer();
-            sessionStorage.removeItem("tid");
-        }
-    }
-    //For det å la siden stå oppe
-
-    setTimeout(() => {
-        slettBillettServer();
-        sessionStorage.removeItem("tid");
-        window.location.reload(true);
-    }, 300000    );
 
     $('#fra').change((x) => {
     });
