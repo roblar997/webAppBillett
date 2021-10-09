@@ -385,6 +385,7 @@ async function hentForekomstDato() {
         fra: $("#fra").val(),
         til: $("#til").val()
     }
+    if (!validerRute(rute)) return;
 
     await $.post("/billett/hentForekomsterDato/", rute).done((res) => {
 
@@ -404,6 +405,8 @@ async function hentForekomstDatoTid() {
         ruteId: $("#ruteValgt").val(),
         avgangsDato: $("#avgangsDato").val()
     }
+    if (!validerRuteForekomst(forekomstDato)) return;
+
     await $.post("/billett/hentForekomsterDatoTid/", forekomstDato).done((res) => {
  
         for (i = 0; i < res.length; i++) {

@@ -77,6 +77,9 @@ function validerCheckBox(input) {
     return input === false || input === true;
 }
 
+function validerRuteId(input) {
+    return true;
+}
 
 // Skjema validering
 
@@ -126,3 +129,18 @@ function validerFilterLugar(data) {
 
 }
 
+// Sub skjema validering
+
+function validerRute(data) {
+    let fraSjekk = validerFra(data.fra);
+    let tilSjekk = validerTil(data.til);
+
+    return fraSjekk && tilSjekk;
+}
+
+function validerRuteForekomst(data) {
+    let avgangsDatoSjekk = validerAvgangsDato(data.avgangsDato);
+    let ruteIdSjekk = validerRuteId(data.ruteId);
+
+    return avgangsDatoSjekk && ruteIdSjekk;
+}
