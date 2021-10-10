@@ -1,82 +1,37 @@
 ﻿function validerFornavn(input,nummerPerson) {
-    let regexp = /^[a-zA-Z]+$/;
-    let minLen = 4;
-    let maxLen = 10;
-    if (input.length < minLen || input.length > maxLen) return false;
-    if (regexp.test(input)) return false;
-
     return true;
 }
 
 function validerEtternavn(input,nummerPerson) {
-    let regexp = /^[a-zA-Z]+$/;
-    let minLen = 4;
-    let maxLen = 10;
-    if (input.length < minLen || input.length > maxLen) return false;
-    if (regexp.test(input)) return false;
-
     return true;
 }
 
 function validerTelefonNummer(input,nummerPerson) {
-    let regexp = /^(\+[0-9]+)?[0-9]+$/;
-    let minLen = 4;
-    let maxLen = 10;
-    if (input.length < minLen || input.length > maxLen) return false;
-    if (regexp.test(input)) return false;
     return true;
 }
 
 
 function validerPoststed(input) {
-    let regexp = /^[a-zA-Z]+$/;
-    let minLen = 4;
-    let maxLen = 10;
-    if (input.length < minLen || input.length > maxLen) return false;
-    if (regexp.test(input)) return false;
-
     return true;
 }
 function validerPostNr(input) {
-    let regexp = /^[0-9]{4,4}$/;
-    if (regexp.test(input)) return false;
-
     return true;
 }
 function validerAdresse(input) {
-    let regexp = /^[a-zA-Z0-9/s]+$/;
-    let minLen = 4;
-    let maxLen = 10;
-    if (input.length < minLen || input.length > maxLen) return false;
-    if (regexp.test(input)) return false;
-
     return true;
 }
 function validerEmail(input) {
-    let regexp = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(([a-zA-Z]+)|([a-zA-z0-9]+[a-zA-z]+)|([a-zA-z]+[a-zA-Z0-9]+))((.|[a-zA-Z0-9-]+)([a-zA-Z0-9])+)*$/;
-    let minLen = 4;
-    let maxLen = 10;
-    if (input.length < minLen || input.length > maxLen) return false;
-    if (regexp.test(input)) return false;
-
     return true;
 }
 
 
 function validerKortholderNavn(input) {
-    let regexp = /^[a-zA-Z\s]+ $/;
-    let minLen = 4;
-    let maxLen = 10;
-    if (input.length < minLen || input.length > maxLen) return false;
-    if (regexp.test(input)) return false;
-
     return true;
 }
 function validerKortnummer(input) {
     return true;
 }
 function validerCsv(input) {
-
     return true;
 }
 function validerUltopsDato(input) {
@@ -86,21 +41,17 @@ function validerUltopsDato(input) {
 
 
 function validerAntVoksen(input) {
-
     return true;
 }
 function validerAntBarn(input) {
-
     return true;
 }
 
 
 function validerFra(input) {
-
     return true;
 }
 function validerTil(input) {
-
     return true;
 }
 
@@ -113,28 +64,20 @@ function validerAvgangsTid(input) {
 
 
 function validerPrisMin(input) {
-
     return true;
 }
 
 function validerPrisMaks(input) {
-
     return true;
 }
 function validerPrisAntall(input) {
-
     return true;
 }
 function validerCheckBox(input) {
     return input === false || input === true;
 }
-function validerAntall(input) {
-
-    return true;
-}
 
 function validerRuteId(input) {
-
     return true;
 }
 
