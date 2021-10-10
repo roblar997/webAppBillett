@@ -5,32 +5,41 @@ using System.Linq;
 using webAppBillett.Models;
 using webAppBillett.DAL;
 using System.Threading.Tasks;
-using System;
 
 namespace webAppBillett.Controllers
 {
     [Route("[Controller]/[action]")]
-    public class BillettController : ControllerBase
+    public class BillettController : Controller
     {
 
 
 
         private readonly IBillettRepository _lugDb;
-        
+
  
         public BillettController(IBillettRepository db)
         {
-            _lugDb = db;
 
-            _lugDb = db;
-    
+                _lugDb = db;
+
 
 
 
         }
 
+
         public async Task<List<Havn>> hentHavner()
         {
+            //For oppstart
+            if (!HttpContext.Session.GetInt32("billettId").HasValue)
+            {
+                int billettId = await _lugDb.addBillettHelper();
+
+                HttpContext.Session.SetInt32("billettId", billettId);
+            }
+
+
+
             return await _lugDb.hentHavner();
         }
         [Route("{id}")]
@@ -93,7 +102,6 @@ namespace webAppBillett.Controllers
         {
             if (!ModelState.IsValid) return BadRequest("Ugyldig input");
             int billettId = HttpContext.Session.GetInt32("billettId").Value;
-            
             return Ok(await _lugDb.lagrePerson(person,billettId));
 
         }
@@ -119,16 +127,9 @@ namespace webAppBillett.Controllers
         public async Task<List<Person>> hentPersoner()
         {
 
-            //For oppstart
-            if (!HttpContext.Session.GetInt32("billettId").HasValue)
-            {
-                int billettId = await _lugDb.addBillettHelper();
-
-                HttpContext.Session.SetInt32("billettId", billettId);
-            }
             int billettId2 = HttpContext.Session.GetInt32("billettId").Value;
 
-
+     
             return await _lugDb.hentPersoner(billettId2);
 
         }
