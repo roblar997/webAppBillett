@@ -246,6 +246,7 @@ async function lagreBetaling() {
         telefon: $("#telefon").val(),
         email: $("#email").val()
     };
+};
 
     if (!validerBetalingSkjema(betalingsInfo)) return;
     let ant = GUIModuleSPA.hentAntallPersoner();
