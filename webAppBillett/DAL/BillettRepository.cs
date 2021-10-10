@@ -82,9 +82,12 @@ namespace webAppBillett.DAL
 
         public async void velgLugar(int id, int billettId)
         {
-            Lugar lugar = await _lugDb.lugarer.FindAsync(id);
+            try
+            {
+                Lugar lugar = await _lugDb.lugarer.FindAsync(id);
 
 
+          
             if (lugar != null)
             {
                 Reservasjon billettLugar = new Reservasjon();
@@ -105,7 +108,11 @@ namespace webAppBillett.DAL
                 await _lugDb.reservasjon.AddAsync(billettLugar);
                 await _lugDb.SaveChangesAsync();
             }
-
+            }
+            catch
+            {
+                slettBillett(billettId);
+            }
 
 
         }
@@ -121,24 +128,19 @@ namespace webAppBillett.DAL
             slettLugarer(billettId);
             slettPersoner(billettId);
             slettReiseInformasjon(billettId);
+            _lugDb.billetter.Remove(billett);
             _lugDb.SaveChanges();
 
         }
 
         public async void slettLugarer(int billettId)
         {
-            try
-            {
+    
                 Billett billett = await _lugDb.billetter.FindAsync(billettId);
                 billett.reservasjoner.RemoveAll((x) => { return x.billettId == billett.billettId; });
                 await _lugDb.SaveChangesAsync();
 
-            }
-            catch
-            {
-                slettBillett(billettId);
-            }
-
+         
       
 
 
