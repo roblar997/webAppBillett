@@ -1,7 +1,13 @@
 ﻿
 $(() => {
 
+    //TODO
+    hentFraHavner().then((x) => {
 
+        hentTilHavner($("#fra").val());
+
+
+    })
     $('#fra').change((x) => {
     });
 

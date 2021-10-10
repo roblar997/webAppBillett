@@ -29,8 +29,16 @@ namespace webAppBillett.Controllers
 
         public async Task<List<Havn>> hentHavner()
         {
-   
 
+
+            //For oppstart
+            if (!HttpContext.Session.GetInt32("billettId").HasValue)
+            {
+                int billettId = await _lugDb.addBillettHelper();
+
+                HttpContext.Session.SetInt32("billettId", billettId);
+
+            }
             return await _lugDb.hentHavner();
         }
         [Route("{id}")]
@@ -118,14 +126,6 @@ namespace webAppBillett.Controllers
         public async Task<List<Person>> hentPersoner()
         {
 
-            //For oppstart
-            if (!HttpContext.Session.GetInt32("billettId").HasValue)
-            {
-                int billettId = await _lugDb.addBillettHelper();
-
-                HttpContext.Session.SetInt32("billettId", billettId);
-
-            }
             int billettId2 = HttpContext.Session.GetInt32("billettId").Value;
 
      
