@@ -214,15 +214,15 @@ function validerPersonSkjema(data, nummerPerson) {
 
     let fornavnSjekk = validerFornavn(data.fornavn);
     if (!fornavnSjekk) $("#fornavnFeil" + nummerPerson).html("<p> fornavn <p>");
-    else $("#postnrFeil").html("#fornavnFeil" + nummerPerson);
+    else $("#fornavnFeil" + nummerPerson).html("");
 
     let etternavnSjekk = validerEtternavn("#etternavnFeil" + nummerPerson);
     if (!etternavnSjekk) $("#etternavnFeil" + nummerPerson).html("<p> etternavn <p>");
-    else $("#etternavnFeil").html("etternavnFeil" + nummerPerson);
+    else $("#etternavnFeil" + nummerPerson).html("");
 
     let telefonSjekk = validerTelefonNummer(data.telefon);
     if (!telefonSjekk) $("#telefonFeil" + nummerPerson).html("<p> telefon <p>");
-    else $("#telefonFeil").html("");
+    else $("#telefonFeil" + nummerPerson).html("");
 
     return fornavnSjekk && etternavnSjekk && telefonSjekk;
 }
