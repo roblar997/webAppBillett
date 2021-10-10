@@ -611,94 +611,16 @@ async function hentFiltrerteLugarer() {
 
 async function slettLugarer() {
 
-    $.get("/billett/slettLugarer").done((res) => {
-
-
-        GUIModuleSPA.fjernAlleLugarer();
-
-        if (GUIModuleSPA.testAntallLugarer()) {
-            GUIModuleSPA.changeSchemaState(1, 1);
-        }
-        else {
-            GUIModuleSPA.changeSchemaState(1, 2);
-        }
-        $("#lugarerTilValg").html("");
-        $("#lugarOversikt").html("");
-    }).promise();
-}
-async function slettBillettServer() {
-
-    await $.get("/billett/slettBillett").done((res) => {
-       
-    }).promise();
-
-    document.getElementById("regform").reset();
-
-    $("#avgangsDato").html("");
-    $("#avgangsTid").html("");
-    $("#lugarOversikt").html("");
     GUIModuleSPA.fjernAlleLugarer();
-    GUIModuleSPA.fjernAllePersoner();
-    GUIModuleSPA.fjernAlleReiseInformasjon();
-    GUIModuleSPA.changeSchemaState(0, 4);
-    GUIModuleSPA.changeSchemaState(1, 2);
-    GUIModuleSPA.changeSchemaState(2, 2);
-    $("#regform").show();
-    $("#regform2").hide();
-    $("#regform3").hide();
 
-    $("#regform4").hide();
-
-    $("#reg0").show();
-    $("#endre0").hide();
-
-    hentFraHavner().then((x) => {
-
-        hentTilHavner($("#fra").val());
-        hentReiseInfoServer().then((ok) => {
-            hentPersonInfoServer();
-            hentLugarInfoServer();
-
-
-
-
-
-
-        }, (err) => {
-            hentPersonInfoServer();
-            hentLugarInfoServer();
-        });
-
-    })
-
-
-}
-
-async function hentPersonInfoServer() {
-
-    GUIModuleSPA.fjernAllePersoner();
-    $.get("/billett/hentPersoner/").done((res) => {
-
-        if (res.length == 0) return;
-       GUIModuleSPA.addPersoner(res.length);
-        for (i = 0; i < res.length; i++) {
-            setPersonInfo(i + 1, res[i]);
-            
-            $("#endrePerson" + (i + 1)).show();
-            $("#leggTilPerson" + (i + 1)).hide();
-        }
-
-        if ($("#fornavn1").val() == undefined) {
-            setTimeout(hentPersonInfoServer(), 1000);
-        }
-
-        if (GUIModuleSPA.testAntallPersoner()) {
-            GUIModuleSPA.changeSchemaState(2, 1);
-        }
-        else {
-            GUIModuleSPA.changeSchemaState(2, 2);
-        }
-    }).promise();
+    if (GUIModuleSPA.testAntallLugarer()) {
+        GUIModuleSPA.changeSchemaState(1, 1);
+    }
+    else {
+        GUIModuleSPA.changeSchemaState(1, 2);
+    }
+    $("#lugarerTilValg").html("");
+    $("#lugarOversikt").html("");
 
 
 }

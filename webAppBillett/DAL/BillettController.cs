@@ -50,21 +50,6 @@ namespace webAppBillett.Controllers
 
 
         }
-        public  void slettBillett()
-        {
-            try
-            {
-                int billettId = HttpContext.Session.GetInt32("billettId").Value;
-
-                _lugDb.slettBillett(billettId);
-                HttpContext.Session.Remove("billettId");
-            }
-            catch
-            {
-                return;
-            }
-
-        }
 
         [Route("{id}")]
         public  void velgLugar(int id)
@@ -77,24 +62,6 @@ namespace webAppBillett.Controllers
         }
 
 
-        public  void slettLugarer()
-        {
-            
-                int billettId = HttpContext.Session.GetInt32("billettId").Value;
-                _lugDb.slettLugarer(billettId);
-
-
-
-        }
-
-        public  void slettPersoner()
-        {
-            int billettId = HttpContext.Session.GetInt32("billettId").Value;
-            _lugDb.slettPersoner(billettId);
-
-
-
-        }
     
 
         [HttpPost]
@@ -124,15 +91,7 @@ namespace webAppBillett.Controllers
 
         }
 
-        public async Task<List<Person>> hentPersoner()
-        {
 
-            int billettId2 = HttpContext.Session.GetInt32("billettId").Value;
-
-     
-            return await _lugDb.hentPersoner(billettId2);
-
-        }
 
 
         public async Task<ActionResult> hentForekomsterDato(Rute rute)
@@ -146,12 +105,6 @@ namespace webAppBillett.Controllers
         {
             if (!ModelState.IsValid) return BadRequest("Ugyldig input");
             return Ok(await _lugDb.hentForekomsterDatoTid(ruteForekomstDato));
-
-        }
-        public async Task<List<Lugar>> hentLugarer()
-        {
-            int billettId = HttpContext.Session.GetInt32("billettId").Value;
-            return await _lugDb.hentLugarer(billettId);
 
         }
 
@@ -179,14 +132,7 @@ namespace webAppBillett.Controllers
 
 
 
-        [HttpPost]
-        public async Task<ActionResult> endrePerson(Person person)
-        {
-            if (!ModelState.IsValid) return BadRequest("Ugyldig input");
-            _lugDb.endrePerson(person);
-            return Ok();
 
-        }
         public async Task<double> beregnPris()
         {
             int billettId = HttpContext.Session.GetInt32("billettId").Value;
@@ -204,24 +150,9 @@ namespace webAppBillett.Controllers
 
 
 
-        [HttpPost]
-        public async Task<ActionResult> endreReiseInformasjon(ReiseInformasjon reiseInformasjon)
-        {
-            if (!ModelState.IsValid) return BadRequest("Ugyldig input");
-            int billettId = HttpContext.Session.GetInt32("billettId").Value;
-             _lugDb.endreReiseInformasjon(reiseInformasjon, billettId);
-
-            return Ok();
-        }
 
 
 
-
-        //Funksjon for debuging
-        public async Task<List<Billett>> hentBilletter()
-        {
-            return await _lugDb.hentBilletter();
-        }
 
 
     }
