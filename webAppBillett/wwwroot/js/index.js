@@ -278,6 +278,7 @@ async function endrePerson(skjemaNr) {
         etternavn: $("#etternavn" + skjemaNr).val(),
         telefon: $("#telefon" + skjemaNr).val()
     };
+    if (personene.includes(person2)) return;
     if (!validerPersonSkjema(person2, skjemaNr)) return;
     personene[skjemaNr] = person2;
 
@@ -292,6 +293,7 @@ async function lagrePerson(skjemaNr) {
     };
 
     let val = skjemaNr;
+    if (personene.includes(person2)) return;
     if (!validerPersonSkjema(person2, skjemaNr)) return;
     personene[skjemaNr] = person2;
     $("#leggTilPerson" + val).hide();
