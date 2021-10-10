@@ -426,7 +426,7 @@ async function huskLugar(id, body, ant) {
         GUIModuleSPA.changeSchemaState(1, 1);
     }
     else {
-        GUIModuleSPA.changeSchemaState(1, 2);
+        GUIModuleSPA.changeSchemaState(1, 4);
     }
 }
 async function velgLugar(id) {
