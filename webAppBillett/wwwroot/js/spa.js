@@ -132,9 +132,6 @@ var GUIModuleSPA = (function () {
     function leggTilMaksPPlasser(antall) {
         antPlasserRegistrert += antall;
     }
-    function hentPPersonAntall() {
-        return kravPersonAntall;
-    }
     function addPPersoner(antall) {
         personerRegistrert += antall;
     }
@@ -322,9 +319,6 @@ var GUIModuleSPA = (function () {
         },
         leggTilMaksPlasser: function (antall) {
             leggTilMaksPPlasser(antall);
-        },
-        hentAntallPersoner: function () {
-            return hentPPersonAntall();
         }
     }
 

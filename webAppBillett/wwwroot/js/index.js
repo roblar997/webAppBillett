@@ -1,13 +1,25 @@
 ﻿
 $(() => {
 
-    //TODO
-    hentFraHavner().then((x) => {
+    let dateTime = Date.now();
 
-        hentTilHavner($("#fra").val());
+    //For refresh
 
+    if (sessionStorage.getItem("tid") == null)
+        sessionStorage.setItem("tid", dateTime);
+    else {
+        if ((dateTime - Number(sessionStorage.getItem("tid"))) > 300000) {
+            slettBillettServer();
+            sessionStorage.removeItem("tid");
+        }
+    }
+    //For det å la siden stå oppe33..
+    //
+    setTimeout(() => {
+        slettBillettServer();
+        window.location.reload(true);
+    }, 300000    );
 
-    })
     $('#fra').change((x) => {
     });
 
@@ -67,9 +79,24 @@ $(() => {
         validerEmail(this.value);
     });
 
+    //TODO
+    hentFraHavner().then((x) => {
 
+        hentTilHavner($("#fra").val());
+        hentReiseInfoServer().then((ok) => {
+            hentPersonInfoServer();
+            hentLugarInfoServer();
 
-   
+           
+           
+            
+         
+          
+        }, (err) => {
+            hentPersonInfoServer();
+            hentLugarInfoServer(); });
+
+    })
  
     $("#reg0").click((e) => {
         let info = {
@@ -83,9 +110,8 @@ $(() => {
 
         if (!validerReiseInfoSkjema(info)) return;
 
-        lagreReiseInformasjon();
-        
-        genererPersonInfoSkjema(info);
+        lagreReiseInfoServer();
+        sendReiseInformasjon(info);
 
         
     });
@@ -176,12 +202,6 @@ $(() => {
 
 });
 
-
-// VARIABLER UTEN KLASSE ^^
-let personene = [];
-let lugarene = [];
-let reiseInformasjonen;
-
 //---------GUI
 async function endreReiseInfoServer(reiseInfo) {
     const reiseInfo2 = {
@@ -193,12 +213,21 @@ async function endreReiseInfoServer(reiseInfo) {
         avgangsDato: $('#avgangsDato').val(),
         avgangsTid: $('#avgangsTid').val()
     };
-    if (!validerReiseInfoSkjema(reiseInfo2)) return;
-    reiseInformasjonen = reiseInfo2;
 
+
+
+
+    $.post("/billett/endreReiseInformasjon/", reiseInfo2).done((res) => {
+        $("#personer").html("");
+        //Ny reiseInfo, så fjern lugarene.
+        slettLugarer();
+        genererPersonInfoSkjema(reiseInfo2);
+    }).promise();
 }
 
-function lagreReiseInformasjon() {
+
+//---------GUI
+async function lagreReiseInfoServer() {
     // Reise info
 
     const reiseInfo = {
@@ -212,24 +241,19 @@ function lagreReiseInformasjon() {
     };
 
     if (!validerReiseInfoSkjema(reiseInfo)) return;
-    reiseInformasjonen = reiseInfo;
-    GUIModuleSPA.addReiseInfo(1);
-    $("#reg0").hide();
-    $("#endre0").show();
-    if (GUIModuleSPA.testReiseInformasjon()) {
-        GUIModuleSPA.changeSchemaState(0, 1);
-    }
-    else {
-        GUIModuleSPA.changeSchemaState(0, 2);
-    }
-
-}
-//---------GUI
-async function lagreReiseInfoServer() {
 
 
-    await $.post("/billett/lagreReiseInformasjon/", reiseInformasjonen).done((res) => {
 
+    $.post("/billett/lagreReiseInformasjon/", reiseInfo).done((res) => {
+        GUIModuleSPA.addReiseInfo(1);
+        $("#reg0").hide();
+        $("#endre0").show();
+        if (GUIModuleSPA.testReiseInformasjon()) {
+            GUIModuleSPA.changeSchemaState(0, 1);
+        }
+        else {
+            GUIModuleSPA.changeSchemaState(0, 2);
+        }
     }).promise();
 }
 
@@ -246,54 +270,51 @@ async function lagreBetaling() {
         telefon: $("#telefon").val(),
         email: $("#email").val()
     };
-};
 
     if (!validerBetalingSkjema(betalingsInfo)) return;
-    let ant = GUIModuleSPA.hentAntallPersoner();
 
-        await lagreReiseInfoServer();
-        //Send alle personer til server
-        for (i = 1; i <= ant; i++) {
-            await lagrePersonServer(i);
-        }
 
-        //Send alle lugarene til server
-        for (i = 0; i < lugarene.length; i++) {
-            await velgLugar(lugarene[i]);
-        }
+    $.post("/billett/utforBetaling/", betalingsInfo).done((res) => {
 
-        $.post("/billett/utforBetaling/", betalingsInfo).done((res) => {
+    document.getElementById("regform").reset();
+    $("#avgangsDato").html("");
+    $("#avgangsTid").html("");
+    $("#lugarOversikt").html("");
+    GUIModuleSPA.fjernAlleLugarer();
+    GUIModuleSPA.fjernAllePersoner();
+    GUIModuleSPA.fjernAlleReiseInformasjon();
+    GUIModuleSPA.changeSchemaState(0, 4);
+    GUIModuleSPA.changeSchemaState(1, 2);
+    GUIModuleSPA.changeSchemaState(2, 2);
+    $("#regform").show();
+    $("#regform2").hide();
+    $("#regform3").hide();
 
-            document.getElementById("regform").reset();
-            $("#avgangsDato").html("");
-            $("#avgangsTid").html("");
-            $("#lugarOversikt").html("");
-            GUIModuleSPA.fjernAlleLugarer();
-            GUIModuleSPA.fjernAllePersoner();
-            GUIModuleSPA.fjernAlleReiseInformasjon();
-            GUIModuleSPA.changeSchemaState(0, 4);
-            GUIModuleSPA.changeSchemaState(1, 2);
-            GUIModuleSPA.changeSchemaState(2, 2);
-            $("#regform").show();
-            $("#regform2").hide();
-            $("#regform3").hide();
+    $("#regform4").hide();
 
-            $("#regform4").hide();
+    $("#reg0").show();
+    $("#endre0").hide();
 
-            $("#reg0").show();
-            $("#endre0").hide();
+    hentFraHavner().then((x) => {
 
-            hentFraHavner().then((x) => {
-
-                hentTilHavner($("#fra").val());
-
-            })
-
-        }).promise();
+        hentTilHavner($("#fra").val());
+        hentReiseInfoServer().then((ok) => {
+            hentPersonInfoServer();
+            hentLugarInfoServer();
 
 
 
-   
+
+
+
+        }, (err) => {
+            hentPersonInfoServer();
+            hentLugarInfoServer();
+        });
+
+    })
+
+    }).promise();
 }
 
 
@@ -305,11 +326,14 @@ async function endrePersonServer(id, skjemaNr) {
         telefon: $("#telefon" + skjemaNr).val()
     };
     if (!validerPersonSkjema(person2, skjemaNr)) return;
-    personene[skjemaNr] = person2;
 
+    $.post("/billett/endrePerson/", person2).done((res) => {
+
+    }).promise();
 }
 
-async function lagrePerson(skjemaNr) {
+async function lagrePersonServer(skjemaNr) {
+
 
     const person2 = {
         fornavn: $("#fornavn" + skjemaNr).val(),
@@ -317,31 +341,22 @@ async function lagrePerson(skjemaNr) {
         telefon: $("#telefon" + skjemaNr).val()
     };
 
-    let val = skjemaNr;
     if (!validerPersonSkjema(person2, skjemaNr)) return;
-    personene[skjemaNr] = person2;
-    $("#leggTilPerson" + val).hide();
-    $("#endrePerson" + val).show();
+    let val = skjemaNr;
 
-    GUIModuleSPA.addPersoner(1);
+    $.post("/billett/lagrePerson/", person2).done((res) => {
 
-    if (GUIModuleSPA.testAntallPersoner()) {
-        GUIModuleSPA.changeSchemaState(2, 1);
-    }
-    else {
-        GUIModuleSPA.changeSchemaState(2, 2);
-    }
+        $("#leggTilPerson" + val).hide();
+        $("#endrePerson" + val).show();
 
-
-}
-
-async function lagrePersonServer(skjemaNr) {
-
-
-
-    await $.post("/billett/lagrePerson/", personene[skjemaNr]).done((res) => {
-
-
+        GUIModuleSPA.addPersoner(1);
+        $("#personId" + val).val(res);
+        if (GUIModuleSPA.testAntallPersoner()) {
+            GUIModuleSPA.changeSchemaState(2, 1);
+        }
+        else {
+            GUIModuleSPA.changeSchemaState(2, 2);
+        }
     }).promise();
 }
 
@@ -462,31 +477,81 @@ function setDato(dato) {
 function setTid(tid) {
     $("#avgangsTid").append('<option value = "' + tid + '">' + tid + ' </option>');
 }
+async function velgLugar(id, body,ant) {
 
-async function huskLugar(id, body, ant) {
-    lugarene.push(id);
-    GUIModuleSPA.leggTilMaksPlasser(parseInt(ant, 10));
+    $.get("/billett/velgLugar/" + id).done((res) => {
+        GUIModuleSPA.leggTilMaksPlasser(parseInt(ant,10));
 
-    leggTilLugarOversikt(body);
-    $("#lugarerTilValg").html("");
+        leggTilLugarOversikt(body);
+        $("#lugarerTilValg").html("");
 
-    if (GUIModuleSPA.testAntallLugarer()) {
-        GUIModuleSPA.changeSchemaState(1, 1);
-    }
-    else {
-        GUIModuleSPA.changeSchemaState(1, 2);
-    }
-}
-async function velgLugar(id) {
-
-    await $.get("/billett/velgLugar/" + id).done((res) => {
-
-  
+        if (GUIModuleSPA.testAntallLugarer()) {
+            GUIModuleSPA.changeSchemaState(1, 1);
+        }
+        else {
+            GUIModuleSPA.changeSchemaState(1, 2);
+        }
 
     }).promise();
 }
 
+async function hentLugarInfoServer() {
 
+
+
+    $.get("/billett/hentLugarer").done((res) => {
+
+        for (i = 0; i < res.length; i++) {
+            let lugarHTMLOversikt =
+                ' <div class="card col-md-6"> <img class="card-img-top" src="' + res[i].bildeURL + '"></img> ' +
+                ' <div class="card-body">' +
+                ' <h5 class="card-title">' + res[i].tittel + '</h5>' +
+                '    <p class="card-text"> <strong> Pris:</strong> ' + res[i].pris + ' </p>' +
+                '    <p class="card-text"> <strong> Maks antall personer:</strong> ' + res[i].antall + ' </p>' +
+                '    <p class="card-text"> ' + res[i].beskrivelse + '</p> ' +
+                '        <div class="row"> ';
+
+            if (res[i].harWc) {
+                lugarHTMLOversikt +=
+                    '            <div class="col-sm-4"> ' +
+                    '                    <i class="fas fa-toilet"> Wc</i> ' +
+
+                    '            </div> ';
+
+
+            }
+            if (res[i].harDysj) {
+
+                lugarHTMLOversikt += '            <div class="col-sm-4"> ' +
+                    '                    <i class="fa fa-shower" aria-hidden="true">    Dysj</i> ' +
+
+                    '            </div> ';
+
+            }
+            if (res[i].harWifi) {
+                lugarHTMLOversikt += '            <div class="col-sm-4"> ' +
+
+                    '                    <i class="fa fa-wifi" aria-hidden="true"> Wifi </i> ' +
+                    '            </div> ';
+            }
+
+            lugarHTMLOversikt += '    </div> ';
+
+
+            leggTilLugarOversikt(lugarHTMLOversikt);
+            GUIModuleSPA.leggTilMaksPlasser(res[i].antall);
+        }
+
+
+        if (GUIModuleSPA.testAntallLugarer()) {
+            GUIModuleSPA.changeSchemaState(1, 1);
+        }
+        else {
+            GUIModuleSPA.changeSchemaState(1, 2);
+        }
+
+    }).promise();
+}
 async function hentFiltrerteLugarer() {
     let filterData = {
         prisMin: $("#prisMin").val(),
@@ -494,11 +559,7 @@ async function hentFiltrerteLugarer() {
         antall: $("#antall").val(),
         harWc: $("#wc").prop("checked"),
         harDysj: $("#dysj").prop("checked"),
-        harWifi: $("#wifi").prop("checked"),
-        fra: reiseInformasjonen.fra,
-        til: reiseInformasjonen.til,
-        avgangsDato: reiseInformasjonen.avgangsDato,
-        avgangsTid: reiseInformasjonen.avgangsTid
+        harWifi: $("#wifi").prop("checked")
 
     }
 
@@ -508,8 +569,6 @@ async function hentFiltrerteLugarer() {
     
 
         for (i = 0; i < res.length; i++) {
-            //Har allerede lugaren
-            if (lugarene.includes(res[i].lugarId)) continue;
             let lugarHTML =
                 ' <div class="card col-md-6"> <img class="card-img-top" src="' + res[i].bildeURL + '"></img> ' +
                 ' <div class="card-body">' +
@@ -594,7 +653,7 @@ async function hentFiltrerteLugarer() {
             $("#listeValg" + res[i].lugarId).click((e) => {
 
 
-                huskLugar(val, lugarHTMLOversikt, ant);
+                velgLugar(val, lugarHTMLOversikt,ant);
             });
 
         }
@@ -770,7 +829,7 @@ function genererPersonInfoSkjema(info) {
         });
 
         $("#leggTilPerson" + i).click((e) => {
-            lagrePerson(i)
+            lagrePersonServer(i)
         });
         $("#endrePerson" + i).hide();
 
@@ -788,7 +847,11 @@ function genererPersonInfoSkjema(info) {
         });
     }
 }
+function sendReiseInformasjon(info) {
 
+    genererPersonInfoSkjema(info);
+
+}
 
 
 
