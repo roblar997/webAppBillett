@@ -216,7 +216,7 @@ function validerPersonSkjema(data, nummerPerson) {
     if (!fornavnSjekk) $("#fornavnFeil" + nummerPerson).html("<p> fornavn <p>");
     else $("#fornavnFeil" + nummerPerson).html("");
 
-    let etternavnSjekk = validerEtternavn("#etternavnFeil" + nummerPerson);
+    let etternavnSjekk = validerEtternavn(data.etternavn);
     if (!etternavnSjekk) $("#etternavnFeil" + nummerPerson).html("<p> etternavn <p>");
     else $("#etternavnFeil" + nummerPerson).html("");
 
