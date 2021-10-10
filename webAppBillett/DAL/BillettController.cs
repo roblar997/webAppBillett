@@ -19,8 +19,9 @@ namespace webAppBillett.Controllers
  
         public BillettController(IBillettRepository db)
         {
-            _lugDb = db;
-    
+
+                _lugDb = db;
+
 
 
 
@@ -29,16 +30,16 @@ namespace webAppBillett.Controllers
 
         public async Task<List<Havn>> hentHavner()
         {
-
-
             //For oppstart
             if (!HttpContext.Session.GetInt32("billettId").HasValue)
             {
                 int billettId = await _lugDb.addBillettHelper();
 
                 HttpContext.Session.SetInt32("billettId", billettId);
-
             }
+
+
+
             return await _lugDb.hentHavner();
         }
         [Route("{id}")]
