@@ -72,20 +72,20 @@ $(() => {
    
  
     $("#reg0").click((e) => {
-        let info = {
+        const reiseInfo = {
+            reiseId: -1,
             fra: $('#fra').val(),
             til: $('#til').val(),
-            avgangsDato: $('#avgangsDato').val(),
-            avgangsTid: $('#avgangsTid').val(),
             antBarn: $("#antBarn").val(),
             antVoksen: $("#antVoksen").val(),
+            avgangsDato: $('#avgangsDato').val(),
+            avgangsTid: $('#avgangsTid').val()
         };
 
-        if (!validerReiseInfoSkjema(info)) return;
 
-        lagreReiseInformasjon();
+        lagreReiseInformasjon(reiseInfo);
         
-        genererPersonInfoSkjema(info);
+   
 
         
     });
@@ -155,9 +155,10 @@ $(() => {
         };
 
         if (!validerReiseInfoSkjema(reiseInfo)) return;
-
-        endreReiseInfoServer(reiseInfo);
-
+        $("#personer").html("");
+        personene = [];
+        reiseInformasjonen = reiseInfo;
+        genererPersonInfoSkjema(reiseInfo);
        
     });
 
@@ -174,37 +175,17 @@ let personene = [];
 let lugarene = [];
 let reiseInformasjonen;
 
-//---------GUI
-async function endreReiseInfoServer(reiseInfo) {
-    const reiseInfo2 = {
-        reiseId: 1,
-        fra: $('#fra').val(),
-        til: $('#til').val(),
-        antBarn: $("#antBarn").val(),
-        antVoksen: $("#antVoksen").val(),
-        avgangsDato: $('#avgangsDato').val(),
-        avgangsTid: $('#avgangsTid').val()
-    };
-    if (!validerReiseInfoSkjema(reiseInfo2)) return;
-    reiseInformasjonen = reiseInfo2;
 
-}
 
-function lagreReiseInformasjon() {
+function lagreReiseInformasjon(reiseInfo) {
     // Reise info
 
-    const reiseInfo = {
-        reiseId: -1,
-        fra: $('#fra').val(),
-        til: $('#til').val(),
-        antBarn: $("#antBarn").val(),
-        antVoksen: $("#antVoksen").val(),
-        avgangsDato: $('#avgangsDato').val(),
-        avgangsTid: $('#avgangsTid').val()
-    };
 
     if (!validerReiseInfoSkjema(reiseInfo)) return;
+
+
     reiseInformasjonen = reiseInfo;
+
     GUIModuleSPA.addReiseInfo(1);
     $("#reg0").hide();
     $("#endre0").show();
@@ -215,6 +196,7 @@ function lagreReiseInformasjon() {
         GUIModuleSPA.changeSchemaState(0, 2);
     }
 
+    genererPersonInfoSkjema(reiseInfo);
 }
 //---------GUI
 async function lagreReiseInfoServer() {
