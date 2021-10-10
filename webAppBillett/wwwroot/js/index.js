@@ -271,7 +271,7 @@ async function lagreBetaling() {
 }
 
 
-async function endrePersonServer(id, skjemaNr) {
+async function endrePerson(skjemaNr) {
     const person2 = {
         personId: $("#personId" + skjemaNr).val(),
         fornavn: $("#fornavn" + skjemaNr).val(),
@@ -298,7 +298,7 @@ async function lagrePerson(skjemaNr) {
     $("#endrePerson" + val).show();
 
     GUIModuleSPA.addPersoner(1);
-
+    
     if (GUIModuleSPA.testAntallPersoner()) {
         GUIModuleSPA.changeSchemaState(2, 1);
     }
@@ -597,7 +597,7 @@ function genererPersonInfoSkjema(info) {
 
     let antPersoner = antBarn + antVoksen;
 
-
+    GUIModuleSPA.settKravAntPersoner(antPersoner);
     //Legger til et nytt person registerings skjema i element med id personer
     for (let i = 1; i <= antPersoner; i++) {
 
@@ -645,10 +645,10 @@ function genererPersonInfoSkjema(info) {
             ' </div>' +
             '</div>').appendTo("#personer");
 
-        GUIModuleSPA.settKravAntPersoner(antPersoner);
+ 
 
         $("#endrePerson" + i).click((e) => {
-            endrePersonServer(i, i);
+            endrePerson( i);
         });
 
         $("#leggTilPerson" + i).click((e) => {

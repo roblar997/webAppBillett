@@ -49,6 +49,7 @@ $(() => {
         if (GUIModuleSPA.testAntallLugarer()) {
             $("#regform2").hide();
             $("#regform3").show();
+
             GUIModuleSPA.changeSchemaState(2, state.active);
         }
         else {
@@ -259,7 +260,7 @@ var GUIModuleSPA = (function () {
     //Sjekker om alle skjemaene har status state.success. 
     //Er ok at et skjema er active, så lenge forrige tilstand var state.success.
     function erPFerdig() {
-        return schemaState.every((x, id) => { return (x == state.success || (id == currentActive && preSchemaState[currentActive] == state.success)) });
+        return GUIModuleSPA.testAntallLugarer() && GUIModuleSPA.testAntallLugarer() && GUIModuleSPA.testReiseInformasjon();
     }
 
     return {
