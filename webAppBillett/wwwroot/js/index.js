@@ -329,26 +329,6 @@ async function beregnPris() {
 
 }
 
-async function hentReiseInfoServer() {
-
-    await $.get("/billett/hentReiseInformasjon/").done((res) => {
-        setReiseInfo(res);
-        $("#reg0").hide();
-        $("#endre0").show();
-        GUIModuleSPA.addReiseInfo(1);
-
-        if (GUIModuleSPA.testReiseInformasjon()) {
-            GUIModuleSPA.changeSchemaState(0, 1);
-        }
-        else {
-            GUIModuleSPA.changeSchemaState(0, 2);
-        }
-
-
-
-    }).promise();
-}
-
 
 
 async function hentForekomstDato() {
@@ -702,22 +682,6 @@ function leggTilLugarOversikt(html) {
 function leggTilLugarSokOversikt(html) {
 
     $(html).appendTo("#lugarerTilValg");
-}
-async function setReiseInfo(reiseInfo) {
-
-    $('#antBarn').val(reiseInfo.antBarn);
-    $('#antVoksen').val(reiseInfo.antVoksen);
-    $('#fra').val(reiseInfo.fra);
-
-    await hentTilHavner(reiseInfo.fra);
-    $("#til").val(reiseInfo.til);
-     await hentForekomstDato();
-   
-    $('#avgangsDato').val(reiseInfo.avgangsDato);
-    
-     hentForekomstDatoTid();
-    $('#avgangsTid').val(reiseInfo.avgangsTid);
-    genererPersonInfoSkjema(reiseInfo);
 }
 
 
