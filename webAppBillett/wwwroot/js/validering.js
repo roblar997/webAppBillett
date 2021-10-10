@@ -237,8 +237,8 @@ function validerBetalingSkjema(data) {
     else $("#adresseFeil").html("");
 
     let telefonSjekk = validerTelefonNummer(data.telefon);
-    if (!telefonSjekk) $("#telefonSjekk").html("<p> telefon <p>");
-    else $("#telefonSjekk").html("");
+    if (!telefonSjekk) $("#telefonFeil").html("<p> telefon <p>");
+    else $("#telefonFeil").html("");
 
     let csvSjekk = validerCsv(data.csv);
     if (!csvSjekk) $("#csvFeil").html("<p> csv <p>");
