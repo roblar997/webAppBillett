@@ -303,7 +303,7 @@ async function lagrePerson(skjemaNr) {
         GUIModuleSPA.changeSchemaState(2, 1);
     }
     else {
-        GUIModuleSPA.changeSchemaState(2, 2);
+        GUIModuleSPA.changeSchemaState(2, 4);
     }
 
 

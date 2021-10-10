@@ -59,52 +59,6 @@ $(() => {
     });
     
 
-    //Tilhører første knapp i navigasjon
-    $("#suksess0").click((e) => {
-        e.preventDefault();
-        GUIModuleSPA.changeSchemaState(0, state.success);
-
-
-    });
-    //Tilhører første knapp i navigasjon
-    $("#war0").click((e) => {
-
-        GUIModuleSPA.changeSchemaState(0, state.warning);
-
-
-    });
-    //Tilhører andre knapp i navigasjon
-    $("#suksess1").click((e) => {
-        e.preventDefault();
-        GUIModuleSPA.changeSchemaState(1, state.success);
-
-
-    });
-    //Tilhører andre knapp i navigasjon
-    $("#war1").click((e) => {
-
-        GUIModuleSPA.changeSchemaState(1, state.warning);
-
-
-    });
-
-    //Tilhører tredje knapp i navigasjon
-    $("#suksess2").click((e) => {
-        e.preventDefault();
-        GUIModuleSPA.changeSchemaState(2, state.success);
-
-
-    });
-
-    //Tilhører tredje knapp i navigasjon
-    $("#war2").click((e) => {
-
-        GUIModuleSPA.changeSchemaState(2, state.warning);
-
-
-    });
-
-
 
 
 
