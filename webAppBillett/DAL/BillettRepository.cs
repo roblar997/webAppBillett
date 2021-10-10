@@ -121,9 +121,7 @@ namespace webAppBillett.DAL
             slettLugarer(billettId);
             slettPersoner(billettId);
             slettReiseInformasjon(billettId);
-            _lugDb.billetter.Remove(billett);
             _lugDb.SaveChanges();
-            await addBillettHelper();
 
         }
 
