@@ -234,8 +234,11 @@ namespace webAppBillett.DAL
 
             try
             {
+                Billett billett = _lugDb.billetter.Find(billettId);
+     
                 betaling.betalingsId = billettId;
                 double pris = await beregnPris(billettId);
+                billett.pris = pris;
                 betaling.pris = pris;
                 await _lugDb.betaling.AddAsync(betaling);
                 await _lugDb.SaveChangesAsync();
