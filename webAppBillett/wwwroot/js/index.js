@@ -173,6 +173,7 @@ $(() => {
 // VARIABLER UTEN KLASSE ^^
 let personene = [];
 let lugarene = [];
+let lugarer
 let reiseInformasjonen;
 
 
@@ -477,10 +478,18 @@ async function hentFiltrerteLugarer() {
 
     $.post("/billett/hentFiltrerteLugarer",filterData).done((res) => {
     
+        let typeValgt = [];
 
         for (i = 0; i < res.length; i++) {
             //Har allerede lugaren
+
             if (lugarene.includes(res[i].lugarId)) continue;
+
+            //Kun en av hver type
+            if (typeValgt.includes(res[i].lugarType)) continue;
+
+            typeValgt.push(res[i].lugarType);
+
             let lugarHTML =
                 ' <div class="card col-md-6"> <img class="card-img-top" src="' + res[i].bildeURL + '"></img> ' +
                 ' <div class="card-body">' +
