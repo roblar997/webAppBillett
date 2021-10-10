@@ -123,7 +123,7 @@ namespace webAppBillett.DAL
             slettReiseInformasjon(billettId);
             _lugDb.billetter.Remove(billett);
             _lugDb.SaveChanges();
-
+            await addBillettHelper();
 
         }
 
