@@ -82,12 +82,15 @@ function validerKortholderNavn(input) {
     return true;
 }
 function validerKortnummer(input) {
+
     if (input == undefined || input == null) return false;
+    alert(input);
     return true;
 }
 function validerCsv(input) {
     if (input == undefined || input == null) return false;
     let regexp = /^[0-9]{3,3}$/;
+    if (!regexp.test(input)) return false;
     return true;
 }
 function validerUltopsDato(input) {

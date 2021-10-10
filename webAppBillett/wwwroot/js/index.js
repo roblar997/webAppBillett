@@ -36,35 +36,35 @@ $(() => {
     });
 
     $('#kortnummer').change((x) => {
-        validerKortnummer(this.value);
+        validerKortnummer(x.target.nodeValue);
     });
 
     $('#kortholderNavn').change((x) => {
-        validerKortholderNavn(this.value);
+        validerKortholderNavn(x.target.nodeValue);
      });
 
     $('#utloper').change((x) => {
-        validerUltopsDato(this.value);
+        validerUltopsDato(x.target.nodeValue);
     });
 
     $("#postnr").change((x) => {
-        validerPostNr(this.value);
+        validerPostNr(x.target.nodeValue);
     });
 
     $("#poststed").change((x) => {
-        validerPoststed(this.value);
+        validerPoststed(x.target.nodeValue);
      });
 
     $("#adresse").change((x) => {
-        validerAdresse(this.value);
+        validerAdresse(x.target.nodeValue);
     });
 
     $("#telefon").change((x) => {
-        validerTelefonNummer(this.value);
+        validerTelefonNummer(x.target.nodeValue);
      });
 
     $("#email").change((x) => {
-        validerEmail(this.value);
+        validerEmail(x.target.nodeValue);
     });
 
 
