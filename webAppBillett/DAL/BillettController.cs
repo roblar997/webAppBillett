@@ -5,6 +5,7 @@ using System.Linq;
 using webAppBillett.Models;
 using webAppBillett.DAL;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace webAppBillett.Controllers
 {
@@ -15,13 +16,13 @@ namespace webAppBillett.Controllers
 
 
         private readonly IBillettRepository _lugDb;
-
+        private ILogger<BillettController> _log;    
  
-        public BillettController(IBillettRepository db)
+        public BillettController(IBillettRepository db, ILogger<BillettController> log)
         {
 
                 _lugDb = db;
-
+                _log = log;
 
 
 

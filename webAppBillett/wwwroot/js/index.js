@@ -665,7 +665,7 @@ function leggTilLugarOversikt(html) {
 function leggTilLugarSokOversikt(html) {
 
     $(html).appendTo("#lugarerTilValg");
-}
+}fe
 
 
 function setPersonInfo(nummerPerson, personInfo) {

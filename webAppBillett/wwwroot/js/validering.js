@@ -211,9 +211,18 @@ function validerRuteId(input) {
 // Skjema validering
 
 function validerPersonSkjema(data, nummerPerson) {
-    let fornavnSjekk    = validerFornavn(data.fornavn);
-    let etternavnSjekk = validerEtternavn(data.etternavn);
+
+    let fornavnSjekk = validerFornavn(data.fornavn);
+    if (!fornavnSjekk) $("#fornavnFeil" + nummerPerson).html("<p> fornavn <p>");
+    else $("#postnrFeil").html("#fornavnFeil" + nummerPerson);
+
+    let etternavnSjekk = validerEtternavn("#etternavnFeil" + nummerPerson);
+    if (!etternavnSjekk) $("#etternavnFeil" + nummerPerson).html("<p> etternavn <p>");
+    else $("#etternavnFeil").html("etternavnFeil" + nummerPerson);
+
     let telefonSjekk = validerTelefonNummer(data.telefon);
+    if (!telefonSjekk) $("#telefonFeil" + nummerPerson).html("<p> telefon <p>");
+    else $("#telefonFeil").html("");
 
     return fornavnSjekk && etternavnSjekk && telefonSjekk;
 }

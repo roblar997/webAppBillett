@@ -35,11 +35,15 @@ namespace webAppBillett.Models
         [Required]
         public bool harWifi { get; set; }
 
+        [Required]
         public int fra { get; set; }
 
+        [Required]
         public int til { get; set; }
 
+        [Required]
         public string avgangsDato { get; set; }
+        [Required]
 
         public string avgangsTid { get; set; }
 
