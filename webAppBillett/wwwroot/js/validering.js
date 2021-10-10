@@ -1,87 +1,198 @@
-﻿function validerFornavn(input,nummerPerson) {
+﻿function validerFornavn(input, nummerPerson) {
+    if (input == undefined || input == null) return false;
+    let regexp = /^[a-zA-Z]+$/;
+    let minLen = 4;
+    let maxLen = 10;
+    if (input.length < minLen || input.length > maxLen) return false;
+    if (!regexp.test(input)) return false;
+
     return true;
 }
 
-function validerEtternavn(input,nummerPerson) {
+function validerEtternavn(input, nummerPerson) {
+    if (input == undefined || input == null) return false;
+    let regexp = /^[a-zA-Z]+$/;
+    let minLen = 4;
+    let maxLen = 10;
+    if (input.length < minLen || input.length > maxLen) return false;
+    if (!regexp.test(input)) return false;
+
     return true;
 }
 
-function validerTelefonNummer(input,nummerPerson) {
+function validerTelefonNummer(input, nummerPerson) {
+    if (input == undefined || input == null) return false;
+    let regexp = /^(\+[0-9]+)?[0-9]+$/;
+    let minLen = 4;
+    let maxLen = 10;
+    if (input.length < minLen || input.length > maxLen) return false;
+    if (!regexp.test(input)) return false;
     return true;
 }
 
 
 function validerPoststed(input) {
+    if (input == undefined || input == null) return false;
+    let regexp = /^[a-zA-Z]+$/;
+    let minLen = 4;
+    let maxLen = 10;
+    if (input.length < minLen || input.length > maxLen) return false;
+    if (!regexp.test(input)) return false;
+
     return true;
 }
 function validerPostNr(input) {
+    if (input == undefined || input == null) return false;
+    let regexp = /^[0-9]{4,4}$/;
+    if (!regexp.test(input)) return false;
+
     return true;
 }
 function validerAdresse(input) {
+    if (input == undefined || input == null) return false;
+    let regexp = /^[a-zA-Z0-9/s]+$/;
+    let minLen = 4;
+    let maxLen = 10;
+    if (input.length < minLen || input.length > maxLen) return false;
+    if (!regexp.test(input)) return false;
+
     return true;
 }
 function validerEmail(input) {
+    if (input == undefined || input == null) return false;
+    let regexp = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(([a-zA-Z]+)|([a-zA-z0-9]+[a-zA-z]+)|([a-zA-z]+[a-zA-Z0-9]+))((.|[a-zA-Z0-9-]+)([a-zA-Z0-9])+)*$/;
+    let minLen = 4;
+    let maxLen = 10;
+    if (input.length < minLen || input.length > maxLen) return false;
+    if (!regexp.test(input)) return false;
 
     return true;
 }
 
 
 function validerKortholderNavn(input) {
+    if (input == undefined || input == null) return false;
+    let regexp = /^[a-zA-Z\s]+ $/;
+    let minLen = 4;
+    let maxLen = 10;
+    if (input.length < minLen || input.length > maxLen) return false;
+    if (!regexp.test(input)) return false;
+
     return true;
 }
 function validerKortnummer(input) {
+    if (input == undefined || input == null) return false;
     return true;
 }
 function validerCsv(input) {
+
     return true;
 }
 function validerUltopsDato(input) {
+    if (input == undefined || input == null) return false;
     return true;
 }
 
 
 
 function validerAntVoksen(input) {
+    if (input == undefined || input == null) return false;
+    let regexp = /^(0|([1-9][0-9]*))$/;
+    let minLen = 1;
+    let maxLen = 3;
+    if (input.length < minLen || input.length > maxLen) return false;
+    if (!regexp.test(input)) return false;
     return true;
 }
 function validerAntBarn(input) {
+    if (input == undefined || input == null) return false;
+    let regexp = /^(0|([1-9][0-9]*))$/;
+    let minLen = 1;
+    let maxLen = 3;
+    if (input.length < minLen || input.length > maxLen) return false;
+    if (!regexp.test(input)) return false;
     return true;
 }
 
 
 function validerFra(input) {
+    if (input == undefined || input == null) return false;
+    let regexp = /^(0|([1-9]*))$/;
+    let minLen = 1;
+    let maxLen = 3;
+    if (input.length < minLen || input.length > maxLen) return false;
+    if (!regexp.test(input)) return false;
     return true;
 }
 function validerTil(input) {
+    if (input == undefined || input == null) return false;
+    let regexp = /^(0|([1-9]*))$/;
+    let minLen = 1;
+    let maxLen = 3;
+    if (input.length < minLen || input.length > maxLen) return false;
+    if (!regexp.test(input)) return false;
     return true;
 }
 
 function validerAvgangsDato(input) {
+    if (input == undefined || input == null) return false;
     return true;
 }
 function validerAvgangsTid(input) {
+    if (input == undefined || input == null) return false;
     return true;
 }
 
 
 function validerPrisMin(input) {
+    if (input == undefined || input == null) return false;
+    let regexp = /^(0|([1-9][0-9]*))$/;
+    let minLen = 1;
+    let maxLen = 3;
+    if (input.length < minLen || input.length > maxLen) return false;
+    if (!regexp.test(input)) return false;
     return true;
 }
 
 function validerPrisMaks(input) {
+    if (input == undefined || input == null) return false;
+    let regexp = /^(0|([1-9][0-9]*))$/;
+    let minLen = 1;
+    let maxLen = 3;
+    if (input.length < minLen || input.length > maxLen) return false;
+    if (!regexp.test(input)) return false;
     return true;
 }
 function validerPrisAntall(input) {
+    if (input == undefined || input == null) return false;
+    let regexp = /^(0|([1-9][0-9]*))$/;
+    let minLen = 1;
+    let maxLen = 3;
+    if (input.length < minLen || input.length > maxLen) return false;
+    if (!regexp.test(input)) return false;
     return true;
 }
 function validerCheckBox(input) {
+    if (input == undefined || input == null) return false;
     return input === false || input === true;
 }
 function validerAntall(input) {
+    if (input == undefined || input == null) return false;
+    let regexp = /^(0|([1-9][0-9]*))$/;
+    let minLen = 1;
+    let maxLen = 3;
+    if (input.length < minLen || input.length > maxLen) return false;
+    if (!regexp.test(input)) return false;
     return true;
 }
 
 function validerRuteId(input) {
+    if (input == undefined || input == null) return false;
+    let regexp = /^(0|([1-9][0-9]*))$/;
+    let minLen = 1;
+    let maxLen = 3;
+    if (input.length < minLen || input.length > maxLen) return false;
+    if (!regexp.test(input)) return false;
     return true;
 }
 
@@ -137,6 +248,7 @@ function validerFilterLugar(data) {
 
 function validerRute(data) {
     let fraSjekk = validerFra(data.fra);
+
     let tilSjekk = validerTil(data.til);
 
     return fraSjekk && tilSjekk;
