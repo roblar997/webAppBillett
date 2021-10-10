@@ -82,6 +82,9 @@ namespace webAppBillett.Controllers
 
               _lugDb.utforBetaling(betaling,billettId);
             HttpContext.Session.Remove("billettId");
+            int billettNyId = await _lugDb.addBillettHelper();
+
+            HttpContext.Session.SetInt32("billettId", billettNyId);
             return Ok();
 
         }
