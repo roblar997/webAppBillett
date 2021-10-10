@@ -245,8 +245,13 @@ async function lagreBetaling() {
             GUIModuleSPA.fjernAlleLugarer();
             GUIModuleSPA.fjernAllePersoner();
             GUIModuleSPA.fjernAlleReiseInformasjon();
+
+            //Endre også pre state
+            GUIModuleSPA.changeSchemaState(0, 2);
             GUIModuleSPA.changeSchemaState(0, 4);
             GUIModuleSPA.changeSchemaState(1, 2);
+            GUIModuleSPA.changeSchemaState(1, 2);
+            GUIModuleSPA.changeSchemaState(2, 2);
             GUIModuleSPA.changeSchemaState(2, 2);
             $("#regform").show();
             $("#regform2").hide();
