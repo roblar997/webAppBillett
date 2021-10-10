@@ -283,7 +283,6 @@ namespace webAppBillett.DAL
 
             double totLugarPris = lugarer.Aggregate<Lugar, double>(0, (pris, lug) => pris += lug.pris);
             double totPris = totPrisRute + totLugarPris;
-            billett.pris = totPris;
 
             return totPris;
 
