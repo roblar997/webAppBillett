@@ -236,6 +236,10 @@ function validerBetalingSkjema(data) {
     if (!adresseSjekk) $("#adresseFeil").html("<p> adresse <p>");
     else $("#adresseFeil").html("");
 
+    let telefonSjekk = validerTelefonNummer(data.telefon);
+    if (!telefonSjekk) $("#telefonSjekk").html("<p> telefon <p>");
+    else $("#telefonSjekk").html("");
+
     let csvSjekk = validerCsv(data.csv);
     if (!csvSjekk) $("#csvFeil").html("<p> csv <p>");
     else $("#csvFeil").html("");
@@ -253,7 +257,7 @@ function validerBetalingSkjema(data) {
     if (!kortnummerSjekk) $("#kortnummerFeil").html("<p> kortnummer <p>");
     else $("#kortnummerFeil").html("");
 
-    return postNrSjekk && postStedSjekk && emailSjekk && adresseSjekk && csvSjekk && kortholderNavnSjekk && utlopsTidSjekk && kortnummerSjekk;
+    return telefonSjekk && postNrSjekk && postStedSjekk && emailSjekk && adresseSjekk && csvSjekk && kortholderNavnSjekk && utlopsTidSjekk && kortnummerSjekk;
 }
 
 function validerReiseInfoSkjema(data) {
