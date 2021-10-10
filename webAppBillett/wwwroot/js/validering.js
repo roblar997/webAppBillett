@@ -21,6 +21,7 @@ function validerAdresse(input) {
     return true;
 }
 function validerEmail(input) {
+
     return true;
 }
 
@@ -75,6 +76,9 @@ function validerPrisAntall(input) {
 }
 function validerCheckBox(input) {
     return input === false || input === true;
+}
+function validerAntall(input) {
+    return true;
 }
 
 function validerRuteId(input) {
