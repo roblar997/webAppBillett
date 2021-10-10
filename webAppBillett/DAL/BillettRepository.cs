@@ -114,7 +114,71 @@ namespace webAppBillett.DAL
 
 
 
+        public async void slettBillett(int billettId)
+        {
+            Billett billett = await _lugDb.billetter.FindAsync(billettId);
 
+            slettLugarer(billettId);
+            slettPersoner(billettId);
+            slettReiseInformasjon(billettId);
+            _lugDb.billetter.Remove(billett);
+            _lugDb.SaveChanges();
+
+
+        }
+
+        public async void slettLugarer(int billettId)
+        {
+            try
+            {
+                Billett billett = await _lugDb.billetter.FindAsync(billettId);
+                billett.reservasjoner.RemoveAll((x) => { return x.billettId == billett.billettId; });
+                await _lugDb.SaveChangesAsync();
+
+            }
+            catch
+            {
+                slettBillett(billettId);
+            }
+
+      
+
+
+
+        }
+
+        public async void slettPersoner(int billettId)
+        {
+
+            Billett billett = await _lugDb.billetter.FindAsync(billettId);
+            billett.billettPerson.RemoveAll((x) => { return x.billettId == billett.billettId; });
+            await _lugDb.SaveChangesAsync();
+
+
+            //Fjern personer som ikke er i BillettPerson.
+
+            List<int> personIdVerdier = _lugDb.billettPerson.ToList().ConvertAll((x) => x.personId).ToList();
+
+            //Å fjerne
+            List<Person> personer = _lugDb.personer.Where((x) => !personIdVerdier.Contains(x.personId)).ToList();
+            _lugDb.personer.RemoveRange(personer);
+            _lugDb.SaveChanges();
+
+
+        }
+
+        public async void slettReiseInformasjon(int billettId)
+        {
+
+            Billett billett = await _lugDb.billetter.FindAsync(billettId);
+            List<ReiseInformasjon> reiseInformasjon = billett.ReiseInformasjon;
+            reiseInformasjon.ForEach((x) =>
+            {
+                _lugDb.reiseInformasjon.Remove(x);
+            });
+
+            await _lugDb.SaveChangesAsync();
+        }
 
         public async Task<int> lagrePerson(Person person, int billettId)
         {
@@ -132,6 +196,7 @@ namespace webAppBillett.DAL
 
             }
 
+            try { 
 
 
             if (personen == null)
@@ -155,7 +220,13 @@ namespace webAppBillett.DAL
 
             await _lugDb.billettPerson.AddAsync(billettPerson);
             await _lugDb.SaveChangesAsync();
-            return person.personId;
+                return person.personId;
+            }
+            catch
+            {
+                slettBillett(billettId);
+            }
+            return -1;
 
 
         }
@@ -163,12 +234,19 @@ namespace webAppBillett.DAL
         public async void utforBetaling(Betaling betaling, int billettId)
         {
 
-            betaling.betalingsId = billettId;
-            double pris = await beregnPris(billettId);
-            betaling.pris = pris;
-            await _lugDb.betaling.AddAsync(betaling);
-            await _lugDb.SaveChangesAsync();
+            try
+            {
+                betaling.betalingsId = billettId;
+                double pris = await beregnPris(billettId);
+                betaling.pris = pris;
+                await _lugDb.betaling.AddAsync(betaling);
+                await _lugDb.SaveChangesAsync();
 
+            }
+            catch
+            {
+                slettBillett(billettId);
+            }
 
         }
 
@@ -216,13 +294,23 @@ namespace webAppBillett.DAL
  
         public async Task<int> lagreReiseInformasjon(ReiseInformasjon reiseInformasjon, int billettId)
         {
+            try
+            {
+                reiseInformasjon.reiseId = billettId;
+                _lugDb.reiseInformasjon.Add(reiseInformasjon);
+                await _lugDb.SaveChangesAsync();
 
-            reiseInformasjon.reiseId = billettId;
-            _lugDb.reiseInformasjon.Add(reiseInformasjon);
-            await _lugDb.SaveChangesAsync();
 
+                return reiseInformasjon.reiseId;
 
-            return reiseInformasjon.reiseId;
+            }
+            catch
+            {
+                slettBillett(billettId);
+                return -1;
+            }
+
+   
 
         }
 

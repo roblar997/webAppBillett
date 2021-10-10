@@ -29,8 +29,13 @@ namespace webAppBillett.DAL {
 
 
 
+        public  void slettBillett(int billettId);
+        public  void slettLugarer(int billettId);
 
+        public  void slettPersoner(int billettId);
+        
 
+       public  void slettReiseInformasjon(int billettId);
     }   
     }
 
