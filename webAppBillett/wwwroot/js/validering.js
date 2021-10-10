@@ -23,8 +23,8 @@ function validerEtternavn(input, nummerPerson) {
 function validerTelefonNummer(input, nummerPerson) {
     if (input == undefined || input == null) return false;
     let regexp = /^(\+[0-9]+)?[0-9]+$/;
-    let minLen = 4;
-    let maxLen = 10;
+    let minLen = 8;
+    let maxLen = 15;
     if (input.length < minLen || input.length > maxLen) return false;
     if (!regexp.test(input)) return false;
     return true;
@@ -72,9 +72,10 @@ function validerEmail(input) {
 
 function validerKortholderNavn(input) {
     if (input == undefined || input == null) return false;
-    let regexp = /^[a-zA-Z\s]+ $/;
-    let minLen = 4;
-    let maxLen = 10;
+    let regexp = /^[0-9]*$/;
+
+    let minLen =10;
+    let maxLen = 15;
     if (input.length < minLen || input.length > maxLen) return false;
     if (!regexp.test(input)) return false;
 
@@ -85,7 +86,8 @@ function validerKortnummer(input) {
     return true;
 }
 function validerCsv(input) {
-
+    if (input == undefined || input == null) return false;
+    let regexp = /^[0-9]{3,3}$/;
     return true;
 }
 function validerUltopsDato(input) {
@@ -208,13 +210,13 @@ function validerPersonSkjema(data, nummerPerson) {
 
 function validerBetalingSkjema(data) {
     let postNrSjekk = validerPostNr(data.postnr);
-    let postStedSjekk = validerPoststed(data.poststed);
+    let postStedSjekk = validerPoststed(data.postSted);
     let emailSjekk = validerEmail(data.email);
     let adresseSjekk = validerAdresse(data.adresse);
 
     let csvSjekk = validerCsv(data.csv);
     let kortholderNavnSjekk = validerKortholderNavn(data.kortholderNavn);
-    let utlopsTidSjekk = validerUltopsDato(data.utlopsTid);
+    let utlopsTidSjekk = validerUltopsDato(data.utloper);
     let kortnummerSjekk = validerKortnummer(data.kortnummer);
 
     return postNrSjekk && postStedSjekk && emailSjekk && adresseSjekk && csvSjekk && kortholderNavnSjekk && utlopsTidSjekk && kortnummerSjekk;
