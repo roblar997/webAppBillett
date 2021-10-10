@@ -133,12 +133,7 @@ namespace webAppBillett.Controllers
 
 
 
-        public async Task<double> beregnPris()
-        {
-            int billettId = HttpContext.Session.GetInt32("billettId").Value;
-            return await _lugDb.beregnPris(billettId);
-        }
-
+    
         [HttpPost]
         public async Task<ActionResult> lagreReiseInformasjon(ReiseInformasjon reiseInformasjon)
         {

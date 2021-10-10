@@ -114,13 +114,12 @@ $(() => {
         lagreBetaling();
 
     })
+
     $("#slettLugarer").click((e) => {
 
         slettLugarer();
     });
-    $("#slettBillett").click((e) => {
-        slettBillettServer();
-    });
+
 
     $("#sok").click((e) => {
         $("#lugarerTilValg").html("");
@@ -144,11 +143,6 @@ $(() => {
 
     });
 
-  //  $("#til").change((e) => {
- //   
- //       $("#fra")[0].selectedIndex = index;
-  //  });
-
 
     $("#endre0").click((e) => {
         let  reiseInfo = {
@@ -169,9 +163,7 @@ $(() => {
 
 
 
-    $("#slettLugarer").click((e) => {
-        resetLugarOversikt();
-    });
+
 
 
 });
@@ -351,9 +343,7 @@ function setPris(pris) {
 }
 async function beregnPris() {
 
-    await $.get("/billett/beregnPris/").done((res) => {
-        setPris(res);
-    }).promise();
+
 }
 
 async function hentReiseInfoServer() {
@@ -612,7 +602,7 @@ async function hentFiltrerteLugarer() {
 async function slettLugarer() {
 
     GUIModuleSPA.fjernAlleLugarer();
-
+    lugarene = [];
     if (GUIModuleSPA.testAntallLugarer()) {
         GUIModuleSPA.changeSchemaState(1, 1);
     }
