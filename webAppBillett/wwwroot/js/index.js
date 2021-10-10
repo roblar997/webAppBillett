@@ -173,7 +173,6 @@ $(() => {
 // VARIABLER UTEN KLASSE ^^
 let personene = [];
 let lugarene = [];
-let lugarer
 let reiseInformasjonen;
 
 
@@ -194,7 +193,7 @@ function lagreReiseInformasjon(reiseInfo) {
         GUIModuleSPA.changeSchemaState(0, 1);
     }
     else {
-        GUIModuleSPA.changeSchemaState(0, 2);
+        GUIModuleSPA.changeSchemaState(0, 4);
     }
 
     genererPersonInfoSkjema(reiseInfo);

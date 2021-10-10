@@ -266,7 +266,7 @@ var GUIModuleSPA = (function () {
         },
 
         fjernAlleReiseInformasjon: function () {
-            fjernPReiseInfo();
+            fjernPAlleReiseInformasjon();
         },
 
         fjernAllePersoner: function () {
