@@ -237,35 +237,7 @@ async function lagreBetaling() {
 
         $.post("/billett/utforBetaling/", betalingsInfo).done((res) => {
 
-            document.getElementById("regform").reset();
-            $("#avgangsDato").html("");
-            $("#avgangsTid").html("");
-            $("#lugarOversikt").html("");
-            GUIModuleSPA.fjernAlleLugarer();
-            GUIModuleSPA.fjernAllePersoner();
-            GUIModuleSPA.fjernAlleReiseInformasjon();
-
-            //Endre også pre state
-            GUIModuleSPA.changeSchemaState(0, 2);
-            GUIModuleSPA.changeSchemaState(0, 4);
-            GUIModuleSPA.changeSchemaState(1, 2);
-            GUIModuleSPA.changeSchemaState(1, 2);
-            GUIModuleSPA.changeSchemaState(2, 2);
-            GUIModuleSPA.changeSchemaState(2, 2);
-            $("#regform").show();
-            $("#regform2").hide();
-            $("#regform3").hide();
-
-            $("#regform4").hide();
-
-            $("#reg0").show();
-            $("#endre0").hide();
-
-            hentFraHavner().then((x) => {
-
-                hentTilHavner($("#fra").val());
-
-            })
+            window.location.reload(true);
 
         }).promise();
 
@@ -284,7 +256,7 @@ async function endrePerson(skjemaNr) {
     };
     let ant = GUIModuleSPA.hentAntallPersoner();
     for (i =0; i <= ant; i++)
-        if (JSON.stringify(personene[i].va) === JSON.stringify(person2)) return;
+        if (JSON.stringify(personene[i]) === JSON.stringify(person2)) return;
     if (!validerPersonSkjema(person2, skjemaNr)) return;
     personene[skjemaNr] = person2;
 

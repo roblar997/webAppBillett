@@ -116,7 +116,7 @@ var GUIModuleSPA = (function () {
         return personerRegistrert == kravPersonAntall;
     }
     function testPReiseInformasjon() {
-        return reiseInfoReigstrert == kravReiseInfoAntall;
+        return reiseInfoReigstrert >= kravReiseInfoAntall;
     }
 
     function fjernPAllePersoner() {
