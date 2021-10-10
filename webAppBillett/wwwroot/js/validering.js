@@ -72,9 +72,9 @@ function validerEmail(input) {
 
 function validerKortholderNavn(input) {
     if (input == undefined || input == null) return false;
-    let regexp = /^[0-9]*$/;
+    let regexp = /^[a-zA-Z0-9/s]+$/;
 
-    let minLen =10;
+    let minLen =4;
     let maxLen = 15;
     if (input.length < minLen || input.length > maxLen) return false;
     if (!regexp.test(input)) return false;
@@ -84,11 +84,18 @@ function validerKortholderNavn(input) {
 function validerKortnummer(input) {
 
     if (input == undefined || input == null) return false;
+    let regexp = /^[0-9]+$/;
+
+    let minLen = 10;
+    let maxLen = 15;
+    if (input.length < minLen || input.length > maxLen) return false;
+    if (!regexp.test(input)) return false;
 
     return true;
 }
 function validerCsv(input) {
     if (input == undefined || input == null) return false;
+    alert(typeof input);
     let regexp = /^[0-9]{3,3}$/;
     if (!regexp.test(input)) return false;
     return true;
@@ -230,19 +237,20 @@ function validerBetalingSkjema(data) {
     else $("#adresseFeil").html("");
 
     let csvSjekk = validerCsv(data.csv);
-    if (!csvSjekk) $("#csvFeil").html("<p> postnr <p>");
+    if (!csvSjekk) $("#csvFeil").html("<p> csv <p>");
+    else $("#csvFeil").html("");
 
     let kortholderNavnSjekk = validerKortholderNavn(data.kortholderNavn);
-    if (!kortholderNavnSjekk) $("#kortholderFeil").html("<p> postnr <p>");
-    else $("#kortholderFeil").html("");
+    if (!kortholderNavnSjekk) $("#kortholdernavnFeil").html("<p> kortholderNavn<p>");
+    else $("#kortholdernavnFeil").html("");
 
 
     let utlopsTidSjekk = validerUltopsDato(data.utloper);
-    if (!utlopsTidSjekk) $("#utloperFeil").html("<p> postnr <p>");
+    if (!utlopsTidSjekk) $("#utloperFeil").html("<p> utlop <p>");
     else $("#utloperFeil").html("");
 
     let kortnummerSjekk = validerKortnummer(data.kortnummer);
-    if (!kortnummerSjekk) $("#kortnummerFeil").html("<p> postnr <p>");
+    if (!kortnummerSjekk) $("#kortnummerFeil").html("<p> kortnummer <p>");
     else $("#kortnummerFeil").html("");
 
     return postNrSjekk && postStedSjekk && emailSjekk && adresseSjekk && csvSjekk && kortholderNavnSjekk && utlopsTidSjekk && kortnummerSjekk;
