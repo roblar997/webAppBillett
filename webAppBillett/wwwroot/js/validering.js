@@ -84,7 +84,7 @@ function validerKortholderNavn(input) {
 function validerKortnummer(input) {
 
     if (input == undefined || input == null) return false;
-    alert(input);
+
     return true;
 }
 function validerCsv(input) {
@@ -212,15 +212,38 @@ function validerPersonSkjema(data, nummerPerson) {
 }
 
 function validerBetalingSkjema(data) {
+
     let postNrSjekk = validerPostNr(data.postnr);
+    if (!postNrSjekk) $("#postnrFeil").html("<p> postnr <p>");
+    else $("#postnrFeil").html("");
+
     let postStedSjekk = validerPoststed(data.postSted);
+    if (!postStedSjekk) $("#poststedFeil").html("<p> postnr <p>");
+    else $("#poststedFeil").html("");
+
     let emailSjekk = validerEmail(data.email);
+    if (!emailSjekk) $("#emailFeil").html("<p> email <p>");
+    else $("#emailFeil").html("");
+
     let adresseSjekk = validerAdresse(data.adresse);
+    if (!adresseSjekk) $("#adresseFeil").html("<p> adresse <p>");
+    else $("#adresseFeil").html("");
 
     let csvSjekk = validerCsv(data.csv);
+    if (!csvSjekk) $("#csvFeil").html("<p> postnr <p>");
+
     let kortholderNavnSjekk = validerKortholderNavn(data.kortholderNavn);
+    if (!kortholderNavnSjekk) $("#kortholderFeil").html("<p> postnr <p>");
+    else $("#kortholderFeil").html("");
+
+
     let utlopsTidSjekk = validerUltopsDato(data.utloper);
+    if (!utlopsTidSjekk) $("#utloperFeil").html("<p> postnr <p>");
+    else $("#utloperFeil").html("");
+
     let kortnummerSjekk = validerKortnummer(data.kortnummer);
+    if (!kortnummerSjekk) $("#kortnummerFeil").html("<p> postnr <p>");
+    else $("#kortnummerFeil").html("");
 
     return postNrSjekk && postStedSjekk && emailSjekk && adresseSjekk && csvSjekk && kortholderNavnSjekk && utlopsTidSjekk && kortnummerSjekk;
 }
