@@ -73,11 +73,6 @@ namespace webAppBillett.Controllers
 
         }
 
-        public async Task<List<Rute>> hentRuter()
-        {
-                return await _lugDb.hentRuter();
-        }
-
         [HttpPost]
         public  async Task<ActionResult> utforBetaling(Betaling betaling)
         {
@@ -113,23 +108,8 @@ namespace webAppBillett.Controllers
         {
             if (!ModelState.IsValid) return BadRequest("Ugyldig input");
             int billettId = HttpContext.Session.GetInt32("billettId").Value;
-            return Ok(await _lugDb.hentFiltrerteLugarer(filterLugar,billettId));
+            return Ok(await _lugDb.hentFiltrerteLugarer(filterLugar, billettId));
         }
-        public async Task<List<Lugar>> hentAlleLugarer()
-        {
-
-
-            return await _lugDb.hentAlleLugarer();
-
-        }
-
-        public async Task<ReiseInformasjon> hentReiseInformasjon()
-        {
-            int billettId = HttpContext.Session.GetInt32("billettId").Value;
-            return await _lugDb.hentReiseInformasjon(billettId);
-
-        }
-
 
 
 
