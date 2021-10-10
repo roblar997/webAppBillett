@@ -278,7 +278,9 @@ async function endrePerson(skjemaNr) {
         etternavn: $("#etternavn" + skjemaNr).val(),
         telefon: $("#telefon" + skjemaNr).val()
     };
-    if (personene.includes(person2)) return;
+    let ant = GUIModuleSPA.hentAntallPersoner();
+    for (i =0; i <= ant; i++)
+        if (JSON.stringify(personene[i].va) === JSON.stringify(person2)) return;
     if (!validerPersonSkjema(person2, skjemaNr)) return;
     personene[skjemaNr] = person2;
 
@@ -293,7 +295,10 @@ async function lagrePerson(skjemaNr) {
     };
 
     let val = skjemaNr;
-    if (personene.includes(person2)) return;
+    let ant = GUIModuleSPA.hentAntallPersoner();
+    for (i = 0; i <= ant; i++)
+        if (JSON.stringify(personene[i]) === JSON.stringify(person2)) return;
+
     if (!validerPersonSkjema(person2, skjemaNr)) return;
     personene[skjemaNr] = person2;
     $("#leggTilPerson" + val).hide();
