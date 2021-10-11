@@ -6,10 +6,10 @@ $(() => {
     //TODO
     hentFraHavner().then((x) => {
 
-        hentTilHavner($("#fra").val()).catch((err) = {});
+        hentTilHavner($("#fra").val()).catch((err) => {});
 
 
-    }).catch((err) = { });
+    }).catch((err) => { });
 
 
     $('#fra').change((x) => {
