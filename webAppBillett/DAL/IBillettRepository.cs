@@ -20,11 +20,18 @@ namespace webAppBillett.DAL {
         public List<string> listeRomNr { get; set; }
     };
 
+    public class PrisForRute
+    {
+        public double prisBarn { get; set; }
+        public double prisVoksen { get; set; }
+    }
+
     public interface IBillettRepository {
         public Task<List<Lugar>> hentLugarer(int billettId);
         public  void velgLugar(int id, int billettId);
         public Task<double> beregnPris(int billettId);
         public Task<List<Havn>> hentHavner();
+        public Task<PrisForRute> hentPrisForRute(Rute rute);
         public Task<List<Lugar>> hentFiltrerteLugarer(FilterLugar filterLugar);
         public  Task<List<Havn>> hentTilHavner(int id);
         public  Task<List<RuteForekomstDato>> hentForekomsterDato(Rute rute);

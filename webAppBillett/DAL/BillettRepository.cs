@@ -103,6 +103,15 @@ namespace webAppBillett.DAL
             return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId && !x.erUtsolgt).ToListAsync();
 
         }
+
+        public async Task<PrisForRute> hentPrisForRute(Rute rute)
+        {
+            Rute ruten = _lugDb.ruter.Where((x) => x.fra == rute.fra && x.til == rute.til).First();
+            PrisForRute prisforrute = new PrisForRute();
+            prisforrute.prisBarn = ruten.prisBarn;
+            prisforrute.prisVoksen = ruten.prisVoksen;
+            return prisforrute;
+        }
         public async Task<List<Lugar>> hentFiltrerteLugarer(FilterLugar filterLugar)
         {
 

@@ -228,8 +228,10 @@ $(() => {
 // VARIABLER UTEN KLASSE ^^
 let personene = [];
 let lugarene = [];
+let lugarPrisTot = 0;
 let reiseInformasjonen;
-
+let prisBarn = 0;
+let prisVoksen = 0;
 
 //let reiseInformasjonen = [];
 
@@ -381,8 +383,11 @@ async function lagrePersonServer(skjemaNr) {
 function setPris(pris) {
     $("#pris").html('<p>' + pris + '</p>');
 }
-async function beregnPris() {
 
+function beregnPris() {
+    let antall = parseInt(reiseInformasjonen.antBarn, 10) + parseInt(reiseInformasjonen.antVoksen, 10);
+    let totPris = parseInt(reiseInformasjonen.antBarn, 10) * prisBarn + parseInt(reiseInformasjonen.antVoksen, 10) * prisVoksen + antall * lugarPrisTot;
+    setPris(totPris);
 
 }
 
@@ -391,7 +396,7 @@ async function beregnPris() {
 async function hentForekomstDato() {
     $("#avgangsDato").html("");
     $("#avgangsTid").html("");
-    
+
     let rute = {
         fra: $("#fra").val(),
         til: $("#til").val()
@@ -403,8 +408,18 @@ async function hentForekomstDato() {
         for (i = 0; i < res.length; i++) {
             setDato(res[i].avgangsDato);
         }
+        //Hvis ingen ruteforekomst, så er det ikke noe poeng å spørre om pris for ruten.
+        if (res.length > 0) {
+            $("#ruteValgt").val(res[0].ruteId);
 
-        $("#ruteValgt").val(res[0].ruteId);
+            $.post("/billett/hentPrisForRute/", rute).done((res2) => {
+                prisBarn = parseFloat(res2.prisBarn);
+                prisVoksen = parseFloat(res2.prisVoksen);
+            }).promise();
+
+        }
+
+    
     } )
     .promise();
 }
@@ -561,8 +576,9 @@ async function hentFiltrerteLugarer() {
             if (typeValgt.includes(res[i].lugarType)) continue;
 
             typeValgt.push(res[i].lugarType);
-
+            lugarPrisTot += parseFloat(res[i].pris);
             let lugarHTML =
+
                 ' <div class="card col-md-6"> <img class="card-img-top" src="' + res[i].bildeURL + '"></img> ' +
                 ' <div class="card-body">' +
                 ' <h5 class="card-title">' + res[i].tittel + '</h5>' +
@@ -664,6 +680,7 @@ async function hentFiltrerteLugarer() {
 async function slettLugarer() {
 
     GUIModuleSPA.fjernAlleLugarer();
+    lugarPrisTot = 0;
     lugarene = [];
     if (GUIModuleSPA.testAntallLugarer()) {
         GUIModuleSPA.changeSchemaState(1, 1);

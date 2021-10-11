@@ -151,7 +151,10 @@ namespace webAppBillett.Controllers
             }
 
         }
-
+        public async Task<PrisForRute> hentPrisForRute(Rute rute)
+        {
+            return await _lugDb.hentPrisForRute(rute);
+        }
         public async Task<ActionResult> hentForekomsterDato(Rute rute)
         {
             if (!ModelState.IsValid) return BadRequest("Ugyldig input");
