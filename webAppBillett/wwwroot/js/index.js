@@ -240,7 +240,9 @@ async function lagreBetaling() {
     let ant = GUIModuleSPA.hentAntallPersoner();
     let canContinue = true;
 
-    await lagreReiseInfoServer().done((x) => {
+    await lagreReiseInfoServer().catch((err) => { canContinue = false; });
+    if (!canContinue) return;
+
         //Send alle personer til server
         for (i = 1; i <= ant; i++) {
             
@@ -258,8 +260,8 @@ async function lagreBetaling() {
 
             window.location.reload(true);
 
-        }).promise().catch((err) => { });
-    }).catch((err) => { });
+        }).promise();
+
      
 
 
