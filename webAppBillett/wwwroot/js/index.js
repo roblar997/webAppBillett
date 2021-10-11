@@ -12,6 +12,7 @@ $(() => {
     }).catch((err) => { });
 
 
+
     $('#fra').change((x) => {
         
     });
@@ -700,17 +701,27 @@ function genererPersonInfoSkjema(info) {
         });
         $("#endrePerson" + i).hide();
 
-        $('#personId' + i).change((x) => {
-        });
 
         $('#fornavn' + i).change((x) => {
-            validerFornavn(this.value, i);
+
+            let fornavnSjekk = validerFornavn($(this),i);
+            if (!fornavnSjekk) $("#fornavnFeil" + nummerPerson).html("<p> fornavn <p>");
+            else $("#fornavnFeil" + nummerPerson).html("");
+
+ 
+
         });
         $('#etternavn' + i).change((x) => {
-            validerEtternavn(this.value, i);
+            let etternavnSjekk = validerEtternavn($(this), i);
+            if (!etternavnSjekk) $("#etternavnFeil" + nummerPerson).html("<p> etternavn <p>");
+            else $("#etternavnFeil" + nummerPerson).html("");
+
+
         });
         $('#telefon' + i).change((x) => {
-            validerTelefonNummer(this.value, i);
+            let telefonSjekk = validerTelefonNummer($(this), i);
+            if (!telefonSjekk) $("#telefonFeil" + nummerPerson).html("<p> telefon <p>");
+            else $("#telefonFeil" + nummerPerson).html("");
         });
     }
 }
@@ -726,7 +737,7 @@ function leggTilLugarOversikt(html) {
 function leggTilLugarSokOversikt(html) {
 
     $(html).appendTo("#lugarerTilValg");
-}fe
+}
 
 
 function setPersonInfo(nummerPerson, personInfo) {
