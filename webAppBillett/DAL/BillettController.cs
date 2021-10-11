@@ -6,6 +6,8 @@ using webAppBillett.Models;
 using webAppBillett.DAL;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using System;
 
 namespace webAppBillett.Controllers
 {
@@ -27,6 +29,14 @@ namespace webAppBillett.Controllers
 
 
         }
+
+        /**     ----- Alt i et løsning, men funker ikke ----
+        public Registrering registrer(string input)
+        {
+            Registrering toReturn = JsonConvert.DeserializeObject<Registrering>(input);
+            return toReturn;
+        }
+        **/
 
 
         public async Task<List<Havn>> hentHavner()

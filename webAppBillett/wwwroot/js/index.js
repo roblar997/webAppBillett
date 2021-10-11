@@ -176,6 +176,17 @@ let lugarene = [];
 let reiseInformasjonen;
 
 
+//let reiseInformasjonen = [];
+
+
+/**     ----- Alt i et løsning, men funker på backend. Nb reiseinformasjonen må da være liste ----
+let registrering = {
+personene: personene,
+lugarene: lugarene,
+reiseInformasjonen: reiseInformasjonen
+}
+
+*/
 
 function lagreReiseInformasjon(reiseInfo) {
     // Reise info
