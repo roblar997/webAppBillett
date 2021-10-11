@@ -720,7 +720,7 @@ function genererPersonInfoSkjema(info) {
 
         $('#fornavn' + i).change((x) => {
 
-            let fornavnSjekk = validerFornavn($(this),i);
+            let fornavnSjekk = validerFornavn($(this).val());
             if (!fornavnSjekk) $("#fornavnFeil" + i).html("<p> fornavn <p>");
             else $("#fornavnFeil" + i).html("");
 
@@ -728,14 +728,14 @@ function genererPersonInfoSkjema(info) {
 
         });
         $('#etternavn' + i).change((x) => {
-            let etternavnSjekk = validerEtternavn($(this), i);
+            let etternavnSjekk = validerEtternavn($(this).val());
             if (!etternavnSjekk) $("#etternavnFeil" + i).html("<p> etternavn <p>");
             else $("#etternavnFeil" + i).html("");
 
 
         });
         $('#telefon' + i).change((x) => {
-            let telefonSjekk = validerTelefonNummer($(this), i);
+            let telefonSjekk = validerTelefonNummer($(this).val());
             if (!telefonSjekk) $("#telefonFeil" + i).html("<p> telefon <p>");
             else $("#telefonFeil" + i).html("");
         });

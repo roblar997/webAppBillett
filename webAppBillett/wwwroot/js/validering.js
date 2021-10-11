@@ -1,4 +1,4 @@
-﻿function validerFornavn(input, nummerPerson) {
+﻿function validerFornavn(input) {
     if (input == undefined || input == null) return false;
     let regexp = /^[a-zA-Z]+$/;
     let minLen = 4;
@@ -9,7 +9,7 @@
     return true;
 }
 
-function validerEtternavn(input, nummerPerson) {
+function validerEtternavn(input) {
     if (input == undefined || input == null) return false;
     let regexp = /^[a-zA-Z]+$/;
     let minLen = 4;
@@ -20,7 +20,7 @@ function validerEtternavn(input, nummerPerson) {
     return true;
 }
 
-function validerTelefonNummer(input, nummerPerson) {
+function validerTelefonNummer(input) {
     if (input == undefined || input == null) return false;
     let regexp = /^(\+[0-9]+)?[0-9]+$/;
     let minLen = 8;
