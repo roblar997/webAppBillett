@@ -25,6 +25,71 @@ namespace webAppBillett.DAL
 
         }
 
+        public async Task<List<BillettFormatert>> hentBillettFormatert(int billettId)
+        {
+
+            List<BillettFormatert> billettFormatertListe = new List<BillettFormatert>();
+
+            Billett billett = await _lugDb.billetter.FindAsync(billettId);
+
+            List<Person> personer = await hentPersoner(billettId);
+            List<Lugar> lugarer = await hentLugarer(billettId);
+            List<String> listeRomNr = new List<String>();
+
+            String fraNavn = _lugDb.havn.First((x) => x.havnId == billett.fra).navn;
+            String tilNavn = _lugDb.havn.First((x) => x.havnId == billett.til).navn;
+
+            lugarer.ForEach((x) =>
+            {
+                listeRomNr.Add(x.romNr);
+            });
+
+     
+            for(int i = 0; i < personer.Count; i++)
+            {
+                BillettFormatert billettFormatert = new BillettFormatert();
+                billettFormatert.listeRomNr = listeRomNr;
+                billettFormatert.navn = personer.ElementAt(i).fornavn + " " + personer.ElementAt(i).etternavn;
+                billettFormatert.fra = fraNavn;
+                billettFormatert.til = tilNavn;
+                billettFormatert.avgangsDato = billett.avgangsDato;
+                billettFormatert.avgangsTid = billett.avgangsTid;
+
+                billettFormatertListe.Add(billettFormatert);
+            }
+
+            return billettFormatertListe;
+            
+
+        }
+        public async Task<List<Lugar>> hentLugarer(int billettId)
+        {
+
+            Billett billett = await _lugDb.billetter.FindAsync(billettId);
+
+            List<Lugar> lugarer = billett.reservasjoner.ConvertAll((x) =>
+            {
+                return _lugDb.lugarer.Find(x.lugarId);
+            });
+
+            return lugarer;
+
+        }
+        public async Task<List<Person>> hentPersoner(int billettId)
+        {
+
+
+
+            Billett billett = await _lugDb.billetter.FindAsync(billettId);
+
+            List<Person> personer = billett.billettPerson.ConvertAll((x) =>
+            {
+                return _lugDb.personer.Find(x.personId);
+            });
+
+            return personer;
+
+        }
         public async Task<List<Havn>> hentTilHavner(int id)
         {
             List<Rute> ruter = await _lugDb.ruter.Where((x) => x.fra == id).ToListAsync();

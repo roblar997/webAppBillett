@@ -93,8 +93,12 @@ namespace webAppBillett.Controllers
                 return NotFound("Fant ikke det som ble spurt om");
             }
         }
-
-        [HttpPost]
+        public async Task<List<BillettFormatert>> hentBillettFormatertListe()
+        {
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
+            return await _lugDb.hentBillettFormatert(billettId);
+        }
+            [HttpPost]
         public async Task<ActionResult> lagrePerson(Person person)
         {
             if (!ModelState.IsValid)

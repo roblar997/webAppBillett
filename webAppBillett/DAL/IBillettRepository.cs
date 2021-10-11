@@ -7,8 +7,21 @@ using webAppBillett.Models;
 
 namespace webAppBillett.DAL {
 
-        public interface IBillettRepository {
+    //Tilhører ikke database (derfor slik klasse) - kun som et view til klient.
+   public class BillettFormatert
+    {
+        public string fra { get; set; }
+        public string til { get; set; }
+        public string navn { get; set; }
+        public string avgangsDato { get; set; }
 
+        public string avgangsTid { get; set; }
+
+        public List<string> listeRomNr { get; set; }
+    };
+
+    public interface IBillettRepository {
+        public Task<List<Lugar>> hentLugarer(int billettId);
         public  void velgLugar(int id, int billettId);
         public Task<double> beregnPris(int billettId);
         public Task<List<Havn>> hentHavner();
@@ -22,11 +35,11 @@ namespace webAppBillett.DAL {
 
         public  void utforBetaling(Betaling betaling, int billettId);
 
-  
+        public Task<List<BillettFormatert>> hentBillettFormatert(int billettId);
         public  Task<int> lagreBillett(Billett billett);
 
 
-
+        public Task<List<Person>> hentPersoner(int billettId);
         public  void slettBillett(int billettId);
         public  void slettLugarer(int billettId);
 
