@@ -41,5 +41,6 @@ namespace webAppBillett.Models
 
         public int forekomstDatoId { get; set; }
 
+        public bool erUtsolgt { get; set; }
     }
 }

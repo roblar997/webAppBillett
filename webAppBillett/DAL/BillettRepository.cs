@@ -100,7 +100,7 @@ namespace webAppBillett.DAL
         public async Task<List<RuteForekomstDato>> hentForekomsterDato(Rute rute)
         {
             int ruteId = _lugDb.ruter.First((x) => x.fra == rute.fra && x.til == rute.til).ruteId;
-            return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId).ToListAsync();
+            return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId && !x.erUtsolgt).ToListAsync();
 
         }
         public async Task<List<Lugar>> hentFiltrerteLugarer(FilterLugar filterLugar)
@@ -108,6 +108,14 @@ namespace webAppBillett.DAL
 
             int ruteId = _lugDb.ruter.Where((x) => x.fra == filterLugar.fra && x.til == filterLugar.til).First().ruteId;
             List<Reservasjon> billettLugarer = _lugDb.reservasjon.Where((x) => x.ruteId == ruteId && x.avgangsDato == filterLugar.avgangsDato && x.avgangsTid == filterLugar.avgangsTid).ToList();
+            if(billettLugarer.Count == 0)
+            {
+                RuteForekomstDato forekomst = _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteId && x.avgangsDato == filterLugar.avgangsDato);
+                forekomst.erUtsolgt = true;
+                _lugDb.SaveChanges();
+                //tom liste
+                return new List<Lugar>();
+            }
             List<int> lugarReservert = billettLugarer.ConvertAll((x) => x.lugarId).ToList();
 
             List<Lugar> lugarer = await _lugDb.lugarer.Where((x) =>
@@ -128,8 +136,15 @@ namespace webAppBillett.DAL
 
         public async Task<List<RuteForekomstDatoTid>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato)
         {
-            int forekomstDatoId = _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteForekomstDato.ruteId && x.avgangsDato == ruteForekomstDato.avgangsDato).forekomstDatoId;
-            return await _lugDb.ruteForekomstDatoTid.Where((x) => x.forekomstDatoId == forekomstDatoId).ToListAsync();
+            RuteForekomstDato forekomst = _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteForekomstDato.ruteId && x.avgangsDato == ruteForekomstDato.avgangsDato && !x.erUtsolgt);
+            int forekomstDatoId = forekomst.forekomstDatoId;
+            List<RuteForekomstDatoTid> forekomster = await _lugDb.ruteForekomstDatoTid.Where((x) => x.forekomstDatoId == forekomstDatoId && !x.erUtsolgt).ToListAsync();
+            if(forekomster.Count == 0)
+            {
+                forekomst.erUtsolgt = true;
+                _lugDb.SaveChanges();
+            }
+            return forekomster;
 
         }
 

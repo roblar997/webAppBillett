@@ -28,5 +28,7 @@ namespace webAppBillett.Models
 
         [ForeignKey("forekomstDatoId")]
         public virtual List<RuteForekomstDatoTid> RuteForekomstDatoTid { get; set; }
+
+        public bool erUtsolgt { get; set; }
     }
 }
