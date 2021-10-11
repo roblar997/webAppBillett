@@ -289,8 +289,8 @@ function validerReiseInfoSkjema(data) {
 }
 
 function validerFilterLugar(data) {
-    let antallSjekk = validerAntall(data.antall);
 
+    let antallSjekk = validerAntall(data.antall);
     if (!antallSjekk) $("#antallFeil").html("<p> ant barn <p>");
     else $("#antallFeil").html("");
 

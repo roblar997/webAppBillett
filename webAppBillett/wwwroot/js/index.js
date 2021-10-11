@@ -20,13 +20,7 @@ $(() => {
     $('#til').change((x) => {
     });
 
-    $("#antBarn").change((x) => {
 
-    });
-
-    $("#antVoksen").change((x) => {
-
-    });
 
     $('#avgangsDato').change((x) => {
     });
@@ -36,15 +30,37 @@ $(() => {
     });
 
 
+    $("#prisMaks").change((x) => {
+        let maksPrisSjekk = validerPrisMaks($(this).val());
+        if (!maksPrisSjekk) $("#maksprisFeil").html("<p> maks pris<p>");
+        else $("#maksprisFeil").html("");
+    });
+
+    $("#prisMin").change((x) => {
+        let minPrisSjekk = validerPrisMin($(this).val());
+        if (!minPrisSjekk) $("#minprisFeil").html("<p> min pris <p>");
+        else $("#minprisFeil").html("");
+    });
+    $("#antall").change((x) => {
+        let antallSjekk = validerAntall($(this).val());
+        if (!antallSjekk) $("#antallFeil").html("<p> ant barn <p>");
+        else $("#antallFeil").html("");
+    });
 
 
 
 
+    $("#antBarn").change((x) => {
+        let antBarnSjekk = validerAntBarn($(this).val());
+        if (!antBarnSjekk) $("#antbarnFeil").html("<p> ant barn <p>");
+        else $("#antbarnFeil").html("");
+    });
 
-
-
-
-
+    $("#antVoksen").change((x) => {
+        let antVoksenSjekkk = validerAntVoksen($(this).val());
+        if (!antVoksenSjekkk) $("#antvoksenFeil").html("<p> ant barn <p>");
+        else $("#antvoksenFeil").html("");
+    });
 
 
     $('#csv').change((x) => {
