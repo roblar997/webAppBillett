@@ -705,23 +705,23 @@ function genererPersonInfoSkjema(info) {
         $('#fornavn' + i).change((x) => {
 
             let fornavnSjekk = validerFornavn($(this),i);
-            if (!fornavnSjekk) $("#fornavnFeil" + nummerPerson).html("<p> fornavn <p>");
-            else $("#fornavnFeil" + nummerPerson).html("");
+            if (!fornavnSjekk) $("#fornavnFeil" + i).html("<p> fornavn <p>");
+            else $("#fornavnFeil" + i).html("");
 
  
 
         });
         $('#etternavn' + i).change((x) => {
             let etternavnSjekk = validerEtternavn($(this), i);
-            if (!etternavnSjekk) $("#etternavnFeil" + nummerPerson).html("<p> etternavn <p>");
-            else $("#etternavnFeil" + nummerPerson).html("");
+            if (!etternavnSjekk) $("#etternavnFeil" + i).html("<p> etternavn <p>");
+            else $("#etternavnFeil" + i).html("");
 
 
         });
         $('#telefon' + i).change((x) => {
             let telefonSjekk = validerTelefonNummer($(this), i);
-            if (!telefonSjekk) $("#telefonFeil" + nummerPerson).html("<p> telefon <p>");
-            else $("#telefonFeil" + nummerPerson).html("");
+            if (!telefonSjekk) $("#telefonFeil" + i).html("<p> telefon <p>");
+            else $("#telefonFeil" + i).html("");
         });
     }
 }
