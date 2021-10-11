@@ -274,8 +274,15 @@ function validerReiseInfoSkjema(data) {
     let tilSjekk = validerTil(data.til);
     let avgangsDatoSjekk = validerAvgangsDato(data.avgangsDato);
     let avgangsTidSjekk = validerAvgangsTid(data.avgangsTid);
+
     let antVoksenSjekkk = validerAntVoksen(data.antVoksen);
+    if (!antVoksenSjekkk) $("#antvoksenFeil").html("<p> ant barn <p>");
+    else $("#antvoksenFeil").html("");
+
     let antBarnSjekk = validerAntBarn(data.antBarn);
+    if (!antBarnSjekk) $("#antbarnFeil").html("<p> ant barn <p>");
+    else $("#antbarnFeil").html("");
+
 
   return fraSjekk && tilSjekk && avgangsDatoSjekk && avgangsTidSjekk && antVoksenSjekkk && antBarnSjekk;
 
@@ -283,8 +290,18 @@ function validerReiseInfoSkjema(data) {
 
 function validerFilterLugar(data) {
     let antallSjekk = validerAntall(data.antall);
+
+    if (!antallSjekk) $("#antallFeil").html("<p> ant barn <p>");
+    else $("#antallFeil").html("");
+
     let minPrisSjekk = validerPrisMin(data.prisMin);
+    if (!minPrisSjekk) $("#minprisFeil").html("<p> min pris <p>");
+    else $("#minprisFeil").html("");
+
     let maksPrisSjekk = validerPrisMaks(data.prisMaks);
+    if (!maksPrisSjekk) $("#maksprisFeil").html("<p> maks pris<p>");
+    else $("#maksprisFeil").html("");
+
     let wcSjekk = validerCheckBox(data.harWc);
     let dysjSjekk = validerCheckBox(data.harDysj);
     let wifiSjekk = validerCheckBox(data.harWifi);

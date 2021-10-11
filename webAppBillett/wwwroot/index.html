@@ -184,10 +184,12 @@
                     <div class="col">
                         <label>Antall Voksne:</label>
                         <input type="number" class="form-control" id="antVoksen" />
+                        <span class="text-danger" id="antvoksenFeil"></span>
                     </div>
                     <div class="col">
                         <label>Antall Barn:</label>
                         <input type="number" class="form-control" id="antBarn" />
+                        <span class="text-danger" id="antbarnFeil"></span>
                     </div>
                 </div>
 
@@ -220,16 +222,17 @@
                             <div class="col-sm-9">
                                 <input type="number"
                                        id="prisMin"
-      
                                        class="form-control"
                                        autofocus="" />
                             </div>
+                            <span class="text-danger" id="minprisFeil"></span>
                         </div>
 
                         <div class="form-group">
                             <label for="prisMaks" class="col-sm-3 control-label">
                                 <i class="fa fa-money" aria-hidden="true"> Maks pris</i>
                             </label>
+                            
                             <div class="col-sm-9">
                                 <input type="number"
                                        id="prisMaks"
@@ -237,7 +240,8 @@
                                        class="form-control"
                                        autofocus="" />
                             </div>
-                        </div>
+                            <span class="text-danger" id="maksprisFeil" ></span>
+                         </div>
                         <div class="form-group">
                             <label for="antall" class="col-sm-3 control-label">
                                 <i class="fas fa-sort-amount-up"> Antall personer </i>
@@ -245,10 +249,10 @@
                             <div class="col-sm-9">
                                 <input type="number"
                                        id="antall"
-         
                                        class="form-control"
                                        autofocus="" />
                             </div>
+                            <span class="text-danger" id="antallFeil"></span>
                         </div>
 
                         <div class="form-group">
