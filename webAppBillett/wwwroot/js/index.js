@@ -1,13 +1,17 @@
 ﻿
 $(() => {
 
+ 
+
     //TODO
     hentFraHavner().then((x) => {
 
-        hentTilHavner($("#fra").val());
+        hentTilHavner($("#fra").val()).catch((err) = {});
 
 
-    })
+    }).catch((err) = { });
+
+
     $('#fra').change((x) => {
     });
 
@@ -234,24 +238,29 @@ async function lagreBetaling() {
 
     if (!validerBetalingSkjema(betalingsInfo)) return;
     let ant = GUIModuleSPA.hentAntallPersoner();
+    let canContinue = true;
 
-        await lagreReiseInfoServer();
+    await lagreReiseInfoServer().done((x) => {
         //Send alle personer til server
         for (i = 1; i <= ant; i++) {
-            await lagrePersonServer(i);
+            
+            await lagrePersonServer(i).catch((err) => { canContinue = false; });
+            if (!canContinue) return;
         }
 
         //Send alle lugarene til server
         for (i = 0; i < lugarene.length; i++) {
-            await velgLugar(lugarene[i]);
+            await velgLugar(lugarene[i]).catch((err) => { canContinue = false; });
+            if (!canContinue) return;
         }
 
         $.post("/billett/utforBetaling/", betalingsInfo).done((res) => {
 
             window.location.reload(true);
 
-        }).promise();
-
+        }).promise().catch((err) => { });
+    }).catch((err) => { });
+     
 
 
    

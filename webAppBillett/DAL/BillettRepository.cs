@@ -109,9 +109,10 @@ namespace webAppBillett.DAL
                 await _lugDb.SaveChangesAsync();
             }
             }
-            catch
+            catch(Exception ex)
             {
                 slettBillett(billettId);
+                throw;
             }
 
 
@@ -222,11 +223,12 @@ namespace webAppBillett.DAL
             await _lugDb.SaveChangesAsync();
                 return person.personId;
             }
-            catch
+            catch (Exception ex)
             {
                 slettBillett(billettId);
+                throw;
             }
-            return -1;
+
 
 
         }
@@ -246,9 +248,10 @@ namespace webAppBillett.DAL
                 await _lugDb.SaveChangesAsync();
 
             }
-            catch
+            catch (Exception ex)
             {
                 slettBillett(billettId);
+                throw;
             }
 
         }
@@ -306,13 +309,13 @@ namespace webAppBillett.DAL
                 return reiseInformasjon.reiseId;
 
             }
-            catch
+            catch (Exception ex)
             {
                 slettBillett(billettId);
-                return -1;
+                throw;
             }
 
-   
+
 
         }
 

@@ -88,13 +88,21 @@ namespace webAppBillett.Controllers
         public  async Task<ActionResult> utforBetaling(Betaling betaling)
         {
             if (!ModelState.IsValid) return BadRequest("Ugyldig input");
-            int billettId = HttpContext.Session.GetInt32("billettId").Value;
-            
 
+            try { 
+              
+                int billettId = HttpContext.Session.GetInt32("billettId").Value;
               _lugDb.utforBetaling(betaling,billettId);
-            HttpContext.Session.Remove("billettId");
+               HttpContext.Session.Remove("billettId");
+                return Ok();
+            }
+ 
+            catch
+            {
+                return BadRequest("Ugyldig input");
 
-            return Ok();
+            }
+
 
         }
 
@@ -104,24 +112,46 @@ namespace webAppBillett.Controllers
         public async Task<ActionResult> hentForekomsterDato(Rute rute)
         {
             if (!ModelState.IsValid) return BadRequest("Ugyldig input");
-            return Ok(await _lugDb.hentForekomsterDato(rute));
+
+            try { 
+                  return Ok(await _lugDb.hentForekomsterDato(rute));
+             }
+
+            catch{
+                return NotFound("Fant ikke det som ble spurt om");
+              }
 
         }
 
         public async Task<ActionResult> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato)
         {
             if (!ModelState.IsValid) return BadRequest("Ugyldig input");
-            return Ok(await _lugDb.hentForekomsterDatoTid(ruteForekomstDato));
+            try
+            {
+                return Ok(await _lugDb.hentForekomsterDatoTid(ruteForekomstDato));
+            }
 
+            catch
+            {
+                return NotFound("Fant ikke det som ble spurt om");
+            }
         }
 
 
         public async Task<ActionResult> hentFiltrerteLugarer(FilterLugar filterLugar)
         {
             if (!ModelState.IsValid) return BadRequest("Ugyldig input");
-            int billettId = HttpContext.Session.GetInt32("billettId").Value;
-            return Ok(await _lugDb.hentFiltrerteLugarer(filterLugar, billettId));
+            try
+            {
+                int billettId = HttpContext.Session.GetInt32("billettId").Value;
+                return Ok(await _lugDb.hentFiltrerteLugarer(filterLugar, billettId));
+            }
+            catch
+            {
+                return BadRequest("Kunne ikke lagre");
+            }
         }
+        
 
 
 
@@ -129,9 +159,19 @@ namespace webAppBillett.Controllers
         [HttpPost]
         public async Task<ActionResult> lagreReiseInformasjon(ReiseInformasjon reiseInformasjon)
         {
+
             if (!ModelState.IsValid) return BadRequest("Ugyldig input");
-            int billettId = HttpContext.Session.GetInt32("billettId").Value;
-            return Ok(await _lugDb.lagreReiseInformasjon(reiseInformasjon, billettId));
+            try
+            {
+                int billettId = HttpContext.Session.GetInt32("billettId").Value;
+                return Ok(await _lugDb.lagreReiseInformasjon(reiseInformasjon, billettId));
+            }
+            catch
+            {
+                return BadRequest("Kunne ikke lagre");
+            }
+
+           
 
         }
 
