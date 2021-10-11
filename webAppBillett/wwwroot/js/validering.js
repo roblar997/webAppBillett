@@ -228,7 +228,7 @@ function validerPersonSkjema(data, nummerPerson) {
 }
 
 function validerBetalingSkjema(data) {
-    return true;
+
     let postNrSjekk = validerPostNr(data.postnr);
     if (!postNrSjekk) $("#postnrFeil").html("<p> postnr <p>");
     else $("#postnrFeil").html("");
