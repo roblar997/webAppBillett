@@ -41,14 +41,6 @@ namespace webAppBillett.Controllers
 
         public async Task<List<Havn>> hentHavner()
         {
-            //For oppstart
-            if (!HttpContext.Session.GetInt32("billettId").HasValue)
-            {
-                int billettId = await _lugDb.addBillettHelper();
-
-                HttpContext.Session.SetInt32("billettId", billettId);
-            }
-
 
 
             return await _lugDb.hentHavner();
@@ -85,10 +77,7 @@ namespace webAppBillett.Controllers
 
             catch{
                 _log.LogInformation("hentForekomsterDato fant ikke det som ble etterspurt");
-                //Billett slettet, så samme billettId
-                int billettId = await _lugDb.addBillettHelper();
 
-                HttpContext.Session.SetInt32("billettId", billettId);
                 return NotFound("Fant ikke det som ble spurt om");
     }
 }
@@ -110,10 +99,7 @@ namespace webAppBillett.Controllers
             catch
             {
                 _log.LogError("lagrePerson fikk ufylding input");
-                //Billett slettet, så samme billettId
-                int billettId = await _lugDb.addBillettHelper();
 
-                HttpContext.Session.SetInt32("billettId", billettId);
                 return BadRequest("Ugyldig input");
 
             }
@@ -137,10 +123,7 @@ namespace webAppBillett.Controllers
             {
                 _log.LogError("UtforBetaling fikk ufylding input");
 
-                //Billett slettet, så samme billettId
-                int billettId = await _lugDb.addBillettHelper();
 
-                HttpContext.Session.SetInt32("billettId", billettId);
                 return BadRequest("Ugyldig input");
 
             }
@@ -206,9 +189,14 @@ namespace webAppBillett.Controllers
         {
 
             if (!ModelState.IsValid) return BadRequest("Ugyldig input");
+
+            int billettId = await _lugDb.addBillettHelper();
+
+            HttpContext.Session.SetInt32("billettId", billettId);
+
+
             try
             {
-                int billettId = HttpContext.Session.GetInt32("billettId").Value;
                 return Ok(await _lugDb.lagreReiseInformasjon(reiseInformasjon, billettId));
             }
             catch
