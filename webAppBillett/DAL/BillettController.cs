@@ -96,9 +96,11 @@ namespace webAppBillett.Controllers
         public async Task<List<BillettFormatert>> hentBillettFormatertListe()
         {
             int billettId = HttpContext.Session.GetInt32("billettId").Value;
+            HttpContext.Session.Remove("billettId");
             return await _lugDb.hentBillettFormatert(billettId);
         }
-            [HttpPost]
+       
+        [HttpPost]
         public async Task<ActionResult> lagrePerson(Person person)
         {
             if (!ModelState.IsValid)
@@ -137,7 +139,7 @@ namespace webAppBillett.Controllers
 
                 int billettId = HttpContext.Session.GetInt32("billettId").Value;
                 _lugDb.utforBetaling(betaling, billettId);
-                HttpContext.Session.Remove("billettId");
+       
                 return Ok();
             }
             catch

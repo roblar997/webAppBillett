@@ -309,7 +309,8 @@ async function lagreBetaling() {
 
         $.post("/billett/utforBetaling/", betalingsInfo).done((res) => {
 
-            window.location.reload(true);
+            //window.location.reload(true);
+            hentBilletter();
 
         }).promise();
 
@@ -494,7 +495,44 @@ async function velgLugar(id) {
     }).promise();
 }
 
+async function hentBilletter() {
 
+    await $.get("/billett/hentBillettFormatertListe/").done((res) => {
+
+        html = '<div class="container">';
+
+        for (i = 0; i < res.length; i++) {
+
+            html += ' <div class="card" style="width: 18rem;">'
+
+            html +=  '   <div class="card-body">'
+
+            html +=   '      <h5 class="card-title">Billett </h5>'
+
+            html +=     '  <p class="card-text">';
+
+            html += "<p><strong> Navn: </strong> " + res[i].navn + "</p>";
+            html += "<p><strong> Fra: </strong> " + res[i].fra + "</p>";
+            html += "<p><strong> Til: </strong> " + res[i].til + "</p>";
+            html += "<p><strong> Dato: </strong> " + res[i].avgangsDato + "</p > ";
+            html += "<p><strong> Tid: </strong> " + res[i].avgangsTid + "</p > ";
+            html += "<p><strong> RomNr: </strong> ";
+            for (j = 0; j < res[i].listeRomNr.length; j++) {
+                html += res[i].listeRomNr[j] + " ";
+            }
+            html += "</p> ";
+            html += "<p><strong> RomNr: </strong> ";
+            html += '</p >';
+            html +="    </div>"
+            html += " </div>";
+        }
+        html += '</div>';
+
+        $(html).appendTo("#billetter");
+        $("#regform4").hide();
+
+    }).promise();
+}
 async function hentFiltrerteLugarer() {
     let filterData = {
         prisMin: $("#prisMin").val(),

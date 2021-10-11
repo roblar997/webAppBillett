@@ -34,102 +34,102 @@
 
         </ul>
 
+        <div id="billetter"></div>
+
         <div class="container">
-     
-            <div class=" bg-transparent text-dark form" >
+
+            <div class=" bg-transparent text-dark form">
 
                 <form class="form" id="regform4" action="">
                     <div class="container">
                         <h1 class="text-left">Betaling</h1>
                         <div class="row">
                             <label for="pris"> Pris:          <span id="pris"></span> </label>
-                  
 
-</div>
+
+                        </div>
+
+                        <div class="row">
+
 
                             <div class="row">
-
-
-                                <div class="row">
-                                    <div class="col">
-                                        <label>Utløper</label>
-                                        <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="utloper" />
-                                        <span class ="text-danger"  id="utloperFeil"></span>
-                                    </div>
+                                <div class="col">
+                                    <label>Utløper</label>
+                                    <input type="date" class="datepicker" data-date-format="mm/dd/yyyy" id="utloper" />
+                                    <span class="text-danger" id="utloperFeil"></span>
                                 </div>
+                            </div>
 
 
-                                <div class="row">
-                                    <div class="col">
-                                        <label>csv</label>
-                                        <input type="number" class="form-control" id="csv" />
-                                        <span class ="text-danger"  id="csvFeil"></span>
-                                    </div>
-                                    <div class="col">
-                                        <label>Kortnummer</label>
-                                        <input type="text" class="form-control" id="kortnummer" />
-                                        <span class ="text-danger"  id="kortnummerFeil"></span>
-                                    </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label>csv</label>
+                                    <input type="number" class="form-control" id="csv" />
+                                    <span class="text-danger" id="csvFeil"></span>
                                 </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <label>Kortholders navn</label>
-                                        <input type="text" class="form-control" id="kortholderNavn" />
-                                        <span class ="text-danger" id="kortholdernavnFeil"></span>
-                                    </div>
-
-
+                                <div class="col">
+                                    <label>Kortnummer</label>
+                                    <input type="text" class="form-control" id="kortnummer" />
+                                    <span class="text-danger" id="kortnummerFeil"></span>
                                 </div>
-                                <div class="row" style="padding-left:1em">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h1 class="text-center">Kontakt informasjon </h1>
-                                            <label>Adresse</label>
-                                            <input type="text" class="form-control" id="adresse" />
-                                            <span class ="text-danger"  id="adresseFeil"></span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <label>Poststed</label>
-                                            <input type="text" class="form-control" id="poststed" />
-                                            <span class ="text-danger"  id="poststedFeil"></span>
-                                        </div>
-                                        <div class="col">
-                                            <label>Postnr</label>
-                                            <input type="text" class="form-control" id="postnr" />
-                                            <span class ="text-danger"  id="postnrFeil"></span>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="padding-left: 1em;">
-                                        <div class="row">
-                                            <div class="col">
-                                                <label>Telefon </label>
-                                                <input type="text" class="form-control" id="telefon" />
-                                                <span class ="text-danger"  id="telefonFeil"></span>
-                                            </div>
-
-                                            <div class="col">
-                                                <label>Email</label>
-                                                <input type="text" class="form-control" id="email" />
-                                                <span class ="text-danger"  id="emailFeil"></span>
-                                            </div>
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label>Kortholders navn</label>
+                                    <input type="text" class="form-control" id="kortholderNavn" />
+                                    <span class="text-danger" id="kortholdernavnFeil"></span>
                                 </div>
 
 
                             </div>
-                        </div>
+                            <div class="row" style="padding-left:1em">
+                                <div class="row">
+                                    <div class="col">
+                                        <h1 class="text-center">Kontakt informasjon </h1>
+                                        <label>Adresse</label>
+                                        <input type="text" class="form-control" id="adresse" />
+                                        <span class="text-danger" id="adresseFeil"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <label>Poststed</label>
+                                        <input type="text" class="form-control" id="poststed" />
+                                        <span class="text-danger" id="poststedFeil"></span>
+                                    </div>
+                                    <div class="col">
+                                        <label>Postnr</label>
+                                        <input type="text" class="form-control" id="postnr" />
+                                        <span class="text-danger" id="postnrFeil"></span>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-left: 1em;">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Telefon </label>
+                                            <input type="text" class="form-control" id="telefon" />
+                                            <span class="text-danger" id="telefonFeil"></span>
+                                        </div>
 
-                        <div class="btn-box">
-                            <button type="button" id="fulfor"> Fulfør kjøp</button>
-                        </div>
+                                        <div class="col">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control" id="email" />
+                                            <span class="text-danger" id="emailFeil"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-</form>
+
+                        </div>
+                    </div>
+
+                    <div class="btn-box">
+                        <button type="button" id="fulfor"> Fulfør kjøp</button>
+                    </div>
+
+                </form>
             </div>
-
-
 
 
 
@@ -234,16 +234,15 @@
                             <label for="prisMaks" class="col-sm-3 control-label">
                                 <i class="fa fa-money" aria-hidden="true"> Maks pris</i>
                             </label>
-                            
+
                             <div class="col-sm-9">
                                 <input type="number"
                                        id="prisMaks"
-
                                        class="form-control"
                                        autofocus="" />
                             </div>
-                            <span class="text-danger" id="maksprisFeil" ></span>
-                         </div>
+                            <span class="text-danger" id="maksprisFeil"></span>
+                        </div>
                         <div class="form-group">
                             <label for="antall" class="col-sm-3 control-label">
                                 <i class="fas fa-sort-amount-up"> Antall personer </i>
