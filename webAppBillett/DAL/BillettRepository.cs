@@ -45,7 +45,7 @@ namespace webAppBillett.DAL
 
 
         }
-        public async Task<List<Lugar>> hentFiltrerteLugarer(FilterLugar filterLugar, int billettId)
+        public async Task<List<Lugar>> hentFiltrerteLugarer(FilterLugar filterLugar)
         {
 
 

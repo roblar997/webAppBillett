@@ -170,8 +170,8 @@ namespace webAppBillett.Controllers
             if (!ModelState.IsValid) return BadRequest("Ugyldig input");
             try
             {
-                int billettId = HttpContext.Session.GetInt32("billettId").Value;
-                return Ok(await _lugDb.hentFiltrerteLugarer(filterLugar, billettId));
+
+                return Ok(await _lugDb.hentFiltrerteLugarer(filterLugar));
             }
             catch
             {
