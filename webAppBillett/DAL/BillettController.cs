@@ -54,23 +54,44 @@ namespace webAppBillett.Controllers
             return await _lugDb.hentHavner();
         }
         [Route("{id}")]
-        public async Task<List<Havn>> hentTilHavner(int id)
+        public async Task<ActionResult> hentTilHavner(int id)
         {
-            return await _lugDb.hentTilHavner(id);
 
-
-
+            try
+            {
+                return Ok(await _lugDb.hentTilHavner(id));
         }
+
+            catch{
+                _log.LogInformation("hentForekomsterDato fant ikke det som ble etterspurt");
+                return NotFound("Fant ikke det som ble spurt om");
+    }
+
+
+}
 
         [Route("{id}")]
-        public  void velgLugar(int id)
+        public async  Task<ActionResult> velgLugar(int id)
         {
             
+
+            try
+            {
                 int billettId = HttpContext.Session.GetInt32("billettId").Value;
                 _lugDb.velgLugar(id,billettId);
-
+                return Ok();
 
         }
+
+            catch{
+                _log.LogInformation("hentForekomsterDato fant ikke det som ble etterspurt");
+                //Billett slettet, så samme billettId
+                int billettId = await _lugDb.addBillettHelper();
+
+                HttpContext.Session.SetInt32("billettId", billettId);
+                return NotFound("Fant ikke det som ble spurt om");
+    }
+}
 
 
     
@@ -79,10 +100,25 @@ namespace webAppBillett.Controllers
         public async Task<ActionResult> lagrePerson(Person person)
         {
             if (!ModelState.IsValid) return BadRequest("Ugyldig input");
-            int billettId = HttpContext.Session.GetInt32("billettId").Value;
-            return Ok(await _lugDb.lagrePerson(person,billettId));
 
+            try
+            {
+                int billettId = HttpContext.Session.GetInt32("billettId").Value;
+            return Ok(await _lugDb.lagrePerson(person,billettId));
         }
+ 
+            catch
+            {
+                _log.LogError("lagrePerson fikk ufylding input");
+                //Billett slettet, så samme billettId
+                int billettId = await _lugDb.addBillettHelper();
+
+                HttpContext.Session.SetInt32("billettId", billettId);
+                return BadRequest("Ugyldig input");
+
+            }
+
+}
 
         [HttpPost]
         public  async Task<ActionResult> utforBetaling(Betaling betaling)
@@ -99,6 +135,12 @@ namespace webAppBillett.Controllers
  
             catch
             {
+                _log.LogError("UtforBetaling fikk ufylding input");
+
+                //Billett slettet, så samme billettId
+                int billettId = await _lugDb.addBillettHelper();
+
+                HttpContext.Session.SetInt32("billettId", billettId);
                 return BadRequest("Ugyldig input");
 
             }
@@ -118,6 +160,7 @@ namespace webAppBillett.Controllers
              }
 
             catch{
+                _log.LogInformation("hentForekomsterDato fant ikke det som ble etterspurt");
                 return NotFound("Fant ikke det som ble spurt om");
               }
 
@@ -133,6 +176,7 @@ namespace webAppBillett.Controllers
 
             catch
             {
+                _log.LogInformation(" hentForekomsterDatoTid fant ikke det som ble etterspurt");
                 return NotFound("Fant ikke det som ble spurt om");
             }
         }
@@ -148,6 +192,7 @@ namespace webAppBillett.Controllers
             }
             catch
             {
+                _log.LogError("  hentFiltrerteLugarer klarte ikke å lagre");
                 return BadRequest("Kunne ikke lagre");
             }
         }
@@ -168,6 +213,7 @@ namespace webAppBillett.Controllers
             }
             catch
             {
+                _log.LogError("  lagreReiseInformasjon klarte ikke å lagre");
                 return BadRequest("Kunne ikke lagre");
             }
 
