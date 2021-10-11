@@ -117,7 +117,15 @@ namespace webAppBillett.DAL
 
             int ruteId = _lugDb.ruter.Where((x) => x.fra == filterLugar.fra && x.til == filterLugar.til).First().ruteId;
             List<Reservasjon> billettLugarer = _lugDb.reservasjon.Where((x) => x.ruteId == ruteId && x.avgangsDato == filterLugar.avgangsDato && x.avgangsTid == filterLugar.avgangsTid).ToList();
-            if(billettLugarer.Count == 0)
+            List<int> lugarReservert = billettLugarer.ConvertAll((x) => x.lugarId).ToList();
+
+           List<Lugar> sjekkUtsolgt = await _lugDb.lugarer.Where((x) =>
+           //Skal ikke være reservert
+           !lugarReservert.Contains(x.lugarId)
+
+            ).ToListAsync();
+
+            if (sjekkUtsolgt.Count == 0)
             {
                 RuteForekomstDato forekomst = _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteId && x.avgangsDato == filterLugar.avgangsDato);
                 forekomst.erUtsolgt = true;
@@ -125,7 +133,6 @@ namespace webAppBillett.DAL
                 //tom liste
                 return new List<Lugar>();
             }
-            List<int> lugarReservert = billettLugarer.ConvertAll((x) => x.lugarId).ToList();
 
             List<Lugar> lugarer = await _lugDb.lugarer.Where((x) =>
            //Skal ikke være reservert
