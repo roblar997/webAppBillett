@@ -521,8 +521,6 @@ async function hentBilletter() {
                 html += res[i].listeRomNr[j] + " ";
             }
             html += "</p> ";
-            html += "<p><strong> RomNr: </strong> ";
-            html += '</p >';
             html +="    </div>"
             html += " </div>";
         }
