@@ -35,7 +35,7 @@ namespace webAppBillett.Models
         [Required]
         public string kortholderNavn { get; set; }
 
-        [RegularExpression(@"[0-9]{4}")]
+        [RegularExpression(@"[0-9]{4,4}")]
         [Required]
         public string postnr { get; set; }
 
@@ -61,6 +61,7 @@ namespace webAppBillett.Models
 
         public string email { get; set; }
 
+        [RegularExpression(@"[0-9]{3,3}")]
         [Required]
         public int csv { get; set; }
 

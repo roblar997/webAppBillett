@@ -22,10 +22,8 @@ namespace webAppBillett.DAL {
 
         public  void utforBetaling(Betaling betaling, int billettId);
 
-        public  Task<int> addBillettHelper();
-
-
-        public  Task<int> lagreReiseInformasjon(ReiseInformasjon reiseInformasjon, int billettId);
+  
+        public  Task<int> lagreBillett(Billett billett);
 
 
 
@@ -35,7 +33,6 @@ namespace webAppBillett.DAL {
         public  void slettPersoner(int billettId);
         
 
-       public  void slettReiseInformasjon(int billettId);
     }   
     }
 

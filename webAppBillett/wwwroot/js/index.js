@@ -268,7 +268,7 @@ function lagreReiseInformasjon(reiseInfo) {
 async function lagreReiseInfoServer() {
 
 
-    await $.post("/billett/lagreReiseInformasjon/", reiseInformasjonen).done((res) => {
+    await $.post("/billett/lagreBillett/", reiseInformasjonen).done((res) => {
 
     }).promise();
 }

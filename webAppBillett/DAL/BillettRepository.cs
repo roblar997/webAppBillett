@@ -78,15 +78,16 @@ namespace webAppBillett.DAL
                 {
                     Reservasjon billettLugar = new Reservasjon();
                     Billett billett = await _lugDb.billetter.FindAsync(billettId);
-                    ReiseInformasjon reiseInformasjon = billett.ReiseInformasjon.First();
-                    int ruteId = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First().ruteId;
+
+
+                    int ruteId = _lugDb.ruter.Where((x) => x.fra == billett.fra && x.til == billett.til).First().ruteId;
 
                     billettLugar.billettId = billett.billettId;
 
                     billettLugar.lugarId = lugar.lugarId;
                     billettLugar.ruteId = ruteId;
-                    billettLugar.avgangsTid = reiseInformasjon.avgangsTid;
-                    billettLugar.avgangsDato = reiseInformasjon.avgangsDato;
+                    billettLugar.avgangsTid = billett.avgangsTid;
+                    billettLugar.avgangsDato = billett.avgangsDato;
 
                     await _lugDb.reservasjon.AddAsync(billettLugar);
                     await _lugDb.SaveChangesAsync();
@@ -106,7 +107,7 @@ namespace webAppBillett.DAL
 
             slettLugarer(billettId);
             slettPersoner(billettId);
-            slettReiseInformasjon(billettId);
+
             _lugDb.billetter.Remove(billett);
             _lugDb.SaveChanges();
 
@@ -143,17 +144,6 @@ namespace webAppBillett.DAL
 
         }
 
-        public async void slettReiseInformasjon(int billettId)
-        {
-
-            Billett billett = await _lugDb.billetter.FindAsync(billettId);
-            List<ReiseInformasjon> reiseInformasjon = billett.ReiseInformasjon;
-            reiseInformasjon.ForEach((x) => {
-                _lugDb.reiseInformasjon.Remove(x);
-            });
-
-            await _lugDb.SaveChangesAsync();
-        }
 
         public async Task<int> lagrePerson(Person person, int billettId)
         {
@@ -226,26 +216,18 @@ namespace webAppBillett.DAL
 
         }
 
-        public async Task<int> addBillettHelper()
-        {
-            Billett billetten = new Billett();
-            await _lugDb.billetter.AddAsync(billetten);
-            await _lugDb.SaveChangesAsync();
-
-            return billetten.billettId;
-        }
 
         public async Task<double> beregnPris(int billettId)
         {
             Billett billett = await _lugDb.billetter.FindAsync(billettId);
-            ReiseInformasjon reiseInformasjon = billett.ReiseInformasjon.First();
 
-            Rute rute = _lugDb.ruter.Where((x) => x.fra == reiseInformasjon.fra && x.til == reiseInformasjon.til).First();
+
+            Rute rute = _lugDb.ruter.Where((x) => x.fra == billett.fra && x.til == billett.til).First();
 
             double barnPris = rute.prisBarn;
             double voksenPris = rute.prisVoksen;
 
-            double totPrisRute = barnPris * reiseInformasjon.antBarn + reiseInformasjon.antVoksen * rute.prisVoksen;
+            double totPrisRute = barnPris * billett.antBarn + billett.antVoksen * rute.prisVoksen;
 
             List<Lugar> lugarer = billett.reservasjoner.ConvertAll((x) => {
                 return _lugDb.lugarer.Find(x.lugarId);
@@ -258,22 +240,14 @@ namespace webAppBillett.DAL
 
         }
 
-        public async Task<int> lagreReiseInformasjon(ReiseInformasjon reiseInformasjon, int billettId)
+        public async Task<int> lagreBillett(Billett billett)
         {
-            try
-            {
-                reiseInformasjon.reiseId = billettId;
-                _lugDb.reiseInformasjon.Add(reiseInformasjon);
+
+                await _lugDb.billetter.AddAsync(billett);
                 await _lugDb.SaveChangesAsync();
+                return billett.billettId;
 
-                return reiseInformasjon.reiseId;
-
-            }
-            catch (Exception ex)
-            {
-                slettBillett(billettId);
-                throw;
-            }
+      
 
         }
 

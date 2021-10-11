@@ -27,11 +27,44 @@ namespace webAppBillett.Models
         public virtual List<BillettPerson> billettPerson { get; set; }
         public virtual List<Reservasjon> reservasjoner { get; set; }
 
-        [ForeignKey("reiseId")]
-        public virtual List<ReiseInformasjon> ReiseInformasjon { get; set; }
 
 
         [ForeignKey("betalingsId")]
         public virtual List<Betaling > betaling { get; set; }
+
+        const int INF = 999999;
+
+
+
+
+        [Required]
+        [Range(1, INF)]
+        public int fra { get; set; }
+
+
+        [Required]
+        [Range(1, INF)]
+        public int til { get; set; }
+
+
+        [Required]
+
+        public string avgangsDato { get; set; }
+
+
+        [Required]
+        public string avgangsTid { get; set; }
+
+
+        [Required]
+        [Range(0, 10)]
+        public int antVoksen { get; set; }
+
+
+        [Required]
+        [Range(0, 10)]
+
+        public int antBarn { get; set; }
+
     }
 }

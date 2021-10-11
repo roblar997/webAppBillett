@@ -196,7 +196,7 @@ namespace webAppBillett.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> lagreReiseInformasjon(ReiseInformasjon reiseInformasjon)
+        public async Task<ActionResult> lagreBillett(Billett billett)
         {
 
             if (!ModelState.IsValid) return BadRequest("Ugyldig input");
@@ -204,14 +204,14 @@ namespace webAppBillett.Controllers
             try
             {
 
-                int billettId = await _lugDb.addBillettHelper();
+                int billettId = await _lugDb.lagreBillett(billett);
 
                 HttpContext.Session.SetInt32("billettId", billettId);
-                return Ok(await _lugDb.lagreReiseInformasjon(reiseInformasjon, billettId));
+                return Ok();
             }
             catch
             {
-                _log.LogError("  lagreReiseInformasjon klarte ikke å lagre");
+                _log.LogError("  billett klarte ikke å lagre");
                 return BadRequest("Kunne ikke lagre");
             }
 
