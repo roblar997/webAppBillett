@@ -22,12 +22,7 @@ $(() => {
 
 
 
-    $('#avgangsDato').change((x) => {
-    });
 
-    $('#avgangsTid').change((x) => {
-
-    });
 
 
     $("#prisMaks").change((x) => {

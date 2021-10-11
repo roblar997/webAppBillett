@@ -272,8 +272,14 @@ function validerBetalingSkjema(data) {
 function validerReiseInfoSkjema(data) {
     let fraSjekk = validerFra(data.fra);
     let tilSjekk = validerTil(data.til);
+
     let avgangsDatoSjekk = validerAvgangsDato(data.avgangsDato);
+    if (!avgangsDatoSjekk) $("#avgangsdatoFeil").html("<p> avgangs dato <p>");
+    else $("#avgangsdatoFeil").html("");
+
     let avgangsTidSjekk = validerAvgangsTid(data.avgangsTid);
+    if (!avgangsTidSjekk) $("#avgangstidFeil").html("<p> avgangs tid <p>");
+    else $("#avgangstidFeil").html("");
 
     let antVoksenSjekkk = validerAntVoksen(data.antVoksen);
     if (!antVoksenSjekkk) $("#antvoksenFeil").html("<p> ant barn <p>");
