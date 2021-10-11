@@ -381,7 +381,7 @@ async function lagrePersonServer(skjemaNr) {
 
 
 function setPris(pris) {
-    $("#pris").html('<p>' + pris + '</p>');
+    $("#pris").html('<p>' + pris + 'kr </p>');
 }
 
 function beregnPris() {
