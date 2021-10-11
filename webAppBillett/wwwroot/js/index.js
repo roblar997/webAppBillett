@@ -385,8 +385,8 @@ function setPris(pris) {
 }
 
 function beregnPris() {
-    let antall = parseInt(reiseInformasjonen.antBarn, 10) + parseInt(reiseInformasjonen.antVoksen, 10);
-    let totPris = parseInt(reiseInformasjonen.antBarn, 10) * prisBarn + parseInt(reiseInformasjonen.antVoksen, 10) * prisVoksen + antall * lugarPrisTot;
+ 
+    let totPris = parseInt(reiseInformasjonen.antBarn, 10) * prisBarn + parseInt(reiseInformasjonen.antVoksen, 10) * prisVoksen +  lugarPrisTot;
     setPris(totPris);
 
 }
