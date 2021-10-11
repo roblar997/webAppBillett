@@ -211,7 +211,7 @@ function validerRuteId(input) {
 // Skjema validering
 
 function validerPersonSkjema(data, nummerPerson) {
-    return true;
+
     let fornavnSjekk = validerFornavn(data.fornavn);
     if (!fornavnSjekk) $("#fornavnFeil" + nummerPerson).html("<p> fornavn <p>");
     else $("#fornavnFeil" + nummerPerson).html("");
@@ -224,8 +224,7 @@ function validerPersonSkjema(data, nummerPerson) {
     if (!telefonSjekk) $("#telefonFeil" + nummerPerson).html("<p> telefon <p>");
     else $("#telefonFeil" + nummerPerson).html("");
 
-   // return fornavnSjekk && etternavnSjekk && telefonSjekk;
-
+    return fornavnSjekk && etternavnSjekk && telefonSjekk;
 }
 
 function validerBetalingSkjema(data) {
@@ -267,12 +266,10 @@ function validerBetalingSkjema(data) {
     if (!kortnummerSjekk) $("#kortnummerFeil").html("<p> kortnummer <p>");
     else $("#kortnummerFeil").html("");
 
-  //  return telefonSjekk && postNrSjekk && postStedSjekk && emailSjekk && adresseSjekk && csvSjekk && kortholderNavnSjekk && utlopsTidSjekk && kortnummerSjekk;
-
+    return telefonSjekk && postNrSjekk && postStedSjekk && emailSjekk && adresseSjekk && csvSjekk && kortholderNavnSjekk && utlopsTidSjekk && kortnummerSjekk;
 }
 
 function validerReiseInfoSkjema(data) {
-    return true;
     let fraSjekk = validerFra(data.fra);
     let tilSjekk = validerTil(data.til);
     let avgangsDatoSjekk = validerAvgangsDato(data.avgangsDato);
@@ -280,7 +277,7 @@ function validerReiseInfoSkjema(data) {
     let antVoksenSjekkk = validerAntVoksen(data.antVoksen);
     let antBarnSjekk = validerAntBarn(data.antBarn);
 
-  //  return fraSjekk && tilSjekk && avgangsDatoSjekk && avgangsTidSjekk && antVoksenSjekkk && antBarnSjekk;
+  return fraSjekk && tilSjekk && avgangsDatoSjekk && avgangsTidSjekk && antVoksenSjekkk && antBarnSjekk;
 
 }
 
