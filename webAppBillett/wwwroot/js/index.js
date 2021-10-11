@@ -13,6 +13,7 @@ $(() => {
 
 
     $('#fra').change((x) => {
+        
     });
 
     $('#til').change((x) => {
@@ -33,42 +34,80 @@ $(() => {
 
     });
 
-    //Betaling
+
+
+
+
+
+
+
+
+
+
+
 
     $('#csv').change((x) => {
-        validerCsv(this.value);
+        let csvSjekk = validerCsv($(this).val());
+        if (!csvSjekk) $("#csvFeil").html("<p> csv <p>");
+        else $("#csvFeil").html("");
     });
 
     $('#kortnummer').change((x) => {
-        validerKortnummer(x.target.nodeValue);
+
+        let kortnummerSjekk = validerKortnummer($(this).val());
+        if (!kortnummerSjekk) $("#kortnummerFeil").html("<p> kortnummer <p>");
+        else $("#kortnummerFeil").html("");
     });
 
     $('#kortholderNavn').change((x) => {
-        validerKortholderNavn(x.target.nodeValue);
+        let kortholderNavnSjekk = validerKortholderNavn($(this).val());
+        if (!kortholderNavnSjekk) $("#kortholdernavnFeil").html("<p> kortholderNavn<p>");
+        else $("#kortholdernavnFeil").html("");
      });
 
     $('#utloper').change((x) => {
-        validerUltopsDato(x.target.nodeValue);
+
+        let utlopsTidSjekk = validerUltopsDato($(this).val());
+        if (!utlopsTidSjekk) $("#utloperFeil").html("<p> utlop <p>");
+        else $("#utloperFeil").html("");
+
+
     });
 
     $("#postnr").change((x) => {
-        validerPostNr(x.target.nodeValue);
+        
+        //Betaling
+        let postNrSjekk = validerPostNr($(this).val());
+        if (!postNrSjekk) $("#postnrFeil").html("<p> postnr <p>");
+        else $("#postnrFeil").html("");
+
     });
 
     $("#poststed").change((x) => {
-        validerPoststed(x.target.nodeValue);
+
+        let postStedSjekk = validerPoststed($(this).val());
+        if (!postStedSjekk) $("#poststedFeil").html("<p> postnr <p>");
+        else $("#poststedFeil").html("");
+
      });
 
     $("#adresse").change((x) => {
-        validerAdresse(x.target.nodeValue);
+        let adresseSjekk = validerAdresse($(this).val());
+        if (!adresseSjekk) $("#adresseFeil").html("<p> adresse <p>");
+        else $("#adresseFeil").html("");
     });
 
     $("#telefon").change((x) => {
-        validerTelefonNummer(x.target.nodeValue);
+        let telefonSjekk = validerTelefonNummer($(this).val());
+        if (!telefonSjekk) $("#telefonFeil").html("<p> telefon <p>");
+        else $("#telefonFeil").html("");
+
      });
 
     $("#email").change((x) => {
-        validerEmail(x.target.nodeValue);
+        let emailSjekk = validerEmail($(this).val());
+        if (!emailSjekk) $("#emailFeil").html("<p> email <p>");
+        else $("#emailFeil").html("");
     });
 
 
