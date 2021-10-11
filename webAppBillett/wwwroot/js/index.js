@@ -31,18 +31,18 @@ $(() => {
 
 
     $("#prisMaks").change((x) => {
-        let maksPrisSjekk = validerPrisMaks($(this).val());
+        let maksPrisSjekk = validerPrisMaks(x.target.value);
         if (!maksPrisSjekk) $("#maksprisFeil").html("<p> maks pris<p>");
         else $("#maksprisFeil").html("");
     });
 
     $("#prisMin").change((x) => {
-        let minPrisSjekk = validerPrisMin($(this).val());
+        let minPrisSjekk = validerPrisMin(x.target.value);
         if (!minPrisSjekk) $("#minprisFeil").html("<p> min pris <p>");
         else $("#minprisFeil").html("");
     });
     $("#antall").change((x) => {
-        let antallSjekk = validerAntall($(this).val());
+        let antallSjekk = validerAntall(x.target.value);
         if (!antallSjekk) $("#antallFeil").html("<p> ant barn <p>");
         else $("#antallFeil").html("");
     });
@@ -51,40 +51,40 @@ $(() => {
 
 
     $("#antBarn").change((x) => {
-        let antBarnSjekk = validerAntBarn($(this).val());
+        let antBarnSjekk = validerAntBarn(x.target.value);
         if (!antBarnSjekk) $("#antbarnFeil").html("<p> ant barn <p>");
         else $("#antbarnFeil").html("");
     });
 
     $("#antVoksen").change((x) => {
-        let antVoksenSjekkk = validerAntVoksen($(this).val());
+        let antVoksenSjekkk = validerAntVoksen(x.target.value);
         if (!antVoksenSjekkk) $("#antvoksenFeil").html("<p> ant barn <p>");
         else $("#antvoksenFeil").html("");
     });
 
 
     $('#csv').change((x) => {
-        let csvSjekk = validerCsv($(this).val());
+        let csvSjekk = validerCsv(x.target.value);
         if (!csvSjekk) $("#csvFeil").html("<p> csv <p>");
         else $("#csvFeil").html("");
     });
 
     $('#kortnummer').change((x) => {
 
-        let kortnummerSjekk = validerKortnummer($(this).val());
+        let kortnummerSjekk = validerKortnummer(x.target.value);
         if (!kortnummerSjekk) $("#kortnummerFeil").html("<p> kortnummer <p>");
         else $("#kortnummerFeil").html("");
     });
 
     $('#kortholderNavn').change((x) => {
-        let kortholderNavnSjekk = validerKortholderNavn($(this).val());
+        let kortholderNavnSjekk = validerKortholderNavn(x.target.value);
         if (!kortholderNavnSjekk) $("#kortholdernavnFeil").html("<p> kortholderNavn<p>");
         else $("#kortholdernavnFeil").html("");
      });
 
     $('#utloper').change((x) => {
 
-        let utlopsTidSjekk = validerUltopsDato($(this).val());
+        let utlopsTidSjekk = validerUltopsDato(x.target.value);
         if (!utlopsTidSjekk) $("#utloperFeil").html("<p> utlop <p>");
         else $("#utloperFeil").html("");
 
@@ -94,7 +94,7 @@ $(() => {
     $("#postnr").change((x) => {
         
         //Betaling
-        let postNrSjekk = validerPostNr($(this).val());
+        let postNrSjekk = validerPostNr(x.target.value);
         if (!postNrSjekk) $("#postnrFeil").html("<p> postnr <p>");
         else $("#postnrFeil").html("");
 
@@ -102,27 +102,27 @@ $(() => {
 
     $("#poststed").change((x) => {
 
-        let postStedSjekk = validerPoststed($(this).val());
+        let postStedSjekk = validerPoststed(x.target.value);
         if (!postStedSjekk) $("#poststedFeil").html("<p> postnr <p>");
         else $("#poststedFeil").html("");
 
      });
 
     $("#adresse").change((x) => {
-        let adresseSjekk = validerAdresse($(this).val());
+        let adresseSjekk = validerAdresse(x.target.value);
         if (!adresseSjekk) $("#adresseFeil").html("<p> adresse <p>");
         else $("#adresseFeil").html("");
     });
 
     $("#telefon").change((x) => {
-        let telefonSjekk = validerTelefonNummer($(this).val());
+        let telefonSjekk = validerTelefonNummer(x.target.value);
         if (!telefonSjekk) $("#telefonFeil").html("<p> telefon <p>");
         else $("#telefonFeil").html("");
 
      });
 
     $("#email").change((x) => {
-        let emailSjekk = validerEmail($(this).val());
+        let emailSjekk = validerEmail(x.target.value);
         if (!emailSjekk) $("#emailFeil").html("<p> email <p>");
         else $("#emailFeil").html("");
     });
@@ -720,7 +720,7 @@ function genererPersonInfoSkjema(info) {
 
         $('#fornavn' + i).change((x) => {
 
-            let fornavnSjekk = validerFornavn($(this).val());
+            let fornavnSjekk = validerFornavn(x.target.value);
             if (!fornavnSjekk) $("#fornavnFeil" + i).html("<p> fornavn <p>");
             else $("#fornavnFeil" + i).html("");
 
@@ -728,14 +728,14 @@ function genererPersonInfoSkjema(info) {
 
         });
         $('#etternavn' + i).change((x) => {
-            let etternavnSjekk = validerEtternavn($(this).val());
+            let etternavnSjekk = validerEtternavn(x.target.value);
             if (!etternavnSjekk) $("#etternavnFeil" + i).html("<p> etternavn <p>");
             else $("#etternavnFeil" + i).html("");
 
 
         });
         $('#telefon' + i).change((x) => {
-            let telefonSjekk = validerTelefonNummer($(this).val());
+            let telefonSjekk = validerTelefonNummer(x.target.value);
             if (!telefonSjekk) $("#telefonFeil" + i).html("<p> telefon <p>");
             else $("#telefonFeil" + i).html("");
         });
