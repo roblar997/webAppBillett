@@ -101,13 +101,13 @@ namespace webAppBillett.DAL
         public async Task<List<RuteForekomstDato>> hentForekomsterDato(Rute rute)
         {
             DateTime datetime = DateTime.Now;
-          
+            DateTime datetimein4month = DateTime.Now.AddMonths(4);
 
 
 
 
             int ruteId = _lugDb.ruter.First((x) => x.fra == rute.fra && x.til == rute.til).ruteId;
-            return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId && !x.erUtsolgt && (datetime.Date.CompareTo(x.avgangsDato.Date) <= 0)).ToListAsync();
+            return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId && !x.erUtsolgt && (datetime.Date.CompareTo(x.avgangsDato.Date) <= 0) && (datetimein4month.Date.CompareTo(x.avgangsDato.Date) >= 0)).ToListAsync();
                
         }
 
@@ -123,7 +123,7 @@ namespace webAppBillett.DAL
         {
 
             int ruteId = _lugDb.ruter.Where((x) => x.fra == filterLugar.fra && x.til == filterLugar.til).First().ruteId;
-            List<Reservasjon> billettLugarer = _lugDb.reservasjon.Where((x) => x.ruteId == ruteId && x.avgangsDato.Date == filterLugar.avgangsDato.Date && x.avgangsTid == filterLugar.avgangsTid).ToList();
+            List<Reservasjon> billettLugarer = _lugDb.reservasjon.Where((x) => x.ruteId == ruteId && x.avgangsDato.Date == filterLugar.avgangsDato.Date && x.avgangsTid.TimeOfDay == filterLugar.avgangsTid.TimeOfDay).ToList();
             List<int> lugarReservert = billettLugarer.ConvertAll((x) => x.lugarId).ToList();
 
            List<Lugar> sjekkUtsolgt = await _lugDb.lugarer.Where((x) =>
