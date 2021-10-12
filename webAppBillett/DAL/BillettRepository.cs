@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using webAppBillett.Contexts;
@@ -100,15 +99,10 @@ namespace webAppBillett.DAL
         }
         public async Task<List<RuteForekomstDato>> hentForekomsterDato(Rute rute)
         {
-            DateTime datetime = DateTime.Now;
-          
-
-
-
 
             int ruteId = _lugDb.ruter.First((x) => x.fra == rute.fra && x.til == rute.til).ruteId;
-            return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId && !x.erUtsolgt && (datetime.CompareTo(x.avgangsDato) < 0)).ToListAsync();
-               
+            return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId && !x.erUtsolgt).ToListAsync();
+
         }
 
         public async Task<PrisForRute> hentPrisForRute(Rute rute)
@@ -158,9 +152,7 @@ namespace webAppBillett.DAL
 
         public async Task<List<RuteForekomstDatoTid>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato)
         {
-
-
-            RuteForekomstDato forekomst = _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteForekomstDato.ruteId && x.avgangsDato.CompareTo(ruteForekomstDato.avgangsDato)==0 && !x.erUtsolgt );
+            RuteForekomstDato forekomst = _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteForekomstDato.ruteId && x.avgangsDato == ruteForekomstDato.avgangsDato && !x.erUtsolgt);
             int forekomstDatoId = forekomst.forekomstDatoId;
             List<RuteForekomstDatoTid> forekomster = await _lugDb.ruteForekomstDatoTid.Where((x) => x.forekomstDatoId == forekomstDatoId && !x.erUtsolgt).ToListAsync();
             if(forekomster.Count == 0)
