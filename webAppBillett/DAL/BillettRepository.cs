@@ -100,15 +100,15 @@ namespace webAppBillett.DAL
         }
         public async Task<List<RuteForekomstDato>> hentForekomsterDato(Rute rute)
         {
-            var datetime = DateTime.Now;
-            DateTime datetime2 = DateTime.Now.AddDays(2);
+            DateTime datetime = DateTime.Now;
+          
 
 
 
 
             int ruteId = _lugDb.ruter.First((x) => x.fra == rute.fra && x.til == rute.til).ruteId;
-            return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId && !x.erUtsolgt && (datetime.CompareTo(DateTime.ParseExact(x.avgangsDato, "dd/MM/yyyy", CultureInfo.InvariantCulture))> 0)).ToListAsync();
-                
+            return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId && !x.erUtsolgt && (datetime.CompareTo(x.avgangsDato) < 0)).ToListAsync();
+               
         }
 
         public async Task<PrisForRute> hentPrisForRute(Rute rute)
@@ -158,13 +158,9 @@ namespace webAppBillett.DAL
 
         public async Task<List<RuteForekomstDatoTid>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato)
         {
-            DateTime datetime = DateTime.Now;
 
 
-
-
-
-            RuteForekomstDato forekomst = _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteForekomstDato.ruteId && x.avgangsDato == ruteForekomstDato.avgangsDato && !x.erUtsolgt );
+            RuteForekomstDato forekomst = _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteForekomstDato.ruteId && x.avgangsDato.CompareTo(ruteForekomstDato.avgangsDato)==0 && !x.erUtsolgt );
             int forekomstDatoId = forekomst.forekomstDatoId;
             List<RuteForekomstDatoTid> forekomster = await _lugDb.ruteForekomstDatoTid.Where((x) => x.forekomstDatoId == forekomstDatoId && !x.erUtsolgt).ToListAsync();
             if(forekomster.Count == 0)

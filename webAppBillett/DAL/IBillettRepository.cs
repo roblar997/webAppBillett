@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace webAppBillett.DAL {
         public string fra { get; set; }
         public string til { get; set; }
         public string navn { get; set; }
-        public string avgangsDato { get; set; }
+        public DateTime avgangsDato { get; set; }
 
         public string avgangsTid { get; set; }
 
