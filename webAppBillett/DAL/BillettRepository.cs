@@ -134,9 +134,8 @@ namespace webAppBillett.DAL
                 return new List<Lugar>();
             }
 
-            List<Lugar> lugarer = await _lugDb.lugarer.Where((x) =>
-           //Skal ikke være reservert
-           !lugarReservert.Contains(x.lugarId) &&
+            List<Lugar> lugarer = sjekkUtsolgt.Where((x) =>
+         
            filterLugar.antall <= x.antall &&
            (!filterLugar.harDysj || (filterLugar.harDysj && x.harDysj)) &&
            (!filterLugar.harWifi || (filterLugar.harWifi && x.harWifi)) &&
@@ -144,7 +143,7 @@ namespace webAppBillett.DAL
            x.pris >= filterLugar.prisMin &&
            x.pris <= filterLugar.prisMaks
 
-            ).ToListAsync();
+            ).ToList();
 
             return lugarer;
 
