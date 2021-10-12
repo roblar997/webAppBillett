@@ -100,15 +100,15 @@ namespace webAppBillett.DAL
         }
         public async Task<List<RuteForekomstDato>> hentForekomsterDato(Rute rute)
         {
-            DateTime datetime = DateTime.Now;
-
+            var datetime = DateTime.Now;
+            DateTime datetime2 = DateTime.Now.AddDays(2);
 
 
 
 
             int ruteId = _lugDb.ruter.First((x) => x.fra == rute.fra && x.til == rute.til).ruteId;
-            return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId && !x.erUtsolgt && (DateTime.Compare(datetime, DateTime.ParseExact(x.avgangsDato.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture)) > 0)).ToListAsync();
-
+            return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId && !x.erUtsolgt && (datetime.CompareTo(DateTime.ParseExact(x.avgangsDato, "dd/MM/yyyy", CultureInfo.InvariantCulture))> 0)).ToListAsync();
+                
         }
 
         public async Task<PrisForRute> hentPrisForRute(Rute rute)
