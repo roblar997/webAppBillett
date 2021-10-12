@@ -529,8 +529,8 @@ async function hentBilletter() {
             html += "<p><strong> Navn: </strong> " + res[i].navn + "</p>";
             html += "<p><strong> Fra: </strong> " + res[i].fra + "</p>";
             html += "<p><strong> Til: </strong> " + res[i].til + "</p>";
-            html += "<p><strong> Dato: </strong> " + res[i].avgangsDato.split("T")[0] + "</p > ";
-            html += "<p><strong> Tid: </strong> " + res[i].avgangsTid.split("T")[1] + "</p > ";
+            html += "<p><strong> Dato: </strong> " + res[i].avgangsDato + "</p > ";
+            html += "<p><strong> Tid: </strong> " + res[i].avgangsTid + "</p > ";
             html += "<p><strong> RomNr: </strong> ";
             for (j = 0; j < res[i].listeRomNr.length; j++) {
                 html += res[i].listeRomNr[j] + " ";

@@ -24,12 +24,10 @@ namespace webAppBillett.Models
 
         [Key, Column(Order = 1)]
         [Required]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime avgangsDato { get; set; }
 
 
         [Key, Column(Order = 2)]
-        [DisplayFormat(DataFormatString = "{0:hh:mm}", ApplyFormatInEditMode = true)]
         [Required]
         public DateTime avgangsTid { get; set; }
 

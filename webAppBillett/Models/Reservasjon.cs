@@ -24,10 +24,8 @@ namespace webAppBillett.Models
         //For å hindre at en bestiller lugarer som allerede er tatt
         public int ruteId { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime avgangsDato { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime avgangsTid { get; set; }
 
 

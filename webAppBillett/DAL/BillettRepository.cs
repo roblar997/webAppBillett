@@ -53,8 +53,8 @@ namespace webAppBillett.DAL
                 billettFormatert.navn = personer.ElementAt(i).fornavn + " " + personer.ElementAt(i).etternavn;
                 billettFormatert.fra = fraNavn;
                 billettFormatert.til = tilNavn;
-                billettFormatert.avgangsDato = billett.avgangsDato;
-                billettFormatert.avgangsTid = billett.avgangsTid;
+                billettFormatert.avgangsDato = billett.avgangsDato.Date.ToString();
+                billettFormatert.avgangsTid = billett.avgangsTid.TimeOfDay.ToString();
 
                 billettFormatertListe.Add(billettFormatert);
             }
@@ -190,7 +190,7 @@ namespace webAppBillett.DAL
 
                     billettLugar.lugarId = lugar.lugarId;
                     billettLugar.ruteId = ruteId;
-                    billettLugar.avgangsTid = billett.avgangsTid;
+                    billettLugar.avgangsTid =  billett.avgangsTid;
                     billettLugar.avgangsDato = billett.avgangsDato;
 
                     await _lugDb.reservasjon.AddAsync(billettLugar);
