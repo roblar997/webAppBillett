@@ -107,7 +107,7 @@ namespace webAppBillett.DAL
 
 
             int ruteId = _lugDb.ruter.First((x) => x.fra == rute.fra && x.til == rute.til).ruteId;
-            return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId && !x.erUtsolgt && (DateTime.Compare(datetime, DateTime.ParseExact(x.avgangsDato.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture)) > 0)).ToListAsync();
+            return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId && !x.erUtsolgt && (DateTime.Compare(datetime, DateTime.ParseExact(x.avgangsDato.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture)) > 0)).ToListAsync();
 
         }
 
