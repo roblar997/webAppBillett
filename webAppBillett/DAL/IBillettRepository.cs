@@ -1,5 +1,7 @@
 ﻿
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using webAppBillett.Contexts;
@@ -13,7 +15,10 @@ namespace webAppBillett.DAL {
         public string fra { get; set; }
         public string til { get; set; }
         public string navn { get; set; }
-        public string avgangsDato { get; set; }
+
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime avgangsDato { get; set; }
 
         public string avgangsTid { get; set; }
 

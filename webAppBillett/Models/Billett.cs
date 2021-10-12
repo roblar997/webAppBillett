@@ -47,9 +47,9 @@ namespace webAppBillett.Models
         public int til { get; set; }
 
 
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required]
-
-        public string avgangsDato { get; set; }
+        public DateTime avgangsDato { get; set; }
 
 
         [Required]

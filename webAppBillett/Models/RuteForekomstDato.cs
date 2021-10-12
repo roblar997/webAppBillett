@@ -19,8 +19,8 @@ namespace webAppBillett.Models
         public int forekomstDatoId { get; set; }
 
         [Required]
-       
-        public string avgangsDato { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime avgangsDato { get; set; }
         [Required]
         public int ruteId { get; set; }
 
