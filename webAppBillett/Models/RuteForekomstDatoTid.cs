@@ -27,7 +27,7 @@ namespace webAppBillett.Models
         public string avgangsDato { get; set; }
 
 
-        [Key, string (Order = 2)]
+        [Key, Column(Order = 2)]
         [Required]
         public string avgangsTid { get; set; }
 

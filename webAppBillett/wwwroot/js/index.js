@@ -406,7 +406,7 @@ async function hentForekomstDato() {
     await $.post("/billett/hentForekomsterDato/", rute).done((res) => {
 
         for (i = 0; i < res.length; i++) {
-            setDato(res[i].avgangsDato.split("T")[0]);
+            setDato(res[i].avgangsDato);
         }
         //Hvis ingen ruteforekomst, så er det ikke noe poeng å spørre om pris for ruten.
         if (res.length > 0) {
@@ -436,7 +436,7 @@ async function hentForekomstDatoTid() {
     await $.post("/billett/hentForekomsterDatoTid/", forekomstDato).done((res) => {
  
         for (i = 0; i < res.length; i++) {
-            setTid(res[i].avgangsTid.split("T")[1]);
+            setTid(res[i].avgangsTid);
         }
     }) .promise();
 }
