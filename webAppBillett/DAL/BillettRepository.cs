@@ -61,7 +61,7 @@ namespace webAppBillett.DAL
 
             return billettFormatertListe;
             
-
+            //
         }
         public async Task<List<Lugar>> hentLugarer(int billettId)
         {
