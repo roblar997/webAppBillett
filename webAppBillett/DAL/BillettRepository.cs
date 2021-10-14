@@ -107,7 +107,7 @@ namespace webAppBillett.DAL
 
 
             int ruteId = _lugDb.ruter.First((x) => x.fra == rute.fra && x.til == rute.til).ruteId;
-            List<RuteForekomstDatoConverted> converted = _lugDb.ruteForekomstDato.ToList().ConvertAll((x) => new RuteForekomstDatoConverted { id = x.forekomstDatoId,ruteId=x.ruteId, dato = DateTime.Parse(x.avgangsDato).Date, tid = DateTime.Parse(x.avgangsDato).Date,erUtsolgt=x.erUtsolgt }); ;
+            List<RuteForekomstDatoConverted> converted = _lugDb.ruteForekomstDato.ToList().ConvertAll((x) => new RuteForekomstDatoConverted { id = x.forekomstDatoId,ruteId=x.ruteId, dato = DateTime.Parse(x.avgangsDato), tid = DateTime.Parse(x.avgangsDato),erUtsolgt=x.erUtsolgt }); ;
            
             return  converted.Where((x) => x.ruteId == ruteId && !x.erUtsolgt && (datetime.Date.CompareTo(x.dato.Date) <= 0) && (datetimein4month.Date.CompareTo(x.dato.Date) >= 0)).ToList();
 
