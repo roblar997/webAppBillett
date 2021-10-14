@@ -26,16 +26,7 @@ namespace webAppBillett.DAL {
         public List<string> listeRomNr { get; set; }
     };
 
-    public class RuteForekomstDatoConverted
-    {
-        public int id{ get; set; }
-        public int ruteId { get; set; }
-        public DateTime dato { get; set; }
-        public DateTime tid { get; set; }
-        public bool erUtsolgt { get; set; }
-        
 
-    }
     public class PrisForRute
     {
         public double prisBarn { get; set; }
