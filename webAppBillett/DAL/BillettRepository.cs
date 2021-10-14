@@ -98,7 +98,7 @@ namespace webAppBillett.DAL
             return havner;
 
         }
-        public async Task<List<RuteForekomstDato>> hentForekomsterDato(Rute rute)
+        public async Task<List<RuteForekomstDatoConverted>> hentForekomsterDato(Rute rute)
         {
             DateTime datetime = DateTime.Now;
             DateTime datetimein4month = DateTime.Now.AddMonths(4);
@@ -107,8 +107,10 @@ namespace webAppBillett.DAL
 
 
             int ruteId = _lugDb.ruter.First((x) => x.fra == rute.fra && x.til == rute.til).ruteId;
-            return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId && !x.erUtsolgt).ToListAsync();
-               
+            List<RuteForekomstDatoConverted> converted = _lugDb.ruteForekomstDato.ToList().ConvertAll((x) => new RuteForekomstDatoConverted { id = x.forekomstDatoId,ruteId=x.ruteId, dato = DateTime.Parse(x.avgangsDato).Date, tid = DateTime.Parse(x.avgangsDato).Date,erUtsolgt=x.erUtsolgt }); ;
+           
+            return  converted.Where((x) => x.ruteId == ruteId && !x.erUtsolgt && (datetime.Date.CompareTo(x.dato.Date) <= 0) && (datetimein4month.Date.CompareTo(x.dato.Date) >= 0)).ToList();
+
         }
 
         public async Task<PrisForRute> hentPrisForRute(Rute rute)

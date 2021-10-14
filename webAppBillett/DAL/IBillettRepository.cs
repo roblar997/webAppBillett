@@ -26,6 +26,16 @@ namespace webAppBillett.DAL {
         public List<string> listeRomNr { get; set; }
     };
 
+    public class RuteForekomstDatoConverted
+    {
+        public int id{ get; set; }
+        public int ruteId { get; set; }
+        public DateTime dato { get; set; }
+        public DateTime tid { get; set; }
+        public bool erUtsolgt { get; set; }
+        
+
+    }
     public class PrisForRute
     {
         public double prisBarn { get; set; }
@@ -40,7 +50,7 @@ namespace webAppBillett.DAL {
         public Task<PrisForRute> hentPrisForRute(Rute rute);
         public Task<List<Lugar>> hentFiltrerteLugarer(FilterLugar filterLugar);
         public  Task<List<Havn>> hentTilHavner(int id);
-        public  Task<List<RuteForekomstDato>> hentForekomsterDato(Rute rute);
+        public  Task<List<RuteForekomstDatoConverted>> hentForekomsterDato(Rute rute);
 
         public  Task<List<RuteForekomstDatoTid>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato);
 
