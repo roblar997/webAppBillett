@@ -53,8 +53,8 @@ namespace webAppBillett.DAL
                 billettFormatert.navn = personer.ElementAt(i).fornavn + " " + personer.ElementAt(i).etternavn;
                 billettFormatert.fra = fraNavn;
                 billettFormatert.til = tilNavn;
-                billettFormatert.avgangsDato = billett.avgangsDato.Date.ToString();
-                billettFormatert.avgangsTid = billett.avgangsTid.TimeOfDay.ToString();
+                billettFormatert.avgangsDato = billett.avgangsDato;
+                billettFormatert.avgangsTid = billett.avgangsTid;
 
                 billettFormatertListe.Add(billettFormatert);
             }
@@ -107,7 +107,7 @@ namespace webAppBillett.DAL
 
 
             int ruteId = _lugDb.ruter.First((x) => x.fra == rute.fra && x.til == rute.til).ruteId;
-            return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId && !x.erUtsolgt && (datetime.Date.CompareTo(x.avgangsDato.Date) <= 0) && (datetimein4month.Date.CompareTo(x.avgangsDato.Date) >= 0)).ToListAsync();
+            return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId && !x.erUtsolgt).ToListAsync();
                
         }
 
@@ -123,7 +123,7 @@ namespace webAppBillett.DAL
         {
 
             int ruteId = _lugDb.ruter.Where((x) => x.fra == filterLugar.fra && x.til == filterLugar.til).First().ruteId;
-            List<Reservasjon> billettLugarer = _lugDb.reservasjon.Where((x) => x.ruteId == ruteId && x.avgangsDato.Date == filterLugar.avgangsDato.Date ).ToList();
+            List<Reservasjon> billettLugarer = _lugDb.reservasjon.Where((x) => x.ruteId == ruteId ).ToList();
             List<int> lugarReservert = billettLugarer.ConvertAll((x) => x.lugarId).ToList();
 
            List<Lugar> sjekkUtsolgt = await _lugDb.lugarer.Where((x) =>
@@ -134,7 +134,7 @@ namespace webAppBillett.DAL
 
             if (sjekkUtsolgt.Count == 0)
             {
-                RuteForekomstDato forekomst = _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteId && x.avgangsDato.Date == filterLugar.avgangsDato.Date);
+                RuteForekomstDato forekomst = _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteId );
                 forekomst.erUtsolgt = true;
                 _lugDb.SaveChanges();
                 //tom liste
@@ -160,9 +160,9 @@ namespace webAppBillett.DAL
         {
             DateTime dateTime = DateTime.Now;
 
-            RuteForekomstDato forekomst = _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteForekomstDato.ruteId && x.avgangsDato.Date.CompareTo(ruteForekomstDato.avgangsDato.Date)==0 && !x.erUtsolgt );
+            RuteForekomstDato forekomst = _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteForekomstDato.ruteId &&  !x.erUtsolgt );
             int forekomstDatoId = forekomst.forekomstDatoId;
-            List<RuteForekomstDatoTid> forekomster = await _lugDb.ruteForekomstDatoTid.Where((x) => x.forekomstDatoId == forekomstDatoId && !x.erUtsolgt && ((dateTime.Date.CompareTo(x.avgangsDato.Date) != 0) || ((dateTime.TimeOfDay.CompareTo(x.avgangsTid.TimeOfDay) <= 0)))).ToListAsync();
+            List<RuteForekomstDatoTid> forekomster = await _lugDb.ruteForekomstDatoTid.Where((x) => x.forekomstDatoId == forekomstDatoId && !x.erUtsolgt ).ToListAsync();
             if(forekomster.Count == 0)
             {
                 forekomst.erUtsolgt = true;

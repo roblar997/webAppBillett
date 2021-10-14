@@ -24,12 +24,12 @@ namespace webAppBillett.Models
 
         [Key, Column(Order = 1)]
         [Required]
-        public DateTime avgangsDato { get; set; }
+        public string avgangsDato { get; set; }
 
 
-        [Key, Column(Order = 2)]
+        [Key, string (Order = 2)]
         [Required]
-        public DateTime avgangsTid { get; set; }
+        public string avgangsTid { get; set; }
 
 
         [Required]

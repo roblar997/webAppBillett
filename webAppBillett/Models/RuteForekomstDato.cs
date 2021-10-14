@@ -19,7 +19,7 @@ namespace webAppBillett.Models
         public int forekomstDatoId { get; set; }
 
         [Required]
-        public DateTime avgangsDato { get; set; }
+        public string avgangsDato { get; set; }
         [Required]
         public int ruteId { get; set; }
 

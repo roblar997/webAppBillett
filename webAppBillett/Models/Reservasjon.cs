@@ -24,9 +24,9 @@ namespace webAppBillett.Models
         //For å hindre at en bestiller lugarer som allerede er tatt
         public int ruteId { get; set; }
 
-        public DateTime avgangsDato { get; set; }
+        public string avgangsDato { get; set; }
 
-        public DateTime avgangsTid { get; set; }
+        public string avgangsTid { get; set; }
 
 
     }

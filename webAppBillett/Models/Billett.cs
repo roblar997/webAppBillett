@@ -49,12 +49,12 @@ namespace webAppBillett.Models
 
 
         [Required]
-        public DateTime avgangsDato { get; set; }
+        public string avgangsDato { get; set; }
 
 
         [Required]
 
-        public DateTime avgangsTid { get; set; }
+        public string avgangsTid { get; set; }
 
 
         [Required]
