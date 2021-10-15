@@ -474,7 +474,7 @@ async function hentFraHavner() {
         for (i = 0; i < res.length; i++) {
             setFraHavn(res[i]);
         }
-
+        $("#infobox1").hide();
 
     }).promise();
 }
@@ -492,7 +492,7 @@ async function hentTilHavner(id) {
         for (i = 0; i < res.length; i++) {
             setTilHavn(res[i]);
         }
-
+        $("#infobox1").hide();
 
     }).promise();
 }
@@ -527,7 +527,7 @@ async function velgLugar(id) {
 
     await $.get("/billett/velgLugar/" + id).done((res) => {
 
-  
+    
 
     }).promise();
 }
@@ -585,8 +585,8 @@ async function hentFiltrerteLugarer() {
 
     if (!validerFilterLugar(filterData)) return;
 
-    $.post("/billett/hentFiltrerteLugarer",filterData).done((res) => {
-    
+    $.post("/billett/hentFiltrerteLugarer", filterData).done((res) => {
+
         let typeValgt = [];
 
         for (i = 0; i < res.length; i++) {
@@ -617,8 +617,8 @@ async function hentFiltrerteLugarer() {
                     '                    <i class="fas fa-toilet"> Wc</i> ' +
 
                     '            </div> ';
- 
-            
+
+
             }
             if (res[i].harDysj) {
 
@@ -640,7 +640,7 @@ async function hentFiltrerteLugarer() {
                 '    </div> ';
             leggTilLugarSokOversikt(lugarHTML);
 
-            let lugarHTMLOversikt  =
+            let lugarHTMLOversikt =
                 ' <div class="card col-md-6"> <img class="card-img-top" src="' + res[i].bildeURL + '"></img> ' +
                 ' <div class="card-body">' +
                 ' <h5 class="card-title">' + res[i].tittel + '</h5>' +
@@ -673,7 +673,7 @@ async function hentFiltrerteLugarer() {
                     '            </div> ';
             }
 
-            lugarHTMLOversikt +=  '    </div> ';
+            lugarHTMLOversikt += '    </div> ';
 
 
             let val = res[i].lugarId;
@@ -686,13 +686,18 @@ async function hentFiltrerteLugarer() {
                 huskLugar(val, lugarHTMLOversikt, ant);
             });
 
+            $("#infobox2").hide();
+
         }
 
 
 
 
 
-    }).promise();
+    }).promise().catch((err) => {
+        $("#infobox2").show();
+        $("#infobox2").html(err);
+    });
 }
 
 
