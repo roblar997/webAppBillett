@@ -2,14 +2,24 @@
 $(() => {
 
  
+    $("#infobox1").hide();
+    $("#infobox2").hide();
+    $("#infobox3").hide();
+    $("#infobox4").hide();
 
     //TODO
     hentFraHavner().then((x) => {
 
-        hentTilHavner($("#fra").val()).catch((err) => {});
+        hentTilHavner($("#fra").val()).catch((err) => {
+            $("#infobox1").show();
+            $("#infobox1").html(err);
+        });
 
 
-    }).catch((err) => { });
+    }).catch((err) => {
+        $("#infobox1").show();
+        $("#infobox1").html(err);
+    });
 
 
 
@@ -293,19 +303,31 @@ async function lagreBetaling() {
     let ant = GUIModuleSPA.hentAntallPersoner();
     let canContinue = true;
 
-    await lagreReiseInfoServer().catch((err) => { canContinue = false; });
+    await lagreReiseInfoServer().catch((err) => {
+        $("#infobox4").show();
+        $("#infobox4").html(err);
+        canContinue = false;
+    });
     if (!canContinue) return;
 
         //Send alle personer til server
         for (i = 1; i <= ant; i++) {
             
-            await lagrePersonServer(i).catch((err) => { canContinue = false; });
+            await lagrePersonServer(i).catch((err) => {
+                $("#infobox4").show();
+                $("#infobox4").html(err);
+                canContinue = false;
+            });
             if (!canContinue) return;
         }
 
         //Send alle lugarene til server
         for (i = 0; i < lugarene.length; i++) {
-            await velgLugar(lugarene[i]).catch((err) => { canContinue = false; });
+            await velgLugar(lugarene[i]).catch((err) => {
+                $("#infobox4").show();
+                $("#infobox4").html(err);
+                canContinue = false;
+            });
             if (!canContinue) return;
         }
 
