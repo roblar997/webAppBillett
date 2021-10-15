@@ -109,7 +109,7 @@ namespace webAppBillett.DAL
 
 
             int ruteId = _lugDb.ruter.First((x) => x.fra == rute.fra && x.til == rute.til).ruteId;
-            return converted.Where((x) => x.ruteId == ruteId && !x.erUtsolgt && datetime.Date.CompareTo(x.avgangsDato.Date) <= 0).ToList();
+            return converted.Where((x) => x.ruteId == ruteId && !x.erUtsolgt && datetime.Date.CompareTo(x.avgangsDato.Date) <= 0 && datetimein4month.Date.CompareTo(x.avgangsDato.Date) >= 0).ToList();
                
         }
 
