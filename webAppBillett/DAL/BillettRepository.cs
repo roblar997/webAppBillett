@@ -13,13 +13,14 @@ namespace webAppBillett.DAL
     public class BillettRepository : IBillettRepository
     {
         private readonly BillettContext _lugDb;
+        private readonly object ruteForekomstDato;
 
         public BillettRepository(BillettContext db)
         {
             _lugDb = db;
 
         }
-
+        
         public async Task<List<Havn>> hentHavner()
         {
             return await _lugDb.havn.ToListAsync();
@@ -28,7 +29,7 @@ namespace webAppBillett.DAL
 
         public async Task<List<BillettFormatert>> hentBillettFormatert(int billettId)
         {
-
+          
             List<BillettFormatert> billettFormatertListe = new List<BillettFormatert>();
 
             Billett billett = await _lugDb.billetter.FindAsync(billettId);
@@ -98,16 +99,17 @@ namespace webAppBillett.DAL
             return havner;
 
         }
-        public async Task<List<RuteForekomstDato>> hentForekomsterDato(Rute rute)
+        public async Task<List<RuteForekomstConverted>> hentForekomsterDato(Rute rute)
         {
             DateTime datetime = DateTime.Now;
             DateTime datetimein4month = DateTime.Now.AddMonths(4);
+            List<RuteForekomstConverted> converted = _lugDb.ruteForekomstDato.ToList().ConvertAll((x) => new RuteForekomstConverted { ruteId = x.ruteId, erUtsolgt = x.erUtsolgt, avgangsDato = DateTime.Parse(x.avgangsDato) }); 
 
 
 
 
             int ruteId = _lugDb.ruter.First((x) => x.fra == rute.fra && x.til == rute.til).ruteId;
-            return await _lugDb.ruteForekomstDato.Where((x) => x.ruteId == ruteId && !x.erUtsolgt).ToListAsync();
+            return converted.Where((x) => x.ruteId == ruteId && !x.erUtsolgt && datetime.Date.CompareTo(x.avgangsDato.Date) <= 0).ToList();
                
         }
 

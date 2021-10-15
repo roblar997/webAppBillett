@@ -33,6 +33,14 @@ namespace webAppBillett.DAL {
         public double prisVoksen { get; set; }
     }
 
+    public class RuteForekomstConverted
+    {
+        public int ruteId { get; set; }
+        public bool erUtsolgt {get;set;}
+        public DateTime avgangsDato { get; set; }
+        
+        public DateTime avgangsTid { get; set; }
+    }
     public interface IBillettRepository {
         public Task<List<Lugar>> hentLugarer(int billettId);
         public  void velgLugar(int id, int billettId);
@@ -41,7 +49,7 @@ namespace webAppBillett.DAL {
         public Task<PrisForRute> hentPrisForRute(Rute rute);
         public Task<List<Lugar>> hentFiltrerteLugarer(FilterLugar filterLugar);
         public  Task<List<Havn>> hentTilHavner(int id);
-        public  Task<List<RuteForekomstDato>> hentForekomsterDato(Rute rute);
+        public  Task<List<RuteForekomstConverted>> hentForekomsterDato(Rute rute);
 
         public  Task<List<RuteForekomstDatoTid>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato);
 
