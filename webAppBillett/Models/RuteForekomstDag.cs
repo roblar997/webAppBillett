@@ -16,7 +16,7 @@ namespace webAppBillett.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int forekomstDatoId { get; set; }
+        public int forekomstDagId { get; set; }
 
         [Required]
         public string avgangsDag { get; set; }
