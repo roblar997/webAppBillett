@@ -23,12 +23,7 @@ $(() => {
 
 
 
-    $('#fra').change((x) => {
-        
-    });
 
-    $('#til').change((x) => {
-    });
 
 
 
@@ -208,6 +203,20 @@ $(() => {
 
     });
 
+    //-----mulig utvidelse ---
+
+    $("#avgangsAar").change((e) => {
+        $("#avgangsMaaned").html("");
+        $("#avgangsDag").html("");
+        hentForekomstMaaned();
+    });
+    $("#avgangsMaaned").change((e) => {
+        $("#avgangsDag").html("");
+        hentForekomstDag();
+    });
+
+
+    //
 
     $("#endre0").click((e) => {
         let  reiseInfo = {
