@@ -202,7 +202,7 @@ $(() => {
         $("#avgangsTid").html("");
 
     });
-
+   //
     //-----mulig utvidelse ---
 
     $("#avgangsAar").change((e) => {
