@@ -27,6 +27,8 @@ namespace webAppBillett.Models
         [Required]
         public string avgangsAar { get; set; }
 
+        public string avgangsDato { get; set; }
+
         [Required]
         public int ruteId { get; set; }
 
