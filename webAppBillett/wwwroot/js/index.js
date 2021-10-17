@@ -203,20 +203,7 @@ $(() => {
 
     });
    //
-    //-----mulig utvidelse ---
 
-    $("#avgangsAar").change((e) => {
-        $("#avgangsMaaned").html("");
-        $("#avgangsDag").html("");
-        hentForekomstMaaned();
-    });
-    $("#avgangsMaaned").change((e) => {
-        $("#avgangsDag").html("");
-        hentForekomstDag();
-    });
-
-
-    //
 
     $("#endre0").click((e) => {
         let  reiseInfo = {
@@ -472,71 +459,6 @@ async function hentForekomstDatoTid() {
     }) .promise();
 }
 
-async function hentForekomstDag() {
-    $("#avgangsDato").html("");
-    $("#avgangsTid").html("");
-
-    let rute = {
-        fra: $("#fra").val(),
-        til: $("#til").val()
-    }
-    if (!validerRute(rute)) return;
-
-    await $.post("/billett/hentForekomsterDag/", rute).done((res) => {
-
-        for (i = 0; i < res.length; i++) {
-            setDag(res[i].dag);
-        }
-        //Hvis ingen ruteforekomst, så er det ikke noe poeng å spørre om pris for ruten.
-        if (res.length > 0) {
-            $("#ruteValgt").val(res[0].ruteId);
-
-            $.post("/billett/hentPrisForRute/", rute).done((res2) => {
-                prisBarn = parseFloat(res2.prisBarn);
-                prisVoksen = parseFloat(res2.prisVoksen);
-            }).promise();
-
-        }
-
-
-    })
-        .promise();
-}
-
-async function hentForekomstMaaned() {
-    $("#avgangsTid").html("");
-    let forekomstMaaned = {
-        ruteId: $("#ruteValgt").val(),
-        aar: $("#avgangsDato").val()
-    }
-    if (!validerRuteForekomst(forekomstDato)) return;
-
-    await $.post("/billett/hentForekomsterMaaned/", forekomstMaaned).done((res) => {
-
-        for (i = 0; i < res.length; i++) {
-            setMaaned(res[i].maaned);
-        }
-    }).promise();
-}
-
-async function hentForekomstAaar() {
-    $("#avgangsTid").html("");
-    let forekomstAar = {
-        ruteId: $("#ruteValgt").val(),
-        avgangsDato: $("#avgangsDato").val()
-    }
-    if (!validerRuteForekomst(forekomstDato)) return;
-
-    await $.post("/billett/hentForekomsterAar/", forekomstAar).done((res) => {
-
-        for (i = 0; i < res.length; i++) {
-            setAar(res[i].aar);
-        }
-    }).promise();
-}
-
-
-
 
 
 async function hentFraHavner() {
@@ -581,15 +503,7 @@ function setTid(tid) {
     $("#avgangsTid").append('<option value = "' + tid + '">' + tid + ' </option>');
 }
 
-function setAar(aar) {
-    $("#avgangsAar").append('<option value = "' + aar + '">' + aar + ' </option>');
-}
-function setMaaned(maaned) {
-    $("#avgangsMaaned").append('<option value = "' + maaned + '">' + maaned + ' </option>');
-}
-function setDag(dag) {
-    $("#avgangsDag").append('<option value = "' + dag + '">' + dag + ' </option>');
-}
+
 
 async function huskLugar(id, body, ant) {
     lugarene.push(id);
