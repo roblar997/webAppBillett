@@ -7,6 +7,15 @@ $(() => {
     $("#infobox3").hide();
     $("#infobox4").hide();
 
+    $("#avgangsAar").change((x) => {
+        let maaneder = hentMaaneder(x.target.value);
+        maaneder.forEach((x) => setMaaned(x));
+    });
+    $("#avgangsMaaned").change((x) => {
+        let dager = hentDager(x.target.value);
+        dager.forEach((x) => setDag(x));
+    });
+
     //TODO
     hentFraHavner().then((x) => {
 
@@ -517,6 +526,7 @@ function setTid(tid) {
 
 function setAar(aar) {
     $("#avgangsAar").append('<option value = "' + aar + '">' + aar + ' </option>');
+    
 }
 function setMaaned(maaned) {
     $("#avgangsMaaned").append('<option value = "' + maaned + '">' + maaned + ' </option>');
