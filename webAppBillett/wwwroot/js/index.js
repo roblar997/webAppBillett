@@ -447,6 +447,8 @@ async function hentForekomstDato() {
             setDato(res[i].avgangsDato.split("T")[0]);
             dateList.push(res[i].avgangsDato.split("T")[0]);
         }
+        let aar = hentAar();
+        aar.forEach((x) => setAar(x));
         //Hvis ingen ruteforekomst, så er det ikke noe poeng å spørre om pris for ruten.
         if (res.length > 0) {
             $("#ruteValgt").val(res[0].ruteId);
