@@ -234,6 +234,7 @@ $(() => {
 // VARIABLER UTEN KLASSE ^^
 let personene = [];
 let lugarene = [];
+let dateList = [];
 let lugarPrisTot = 0;
 let reiseInformasjonen;
 let prisBarn = 0;
@@ -241,6 +242,16 @@ let prisVoksen = 0;
 
 //let reiseInformasjonen = [];
 
+function hentAar() {
+    return [... new Set(dateList.map((x) => x.split("-")[0]))];
+}
+function hentMaaneder(aar) {
+    return [...new Set(dateList.filter((x) => x.split("-")[0] == aar).map((x) => x.split("-")[1]))];
+}
+
+function hentDager(aar,maaned) {
+    return [...new Set(dateList.filter((x) => x.split("-")[0] == aar && x.split("-")[1] == maaned).map((x) => x.split("-")[2]))];
+}
 
 /**     ----- Alt i et løsning, men funker på backend. Nb reiseinformasjonen må da være liste ----
 let registrering = {
@@ -425,6 +436,7 @@ async function hentForekomstDato() {
 
         for (i = 0; i < res.length; i++) {
             setDato(res[i].avgangsDato.split("T")[0]);
+            dateList.push(res[i].avgangsDato.split("T")[0]);
         }
         //Hvis ingen ruteforekomst, så er det ikke noe poeng å spørre om pris for ruten.
         if (res.length > 0) {
