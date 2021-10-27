@@ -7,11 +7,11 @@ $(() => {
     $("#infobox3").hide();
     $("#infobox4").hide();
 
-    $("#avgangsAar").change((x) => {
+    $("#avgangsAar").click((x) => {
         let maaneder = hentMaaneder(x.target.value);
         maaneder.forEach((x) => setMaaned(x));
     });
-    $("#avgangsMaaned").change((x) => {
+    $("#avgangsMaaned").click((x) => {
         let dager = hentDager(x.target.value);
         dager.forEach((x) => setDag(x));
     });
