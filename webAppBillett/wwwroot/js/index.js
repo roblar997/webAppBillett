@@ -515,6 +515,15 @@ function setTid(tid) {
     $("#avgangsTid").append('<option value = "' + tid + '">' + tid + ' </option>');
 }
 
+function setAar(aar) {
+    $("#avgangsAar").append('<option value = "' + aar + '">' + aar + ' </option>');
+}
+function setMaaned(maaned) {
+    $("#avgangsMaaned").append('<option value = "' + maaned + '">' + maaned + ' </option>');
+}
+function setDag(dag) {
+    $("#avgangsDag").append('<option value = "' + dag + '">' + dag + ' </option>');
+}
 
 
 async function huskLugar(id, body, ant) {
