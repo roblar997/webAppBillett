@@ -8,10 +8,12 @@ $(() => {
     $("#infobox4").hide();
 
     $("#avgangsAar").click((x) => {
+        $("#avgangsMaaned").html("");
         let maaneder = hentMaaneder(x.target.value);
         maaneder.forEach((y) => setMaaned(y));
     });
     $("#avgangsMaaned").click((x) => {
+        $("#avgangsDag").html("");
         let aar = $("#avgangsAar").val();
         let dager = hentDager(aar,x.target.value);
         dager.forEach((y) => setDag(y));
