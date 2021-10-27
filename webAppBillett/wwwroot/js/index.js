@@ -453,7 +453,6 @@ async function hentForekomstDato() {
     await $.post("/billett/hentForekomsterDato/", rute).done((res) => {
 
         for (i = 0; i < res.length; i++) {
-            setDato(res[i].avgangsDato.split("T")[0]);
             dateList.push(res[i].avgangsDato.split("T")[0]);
         }
         let aar = hentAar();
