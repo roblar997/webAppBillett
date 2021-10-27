@@ -9,11 +9,12 @@ $(() => {
 
     $("#avgangsAar").click((x) => {
         let maaneder = hentMaaneder(x.target.value);
-        maaneder.forEach((x) => setMaaned(x));
+        maaneder.forEach((y) => setMaaned(y));
     });
     $("#avgangsMaaned").click((x) => {
-        let dager = hentDager(x.target.value);
-        dager.forEach((x) => setDag(x));
+        let aar = $("#avgangsAar").val();
+        let dager = hentDager(x.target.value,aar);
+        dager.forEach((y) => setDag(y));
     });
 
     //TODO
