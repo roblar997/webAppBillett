@@ -144,13 +144,14 @@ $(() => {
    
  
     $("#reg0").click((e) => {
+        let avgangsDatoen = $("#avgangsAar").val() + "-" + $("#avgangsMaaned").val() + "-" + $("#avgangsDag").val();
         const reiseInfo = {
             reiseId: -1,
             fra: $('#fra').val(),
             til: $('#til').val(),
             antBarn: $("#antBarn").val(),
             antVoksen: $("#antVoksen").val(),
-            avgangsDato: $('#avgangsDato').val(),
+            avgangsDato: avgangsDatoen,
             avgangsTid: $('#avgangsTid').val()
         };
 
@@ -199,18 +200,20 @@ $(() => {
     });
     $("#fra").change((e) => {
         $("#til").html("");
-        $("#avgangsDato").html("");
+        $("#avgangsDag").html("");
+        $("#avgangsMaaned").html("");
+        $("#avgangsAar").html("");
         $("#avgangsTid").html("");
         hentTilHavner($("#fra").val());
     });
 
-    $("#avgangsDato").change((e) => {
-        $("#avgangsTid").html("");
-    });
+
 
     $("#til").change((e) => {
 
-        $("#avgangsDato").html("");
+        $("#avgangsDag").html("");
+        $("#avgangsMaaned").html("");
+        $("#avgangsAar").html("");
         $("#avgangsTid").html("");
 
     });
@@ -218,10 +221,11 @@ $(() => {
 
 
     $("#endre0").click((e) => {
+        let avgangsDatoen = $("#avgangsAar").val() + "-" + $("#avgangsMaaned").val() + "-" + $("#avgangsDag").val();
         let  reiseInfo = {
             fra: $('#fra').val(),
             til: $('#til').val(),
-            avgangsDato: $('#avgangsDato').val(),
+            avgangsDato: avgangsDatoen,
             avgangsTid: $('#avgangsTid').val(),
             antBarn: $("#antBarn").val(),
             antVoksen: $("#antVoksen").val(),
@@ -435,7 +439,9 @@ function beregnPris() {
 
 
 async function hentForekomstDato() {
-    $("#avgangsDato").html("");
+    $("#avgangsAar").html("");
+    $("#avgangsMaaned").html("");
+    $("#avgangsDag").html("");
     $("#avgangsTid").html("");
 
     let rute = {
@@ -451,6 +457,7 @@ async function hentForekomstDato() {
             dateList.push(res[i].avgangsDato.split("T")[0]);
         }
         let aar = hentAar();
+
         aar.forEach((x) => setAar(x));
         //Hvis ingen ruteforekomst, så er det ikke noe poeng å spørre om pris for ruten.
         if (res.length > 0) {
@@ -470,10 +477,12 @@ async function hentForekomstDato() {
 
 
 async function hentForekomstDatoTid() {
+    let avgangsDatoen = $("#avgangsAar").val() + "-" + $("#avgangsMaaned").val() + "-" + $("#avgangsDag").val();
+
     $("#avgangsTid").html("");
     let forekomstDato = {
         ruteId: $("#ruteValgt").val(),
-        avgangsDato: $("#avgangsDato").val()
+        avgangsDato: avgangsDatoen
     }
     if (!validerRuteForekomst(forekomstDato)) return;
 
@@ -521,9 +530,7 @@ function setTilHavn(havn) {
     $("#til").append('<option value = "' + havn.havnId + '">' + havn.navn + ' </option>');
 
 }
-function setDato(dato) {
-    $("#avgangsDato").append('<option value = "' + dato + '">' + dato + ' </option>');
-}
+
 
 function setTid(tid) {
     $("#avgangsTid").append('<option value = "' + tid + '">' + tid + ' </option>');
