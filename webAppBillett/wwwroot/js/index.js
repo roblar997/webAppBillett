@@ -13,7 +13,7 @@ $(() => {
     });
     $("#avgangsMaaned").click((x) => {
         let aar = $("#avgangsAar").val();
-        let dager = hentDager(x.target.value,aar);
+        let dager = hentDager(aar,x.target.value);
         dager.forEach((y) => setDag(y));
     });
 
