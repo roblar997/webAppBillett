@@ -416,7 +416,6 @@ async function lagrePerson(skjemaNr) {
 async function lagrePersonServer(skjemaNr) {
 
 
-
     await $.post("/billett/lagrePerson/", personene[skjemaNr]).done((res) => {
 
 
