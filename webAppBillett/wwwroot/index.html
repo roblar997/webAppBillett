@@ -340,93 +340,118 @@
                                 <label>Type kjøretøy</label>
                                 <select>
 
-                                    <option value="personbil">personBil</option>
-                                    <option value="sykkel"> sykkel</option>
-                                    <option value="motorsykkel"> motorsykkel</option>
+                                    <option value="personbil">Personbil </option>
+                                    <option value="personbilTilhenger">Personbil +tilhenger/campingVogn </option>
+                                    <option value="lastebil"> Lastebil  </option>
+                                    <option value="lettLastebil">Lett lastebil  </option>
+                                    <option value="motorsykkel"> Motorsykkel  </option>
+                                    <option value="minibuss"> Minibuss  </option>
+                                    <option value="buss"> Buss  </option>
+                                    <option value="moped"> Moped </option>
+                                    <option value="traktor"> Traktor </option>
+                                    <option value="snoScooter">Snøsooter  </option>
+
+
                                     <option value="annet">annet</option>
                                 </select>
 
                             </div>
                         </div>
-
-                        
-                            <p>
-                                Husk å ta hensyn til den totale lengden/høyden/bredden som følge av
-                                tilhenger,  campingvogn, skiboks og liknende
-                            </p>
-                            <div class="row">
-                                <div class="col">
-                                    <label>Minst like høy (i meter)</label>
-                                    <input type="number" id="hoyde" />
-                                    <span class="text-danger" id="utloperFeil"></span>
-                                </div>
+                        <div class="row">
+                            <div class="col">
+                                <label>Omtrentlig total vekt (nb! Vekten av kjøretøyet finner en i vognkortet) </label>
+                                <input type="text" id="maksVekt" />
+                                <span class="text-danger" id="utloperFeil"></span>
                             </div>
-
-
-                            <div class="row">
-                                <div class="col">
-                                    <label>Ikke høyere enn (i meter)</label>
-                                    <input type="number" id="hoyde" />
-                                    <span class="text-danger" id="utloperFeil"></span>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <label>Minst like lang (i meter)</label>
-                                    <input type="number" id="hoyde" />
-                                    <span class="text-danger" id="utloperFeil"></span>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col">
-                                    <label>Ikke lengre enn (i meter) </label>
-                                    <input type="number" id="hoyde" />
-                                    <span class="text-danger" id="utloperFeil"></span>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <label>Minst like bred (i meter)</label>
-                                    <input type="number" id="hoyde" />
-                                    <span class="text-danger" id="utloperFeil"></span>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col">
-                                    <label>Ikke bredere enn (i meter) </label>
-                                    <input type="number" id="hoyde" />
-                                    <span class="text-danger" id="utloperFeil"></span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label><strong>Informasjon om innhold: </strong></label>
-                                    <input type="checkbox" value="vopen">Våpen
-                                    <input type="checkbox" value="apparater"> Elektriske apparater
-                                    <input type="checkbox" value="beholder"> Sprøytebeholder (til f.eks insulin)
-                                    <input type="checkbox" value="gass"> Gassbeholdere
-
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label>Antall kjæledyr:</label> <input type="number" value="dyr" style="width:10em">
-
-
-                                    <label><strong>Andre relevante opplysninger med tanke på type kjøretøy og innhold</strong></label>
-                                    <input type="textarea" style="width:30em; height:20em"></input>
-
-                                </div>
-                            </div>
-
-
                         </div>
+
+
+                        <p>
+                            Husk å ta hensyn til den totale lengden/høyden/bredden som følge av
+                            tilhenger,  campingvogn, skiboks og liknende
+                        </p>
+                        <div class="row">
+                            <div class="col">
+                                <label>Minst like høy (i meter)</label>
+                                <input type="number" id="hoyde" />
+                                <span class="text-danger" id="utloperFeil"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col">
+                                <label>Ikke høyere enn (i meter)</label>
+                                <input type="number" id="hoyde" />
+                                <span class="text-danger" id="utloperFeil"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label>Minst like lang (i meter)</label>
+                                <input type="number" id="hoyde" />
+                                <span class="text-danger" id="utloperFeil"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col">
+                                <label>Ikke lengre enn (i meter) </label>
+                                <input type="number" id="hoyde" />
+                                <span class="text-danger" id="utloperFeil"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label>Minst like bred (i meter)</label>
+                                <input type="number" id="hoyde" />
+                                <span class="text-danger" id="utloperFeil"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col">
+                                <label>Ikke bredere enn (i meter) </label>
+                                <input type="number" id="hoyde" />
+                                <span class="text-danger" id="utloperFeil"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col">
+                                <label>Maks tillatt totalvekt(oppgitt i vognkort) </label>
+                                <input type="number" id="hoyde"  style="width:10em"/>
+                                <span class="text-danger" id="utloperFeil"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label><strong>Informasjon om innhold: </strong></label>
+                                <input type="checkbox" value="vopen">Våpen
+                                <input type="checkbox" value="apparater"> Elektriske apparater
+                                <input type="checkbox" value="beholder"> Sprøytebeholder (til f.eks insulin)
+                                <input type="checkbox" value="gass"> Gassbeholdere
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label>Antall kjæledyr:</label> <input type="number" value="dyr" style="width:10em">
+
+
+                                <label><strong>Andre relevante opplysninger med tanke på type kjøretøy og innhold</strong></label>
+                                <input type="textarea" style="width:30em; height:20em"></input>
+
+                            </div>
+                        </div>
+
+
+                    </div>
                     </div>
 
                 <div class="btn-box">
