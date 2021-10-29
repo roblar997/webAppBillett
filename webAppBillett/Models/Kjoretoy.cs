@@ -14,11 +14,17 @@ namespace webAppBillett.Models
 
         }
 
-     
+        [Key]
+        public int kjoretoyId { get; set; }
 
         public string typeKjoretoy { get; set; }
-        
+
+        public string hoydeKlasse { get; set; }
+
+        public string lengdeKlasse { get; set; }
+
         public int antattMaksVekt { get; set; }
+        
 
     }
 }
