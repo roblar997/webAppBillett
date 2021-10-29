@@ -25,5 +25,6 @@ namespace webAppBillett.Models
         public int antKjæledyr { get; set; }
 
         public string infoInnhold { get; set; }
+
     }
 }
