@@ -331,6 +331,7 @@
                 </div>
                 <div class="container">
                     <h1 class="text-center">Kjøretøy </h1>
+
                     <div class="row">
                         <h2 class="text-left"> Legg til kjøretøy </h2>
 
@@ -356,7 +357,7 @@
 
                             </div>
                         </div>
-   
+
 
 
                         <p>
@@ -391,9 +392,9 @@
                             </div>
                         </div>
 
-              
 
-   
+
+
                         <div class="row">
                             <div class="col">
                                 <label><strong>Informasjon om innhold: </strong></label>
@@ -405,7 +406,7 @@
                             </div>
                         </div>
                         <div class="row">
-                  
+
                             <div class="col">
                                 <strong> Kjæledyr: </strong>
                                 <label>Antall kjæledyr:</label> <input type="number" value="dyr" style="width:10em">
@@ -419,35 +420,87 @@
 
 
                     </div>
-                    </div>
+                </div>
 
                 <div class="btn-box">
                     <button type="button" id="fulfor"> Legg til</button>
                 </div>
                 <div class="container">
-                    <h1 class="text-center">Oversikt over kjøretøy </h1>
-                    <div class="row">
-      
+                    <div class="container">
+                        <h1 class="text-center">Kjøretøy </h1>
+                        <div class="row">
+                            <h2 class="text-left"> Legg til kjøretøy </h2>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </form>
+
+            <form class="form" id="regform6" action="">
+                <div class="alert alert-warning" role="alert" id="infobox4">
+
+                </div>
+                <h1 class="text-center">Løs bagasje </h1>
+                <p> Merk at hver passasjer maks kan ta med seg 200 kg.   </p>
+                <div class="row">
+                    <h2 class="text-left"> Legg til løs bagasje </h2>
+
+                </div>
+
+
+
+
+                <div class="row">
+                    <div class="col">
+                        <label><strong>Informasjon om innhold: </strong></label>
+                        <input type="checkbox" value="vopen">Våpen
+                        <input type="checkbox" value="apparater"> Elektriske apparater
+                        <input type="checkbox" value="beholder"> Sprøytebeholder (til f.eks insulin)
+                        <input type="checkbox" value="gass"> Gassbeholdere
 
                     </div>
+                </div>
+                <div class="row">
 
+                    <div class="col">
+                        <strong> Kjæledyr: </strong>
+                        <label>Antall kjæledyr, en ønsker å sette i kennel (sjekk hvilke dyr som kan settes i kennel, for gjeldende rute) :</label> <input type="number" value="dyr" style="width:10em">
+
+                        <label><strong>Andre relevante opplysninger med tanke på innhold</strong></label>
+                        <input type="textarea" style="width:30em; height:20em"></input>
+
+                    </div>
+                </div>
+
+                <div class="btn-box">
+                    <button type="button" id="fulfor"> Legg til</button>
+                </div>
+                <div class="container">
+                    <h1 class="text-center">Oversikt over løs bagasje </h1>
+                    <div class="row">
+
+
+                    </div>
+                </div>
             </form>
+        <form class="form" id="regform3" action="">
+            <div class="alert alert-warning" role="alert" id="infobox3">
 
-            <form class="form" id="regform3" action="">
-                <div class="alert alert-warning" role="alert" id="infobox3">
+            </div>
+            <h1 class="overskrift">Personinfo</h1>
+            <div id="personer">
 
-                </div>
-                <h1 class="overskrift">Personinfo</h1>
-                <div id="personer">
+            </div>
 
-                </div>
-
-                <div class="btn-box" id="btnBox">
-                    <button type="button" id="btnTilbake2">Tilbake</button>
-                    <button type="button" class="btn btn-success " id="btnFerdig">Ferdig</button>
-                </div>
-            </form>
-        </div>
+            <div class="btn-box" id="btnBox">
+                <button type="button" id="btnTilbake2">Tilbake</button>
+                <button type="button" class="btn btn-success " id="btnFerdig">Ferdig</button>
+            </div>
+        </form>
+    </div>
     </div>
 </body>
 </html>
