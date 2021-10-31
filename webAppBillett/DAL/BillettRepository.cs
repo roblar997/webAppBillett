@@ -77,6 +77,11 @@ namespace webAppBillett.DAL
             return lugarer;
 
         }
+
+        public async Task<List<Kjoretoy>> hentKjoretoyInfo()
+        {
+            return await _lugDb.kjoretoy.ToListAsync();
+        }
         public async Task<List<Person>> hentPersoner(int billettId)
         {
 

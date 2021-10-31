@@ -25,7 +25,7 @@ namespace webAppBillett.Contexts
         public DbSet<RuteForekomstDato> ruteForekomstDato { get; set; }
         public DbSet<RuteForekomstDatoTid> ruteForekomstDatoTid { get; set; }
         public DbSet<Person> personer { get; set; }
-   
+        public DbSet<Kjoretoy> kjoretoy { get; set; }
         public DbSet<Reservasjon> reservasjon { get; set; }
         public DbSet<BillettPerson> billettPerson { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

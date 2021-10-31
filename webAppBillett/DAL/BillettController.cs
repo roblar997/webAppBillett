@@ -184,7 +184,10 @@ namespace webAppBillett.Controllers
                 return NotFound("Fant ikke det som ble spurt om");
             }
         }
-
+        public async Task<List<Kjoretoy>> hentKjoretoyInfo()
+        {
+            return await _lugDb.hentKjoretoyInfo();
+        }
         public async Task<ActionResult> hentFiltrerteLugarer(FilterLugar filterLugar)
         {
             if (!ModelState.IsValid)

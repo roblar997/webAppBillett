@@ -52,7 +52,7 @@ namespace webAppBillett.DAL {
         public  Task<List<RuteForekomstConverted>> hentForekomsterDato(Rute rute);
 
         public  Task<List<RuteForekomstDatoTid>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato);
-
+        public  Task<List<Kjoretoy>> hentKjoretoyInfo();
         public  Task<int> lagrePerson(Person person, int billettId);
 
         public  void utforBetaling(Betaling betaling, int billettId);
