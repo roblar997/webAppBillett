@@ -18,7 +18,7 @@ $(() => {
         let dager = hentDager(aar,x.target.value);
         dager.forEach((y) => setDag(y));
     });
-
+    hentKjoretoyInfo();
     //TODO
     hentFraHavner().then((x) => {
 
@@ -251,10 +251,28 @@ $(() => {
 let personene = [];
 let lugarene = [];
 let dateList = [];
+let kjoretoyInfo = [];
+
 let lugarPrisTot = 0;
 let reiseInformasjonen;
 let prisBarn = 0;
 let prisVoksen = 0;
+
+
+function hentTyper() {
+    return [... new Set(kjoretoyInfo.map((x) => x.typeKjoretoy))];
+}
+
+
+function hentHoydeKlasse(type) {
+    return [... new Set(kjoretoyInfo.filter((x) => x.typeKjoretoy == type).map((x)=>x.hoydeKlasse))];
+}
+
+
+function hentLengdeKlasse(type, hoydeKlasse) {
+    return [... new Set(kjoretoyInfo.filter((x) => x.typeKjoretoy == type && x.hoydeKlasse == hoydeKlasse).map((x) => x.lengdeKlasse))];
+}
+
 
 //let reiseInformasjonen = [];
 
@@ -493,6 +511,18 @@ async function hentForekomstDatoTid() {
 }
 
 
+async function hentKjoretoyInfo() {
+
+    await $.get("/billett/hentKjoretoyInfo/").done((res) => {
+
+        kjoretoyInfo = res;
+        let typer = hentTyper();
+        for (i = 0; i < typer.length; i++) {
+            setType(typer[i]);
+        }
+
+    }).promise();
+}
 
 async function hentFraHavner() {
 
@@ -537,6 +567,11 @@ function setTid(tid) {
 function setAar(aar) {
     $("#avgangsAar").append('<option value = "' + aar + '">' + aar + ' </option>');
     
+}
+
+function setType(type) {
+    $("#kjoreType").append('<option value = "' + type + '">' + type + ' </option>');
+
 }
 function setMaaned(maaned) {
     $("#avgangsMaaned").append('<option value = "' + maaned + '">' + maaned + ' </option>');
