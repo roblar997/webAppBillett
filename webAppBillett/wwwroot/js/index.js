@@ -19,6 +19,24 @@ $(() => {
         dager.forEach((y) => setDag(y));
     });
     hentKjoretoyInfo();
+
+    $("#kjoreType").click((x) => {
+        $("#hoydeKlasse").html("");
+        $("#lengdeKlasse").html("");
+        let liste = hentHoydeKlasse(x.target.value);
+        for (i = 0; i < liste.length; i++) {
+            setHoydeKlasse(liste[i]);
+        }
+    });
+
+    $("#hoydeKlasse").click((x) => {
+        $("#lengdeKlasse").html("");
+        let type = $("#kjoreType").val();
+        let liste = hentLengdeKlasse(type,x.target.value);
+        for (i = 0; i < liste.length; i++) {
+            setLengdeKlasse(liste[i]);
+        }
+    });
     //TODO
     hentFraHavner().then((x) => {
 
@@ -571,6 +589,15 @@ function setAar(aar) {
 
 function setType(type) {
     $("#kjoreType").append('<option value = "' + type + '">' + type + ' </option>');
+
+}
+function setHoydeKlasse(hoydeKlasse) {
+    $("#hoydeKlasse").append('<option value = "' + hoydeKlasse + '">' + hoydeKlasse + ' </option>');
+
+}
+
+function setLengdeKlasse(lengdeKlasse) {
+    $("#lengdeKlasse").append('<option value = "' + lengdeKlasse + '">' + lengdeKlasse + ' </option>');
 
 }
 function setMaaned(maaned) {
