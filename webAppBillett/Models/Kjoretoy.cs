@@ -16,7 +16,7 @@ namespace webAppBillett.Models
 
         [Key]
         public int kjoretoyId { get; set; }
-        public virtual List<RuteForekomstDatoTidKjoretoy> ruteForekomstDatoTidKjoretoys { get; set; }
+        public virtual List<RuteForekomstDatoTidKjoretoy> ruteForekomstDatoTidKjoretoy { get; set; }
         public virtual List<BillettKjoretoy> BillettKjoretoy { get; set; }
         public string typeKjoretoy { get; set; }
 

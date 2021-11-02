@@ -25,7 +25,9 @@ namespace webAppBillett.Models
 
 
         public virtual List<BillettPerson> billettPerson { get; set; }
-        public virtual List<RuteForekomstDatoTidKjoretoy> ruteforekomstdatotidkjoretoy { get; set; }
+
+        public virtual List<BillettKjoretoy> billettKjoretoy { get; set; }
+
         public virtual List<Reservasjon> reservasjoner { get; set; }
 
 
