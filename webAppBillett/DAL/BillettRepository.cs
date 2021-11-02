@@ -90,13 +90,19 @@ namespace webAppBillett.DAL
 
 
             RuteForekomstDatoTid ruteForekomstDatoTid = _lugDb.ruteForekomstDatoTid.First((x) => x.avgangsDato == kjoretoy.avgangsDato && x.avgangsTid == kjoretoy.avgangsTid && x.ruteId == kjoretoy.ruteId);
-            RuteForekomstDatoTidKjoretoy ruteforekomstdatotidkjoretoy = new RuteForekomstDatoTidKjoretoy();
+            RuteForekomstDatoTidKjoretoy ruteforekomstdatotidkjoretoy = _lugDb.ruteForekomstDatoTidKjoretoy.First((x) => x.ruteForekomstDatoTidId == ruteForekomstDatoTid.ruteForekomstDatoTidId && x.kjoretoyId == kjoretoyet.kjoretoyId);
 
-            ruteforekomstdatotidkjoretoy.ruteForekomstDatoTidId = ruteForekomstDatoTid.ruteForekomstDatoTidId;
-            ruteforekomstdatotidkjoretoy.kjoretoyId = kjoretoyet.kjoretoyId;
-            _lugDb.ruteForekomstDatoTidKjoretoy.Add(ruteforekomstdatotidkjoretoy);
-
-            _lugDb.SaveChanges();
+            //Sjekk om vi faktisk kunne legge til kjøretøyet
+            if(ruteforekomstdatotidkjoretoy.maksAntall == ruteforekomstdatotidkjoretoy.antReservert)
+            {
+                throw new Exception("Ikke flere parkeringsplasser tilgjengelig");
+            }
+       
+            else
+            {
+                ruteforekomstdatotidkjoretoy.antReservert++;
+                _lugDb.SaveChanges();
+            }
         }
         public async Task<List<Kjoretoy>> hentKjoretoyInfo()
         {
