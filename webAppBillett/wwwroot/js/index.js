@@ -440,7 +440,7 @@ async function lagreKjoretoy() {
 async function lagreBagasje() {
     let bagasje = {
 
-        harVåpen: $("#harSykkelB").prop("checked"),
+        harSykkel: $("#harSykkelB").prop("checked"),
         harVåpen: $("#harVåpenB").prop("checked"),
         harElAparat: $("#harElAparatB").prop("checked"),
         harSproyteBeholder: $("#harSproyteBeholderB").prop("checked"),
