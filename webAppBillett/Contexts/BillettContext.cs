@@ -24,7 +24,10 @@ namespace webAppBillett.Contexts
 
         public DbSet<RuteForekomstDato> ruteForekomstDato { get; set; }
         public DbSet<RuteForekomstDatoTid> ruteForekomstDatoTid { get; set; }
+        public DbSet<RuteForekomstDatoTidKjoretoy> ruteForekomstDatoTidKjoretoy { get; set; }
         public DbSet<Person> personer { get; set; }
+        public DbSet<Bagasje> bagasje { get; set; }
+        public DbSet<BillettKjoretoy> billettkjoretoy { get; set; }
         public DbSet<Kjoretoy> kjoretoy { get; set; }
         public DbSet<Reservasjon> reservasjon { get; set; }
         public DbSet<BillettPerson> billettPerson { get; set; }
@@ -45,7 +48,14 @@ namespace webAppBillett.Contexts
                 table.personId
             });
 
-
+            modelBuilder.Entity<BillettKjoretoy>().HasKey(table => new {
+                table.billettId,
+                table.kjoretoyId
+            });
+            modelBuilder.Entity<RuteForekomstDatoTidKjoretoy>().HasKey(table => new {
+                table.ruteForekomstDatoTidId,
+                table.kjoretoyId
+            });
 
             modelBuilder.Entity<RuteForekomstDatoTid>().HasKey(table => new {
                 table.ruteId,

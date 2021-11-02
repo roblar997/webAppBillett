@@ -15,7 +15,9 @@ namespace webAppBillett.Models
         }
 
         [Key]
-        public int bagasjeId;
+        public int bagasjeId { get; set; }
+
+        public int billettId { get; set; }
 
         public bool harSykkel { get; set; }
         public virtual Billett billett{ get; set; }
