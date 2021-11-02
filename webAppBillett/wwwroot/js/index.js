@@ -422,7 +422,9 @@ async function endrePerson(skjemaNr) {
 
 async function lagreKjoretoy() {
     let kjoretoy = {
-
+        ruteId: $("#ruteValgt").val(),
+        avgangsDato: reiseInformasjonen.avgangsDato,
+        avgangsTid: reiseInformasjonen.avgangsTid,
         kjoreType: $("#kjoreType").val(),
         hoydeKlasse: $("#hoydeKlasse").val(),
         lengdeKlasse: $("#lengdeKlasse").val(),
