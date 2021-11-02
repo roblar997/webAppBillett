@@ -419,7 +419,7 @@ async function endrePerson(skjemaNr) {
 
 }
 
-async function sendKjoretoy() {
+async function lagreKjoretoy() {
     let kjoretoy = {
 
         kjoreType: $("#kjoreType").val(),
@@ -432,10 +432,8 @@ async function sendKjoretoy() {
         antKjæledyr: $("#antKjæledyr").val(),
         infoInnhold: $("#infoInnhold").val()
     }
+    kjoretoyInfo.push(kjoretoy);
 
-    await $.post("/billett/lagreKjoretoy/", kjoretoy).done((res) => {
-
-    });
 }
 
 async function lagrePerson(skjemaNr) {
@@ -490,13 +488,7 @@ function beregnPris() {
 
 }
 
-function lagreKjoretoy(kjoretoy) {
 
-}
-
-function lagreBagasje(bagasje) {
-
-}
 
 async function hentForekomstDato() {
     $("#avgangsAar").html("");
