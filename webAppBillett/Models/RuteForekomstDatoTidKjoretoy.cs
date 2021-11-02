@@ -19,6 +19,9 @@ namespace webAppBillett.Models
         public virtual RuteForekomstDatoTid ruteforekomstDatoTid{ get; set; }
         public virtual Kjoretoy kjoretoy { get; set; }
 
+        public int ruteForekomstDatoTidId { get; set; }
+        public int kjoretoyId { get; set; }
+
         public int maksAntall { get; set; }
         public int antReservert { get; set; }
     }

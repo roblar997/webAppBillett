@@ -14,21 +14,12 @@ namespace webAppBillett.Models
 
         }
 
+        [Key]
+        public int ruteForekomstDatoTidId { get; set; }
 
-
-        [Key, Column(Order = 0)]
-        [Required]
         public int ruteId { get; set; }
 
-
-
-        [Key, Column(Order = 1)]
-        [Required]
         public string avgangsDato { get; set; }
-
-
-        [Key, Column(Order = 2)]
-        [Required]
         public string avgangsTid { get; set; }
 
 
