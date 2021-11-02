@@ -435,7 +435,7 @@ async function sendKjoretoy() {
 
     await $.post("/billett/lagreKjoretoy/", kjoretoy).done((res) => {
 
-    }
+    });
 }
 
 async function lagrePerson(skjemaNr) {
