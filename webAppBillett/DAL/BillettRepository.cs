@@ -86,6 +86,13 @@ namespace webAppBillett.DAL
 
             billettKjoretoy.kjoretoyId = kjoretoyet.kjoretoyId;
             billettKjoretoy.billettId = billett.billettId;
+            billettKjoretoy.harVåpen = kjoretoy.harVåpen;
+            billettKjoretoy.harElApparat = kjoretoy.harElApparat;
+            billettKjoretoy.harSproyteBeholder = kjoretoy.harSproyteBeholder;
+            billettKjoretoy.harGassBeholder = kjoretoy.harGassBeholder;
+            billettKjoretoy.antKjæledyr = kjoretoy.antKjæledyr;
+            billettKjoretoy.infoInnhold  = kjoretoy.infoInnhold;
+
             _lugDb.billettkjoretoy.Add(billettKjoretoy);
 
 

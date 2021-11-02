@@ -33,7 +33,7 @@ namespace webAppBillett.DAL {
 
         public string lengdeKlasse { get; set; }
         public bool harVåpen { get; set; }
-        public bool harElAparat { get; set; }
+        public bool harElApparat { get; set; }
         public bool harSproyteBeholder { get; set; }
         public bool harGassBeholder { get; set; }
 
