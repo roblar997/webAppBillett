@@ -86,6 +86,7 @@ namespace webAppBillett.DAL
 
             billettKjoretoy.kjoretoyId = kjoretoyet.kjoretoyId;
             billettKjoretoy.billettId = billett.billettId;
+            _lugDb.billettkjoretoy.Add(billettKjoretoy);
 
 
             RuteForekomstDatoTid ruteForekomstDatoTid = _lugDb.ruteForekomstDatoTid.First((x) => x.avgangsDato == kjoretoy.avgangsDato && x.avgangsTid == kjoretoy.avgangsTid && x.ruteId == kjoretoy.ruteId);
@@ -93,6 +94,9 @@ namespace webAppBillett.DAL
 
             ruteforekomstdatotidkjoretoy.ruteForekomstDatoTidId = ruteForekomstDatoTid.ruteForekomstDatoTidId;
             ruteforekomstdatotidkjoretoy.kjoretoyId = kjoretoyet.kjoretoyId;
+            _lugDb.ruteForekomstDatoTidKjoretoy.Add(ruteforekomstdatotidkjoretoy);
+
+            _lugDb.SaveChanges();
         }
         public async Task<List<Kjoretoy>> hentKjoretoyInfo()
         {
