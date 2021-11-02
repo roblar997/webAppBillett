@@ -270,6 +270,7 @@ let personene = [];
 let lugarene = [];
 let dateList = [];
 let kjoretoyInfo = [];
+let bagasjeInfo = [];
 
 let lugarPrisTot = 0;
 let reiseInformasjonen;
@@ -434,6 +435,20 @@ async function lagreKjoretoy() {
     }
     kjoretoyInfo.push(kjoretoy);
 
+}
+
+async function lagreBagasje() {
+    let bagasje = {
+
+        harVåpen: $("#harSykkelB").prop("checked"),
+        harVåpen: $("#harVåpenB").prop("checked"),
+        harElAparat: $("#harElAparatB").prop("checked"),
+        harSproyteBeholder: $("#harSproyteBeholderB").prop("checked"),
+        harGassBeholder: $("#harGassBeholderB").prop("checked"),
+        antKjæledyr: $("#antKjæledyrB").val(),
+        infoInnhold: $("#infoInnholdB").val()
+    }
+    bagasjeInfo.push(bagasje);
 }
 
 async function lagrePerson(skjemaNr) {
