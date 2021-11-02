@@ -10,7 +10,7 @@ using webAppBillett.Models;
 namespace webAppBillett.DAL {
 
     //Tilhører ikke database (derfor slik klasse) - kun som et view til klient.
-   public class BillettFormatert
+    public class BillettFormatert
     {
         public string fra { get; set; }
         public string til { get; set; }
@@ -26,7 +26,21 @@ namespace webAppBillett.DAL {
         public List<string> listeRomNr { get; set; }
     };
 
+    public class KjoretoyToBeUnWrapped{
+        public string typeKjoretoy { get; set; }
 
+        public string hoydeKlasse { get; set; }
+
+        public string lengdeKlasse { get; set; }
+        public bool harVåpen { get; set; }
+        public bool harElAparat { get; set; }
+        public bool harSproyteBeholder { get; set; }
+        public bool harGassBeholder { get; set; }
+
+        public int antKjæledyr { get; set; }
+
+        public string infoInnhold { get; set; }
+}
     public class PrisForRute
     {
         public double prisBarn { get; set; }
@@ -53,6 +67,8 @@ namespace webAppBillett.DAL {
 
         public  Task<List<RuteForekomstDatoTid>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato);
         public  Task<List<Kjoretoy>> hentKjoretoyInfo();
+
+        public void lagreKjoretoy(int billettId, KjoretoyToBeUnWrapped kjoretoy);
         public  Task<int> lagrePerson(Person person, int billettId);
 
         public  void utforBetaling(Betaling betaling, int billettId);

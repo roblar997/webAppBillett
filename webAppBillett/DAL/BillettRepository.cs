@@ -77,7 +77,17 @@ namespace webAppBillett.DAL
             return lugarer;
 
         }
+        public void lagreKjoretoy(int billettId, KjoretoyToBeUnWrapped kjoretoy)
+        {
+            Billett billett =  _lugDb.billetter.Find(billettId);
+            BillettKjoretoy billettKjoretoy = new BillettKjoretoy();
 
+            Kjoretoy kjoretoyet = _lugDb.kjoretoy.First((x) => x.typeKjoretoy == kjoretoy.typeKjoretoy && x.hoydeKlasse == kjoretoy.hoydeKlasse && x.lengdeKlasse == kjoretoy.lengdeKlasse);
+
+            billettKjoretoy.kjoretoyId = kjoretoyet.kjoretoyId;
+            billettKjoretoy.billettId = billett.billettId;
+          
+        }
         public async Task<List<Kjoretoy>> hentKjoretoyInfo()
         {
             return await _lugDb.kjoretoy.ToListAsync();

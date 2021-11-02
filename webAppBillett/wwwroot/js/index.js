@@ -419,6 +419,25 @@ async function endrePerson(skjemaNr) {
 
 }
 
+async function sendKjoretoy() {
+    let kjoretoy = {
+
+        kjoreType: $("#kjoreType").val(),
+        hoydeKlasse: $("#hoydeKlasse").val(),
+        lengdeKlasse: $("#lengdeKlasse").val(),
+        harVåpen: $("#harVåpen").prop("checked"),
+        harElAparat: $("#harElAparat").prop("checked"),
+        harSproyteBeholder: $("#harSproyteBeholder").prop("checked"),
+        harGassBeholder: $("#harGassBeholder").prop("checked"),
+        antKjæledyr: $("#antKjæledyr").val(),
+        infoInnhold: $("#infoInnhold").val()
+    }
+
+    await $.post("/billett/lagreKjoretoy/", kjoretoy).done((res) => {
+
+    }
+}
+
 async function lagrePerson(skjemaNr) {
 
     const person2 = {
@@ -471,7 +490,13 @@ function beregnPris() {
 
 }
 
+function lagreKjoretoy(kjoretoy) {
 
+}
+
+function lagreBagasje(bagasje) {
+
+}
 
 async function hentForekomstDato() {
     $("#avgangsAar").html("");

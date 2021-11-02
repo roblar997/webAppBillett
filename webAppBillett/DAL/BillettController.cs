@@ -184,6 +184,13 @@ namespace webAppBillett.Controllers
                 return NotFound("Fant ikke det som ble spurt om");
             }
         }
+
+        public void lagreKjoretoy(KjoretoyToBeUnWrapped kjoretoy)
+        {
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
+            _lugDb.lagreKjoretoy(billettId,kjoretoy);
+        }
+
         public async Task<List<Kjoretoy>> hentKjoretoyInfo()
         {
             return await _lugDb.hentKjoretoyInfo();
