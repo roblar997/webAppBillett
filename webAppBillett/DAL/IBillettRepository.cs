@@ -40,7 +40,12 @@ namespace webAppBillett.DAL {
         public int antKjæledyr { get; set; }
 
         public string infoInnhold { get; set; }
-}
+
+        public int ruteId { get; set; }
+        public string avgangsDato { get; set; }
+        public string avgangsTid { get; set; }
+
+    }
     public class PrisForRute
     {
         public double prisBarn { get; set; }
