@@ -21,7 +21,7 @@ namespace webAppBillett.Models
 
         public string avgangsDato { get; set; }
         public string avgangsTid { get; set; }
-
+        public virtual List<RuteForekomstDatoTidKjoretoy> ruteForekomstDatoTidKjoretoys { get; set; }
 
         [Required]
         public string ankomstDato { get; set; }
