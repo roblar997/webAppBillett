@@ -22,7 +22,7 @@ namespace webAppBillett.Models
         public bool harSykkel { get; set; }
         public virtual Billett billett{ get; set; }
         public bool harVåpen { get; set; }
-        public bool harElAparat { get; set; }
+        public bool harElApparat { get; set; }
         public bool harSproyteBeholder { get; set; }
         public bool harGassBeholder { get; set; }
 
