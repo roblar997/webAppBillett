@@ -224,7 +224,7 @@ var GUIModuleSPA = (function () {
     //Sjekker om alle skjemaene har status state.success. 
     //Er ok at et skjema er active, så lenge forrige tilstand var state.success.
     function erPFerdig() {
-        return GUIModuleSPA.testAntallPersoner() && GUIModuleSPA.testAntallLugarer() && GUIModuleSPA.testReiseInformasjon();
+        return GUIModuleSPA.testAntallPersoner() && GUIModuleSPA.testAntallLugarer() && GUIModuleSPA.testReiseInformasjon() && GUIModuleSPA.testAntallBagasjer() && GUIModuleSPA.testAntallKjoretoy();
     }
 
     return {
