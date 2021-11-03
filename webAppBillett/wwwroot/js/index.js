@@ -478,7 +478,7 @@ async function lagreKjoretoy() {
     html += ' høyde klasse: ' + kjoretoy.hoydeKlasse;
     html += ' lengde klasse: ' + kjoretoy.lengdeKlasse;
     html += ' harVåpen: ' + kjoretoy.harVåpen;
-    html += ' harElAparat: ' + kjoretoy.harElAparat;
+    html += ' harElApparat: ' + kjoretoy.harElApparat;
     html += ' harSproyteBeholder: ' + kjoretoy.harSproyteBeholder;
     html += ' harGassBeholder: ' + kjoretoy.harGassBeholder;
     html += ' harSproyteBeholder: ' + kjoretoy.harSproyteBeholder;
@@ -503,7 +503,7 @@ async function lagreBagasje() {
 
         harSykkel: $("#harSykkelB").prop("checked"),
         harVåpen: $("#harVåpenB").prop("checked"),
-        harElApparat: $("#harElAparatB").prop("checked"),
+        harElApparat: $("#harElApparatB").prop("checked"),
         harSproyteBeholder: $("#harSproyteBeholderB").prop("checked"),
         harGassBeholder: $("#harGassBeholderB").prop("checked"),
         antKjæledyr: $("#antKjæledyrB").val(),
@@ -520,7 +520,7 @@ async function lagreBagasje() {
     html += '  <p class="card-text">'
     html += ' harSykkel: ' + bagasje.harSykkel;
     html += ' harVåpen: ' + bagasje.harVåpen;
-    html += ' harElAparat: ' + bagasje.harElAparat;
+    html += ' harElApparat: ' + bagasje.harElApparat;
     html += ' harSproyteBeholder: ' + bagasje.harSproyteBeholder;
     html += ' harGassBeholder: ' + bagasje.harGassBeholder;
     html += ' harSproyteBeholder: ' + bagasje.harSproyteBeholder;
