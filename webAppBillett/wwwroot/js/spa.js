@@ -21,6 +21,8 @@ $(() => {
     $('#regform2').hide();
     $("#regform3").hide();
     $("#regform4").hide();
+    $("#regform5").hide();
+    $("#regform6").hide();
     $("#endre0").hide();
 
     $("#btnNeste").click(function () {
@@ -45,12 +47,47 @@ $(() => {
         $("#regform2").show();
         GUIModuleSPA.changeSchemaState(1, state.active);
     });
+    $("#btnTilbake3").click(function () {
+        $("#regform4").hide();
+        $("#regform3").show();
+        GUIModuleSPA.changeSchemaState(2, state.active);
+    });
+    $("#btnTilbake4").click(function () {
+        $("#regform5").hide();
+        $("#regform3").show();
+        GUIModuleSPA.changeSchemaState(3, state.active);
+    });
     $("#btnNeste2").click(function () {
         if (GUIModuleSPA.testAntallLugarer()) {
             $("#regform2").hide();
             $("#regform3").show();
 
             GUIModuleSPA.changeSchemaState(2, state.active);
+        }
+        else {
+            alert("Ikke ferdig med skjemaet");
+        }
+
+    });
+    $("#btnNeste3").click(function () {
+        if (GUIModuleSPA.testAntallPersoner()) {
+            $("#regform3").hide();
+            $("#regform4").show();
+
+            GUIModuleSPA.changeSchemaState(3, state.active);
+        }
+        else {
+            alert("Ikke ferdig med skjemaet");
+        }
+
+    });
+
+    $("#btnNeste4").click(function () {
+        if (GUIModuleSPA.testAntallKjoretoy()) {
+            $("#regform4").hide();
+            $("#regform5").show();
+
+            GUIModuleSPA.changeSchemaState(4, state.active);
         }
         else {
             alert("Ikke ferdig med skjemaet");
