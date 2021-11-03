@@ -6,6 +6,8 @@ $(() => {
     $("#infobox2").hide();
     $("#infobox3").hide();
     $("#infobox4").hide();
+    $("#infobox5").hide();
+    $("#infobox6").hide();
     $("#addBagasje").click((x) => {
         lagreBagasje();
     });
