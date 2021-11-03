@@ -204,7 +204,7 @@ namespace webAppBillett.Controllers
 
         public ActionResult lagreKjoretoy(KjoretoyToBeUnWrapped kjoretoy)
         {
-            if (!ModelState.IsValid) return BadRequest("Ugyldig input");
+         //   if (!ModelState.IsValid) return BadRequest("Ugyldig input");
             try
             {
 

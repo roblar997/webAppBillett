@@ -500,7 +500,7 @@ async function lagreKjoretoy() {
 
 async function lagreBagasje() {
     let bagasje = {
-
+        billettId: -1,
         harSykkel: $("#harSykkelB").prop("checked"),
         harVåpen: $("#harVåpenB").prop("checked"),
         harElApparat: $("#harElApparatB").prop("checked"),
