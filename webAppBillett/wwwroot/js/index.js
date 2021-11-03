@@ -402,7 +402,7 @@ async function lagreBetaling() {
             if (!canContinue) return;
         }
     //Send alle kjøretøy til server
-    for (i = 1; i <= kjoretoyene.length; i++) {
+    for (i = 0; i < kjoretoyene.length; i++) {
 
         await lagreKjoretoyServer(kjoretoyene[i]).catch((err) => {
                 $("#infobox4").show();
@@ -412,7 +412,7 @@ async function lagreBetaling() {
             if (!canContinue) return;
     }
     //Send alle bagasjer til server
-    for (i = 1; i <= bagasjene.length; i++) {
+    for (i = 0; i < bagasjene.length; i++) {
             
             await lagreBagasjeServer(bagasjene[i]).catch((err) => {
                 $("#infobox4").show();
