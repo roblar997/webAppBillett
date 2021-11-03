@@ -83,12 +83,20 @@ namespace webAppBillett.DAL
             try { 
             Billett billett = _lugDb.billetter.Find(billettId);
             Bagasje bagasjen = new Bagasje();
-            bagasjen.billettId = billett.billettId;
+
+                bagasjen.harSykkel = bagasjen.harSykkel;
+                bagasjen.harVåpen = bagasjen.harVåpen;
+                bagasjen.harElApparat = bagasjen.harElApparat;
+                bagasjen.harSproyteBeholder = bagasjen.harSproyteBeholder;
+                bagasjen.harGassBeholder = bagasjen.harGassBeholder;
+                bagasjen.antKjæledyr = bagasjen.antKjæledyr;
+                bagasjen.infoInnhold = bagasjen.infoInnhold;
+
+                bagasjen.billettId = billett.billettId;
             _lugDb.bagasje.Add(bagasjen);
             _lugDb.SaveChanges();
         }
-            catch (Exception ex)
-            {
+         catch (Exception ex){
                 slettBillett(billettId);
                 throw;
             }

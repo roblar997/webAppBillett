@@ -19,16 +19,22 @@ namespace webAppBillett.Models
 
         public int billettId { get; set; }
 
+        [Required]
         public bool harSykkel { get; set; }
         public virtual Billett billett{ get; set; }
+        [Required]
         public bool harVåpen { get; set; }
+        [Required]
         public bool harElApparat { get; set; }
+        [Required]
         public bool harSproyteBeholder { get; set; }
+        [Required]
         public bool harGassBeholder { get; set; }
 
-
+        [Required]
         public int antKjæledyr { get; set; }
 
+        [Required]
         public string infoInnhold { get; set; }
 
     }

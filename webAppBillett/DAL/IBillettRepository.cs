@@ -27,22 +27,30 @@ namespace webAppBillett.DAL {
     };
 
     public class KjoretoyToBeUnWrapped{
+
+        [Required]
         public string typeKjoretoy { get; set; }
-
+        [Required]
         public string hoydeKlasse { get; set; }
-
+        [Required]
         public string lengdeKlasse { get; set; }
+        [Required]
         public bool harVåpen { get; set; }
+        [Required]
         public bool harElApparat { get; set; }
+        [Required]
         public bool harSproyteBeholder { get; set; }
+        [Required]
         public bool harGassBeholder { get; set; }
-
+        [Required]
         public int antKjæledyr { get; set; }
-
+        [Required]
         public string infoInnhold { get; set; }
-
+        [Required]
         public int ruteId { get; set; }
+        [Required]
         public string avgangsDato { get; set; }
+        [Required]
         public string avgangsTid { get; set; }
 
     }
