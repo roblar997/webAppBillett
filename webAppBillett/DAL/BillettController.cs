@@ -204,12 +204,12 @@ namespace webAppBillett.Controllers
 
         public ActionResult lagreKjoretoy(KjoretoyToBeUnWrapped kjoretoy)
         {
-         //   if (!ModelState.IsValid) return BadRequest("Ugyldig input");
+            if (!ModelState.IsValid) return BadRequest("Ugyldig input");
             try
             {
 
                 int billettId = HttpContext.Session.GetInt32("billettId").Value;
-            //    _lugDb.lagreKjoretoy(billettId, kjoretoy);
+               _lugDb.lagreKjoretoy(billettId, kjoretoy);
                 return Ok();
             }
             catch
