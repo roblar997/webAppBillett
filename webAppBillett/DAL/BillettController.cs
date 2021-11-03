@@ -185,16 +185,38 @@ namespace webAppBillett.Controllers
             }
         }
 
-        public void lagreBagasje(Bagasje bagasje)
+        public ActionResult lagreBagasje(Bagasje bagasje)
         {
-            int billettId = HttpContext.Session.GetInt32("billettId").Value;
-            _lugDb.lagreBagasje(billettId, bagasje);
+            if (!ModelState.IsValid) return BadRequest("Ugyldig input");
+            try
+            {
+
+                int billettId = HttpContext.Session.GetInt32("billettId").Value;
+                _lugDb.lagreBagasje(billettId, bagasje);
+                return Ok();
+            }
+            catch
+            {
+                _log.LogError("  bagasje klarte ikke å lagre");
+                return BadRequest("Kunne ikke lagre");
+            }
         }
 
-        public void lagreKjoretoy(KjoretoyToBeUnWrapped kjoretoy)
+        public ActionResult lagreKjoretoy(KjoretoyToBeUnWrapped kjoretoy)
         {
-            int billettId = HttpContext.Session.GetInt32("billettId").Value;
-            _lugDb.lagreKjoretoy(billettId,kjoretoy);
+            if (!ModelState.IsValid) return BadRequest("Ugyldig input");
+            try
+            {
+
+                int billettId = HttpContext.Session.GetInt32("billettId").Value;
+                _lugDb.lagreKjoretoy(billettId, kjoretoy);
+                return Ok();
+            }
+            catch
+            {
+                _log.LogError("  kjoretoy klarte ikke å lagre");
+                return BadRequest("Kunne ikke lagre");
+            }
         }
 
         public async Task<List<Kjoretoy>> hentKjoretoyInfo()

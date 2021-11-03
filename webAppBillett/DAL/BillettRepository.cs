@@ -80,14 +80,25 @@ namespace webAppBillett.DAL
 
         public void lagreBagasje(int billettId, Bagasje bagasje)
         {
+            try { 
             Billett billett = _lugDb.billetter.Find(billettId);
             Bagasje bagasjen = new Bagasje();
             bagasjen.billettId = billett.billettId;
             _lugDb.bagasje.Add(bagasjen);
             _lugDb.SaveChanges();
         }
+            catch (Exception ex)
+            {
+                slettBillett(billettId);
+                throw;
+            }
+}
         public void lagreKjoretoy(int billettId, KjoretoyToBeUnWrapped kjoretoy)
         {
+            try
+            {
+
+           
             Billett billett =  _lugDb.billetter.Find(billettId);
             BillettKjoretoy billettKjoretoy = new BillettKjoretoy();
 
@@ -118,6 +129,12 @@ namespace webAppBillett.DAL
             {
                 ruteforekomstdatotidkjoretoy.antReservert++;
                 _lugDb.SaveChanges();
+            }
+            }
+            catch (Exception ex)
+            {
+                slettBillett(billettId);
+                throw;
             }
         }
         public async Task<List<Kjoretoy>> hentKjoretoyInfo()
