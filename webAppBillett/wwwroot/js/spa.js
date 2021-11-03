@@ -83,6 +83,10 @@ var GUIModuleSPA = (function () {
     let personerRegistrert = 0;
     let reiseInfoReigstrert = 0;
     let antPlasserRegistrert = 0;
+    let antBagasjerRegistrert = 0;
+    let kravBagasjerAntall = 0;
+    let kjoretoyRegistrert = 0;
+    let kravPjoretoyAntall = 0;
 
     function leggTilMaksPPlasser(antall) {
         antPlasserRegistrert += antall;
@@ -107,7 +111,13 @@ var GUIModuleSPA = (function () {
         reiseInfoReigstrert -= antall;
     }
 
+    function testPAntallBagasjer() {
+        return antBagasjerRegistrert >= kravBagasjerAntall;
+    }
+    function testPAntallKjoretoy() {
 
+        return kjoretoyRegistrert == kravPjoretoyAntall;
+    }
     function testPAntallLugarer() {
         return antPlasserRegistrert >= kravPersonAntall;
     }
@@ -136,10 +146,10 @@ var GUIModuleSPA = (function () {
     let activeClasses = ["text-white", "bg-primary"];
 
     //Tilstanden skjemaet hadde før
-    let preSchemaState = [state.notFinished, state.notFinished, state.notFinished];
+    let preSchemaState = [state.notFinished, state.notFinished, state.notFinished, state.notFinished, state.notFinished]];
 
     //Tilstanden skjemaet har nå
-    let schemaState = [state.active, state.notFinished, state.notFinished];
+    let schemaState = [state.active, state.notFinished, state.notFinished, state.notFinished, state.notFinished];
     let currentActive = 0;
 
 
@@ -232,6 +242,14 @@ var GUIModuleSPA = (function () {
         fjernPersoner: function (antall) {
             fjernPPersoner(antall);
         },
+        testAntallBagasjer: function () {
+            return testPAntallBagasjer();
+        },
+        testAntallKjoretoy: function () {
+            return testPAntallKjoretoy();
+        }
+    }
+    function testPAntallKjoretoy() {
         addReiseInfo: function (antall) {
             addPReiseInfo(antall);
         },
