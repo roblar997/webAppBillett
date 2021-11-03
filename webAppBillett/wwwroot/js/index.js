@@ -459,7 +459,7 @@ async function lagreKjoretoy() {
         hoydeKlasse: $("#hoydeKlasse").val(),
         lengdeKlasse: $("#lengdeKlasse").val(),
         harVåpen: $("#harVåpen").prop("checked"),
-        harElApparat: $("#harElAparat").prop("checked"),
+        harElApparat: $("#harElApparat").prop("checked"),
         harSproyteBeholder: $("#harSproyteBeholder").prop("checked"),
         harGassBeholder: $("#harGassBeholder").prop("checked"),
         antKjæledyr: $("#antKjæledyr").val(),
