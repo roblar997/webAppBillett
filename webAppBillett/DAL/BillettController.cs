@@ -209,7 +209,7 @@ namespace webAppBillett.Controllers
             {
 
                 int billettId = HttpContext.Session.GetInt32("billettId").Value;
-                _lugDb.lagreKjoretoy(billettId, kjoretoy);
+            //    _lugDb.lagreKjoretoy(billettId, kjoretoy);
                 return Ok();
             }
             catch
