@@ -183,7 +183,7 @@ var GUIModuleSPA = (function () {
     let activeClasses = ["text-white", "bg-primary"];
 
     //Tilstanden skjemaet hadde før
-    let preSchemaState = [state.notFinished, state.notFinished, state.notFinished, state.notFinished, state.notFinished]];
+    let preSchemaState = [state.notFinished, state.notFinished, state.notFinished, state.notFinished, state.notFinished];
 
     //Tilstanden skjemaet har nå
     let schemaState = [state.active, state.notFinished, state.notFinished, state.notFinished, state.notFinished];
