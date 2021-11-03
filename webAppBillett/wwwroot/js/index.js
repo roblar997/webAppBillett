@@ -489,6 +489,12 @@ async function lagreKjoretoy() {
     html += '</div>';
 
     $("#oversiktKjoretoy").append(html);
+    if (GUIModuleSPA.testAntallKjoretoy()) {
+        GUIModuleSPA.changeSchemaState(3, 1);
+    }
+    else {
+        GUIModuleSPA.changeSchemaState(2, 4);
+    }
 
 }
 
@@ -525,6 +531,12 @@ async function lagreBagasje() {
     html += '</div>';
 
     $("#oversiktBagasje").append(html);
+    if (GUIModuleSPA.testAntallBagasjer()) {
+        GUIModuleSPA.changeSchemaState(4, 1);
+    }
+    else {
+        GUIModuleSPA.changeSchemaState(4, 4);
+    }
 }
 
 async function lagrePerson(skjemaNr) {
