@@ -153,7 +153,7 @@ var GUIModuleSPA = (function () {
     }
     function testPAntallKjoretoy() {
 
-        return kjoretoyRegistrert == kravPjoretoyAntall;
+        return kjoretoyRegistrert >= kravPjoretoyAntall;
     }
     function testPAntallLugarer() {
         return antPlasserRegistrert >= kravPersonAntall;
