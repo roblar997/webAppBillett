@@ -277,7 +277,9 @@ let personene = [];
 let lugarene = [];
 let dateList = [];
 let kjoretoyInfo = [];
-let bagasjeInfo = [];
+
+let kjoretoyene = [];
+let bagasjene = [];
 
 let lugarPrisTot = 0;
 let reiseInformasjonen;
@@ -397,7 +399,26 @@ async function lagreBetaling() {
             });
             if (!canContinue) return;
         }
+    //Send alle kjøretøy til server
+    for (i = 1; i <= kjoretoyene.length; i++) {
 
+        await lagreKjoretoyServer(kjoretoyene[i]).catch((err) => {
+                $("#infobox4").show();
+                $("#infobox4").html(err);
+                canContinue = false;
+            });
+            if (!canContinue) return;
+    }
+    //Send alle bagasjer til server
+    for (i = 1; i <= bagasjene.length; i++) {
+            
+            await lagreBagasjeServer(bagasjene[i]).catch((err) => {
+                $("#infobox4").show();
+                $("#infobox4").html(err);
+                canContinue = false;
+            });
+            if (!canContinue) return;
+        }
         $.post("/billett/utforBetaling/", betalingsInfo).done((res) => {
 
             //window.location.reload(true);
@@ -442,7 +463,7 @@ async function lagreKjoretoy() {
         antKjæledyr: $("#antKjæledyr").val(),
         infoInnhold: $("#infoInnhold").val()
     }
-    kjoretoyInfo.push(kjoretoy);
+    kjoretoyene.push(kjoretoy);
 
 
     let html = ' <div class="card" style="width: 18rem;">'
@@ -544,7 +565,23 @@ async function lagrePersonServer(skjemaNr) {
 }
 
 
+async function lagreBagasjeServer(bagasje) {
 
+
+    await $.post("/billett/lagreBagasje/", bagasje).done((res) => {
+
+
+    }).promise();
+}
+
+async function lagreKjoretoyServer(kjoretoy) {
+
+
+    await $.post("/billett/lagreKjoretoy/", kjoretoy).done((res) => {
+
+
+    }).promise();
+}
 function setPris(pris) {
     $("#pris").html('<p>' + pris + 'kr </p>');
 }
