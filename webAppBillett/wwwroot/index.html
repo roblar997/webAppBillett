@@ -392,7 +392,7 @@
                             <div class="col">
                                 <strong> Kjæledyr: </strong>
                                 <label>Antall kjæledyr:</label> <input type="number" id="antKjæledyr" style="width:10em">
-                                <label>Antall kjæledyr, av disse, en ønsker å sette i kennel (sjekk hvilke dyr som kan settes i kennel, for gjeldende rute) :</label> <input type="number" value="dyr" style="width:10em">
+                                <label>Antall kjæledyr, av disse, en ønsker å sette i kennel (sjekk hvilke dyr som kan settes i kennel, for gjeldende rute) :</label> <input type="number" id="antKennel" style="width:10em">
 
                                 <label><strong>Andre relevante opplysninger med tanke på innhold</strong></label>
                                 <input type="textarea" id="infoInnhold" style="width:30em; height:20em"></input>
@@ -405,13 +405,12 @@
                 </div>
 
                 <div class="btn-box">
-                    <button type="button" id="fulfor"> Legg til</button>
+                    <button type="button" id="addKjoretoy"> Legg til</button>
                 </div>
                 <div class="container">
                     <div class="container">
-                        <h1 class="text-center">Kjøretøy </h1>
-                        <div class="row">
-                            <h2 class="text-left"> Legg til kjøretøy </h2>
+                        <h1 class="text-center">Oversikt kjøretøy </h1>
+                        <div id="oversiktKjoretoy">
 
                         </div>
                     </div>
@@ -457,11 +456,11 @@
                 </div>
 
                 <div class="btn-box">
-                    <button type="button" id="fulfor"> Legg til</button>
+                    <button type="button" id="addBagasje"> Legg til</button>
                 </div>
                 <div class="container">
                     <h1 class="text-center">Oversikt over løs bagasje </h1>
-                    <div class="row">
+                    <div id="oversiktBagasje">
 
 
                     </div>

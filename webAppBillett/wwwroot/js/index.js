@@ -6,6 +6,13 @@ $(() => {
     $("#infobox2").hide();
     $("#infobox3").hide();
     $("#infobox4").hide();
+    $("#addBagasje").click((x) => {
+        lagreBagasje();
+    });
+    $("#addKjoretoy").click((x) => {
+        lagreKjoretoy();
+    });
+
 
     $("#avgangsAar").click((x) => {
         $("#avgangsMaaned").html("");
@@ -437,6 +444,29 @@ async function lagreKjoretoy() {
     }
     kjoretoyInfo.push(kjoretoy);
 
+
+    let html = ' <div class="card" style="width: 18rem;">'
+
+    html += '   <div class="card-body">'
+
+    html += '      <h5 class="card-title">' + kjoretoy.kjoreType +  ' </h5 > '
+
+    html += '  <p class="card-text">' 
+    html += ' høyde klasse: ' + kjoretoy.hoydeKlasse;
+    html += ' lengde klasse: ' + kjoretoy.lengdeKlasse;
+    html += ' harVåpen: ' + kjoretoy.harVåpen;
+    html += ' harElAparat: ' + kjoretoy.harElAparat;
+    html += ' harSproyteBeholder: ' + kjoretoy.harSproyteBeholder;
+    html += ' harGassBeholder: ' + kjoretoy.harGassBeholder;
+    html += ' harSproyteBeholder: ' + kjoretoy.harSproyteBeholder;
+    html += ' antKjæledyr: ' + kjoretoy.antKjæledyr;
+    html += ' infoInnhold: ' + kjoretoy.infoInnhold;
+    html += '</p>';
+    html += '</div>';
+    html += '</div>';
+
+    $("#oversiktKjoretoy").append(html);
+
 }
 
 async function lagreBagasje() {
@@ -451,6 +481,27 @@ async function lagreBagasje() {
         infoInnhold: $("#infoInnholdB").val()
     }
     bagasjeInfo.push(bagasje);
+
+    let html = ' <div class="card" style="width: 18rem;">'
+
+    html += '   <div class="card-body">'
+
+    html += '      <h5 class="card-title"> Bagasje </h5 > '
+
+    html += '  <p class="card-text">'
+    html += ' harSykkel: ' + bagasje.harSykkel;
+    html += ' harVåpen: ' + bagasje.harVåpen;
+    html += ' harElAparat: ' + bagasje.harElAparat;
+    html += ' harSproyteBeholder: ' + bagasje.harSproyteBeholder;
+    html += ' harGassBeholder: ' + bagasje.harGassBeholder;
+    html += ' harSproyteBeholder: ' + bagasje.harSproyteBeholder;
+    html += ' antKjæledyr: ' + bagasje.antKjæledyr;
+    html += ' infoInnhold: ' + bagasje.infoInnhold;
+    html += '</p>';
+    html += '</div>';
+    html += '</div>';
+
+    $("#oversiktBagasje").append(html);
 }
 
 async function lagrePerson(skjemaNr) {
