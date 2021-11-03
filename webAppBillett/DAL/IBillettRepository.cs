@@ -61,6 +61,7 @@ namespace webAppBillett.DAL {
         public DateTime avgangsTid { get; set; }
     }
     public interface IBillettRepository {
+        public void lagreBagasje(int billettId, Bagasje bagasje);
         public Task<List<Lugar>> hentLugarer(int billettId);
         public  void velgLugar(int id, int billettId);
         public Task<double> beregnPris(int billettId);

@@ -77,6 +77,15 @@ namespace webAppBillett.DAL
             return lugarer;
 
         }
+
+        public void lagreBagasje(int billettId, Bagasje bagasje)
+        {
+            Billett billett = _lugDb.billetter.Find(billettId);
+            Bagasje bagasjen = new Bagasje();
+            bagasjen.billettId = billett.billettId;
+            _lugDb.bagasje.Add(bagasjen);
+            _lugDb.SaveChanges();
+        }
         public void lagreKjoretoy(int billettId, KjoretoyToBeUnWrapped kjoretoy)
         {
             Billett billett =  _lugDb.billetter.Find(billettId);

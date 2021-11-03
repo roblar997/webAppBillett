@@ -185,6 +185,12 @@ namespace webAppBillett.Controllers
             }
         }
 
+        public void lagreBagasje(Bagasje bagasje)
+        {
+            int billettId = HttpContext.Session.GetInt32("billettId").Value;
+            _lugDb.lagreBagasje(billettId, bagasje);
+        }
+
         public void lagreKjoretoy(KjoretoyToBeUnWrapped kjoretoy)
         {
             int billettId = HttpContext.Session.GetInt32("billettId").Value;
