@@ -459,7 +459,7 @@ async function lagreKjoretoy() {
         hoydeKlasse: $("#hoydeKlasse").val(),
         lengdeKlasse: $("#lengdeKlasse").val(),
         harVåpen: $("#harVåpen").prop("checked"),
-        harElAparat: $("#harElAparat").prop("checked"),
+        harElApparat: $("#harElAparat").prop("checked"),
         harSproyteBeholder: $("#harSproyteBeholder").prop("checked"),
         harGassBeholder: $("#harGassBeholder").prop("checked"),
         antKjæledyr: $("#antKjæledyr").val(),
@@ -503,7 +503,7 @@ async function lagreBagasje() {
 
         harSykkel: $("#harSykkelB").prop("checked"),
         harVåpen: $("#harVåpenB").prop("checked"),
-        harElAparat: $("#harElAparatB").prop("checked"),
+        harElApparat: $("#harElAparatB").prop("checked"),
         harSproyteBeholder: $("#harSproyteBeholderB").prop("checked"),
         harGassBeholder: $("#harGassBeholderB").prop("checked"),
         antKjæledyr: $("#antKjæledyrB").val(),
