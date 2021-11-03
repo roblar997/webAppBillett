@@ -501,7 +501,7 @@ async function lagreBagasje() {
         antKjæledyr: $("#antKjæledyrB").val(),
         infoInnhold: $("#infoInnholdB").val()
     }
-    bagasjeInfo.push(bagasje);
+    bagasjene.push(bagasje);
 
     let html = ' <div class="card" style="width: 18rem;">'
 
