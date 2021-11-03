@@ -284,9 +284,7 @@ var GUIModuleSPA = (function () {
         },
         testAntallKjoretoy: function () {
             return testPAntallKjoretoy();
-        }
-    }
-    function testPAntallKjoretoy() {
+        },
         addReiseInfo: function (antall) {
             addPReiseInfo(antall);
         },
