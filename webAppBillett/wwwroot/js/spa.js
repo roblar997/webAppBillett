@@ -95,7 +95,18 @@ $(() => {
 
     });
     
+    $("#btnNeste5").click(function () {
+        if (GUIModuleSPA.testAntallBagasjer()) {
+            $("#regform5").hide();
+            $("#regform6").show();
 
+            GUIModuleSPA.changeSchemaState(5, state.active);
+        }
+        else {
+            alert("Ikke ferdig med skjemaet");
+        }
+
+    });
 
 
 
