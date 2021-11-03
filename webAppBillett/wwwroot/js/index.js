@@ -455,7 +455,7 @@ async function lagreKjoretoy() {
         ruteId: $("#ruteValgt").val(),
         avgangsDato: reiseInformasjonen.avgangsDato,
         avgangsTid: reiseInformasjonen.avgangsTid,
-        kjoreType: $("#kjoreType").val(),
+        typeKjoretoy: $("#kjoreType").val(),
         hoydeKlasse: $("#hoydeKlasse").val(),
         lengdeKlasse: $("#lengdeKlasse").val(),
         harVåpen: $("#harVåpen").prop("checked"),
