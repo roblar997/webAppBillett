@@ -677,7 +677,7 @@ async function hentForekomstDatoTid() {
 
             html += "<p><strong> Dato/tid: </strong> " + res[i].avgangsDato + " " + res[i].avgangsTid + " - " + res[i].ankomstDato + " " + res[i].ankomstTid + "</p>";
             html += "<p><strong> pris: </strong> " + res[i].pris + "</p>";
-
+            html += ' <button type="button" class="btn btn-success" id="tidspunkt' + i + '"> Velg </button> ' 
             html += "</p> ";
             html += "    </div>"
             html += " </div>";
@@ -685,6 +685,9 @@ async function hentForekomstDatoTid() {
         html += '</div>';
 
         $("#tidsOversikt").append(html);
+        $("#tidspunkt" + i).click((x) => {
+            $("avgangsTid").val(x.target.value);
+        });
     }) .promise();
 }
 
