@@ -27,7 +27,8 @@ namespace webAppBillett.Models
         [Required]
         public double prisBarn { get; set; }
 
-
+        public double maksPrisKommende { get; set; }
+        public double minPrisKommende { get; set; }
 
         [ForeignKey("ruteId")]
         public virtual List<RuteForekomstDato> ruteForekomstDato { get; set; }

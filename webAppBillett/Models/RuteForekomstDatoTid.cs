@@ -35,6 +35,8 @@ namespace webAppBillett.Models
         public int fartøyId { get; set; }
    
 
+
+
         public double pris { get; set; }
 
         [System.Text.Json.Serialization.JsonIgnore]
