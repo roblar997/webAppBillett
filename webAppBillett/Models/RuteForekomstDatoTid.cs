@@ -34,6 +34,8 @@ namespace webAppBillett.Models
 
         public int fartøyId { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]
+
+        public double pris { get; set; }
         public virtual Fartøy fartøy { get; set; }
         public bool erUtsolgt { get; set; }
     }
