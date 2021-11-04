@@ -685,9 +685,11 @@ async function hentForekomstDatoTid() {
         html += '</div>';
 
         $("#tidsOversikt").append(html);
-        $("#tidspunkt" + i).click((x) => {
-            $("avgangsTid").val(x.target.value);
-        });
+        for (i = 0; i < res.length; i++) {
+            $("#tidspunkt" + i).click((x) => {
+                $("#avgangsTid").val(x.target.value);
+            });
+        }
     }) .promise();
 }
 
