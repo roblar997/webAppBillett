@@ -33,6 +33,7 @@ namespace webAppBillett.Models
         public int forekomstDatoId { get; set; }
 
         public int fartøyId { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual Fartøy fartøy { get; set; }
         public bool erUtsolgt { get; set; }
     }
