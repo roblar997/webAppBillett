@@ -14,7 +14,11 @@ namespace webAppBillett.Models
 
         }
 
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual Billett billett{ get; set; }
+
+
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual Kjoretoy kjoretoy { get; set; }
 
         [Key, Column(Order = 0)]
