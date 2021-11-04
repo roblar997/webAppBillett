@@ -402,7 +402,7 @@ async function lagreBetaling() {
             if (!canContinue) return;
         }
     //Send alle kjøretøy til server
-    for (i = 0; i < kjoretoyene.length; i++) {
+    for (i = 0; i <= kjoretoyene.length; i++) {
 
         await lagreKjoretoyServer(kjoretoyene[i]).catch((err) => {
                 $("#infobox4").show();
@@ -659,8 +659,32 @@ async function hentForekomstDatoTid() {
     await $.post("/billett/hentForekomsterDatoTid/", forekomstDato).done((res) => {
  
         for (i = 0; i < res.length; i++) {
+
             setTid(res[i].avgangsTid);
         }
+
+       let  html = '<div class="container">';
+
+        for (i = 0; i < res.length; i++) {
+
+            html += ' <div class="card" style="width: 18rem;">'
+
+            html += '   <div class="card-body">'
+
+            html += '      <h5 class="card-title"> ' + $("#fra option:selected").text() + " - " + $("#til option:selected").text() +  '</h5 > '
+
+            html += '  <p class="card-text">';
+
+            html += "<p><strong> Dato/tid: </strong> " + res[i].avgangsDato + " " + res[i].avgangsTid + " - " + res[i].ankomstDato + " " + res[i].ankomstTid + "</p>";
+            html += "<p><strong> pris: </strong> " + res[i].pris + "</p>";
+
+            html += "</p> ";
+            html += "    </div>"
+            html += " </div>";
+        }
+        html += '</div>';
+
+        $("#tidsOversikt").append(html);
     }) .promise();
 }
 
