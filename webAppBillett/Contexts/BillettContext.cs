@@ -31,6 +31,9 @@ namespace webAppBillett.Contexts
         public DbSet<Kjoretoy> kjoretoy { get; set; }
         public DbSet<Reservasjon> reservasjon { get; set; }
         public DbSet<BillettPerson> billettPerson { get; set; }
+
+        public DbSet<Fartøy> fartøy  { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
