@@ -236,7 +236,7 @@ namespace webAppBillett.DAL
 
             RuteForekomstDato forekomst =  _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteForekomstDato.ruteId && x.avgangsDato == ruteForekomstDato.avgangsDato && x.maksPrisKommende >= ruteForekomstDato.maksPrisKommende && x.minPrisKommende <= ruteForekomstDato.minPrisKommende);
             int forekomstDatoId = forekomst.forekomstDatoId;
-            List<RuteForekomstDatoTid> forekomster = await _lugDb.ruteForekomstDatoTid.Where((x) => x.forekomstDatoId == forekomstDatoId && !x.erUtsolgt ).ToListAsync();
+            List<RuteForekomstDatoTid> forekomster = await _lugDb.ruteForekomstDatoTid.Where((x) => x.forekomstDatoId == forekomstDatoId && !x.erUtsolgt  && x.pris >= ruteForekomstDato.minPrisKommende && x.pris <= ruteForekomstDato.maksPrisKommende).ToListAsync();
             if(forekomster.Count == 0)
             {
                 forekomst.erUtsolgt = true;
