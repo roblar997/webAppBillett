@@ -617,7 +617,9 @@ async function hentForekomstDato() {
 
     let rute = {
         fra: $("#fra").val(),
-        til: $("#til").val()
+        til: $("#til").val(),
+        prisMinRute: $("#prisMinRute").val(),
+        prisMaksRute: $("#prisMaksRute").val()
     }
     if (!validerRute(rute)) return;
 
@@ -652,7 +654,9 @@ async function hentForekomstDatoTid() {
     $("#avgangsTid").html("");
     let forekomstDato = {
         ruteId: $("#ruteValgt").val(),
-        avgangsDato: avgangsDatoen
+        avgangsDato: avgangsDatoen,
+        minPrisKommende: $("#prisMinRute").val(),
+        maksPrisKommende: $("#prisMaksRute").val()
     }
     if (!validerRuteForekomst(forekomstDato)) return;
 

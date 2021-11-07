@@ -68,6 +68,18 @@ namespace webAppBillett.DAL {
         
         public DateTime avgangsTid { get; set; }
     }
+
+    public class RuteForekomstMinMaks
+    {
+        public int fra{ get; set; }
+
+        public int til{ get; set; }
+
+        public int minPrisRute { get; set; }
+
+        public int maksPrisRute { get; set; }
+    }
+
     public interface IBillettRepository {
         public void lagreBagasje(int billettId, Bagasje bagasje);
         public Task<List<Lugar>> hentLugarer(int billettId);
@@ -77,7 +89,7 @@ namespace webAppBillett.DAL {
         public Task<PrisForRute> hentPrisForRute(Rute rute);
         public Task<List<Lugar>> hentFiltrerteLugarer(FilterLugar filterLugar);
         public  Task<List<Havn>> hentTilHavner(int id);
-        public  Task<List<RuteForekomstConverted>> hentForekomsterDato(Rute rute);
+        public  Task<List<RuteForekomstConverted>> hentForekomsterDato(RuteForekomstMinMaks rute);
 
         public  Task<List<RuteForekomstDatoTid>> hentForekomsterDatoTid(RuteForekomstDato ruteForekomstDato);
         public  Task<List<Kjoretoy>> hentKjoretoyInfo();
