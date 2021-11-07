@@ -155,7 +155,7 @@ namespace webAppBillett.Controllers
         {
             return await _lugDb.hentPrisForRute(rute);
         }
-        public async Task<ActionResult> hentForekomsterDato(Rute rute)
+        public async Task<ActionResult> hentForekomsterDato(RuteForekomstMinMaks rute)
         {
             if (!ModelState.IsValid) return BadRequest("Ugyldig input");
 
