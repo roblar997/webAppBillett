@@ -175,7 +175,7 @@ namespace webAppBillett.DAL
         {
             DateTime datetime = DateTime.Now;
             DateTime datetimein4month = DateTime.Now.AddMonths(4);
-            List<RuteForekomstConverted> converted = _lugDb.ruteForekomstDato.Where((x)=>x.minPrisKommende >= rute.minPrisRute && rute.maksPrisRute <= x.maksPrisKommende).ToList().ConvertAll((x) => new RuteForekomstConverted { ruteId = x.ruteId, erUtsolgt = x.erUtsolgt, avgangsDato = DateTime.Parse(x.avgangsDato) }); 
+            List<RuteForekomstConverted> converted = _lugDb.ruteForekomstDato.Where((x)=>x.maksPrisKommende <= rute.minPrisRute && rute.maksPrisRute >= x.minPrisKommende).ToList().ConvertAll((x) => new RuteForekomstConverted { ruteId = x.ruteId, erUtsolgt = x.erUtsolgt, avgangsDato = DateTime.Parse(x.avgangsDato) }); 
 
 
 
@@ -234,7 +234,7 @@ namespace webAppBillett.DAL
         {
             DateTime dateTime = DateTime.Now;
 
-            RuteForekomstDato forekomst =  _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteForekomstDato.ruteId && x.avgangsDato == ruteForekomstDato.avgangsDato && x.maksPrisKommende <= ruteForekomstDato.maksPrisKommende && x.minPrisKommende >= ruteForekomstDato.minPrisKommende);
+            RuteForekomstDato forekomst =  _lugDb.ruteForekomstDato.First((x) => x.ruteId == ruteForekomstDato.ruteId && x.avgangsDato == ruteForekomstDato.avgangsDato && x.minPrisKommende <= ruteForekomstDato.maksPrisKommende && x.maksPrisKommende >= ruteForekomstDato.minPrisKommende);
             int forekomstDatoId = forekomst.forekomstDatoId;
             List<RuteForekomstDatoTid> forekomster = await _lugDb.ruteForekomstDatoTid.Where((x) => x.forekomstDatoId == forekomstDatoId && !x.erUtsolgt  && x.pris >= ruteForekomstDato.minPrisKommende && x.pris <= ruteForekomstDato.maksPrisKommende).ToListAsync();
             if(forekomster.Count == 0)

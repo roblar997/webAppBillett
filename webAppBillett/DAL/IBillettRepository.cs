@@ -75,9 +75,9 @@ namespace webAppBillett.DAL {
 
         public int til{ get; set; }
 
-        public int minPrisRute { get; set; }
+        public double minPrisRute { get; set; }
 
-        public int maksPrisRute { get; set; }
+        public double maksPrisRute { get; set; }
     }
 
     public interface IBillettRepository {
