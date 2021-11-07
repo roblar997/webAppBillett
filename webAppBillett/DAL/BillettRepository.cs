@@ -175,7 +175,7 @@ namespace webAppBillett.DAL
         {
             DateTime datetime = DateTime.Now;
             DateTime datetimein4month = DateTime.Now.AddMonths(4);
-            List<RuteForekomstConverted> converted = _lugDb.ruteForekomstDato.Where((x)=>x.minPrisKommende >= rute.minPrisRute && x.maksPrisKommende <= x.maksPrisKommende).ToList().ConvertAll((x) => new RuteForekomstConverted { ruteId = x.ruteId, erUtsolgt = x.erUtsolgt, avgangsDato = DateTime.Parse(x.avgangsDato) }); 
+            List<RuteForekomstConverted> converted = _lugDb.ruteForekomstDato.Where((x)=>x.minPrisKommende >= rute.minPrisRute && rute.maksPrisKommende <= x.maksPrisKommende).ToList().ConvertAll((x) => new RuteForekomstConverted { ruteId = x.ruteId, erUtsolgt = x.erUtsolgt, avgangsDato = DateTime.Parse(x.avgangsDato) }); 
 
 
 
