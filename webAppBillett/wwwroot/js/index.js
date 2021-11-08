@@ -65,7 +65,12 @@ $(() => {
 
 
 
-
+    $("#avgangsTid").click((x) => {
+        let index = $('#avgangsTid option:selected').index();
+        $("#tidValg" + preValg).css("background-color", "white");
+        $("#tidValg" + index).css("background-color", "lightgrey");
+        preValg = index;
+    });
 
 
 
@@ -288,6 +293,7 @@ let reiseInformasjonen;
 let prisBarn = 0;
 let prisVoksen = 0;
 
+let preValg = 0;
 
 function hentTyper() {
     return [... new Set(kjoretoyInfo.map((x) => x.typeKjoretoy))];
@@ -671,7 +677,7 @@ async function hentForekomstDatoTid() {
 
         for (i = 0; i < res.length; i++) {
 
-            html += ' <div class="card" style="width: 18rem;">'
+            html += ' <div class="card" id="tidValg' + i + '" style="width: 18rem;">'
 
             html += '   <div class="card-body">'
 
@@ -694,7 +700,12 @@ async function hentForekomstDatoTid() {
                 $("#avgangsTid").val(x.target.value);
             });
         }
-    }) .promise();
+        if (res.length > 0) {
+            $("#tidValg0").css("background-color", "lightgrey");
+            preValg = 0;
+        }
+    }).promise();
+
 }
 
 
@@ -869,7 +880,7 @@ async function hentFiltrerteLugarer() {
             lugarPrisTot += parseFloat(res[i].pris);
             let lugarHTML =
 
-                ' <div class="card col-md-6"> <img class="card-img-top" src="' + res[i].bildeURL + '"></img> ' +
+                ' <div class="card col-md-6" > <img class="card-img-top" src="' + res[i].bildeURL + '"></img> ' +
                 ' <div class="card-body">' +
                 ' <h5 class="card-title">' + res[i].tittel + '</h5>' +
                 '    <p class="card-text"> <strong> Pris:</strong> ' + res[i].pris + ' </p>' +
