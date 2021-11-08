@@ -698,6 +698,9 @@ async function hentForekomstDatoTid() {
         for (i = 0; i < res.length; i++) {
             $("#tidspunkt" + i).click((x) => {
                 $("#avgangsTid").val(x.target.value);
+                $("#tidValg" + preValg).css("background-color", "white");
+                $("#tidValg" + i).css("background-color", "lightgrey");
+                preValg = i;
             });
         }
         if (res.length > 0) {
