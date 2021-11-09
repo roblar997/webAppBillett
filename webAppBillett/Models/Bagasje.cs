@@ -15,6 +15,7 @@ namespace webAppBillett.Models
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int bagasjeId { get; set; }
 
         public int billettId { get; set; }

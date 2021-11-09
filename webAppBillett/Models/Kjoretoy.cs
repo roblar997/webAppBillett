@@ -15,6 +15,7 @@ namespace webAppBillett.Models
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int kjoretoyId { get; set; }
         public virtual List<RuteForekomstDatoTidKjoretoy> ruteForekomstDatoTidKjoretoy { get; set; }
         public virtual List<BillettKjoretoy> BillettKjoretoy { get; set; }

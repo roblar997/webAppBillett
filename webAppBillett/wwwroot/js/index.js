@@ -408,7 +408,7 @@ async function lagreBetaling() {
             if (!canContinue) return;
         }
     //Send alle kjøretøy til server
-    for (i = 0; i <= kjoretoyene.length; i++) {
+    for (i = 0; i < kjoretoyene.length; i++) {
 
         await lagreKjoretoyServer(kjoretoyene[i]).catch((err) => {
                 $("#infobox4").show();
