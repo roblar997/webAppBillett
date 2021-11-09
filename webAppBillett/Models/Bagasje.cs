@@ -36,10 +36,6 @@ namespace webAppBillett.Models
         public int antKjæledyr { get; set; }
         
         [Required]
-        public int antKjæledyrKennel { get; set; }
-
-
-        [Required]
         public string infoInnhold { get; set; }
 
     }
