@@ -285,7 +285,8 @@ namespace webAppBillett.DAL
 
             slettLugarer(billettId);
             slettPersoner(billettId);
-
+            slettBagasje(billettId);
+            slettBillettKjoretoy(billettId);
             _lugDb.billetter.Remove(billett);
             _lugDb.SaveChanges();
 
@@ -296,6 +297,29 @@ namespace webAppBillett.DAL
 
             Billett billett = await _lugDb.billetter.FindAsync(billettId);
             billett.reservasjoner.RemoveAll((x) => {
+                return x.billettId == billett.billettId;
+            });
+            await _lugDb.SaveChangesAsync();
+
+        }
+
+
+        public async void slettBillettKjoretoy(int billettId)
+        {
+
+            Billett billett = await _lugDb.billetter.FindAsync(billettId);
+            billett.billettKjoretoy.RemoveAll((x) => {
+                return x.billettId == billett.billettId;
+            });
+            await _lugDb.SaveChangesAsync();
+
+        }
+
+        public async void slettBagasje(int billettId)
+        {
+
+            Billett billett = await _lugDb.billetter.FindAsync(billettId);
+            billett.bagasje.RemoveAll((x) => {
                 return x.billettId == billett.billettId;
             });
             await _lugDb.SaveChangesAsync();

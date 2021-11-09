@@ -101,8 +101,8 @@ namespace webAppBillett.DAL {
 
         public Task<List<BillettFormatert>> hentBillettFormatert(int billettId);
         public  Task<int> lagreBillett(Billett billett);
-
-
+        public  void slettBagasje(int billettId);
+        public  void slettBillettKjoretoy(int billettId);
         public Task<List<Person>> hentPersoner(int billettId);
         public  void slettBillett(int billettId);
         public  void slettLugarer(int billettId);
