@@ -38,7 +38,6 @@ namespace webAppBillett.Models
 
         public string infoInnhold { get; set; }
 
-        public int antall { get; set; }
 
     }
 }
