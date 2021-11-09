@@ -13,6 +13,9 @@ namespace webAppBillett.Models
         {
 
         }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int billettKjoretoyId { get; set; }
 
         [System.Text.Json.Serialization.JsonIgnore]
         public virtual Billett billett{ get; set; }
@@ -21,11 +24,8 @@ namespace webAppBillett.Models
         [System.Text.Json.Serialization.JsonIgnore]
         public virtual Kjoretoy kjoretoy { get; set; }
 
-        [Key, Column(Order = 0)]
+       
         public int billettId { get; set; }
-
-
-        [Key, Column(Order = 1)]
         public int kjoretoyId { get; set; }
 
 
@@ -37,6 +37,8 @@ namespace webAppBillett.Models
         public int antKjæledyr { get; set; }
 
         public string infoInnhold { get; set; }
+
+        public int antall { get; set; }
 
     }
 }

@@ -26,6 +26,7 @@ namespace webAppBillett.Models
 
         public virtual List<BillettPerson> billettPerson { get; set; }
 
+        [ForeignKey("billettId")]
         public virtual List<BillettKjoretoy> billettKjoretoy { get; set; }
 
         public virtual List<Reservasjon> reservasjoner { get; set; }

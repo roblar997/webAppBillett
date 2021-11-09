@@ -51,10 +51,7 @@ namespace webAppBillett.Contexts
                 table.personId
             });
 
-            modelBuilder.Entity<BillettKjoretoy>().HasKey(table => new {
-                table.billettId,
-                table.kjoretoyId
-            });
+
             modelBuilder.Entity<RuteForekomstDatoTidKjoretoy>().HasKey(table => new {
                 table.ruteForekomstDatoTidId,
                 table.kjoretoyId
