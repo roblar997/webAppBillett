@@ -35,6 +35,7 @@ namespace webAppBillett.Models
         public bool harGassBeholder { get; set; }
 
         public int antKjæledyr { get; set; }
+        public int antKjæledyrKennel { get; set; }
 
         public string infoInnhold { get; set; }
 

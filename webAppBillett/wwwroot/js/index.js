@@ -469,6 +469,7 @@ async function lagreKjoretoy() {
         harSproyteBeholder: $("#harSproyteBeholder").prop("checked"),
         harGassBeholder: $("#harGassBeholder").prop("checked"),
         antKjæledyr: $("#antKjæledyr").val(),
+        antKjæledyrKennel: $("#antKennel").val()
         infoInnhold: $("#infoInnhold").val()
     }
     kjoretoyene.push(kjoretoy);
@@ -513,7 +514,8 @@ async function lagreBagasje() {
         harSproyteBeholder: $("#harSproyteBeholderB").prop("checked"),
         harGassBeholder: $("#harGassBeholderB").prop("checked"),
         antKjæledyr: $("#antKjæledyrB").val(),
-        infoInnhold: $("#infoInnholdB").val()
+        infoInnhold: $("#infoInnholdB").val(),
+        antKjæledyrKennel: $("#antKennelB").val()
     }
     bagasjene.push(bagasje);
 
