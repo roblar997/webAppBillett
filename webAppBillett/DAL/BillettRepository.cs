@@ -13,7 +13,7 @@ namespace webAppBillett.DAL
     public class BillettRepository : IBillettRepository
     {
         private readonly BillettContext _lugDb;
-        private readonly object ruteForekomstDato;
+
 
         public BillettRepository(BillettContext db)
         {
@@ -308,6 +308,7 @@ namespace webAppBillett.DAL
         {
 
             Billett billett = await _lugDb.billetter.FindAsync(billettId);
+
             billett.billettKjoretoy.RemoveAll((x) => {
                 return x.billettId == billett.billettId;
             });
