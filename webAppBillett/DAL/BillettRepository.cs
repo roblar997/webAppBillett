@@ -308,6 +308,11 @@ namespace webAppBillett.DAL
         {
 
             Billett billett = await _lugDb.billetter.FindAsync(billettId);
+            int ruteId = _lugDb.ruter.First((x) => x.fra == billett.fra && x.til == billett.til).ruteId;
+            RuteForekomstDatoTid ruteForekomstDatoTid = _lugDb.ruteForekomstDatoTid.First((x) => x.avgangsDato == billett.avgangsDato && x.avgangsTid == billett.avgangsTid && x.ruteId == ruteId);
+            List<int> kjoretoyIds = billett.billettKjoretoy.Where((x) => x.billettId == billett.billettId).ToList().ConvertAll((x) => x.kjoretoyId);
+            _lugDb.ruteForekomstDatoTidKjoretoy.Where((x) => x.ruteForekomstDatoTidId == ruteForekomstDatoTid.ruteForekomstDatoTidId && kjoretoyIds.Contains(x.kjoretoyId)).ToList().ForEach((x) => x.antReservert--);
+            await _lugDb.SaveChangesAsync();
 
             billett.billettKjoretoy.RemoveAll((x) => {
                 return x.billettId == billett.billettId;
