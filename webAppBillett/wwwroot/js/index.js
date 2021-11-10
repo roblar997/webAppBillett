@@ -15,6 +15,18 @@ $(() => {
         lagreKjoretoy();
     });
 
+    $("#slettKjoretoy").click((x) => {
+        slettKjoretoy();
+    });
+
+    $("#slettBagasje").click((x) => {
+        slettBagasje();
+    });
+
+    $("#slettRuteOversikt").click((x) => {
+        slettBagasje();
+    });
+
 
     $("#avgangsAar").click((x) => {
         $("#avgangsMaaned").html("");
@@ -236,6 +248,7 @@ $(() => {
         $("#avgangsMaaned").html("");
         $("#avgangsAar").html("");
         $("#avgangsTid").html("");
+        fjernTidsOversikt();
         hentTilHavner($("#fra").val());
     });
 
@@ -621,7 +634,7 @@ async function hentForekomstDato() {
     $("#avgangsMaaned").html("");
     $("#avgangsDag").html("");
     $("#avgangsTid").html("");
-
+    fjernTidsOversikt();
     let rute = {
         fra: $("#fra").val(),
         til: $("#til").val(),
@@ -1002,10 +1015,28 @@ async function slettLugarer() {
 
 }
 
+async function slettKjoretoy() {
+    kjoretoyene = [];
+
+    $("#oversiktKjoretoy").html("");
 
 
+}
+
+async function slettBagasje() {
+    bagasjene = [];
+
+    $("#oversiktBagasje").html("");
+    
+
+}
+async function fjernTidsOversikt() {
 
 
+    $("#tidsOversikt").html("");
+
+
+}
 function genererPersonInfoSkjema(info) {
 
     let antBarn = parseInt(info.antBarn, 10);
