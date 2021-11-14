@@ -428,14 +428,14 @@ namespace webAppBillett.DAL
         public async Task<double> beregnPris(int billettId)
         {
             Billett billett = await _lugDb.billetter.FindAsync(billettId);
-
-
             Rute rute = _lugDb.ruter.Where((x) => x.fra == billett.fra && x.til == billett.til).First();
+            RuteForekomstDatoTid ruteForekomstDatoTid = _lugDb.ruteForekomstDatoTid.First((x) => x.avgangsDato == billett.avgangsDato && x.avgangsTid == billett.avgangsTid && x.ruteId == rute.ruteId);
+
 
             double barnPris = rute.prisBarn;
             double voksenPris = rute.prisVoksen;
 
-            double totPrisRute = barnPris * billett.antBarn + billett.antVoksen * rute.prisVoksen;
+            double totPrisRute = barnPris * billett.antBarn + billett.antVoksen * rute.prisVoksen + ruteForekomstDatoTid.pris;
 
             List<Lugar> lugarer = billett.reservasjoner.ConvertAll((x) => {
                 return _lugDb.lugarer.Find(x.lugarId);

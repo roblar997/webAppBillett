@@ -79,9 +79,9 @@ $(() => {
 
     $("#avgangsTid").click((x) => {
         let index = $('#avgangsTid option:selected').index();
-        $("#tidValg" + preValg).css("background-color", "white");
+        $("#tidValg" + valg).css("background-color", "white");
         $("#tidValg" + index).css("background-color", "lightgrey");
-        preValg = index;
+        valg = index;
     });
 
 
@@ -300,13 +300,14 @@ let kjoretoyInfo = [];
 
 let kjoretoyene = [];
 let bagasjene = [];
+let prisene = [];
 
 let lugarPrisTot = 0;
 let reiseInformasjonen;
 let prisBarn = 0;
 let prisVoksen = 0;
 
-let preValg = 0;
+let valg = 0;
 
 function hentTyper() {
     return [... new Set(kjoretoyInfo.map((x) => x.typeKjoretoy))];
@@ -622,7 +623,7 @@ function setPris(pris) {
 
 function beregnPris() {
  
-    let totPris = parseInt(reiseInformasjonen.antBarn, 10) * prisBarn + parseInt(reiseInformasjonen.antVoksen, 10) * prisVoksen +  lugarPrisTot;
+    let totPris = parseInt(reiseInformasjonen.antBarn, 10) * prisBarn + parseInt(reiseInformasjonen.antVoksen, 10) * prisVoksen +  lugarPrisTot + parseInt(prisene[valg],10);
     setPris(totPris);
 
 }
@@ -685,6 +686,7 @@ async function hentForekomstDatoTid() {
         for (i = 0; i < res.length; i++) {
 
             setTid(res[i].avgangsTid);
+            prisene.push(res[i].pris);
         }
 
        let  html = '<div class="container">';
@@ -717,7 +719,7 @@ async function hentForekomstDatoTid() {
         }
         if (res.length > 0) {
             $("#tidValg0").css("background-color", "lightgrey");
-            preValg = 0;
+            valg = 0;
         }
     }).promise();
 
