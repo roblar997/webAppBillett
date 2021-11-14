@@ -309,9 +309,7 @@ let prisVoksen = 0;
 
 let valg = 0;
 
-function hentTyper() {
-    return [... new Set(kjoretoyInfo.map((x) => x.typeKjoretoy))];
-}
+
 
 
 function hentHoydeKlasse(type) {
@@ -733,9 +731,8 @@ async function hentKjoretoyInfo() {
     await $.get("/billett/hentKjoretoyInfo/").done((res) => {
 
         kjoretoyInfo = res;
-        let typer = hentTyper();
-        for (i = 0; i < typer.length; i++) {
-            setType(typer[i]);
+        for (i = 0; i < res.length; i++) {
+            setType(res[i]);
         }
 
     }).promise();
@@ -786,8 +783,8 @@ function setAar(aar) {
     
 }
 
-function setType(type) {
-    $("#kjoreType").append('<option value = "' + type + '">' + type + ' </option>');
+function setType(res) {
+    $("#kjoreType").append('<option value = "' + res.typeKjoretoy + '">' + res.typeKjoretoy + ' - Pris: ' + res.pris +  '</option > ');
 
 }
 function setHoydeKlasse(hoydeKlasse) {
