@@ -28,6 +28,8 @@ namespace webAppBillett.Models
         public string lengdeKlasse { get; set; }
 
         public int antattMaksVekt { get; set; }
+
+        public double pris { get; set; }
         
 
     }

@@ -622,8 +622,10 @@ function setPris(pris) {
 }
 
 function beregnPris() {
- 
-    let totPris = parseInt(reiseInformasjonen.antBarn, 10) * prisBarn + parseInt(reiseInformasjonen.antVoksen, 10) * prisVoksen +  lugarPrisTot + parseInt(prisene[valg],10);
+
+    let antPersoner = reiseInformasjonen.antBarn + reiseInformasjonen.antVoksen;
+    let prisKjoretoy = kjoretoyene.reduce((tot, kjoretoyet) => { return kjoretoyet.pris + tot }, 0);
+    let totPris = parseInt(reiseInformasjonen.antBarn, 10) * prisBarn + parseInt(reiseInformasjonen.antVoksen, 10) * prisVoksen + lugarPrisTot + parseInt(prisene[valg], 10) + prisKjoretoy + 50 * antPersoner;
     setPris(totPris);
 
 }

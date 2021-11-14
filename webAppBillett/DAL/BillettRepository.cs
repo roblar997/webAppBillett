@@ -441,8 +441,16 @@ namespace webAppBillett.DAL
                 return _lugDb.lugarer.Find(x.lugarId);
             });
 
+      
             double totLugarPris = lugarer.Aggregate<Lugar, double>(0, (pris, lug) => pris += lug.pris);
-            double totPris = totPrisRute + totLugarPris;
+
+            List<Kjoretoy> kjoretoy = billett.billettKjoretoy.ConvertAll((x) => {
+                return _lugDb.kjoretoy.Find(x.kjoretoyId);
+            });
+            double totKjoretoyPris = kjoretoy.Aggregate<Kjoretoy, double>(0, (pris, kjoretoy) => pris += kjoretoy.pris);
+
+            int antPersoner = billett.antBarn + billett.antVoksen;
+            double totPris = totPrisRute + totLugarPris + totKjoretoyPris + antPersoner * 50;
 
             return totPris;
 
