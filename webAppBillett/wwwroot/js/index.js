@@ -731,8 +731,9 @@ async function hentKjoretoyInfo() {
     await $.get("/billett/hentKjoretoyInfo/").done((res) => {
 
         kjoretoyInfo = res;
-        for (i = 0; i < res.length; i++) {
-            setType(res[i]);
+        let uniqueKjoretoy = [... new Set(res)];
+        for (i = 0; i < uniqueKjoretoy.length; i++) {
+            setType(uniqueKjoretoy[i]);
         }
 
     }).promise();
