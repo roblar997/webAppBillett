@@ -733,8 +733,12 @@ async function hentKjoretoyInfo() {
         kjoretoyInfo = res;
 
         let uniqueKjoretoy = kjoretoyInfo.reduce((result, kjoretoy) => {
-            if (result.includes(kjoretoy.typeKjoretoy))
+
+            let found = result.reduce((end, res) => res.typeKjoretoy == kjoretoy.typeKjoretoy | end, false);
+
+            if (found) 
                 return result;
+            
             else
                 return [...result, kjoretoy];
 
