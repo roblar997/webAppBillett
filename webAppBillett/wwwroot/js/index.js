@@ -736,7 +736,7 @@ async function hentKjoretoyInfo() {
             if (result.includes(kjoretoy.typeKjoretoy))
                 return result;
             else
-                return [...result, kjoretoy.typeKjoretoy];
+                return [...result, kjoretoy];
 
         }, []);
 
